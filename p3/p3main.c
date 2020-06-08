@@ -2,7 +2,21 @@
 #include "def_pinos.h"
 #include "config.c"
 
-#define CS P2_3
+#define CLOCK 25000000
+#define CS P2_3 // used in reading/writing on RAM SPI
+
+#define AIN0_0 0 // channels used in ADC0		
+#define AIN0_1 1
+#define AIN0_2 2 
+#define AIN0_3 3
+
+#define G05    6 // gains used in ADC0 (value|code)
+#define G1	   0	
+#define G2     1
+#define G4     2
+#define G8     3
+#define G16    4
+
 
 // keyboard reading related 
 unsigned char tecla;
@@ -17,6 +31,10 @@ void isr_timer2() __interrupt 5;
 unsigned char le_RAM_SPI(unsigned int end);
 void esc_RAM_SPI(unsigned int end, unsigned char dado);
 void test_RAM_SPI();
+unsigned int le_ADC0(unsigned char canal, unsigned char ganho);
+void le_LM35();
+int int_tc1() interrupt 3;
+float le_pulso();
 
 int main() {
 
@@ -46,32 +64,32 @@ int main() {
 	            printf_fast_f("%d\n", tecla);
 	            break;
 
-            // turn on peltier module 
+            // turn on peltier module power source
 	        case 2:
 	            printf_fast_f("%d\n", tecla);
 	            break;
 
-            // turn off peltier module
+            // turn off peltier module power source
 	        case 3:
 	            printf_fast_f("%d\n", tecla);
 	            break;
 
-            // measure motor rotation
+            // measure motor rotation 
 	        case 4:
 	            printf_fast_f("%d\n", tecla);
 	            break;
             
-            // measure temperature
+            // measure peltier module temperature *NEEDS TESTING*
 	        case 5:
-	            printf_fast_f("%d\n", tecla);
+	            le_LM35();
 	            break;
 
-            // measure peltier module's voltage 
+            // measure peltier module voltage *NEEDS TESTING*
 	        case 6:
-	            printf_fast_f("%d\n", tecla);
+	            printf_fast_f("TensÃ£o aplicada Ã  placa peltier: %3.1fV\n", (float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1);
 	            break;
 
-            // test RAM SPI 
+            // test RAM SPI *TESTED*
 	        case 7:
 	            test_RAM_SPI();
 	            break;
@@ -314,7 +332,7 @@ unsigned char le_RAM_SPI(unsigned int end) {
     SPI0DAT = 0x00;
     while(!TXBMT);
     SPIF = 0;
-    while(!SPIF); // espera o término do deslocamento do último valor
+    while(!SPIF); // espera o tï¿½rmino do deslocamento do ï¿½ltimo valor
     SPIF = 0;
     CS = 1;
 
@@ -336,7 +354,7 @@ void esc_RAM_SPI(unsigned int end, unsigned char dado) {
     SPI0DAT = dado;
     while(!TXBMT);
     SPIF = 0;
-    while(!SPIF); // espera o término do deslocamento do último valor
+    while(!SPIF); // espera o tï¿½rmino do deslocamento do ï¿½ltimo valor
     SPIF = 0;
     CS = 1;
 }
@@ -359,4 +377,46 @@ void test_RAM_SPI() {
 		printf_fast_f("Erro end. %05u\n");
 	else
 		printf_fast_f("Fim do teste. RAM SPI ok!\n");		
+}
+
+// ADC0 READING FUNCTION
+unsigned int le_ADC0(unsigned char canal, unsigned char ganho) {
+    ADC0CF = (ADC0CF & 0xf8) | ganho;
+    AMX0SL = canal;
+    AD0BUSY = 1; // fire up AD conversion
+	NOP();
+    while(AD0BUSY); // wait untill conversion is finished
+
+    return (ADC0H << 8 | ADC0L);
+
+}
+
+// LM35 READING FUNCTION
+void le_LM35() {
+	ladc = le_ADC0(AIN0_0, G1);
+	printf_fast_f("\x01 Temperatura da placa peltier: %2.1f Â°C", (ladc * 0.00059326171875 / 1) * 100);
+}
+
+// PULSE READING FUNCTIONS
+int int_tc1() interrupt 3 { // occurs every 2.62144 ms
+	TF1 = 0;
+	counter += 2.62144;
+	if (counter > 1000) IE1 = 1; // stop reading if pulse width > 1s
+}
+
+float le_pulso() {
+	unsigned int t;
+	
+	counter = 0;
+	IE1 = 0; // turn off external interrupt 1 flag
+	TR1 = 1; // turn TC1 on, counting while INT1 pin is 1
+	while(!IE1); // wait for 1->0 trasition to start counting 
+	TR1 = 0; // turn TC1 on
+	TF1 = 0; // turn off TC1 overflow flag
+	t = (unsigned int)TH1 * 256 + (unsigned int)TL1; // concatenates two 8 bit registers	
+	TL1 = 0;
+	TH1 = 0;
+	counter += (float)t / CLOCK; 
+	
+	return counter;
 }
