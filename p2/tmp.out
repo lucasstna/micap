@@ -1,0 +1,3 @@
+?ASlink-Error-<cannot open> : "C:\Users\Lucas\Documents\micap\p2\main.rel"
++ C:\PROGRA~1\SDCC\bin\sdld.exe -nf "C:\Users\Lucas\Documents\micap\p2\P2.lk"
++ C:\PROGRA~1\SDCC\bin\sdld.exe -nf "C:\Users\Lucas\Documents\micap\p2\P2.lk" returned errorcode 3

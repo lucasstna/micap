@@ -1,0 +1,11 @@
+M:main
+F:G$Reset_Sources_Init$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$Timer_Init$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$UART_Init$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$ADC_Init$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$DAC_Init$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$Voltage_Reference_Init$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$Port_IO_Init$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$Oscillator_Init$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$Interrupts_Init$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$Init_Device$0_0$0({2}DF,SV:S),C,0,0,0,0,0
