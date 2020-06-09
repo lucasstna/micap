@@ -64,6 +64,7 @@ int main() {
 
             // measure peltier module voltage 
 	        case 2:
+				le_ADC0(AIN0_1, G1); // ignore first reading (ADC0 channel switching related)
 	            printf_fast_f("Tensao aplicada a placa peltier: %3.1fV\n", ((float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1) / 0.1803);
 	            break;
 
@@ -331,7 +332,9 @@ unsigned int le_ADC0(unsigned char canal, unsigned char ganho) {
 
 // LM35 READING FUNCTION
 void le_LM35() {
-	unsigned int ladc = le_ADC0(AIN0_0, G1);
+	unsigned int ladc;
+	le_ADC0(AIN0_0, G1); // ignore first reading (ADC0 channel switching related)
+	ladc = le_ADC0(AIN0_0, G1);
 	printf_fast_f("Temperatura da placa peltier: %2.1f C\n", (ladc * 0.00059326171875 / 1) * 100);
 }
 
