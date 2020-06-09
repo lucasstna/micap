@@ -33,6 +33,13 @@ void Timer_Init()
     RCAP3H    = 0xFF;
 }
 
+void PCA_Init()
+{
+    SFRPAGE   = PCA0_PAGE;
+    PCA0CN    = 0x40;
+    PCA0CPM0  = 0x42;
+}
+
 void UART_Init()
 {
     SFRPAGE   = UART0_PAGE;
@@ -73,9 +80,9 @@ void Port_IO_Init()
     // P0.2  -  SCK  (SPI0), Push-Pull,  Digital
     // P0.3  -  MISO (SPI0), Open-Drain, Digital
     // P0.4  -  MOSI (SPI0), Push-Pull,  Digital
-    // P0.5  -  INT1 (Tmr1), Open-Drain, Digital
-    // P0.6  -  Unassigned,  Open-Drain, Digital
-    // P0.7  -  Unassigned,  Open-Drain, Digital
+    // P0.5  -  CEX0 (PCA),  Push-Pull,  Digital
+    // P0.6  -  INT1 (Tmr1), Open-Drain, Digital
+    // P0.7  -  Unassigned,  Push-Pull,  Digital
 
     // P1.0  -  Unassigned,  Open-Drain, Digital
     // P1.1  -  Unassigned,  Open-Drain, Digital
@@ -105,8 +112,8 @@ void Port_IO_Init()
     // P3.7  -  Unassigned,  Open-Drain, Digital
 
     SFRPAGE   = CONFIG_PAGE;
-    P0MDOUT   = 0x15;
-    XBR0      = 0x06;
+    P0MDOUT   = 0xB5;
+    XBR0      = 0x0E;
     XBR1      = 0x10;
     XBR2      = 0x40;
 }
@@ -133,6 +140,7 @@ void Init_Device(void)
 {
     Reset_Sources_Init();
     Timer_Init();
+    PCA_Init();
     UART_Init();
     SPI_Init();
     ADC_Init();

@@ -62,12 +62,12 @@ int main() {
 	            le_LM35();
 	            break;
 
-            // measure peltier module voltage 
+            // measure peltier module voltage *TESTED*
 	        case 2:
 	            printf_fast_f("Tensao aplicada a placa peltier: %3.1fV\n", ((float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1) / 0.1803);
 	            break;
 
-            // test RAM SPI 
+            // test RAM SPI *TESTED*
 	        case 3:
 	            test_RAM_SPI();
 	            break;

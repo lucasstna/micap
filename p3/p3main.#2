@@ -62,12 +62,12 @@ int main() {
 	            le_LM35();
 	            break;
 
-            // measure peltier module voltage 
+            // measure peltier module voltage *TESTED*
 	        case 2:
 	            printf_fast_f("Tensao aplicada a placa peltier: %3.1fV\n", ((float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1) / 0.1803);
 	            break;
 
-            // test RAM SPI 
+            // test RAM SPI *TESTED*
 	        case 3:
 	            test_RAM_SPI();
 	            break;
@@ -151,7 +151,7 @@ void int_serial(void) __interrupt 4 {
 
             // measure motor rotation
 	        case 'r':
-	            printf_fast_f("Rotacao do motor: %3.1f\n", 30/(le_pulso()*10));
+	            printf_fast_f("Rotacao do motor: %3.1f\n",30/(le_pulso()*10));
 				break;
             
             // measure motor temperature

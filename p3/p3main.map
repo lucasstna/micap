@@ -1,0 +1,2722 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  l_CABS                          
+C:   00000000  l_GSINIT1                       
+C:   00000000  l_GSINIT5                       
+C:   00000000  l_IABS                          
+C:   00000000  l_ISEG                          
+C:   00000000  l_PSEG                          
+C:   00000000  l_REG_BANK_1                    
+C:   00000000  l_REG_BANK_2                    
+C:   00000000  l_REG_BANK_3                    
+C:   00000000  l_RSEG                          
+C:   00000000  l_RSEG0                         
+C:   00000000  l_RSEG1                         
+C:   00000000  l_XABS                          
+C:   00000000  l_XINIT                         
+C:   00000000  l_XISEG                         
+C:   00000000  l_XSEG                          
+C:   00000000  l__CODE                         
+C:   00000000  s_BSEG                          
+C:   00000000  s_CABS                          
+C:   00000000  s_DSEG                          
+C:   00000000  s_HOME                          
+C:   00000000  s_IABS                          
+C:   00000000  s_ISEG                          
+C:   00000000  s_REG_BANK_0                    
+C:   00000000  s_RSEG                          
+C:   00000000  s_RSEG0                         
+C:   00000000  s_RSEG1                         
+C:   00000000  s_XABS                          
+C:   00000001  l_BIT_BANK                      
+C:   00000001  l_BSEG_BYTES                    
+C:   00000001  s_PSEG                          
+C:   00000001  s_XISEG                         
+C:   00000001  s_XSEG                          
+C:   00000002  l_OSEG                          
+C:   00000003  l_GSFINAL                       
+C:   00000003  l_GSINIT0                       
+C:   00000007  l_BSEG                          
+C:   00000008  l_REG_BANK_0                    
+C:   00000008  s_REG_BANK_1                    
+C:   0000000A  l_GSINIT2                       
+C:   0000000C  l_GSINIT                        
+C:   00000010  s_REG_BANK_2                    
+C:   00000015  s_OSEG                          
+C:   00000018  s_REG_BANK_3                    
+C:   00000020  s_BSEG_BYTES                    
+C:   00000020  s__CODE                         
+C:   00000021  s_BIT_BANK                      
+C:   00000022  l_GSINIT3                       
+C:   00000022  s_SSEG                          
+C:   0000002A  l_GSINIT4                       
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000031  l_HOME                          
+C:   00000031  s_GSINIT0                       
+C:   00000034  s_GSINIT1                       
+C:   00000034  s_GSINIT2                       
+C:   0000003E  s_GSINIT3                       
+C:   00000060  s_GSINIT4                       
+C:   00000077  l_DSEG                          
+C:   0000008A  s_GSINIT                        
+C:   0000008A  s_GSINIT5                       
+C:   00000096  s_GSFINAL                       
+C:   00000099  s_CSEG                          
+C:   000000DE  l_SSEG                          
+C:   00000100  l_IRAM                          
+C:   0000039B  l_CONST                         
+C:   00000FAA  l_CSEG                          
+C:   00001043  s_CONST                         
+C:   000013DE  s_XINIT                         
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           _startup
+     00000080  G$P0$0$0                           p3main
+     00000080  G$P0_0$0$0                         p3main
+     00000080  _P0                                p3main
+     00000080  _P0_0                              p3main
+     00000081  G$P0_1$0$0                         p3main
+     00000081  G$SP$0$0                           p3main
+     00000081  _P0_1                              p3main
+     00000081  _SP                                p3main
+     00000082  G$DPL$0$0                          p3main
+     00000082  G$P0_2$0$0                         p3main
+     00000082  _DPL                               p3main
+     00000082  _P0_2                              p3main
+     00000083  G$DPH$0$0                          p3main
+     00000083  G$P0_3$0$0                         p3main
+     00000083  _DPH                               p3main
+     00000083  _P0_3                              p3main
+     00000084  G$P0_4$0$0                         p3main
+     00000084  G$SFRPAGE$0$0                      p3main
+     00000084  _P0_4                              p3main
+     00000084  _SFRPAGE                           p3main
+     00000085  G$P0_5$0$0                         p3main
+     00000085  G$SFRNEXT$0$0                      p3main
+     00000085  _P0_5                              p3main
+     00000085  _SFRNEXT                           p3main
+     00000086  G$P0_6$0$0                         p3main
+     00000086  G$SFRLAST$0$0                      p3main
+     00000086  _P0_6                              p3main
+     00000086  _SFRLAST                           p3main
+     00000087  G$P0_7$0$0                         p3main
+     00000087  G$PCON$0$0                         p3main
+     00000087  _P0_7                              p3main
+     00000087  _PCON                              p3main
+     00000088  G$CP0HYN0$0$0                      p3main
+     00000088  G$CP1HYN0$0$0                      p3main
+     00000088  G$CP2HYN0$0$0                      p3main
+     00000088  G$CPT0CN$0$0                       p3main
+     00000088  G$CPT1CN$0$0                       p3main
+     00000088  G$CPT2CN$0$0                       p3main
+     00000088  G$IT0$0$0                          p3main
+     00000088  G$TCON$0$0                         p3main
+     00000088  _CP0HYN0                           p3main
+     00000088  _CP1HYN0                           p3main
+     00000088  _CP2HYN0                           p3main
+     00000088  _CPT0CN                            p3main
+     00000088  _CPT1CN                            p3main
+     00000088  _CPT2CN                            p3main
+     00000088  _IT0                               p3main
+     00000088  _TCON                              p3main
+     00000089  G$CP0HYN1$0$0                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000089  G$CP1HYN1$0$0                      p3main
+     00000089  G$CP2HYN1$0$0                      p3main
+     00000089  G$CPT0MD$0$0                       p3main
+     00000089  G$CPT1MD$0$0                       p3main
+     00000089  G$CPT2MD$0$0                       p3main
+     00000089  G$IE0$0$0                          p3main
+     00000089  G$TMOD$0$0                         p3main
+     00000089  _CP0HYN1                           p3main
+     00000089  _CP1HYN1                           p3main
+     00000089  _CP2HYN1                           p3main
+     00000089  _CPT0MD                            p3main
+     00000089  _CPT1MD                            p3main
+     00000089  _CPT2MD                            p3main
+     00000089  _IE0                               p3main
+     00000089  _TMOD                              p3main
+     0000008A  G$CP0HYP0$0$0                      p3main
+     0000008A  G$CP1HYP0$0$0                      p3main
+     0000008A  G$CP2HYP0$0$0                      p3main
+     0000008A  G$IT1$0$0                          p3main
+     0000008A  G$OSCICN$0$0                       p3main
+     0000008A  G$TL0$0$0                          p3main
+     0000008A  _CP0HYP0                           p3main
+     0000008A  _CP1HYP0                           p3main
+     0000008A  _CP2HYP0                           p3main
+     0000008A  _IT1                               p3main
+     0000008A  _OSCICN                            p3main
+     0000008A  _TL0                               p3main
+     0000008B  G$CP0HYP1$0$0                      p3main
+     0000008B  G$CP1HYP1$0$0                      p3main
+     0000008B  G$CP2HYP1$0$0                      p3main
+     0000008B  G$IE1$0$0                          p3main
+     0000008B  G$OSCICL$0$0                       p3main
+     0000008B  G$TL1$0$0                          p3main
+     0000008B  _CP0HYP1                           p3main
+     0000008B  _CP1HYP1                           p3main
+     0000008B  _CP2HYP1                           p3main
+     0000008B  _IE1                               p3main
+     0000008B  _OSCICL                            p3main
+     0000008B  _TL1                               p3main
+     0000008C  G$CP0FIF$0$0                       p3main
+     0000008C  G$CP1FIF$0$0                       p3main
+     0000008C  G$CP2FIF$0$0                       p3main
+     0000008C  G$OSCXCN$0$0                       p3main
+     0000008C  G$TH0$0$0                          p3main
+     0000008C  G$TR0$0$0                          p3main
+     0000008C  _CP0FIF                            p3main
+     0000008C  _CP1FIF                            p3main
+     0000008C  _CP2FIF                            p3main
+     0000008C  _OSCXCN                            p3main
+     0000008C  _TH0                               p3main
+     0000008C  _TR0                               p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000008D  G$CP0RIF$0$0                       p3main
+     0000008D  G$CP1RIF$0$0                       p3main
+     0000008D  G$CP2RIF$0$0                       p3main
+     0000008D  G$TF0$0$0                          p3main
+     0000008D  G$TH1$0$0                          p3main
+     0000008D  _CP0RIF                            p3main
+     0000008D  _CP1RIF                            p3main
+     0000008D  _CP2RIF                            p3main
+     0000008D  _TF0                               p3main
+     0000008D  _TH1                               p3main
+     0000008E  G$CKCON$0$0                        p3main
+     0000008E  G$CP0OUT$0$0                       p3main
+     0000008E  G$CP1OUT$0$0                       p3main
+     0000008E  G$CP2OUT$0$0                       p3main
+     0000008E  G$TR1$0$0                          p3main
+     0000008E  _CKCON                             p3main
+     0000008E  _CP0OUT                            p3main
+     0000008E  _CP1OUT                            p3main
+     0000008E  _CP2OUT                            p3main
+     0000008E  _TR1                               p3main
+     0000008F  G$CP0EN$0$0                        p3main
+     0000008F  G$CP1EN$0$0                        p3main
+     0000008F  G$CP2EN$0$0                        p3main
+     0000008F  G$PSCTL$0$0                        p3main
+     0000008F  G$TF1$0$0                          p3main
+     0000008F  _CP0EN                             p3main
+     0000008F  _CP1EN                             p3main
+     0000008F  _CP2EN                             p3main
+     0000008F  _PSCTL                             p3main
+     0000008F  _TF1                               p3main
+     00000090  G$P1$0$0                           p3main
+     00000090  G$P1_0$0$0                         p3main
+     00000090  _P1                                p3main
+     00000090  _P1_0                              p3main
+     00000091  G$P1_1$0$0                         p3main
+     00000091  G$SSTA0$0$0                        p3main
+     00000091  _P1_1                              p3main
+     00000091  _SSTA0                             p3main
+     00000092  G$P1_2$0$0                         p3main
+     00000092  _P1_2                              p3main
+     00000093  G$P1_3$0$0                         p3main
+     00000093  _P1_3                              p3main
+     00000094  G$P1_4$0$0                         p3main
+     00000094  _P1_4                              p3main
+     00000095  G$P1_5$0$0                         p3main
+     00000095  _P1_5                              p3main
+     00000096  G$P1_6$0$0                         p3main
+     00000096  G$SFRPGCN$0$0                      p3main
+     00000096  _P1_6                              p3main
+     00000096  _SFRPGCN                           p3main
+     00000097  G$CLKSEL$0$0                       p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000097  G$P1_7$0$0                         p3main
+     00000097  _CLKSEL                            p3main
+     00000097  _P1_7                              p3main
+     00000098  G$RI0$0$0                          p3main
+     00000098  G$RI1$0$0                          p3main
+     00000098  G$SCON0$0$0                        p3main
+     00000098  G$SCON1$0$0                        p3main
+     00000098  _RI0                               p3main
+     00000098  _RI1                               p3main
+     00000098  _SCON0                             p3main
+     00000098  _SCON1                             p3main
+     00000099  G$SBUF0$0$0                        p3main
+     00000099  G$SBUF1$0$0                        p3main
+     00000099  G$TI0$0$0                          p3main
+     00000099  G$TI1$0$0                          p3main
+     00000099  _SBUF0                             p3main
+     00000099  _SBUF1                             p3main
+     00000099  _TI0                               p3main
+     00000099  _TI1                               p3main
+     0000009A  G$RB80$0$0                         p3main
+     0000009A  G$RB81$0$0                         p3main
+     0000009A  G$SPI0CFG$0$0                      p3main
+     0000009A  _RB80                              p3main
+     0000009A  _RB81                              p3main
+     0000009A  _SPI0CFG                           p3main
+     0000009B  G$SPI0DAT$0$0                      p3main
+     0000009B  G$TB80$0$0                         p3main
+     0000009B  G$TB81$0$0                         p3main
+     0000009B  _SPI0DAT                           p3main
+     0000009B  _TB80                              p3main
+     0000009B  _TB81                              p3main
+     0000009C  G$P4MDOUT$0$0                      p3main
+     0000009C  G$REN0$0$0                         p3main
+     0000009C  G$REN1$0$0                         p3main
+     0000009C  _P4MDOUT                           p3main
+     0000009C  _REN0                              p3main
+     0000009C  _REN1                              p3main
+     0000009D  G$MCE1$0$0                         p3main
+     0000009D  G$P5MDOUT$0$0                      p3main
+     0000009D  G$SM20$0$0                         p3main
+     0000009D  G$SPI0CKR$0$0                      p3main
+     0000009D  _MCE1                              p3main
+     0000009D  _P5MDOUT                           p3main
+     0000009D  _SM20                              p3main
+     0000009D  _SPI0CKR                           p3main
+     0000009E  G$P6MDOUT$0$0                      p3main
+     0000009E  G$SM10$0$0                         p3main
+     0000009E  _P6MDOUT                           p3main
+     0000009E  _SM10                              p3main
+     0000009F  G$P7MDOUT$0$0                      p3main
+     0000009F  G$S1MODE$0$0                       p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000009F  G$SM00$0$0                         p3main
+     0000009F  _P7MDOUT                           p3main
+     0000009F  _S1MODE                            p3main
+     0000009F  _SM00                              p3main
+     000000A0  G$P2$0$0                           p3main
+     000000A0  G$P2_0$0$0                         p3main
+     000000A0  _P2                                p3main
+     000000A0  _P2_0                              p3main
+     000000A0  __XPAGE                            
+     000000A1  G$EMI0TC$0$0                       p3main
+     000000A1  G$P2_1$0$0                         p3main
+     000000A1  _EMI0TC                            p3main
+     000000A1  _P2_1                              p3main
+     000000A2  G$EMI0CN$0$0                       p3main
+     000000A2  G$P2_2$0$0                         p3main
+     000000A2  _EMI0CN                            p3main
+     000000A2  _P2_2                              p3main
+     000000A3  G$EMI0CF$0$0                       p3main
+     000000A3  G$P2_3$0$0                         p3main
+     000000A3  _EMI0CF                            p3main
+     000000A3  _P2_3                              p3main
+     000000A4  G$P0MDOUT$0$0                      p3main
+     000000A4  G$P2_4$0$0                         p3main
+     000000A4  _P0MDOUT                           p3main
+     000000A4  _P2_4                              p3main
+     000000A5  G$P1MDOUT$0$0                      p3main
+     000000A5  G$P2_5$0$0                         p3main
+     000000A5  _P1MDOUT                           p3main
+     000000A5  _P2_5                              p3main
+     000000A6  G$P2MDOUT$0$0                      p3main
+     000000A6  G$P2_6$0$0                         p3main
+     000000A6  _P2MDOUT                           p3main
+     000000A6  _P2_6                              p3main
+     000000A7  G$P2_7$0$0                         p3main
+     000000A7  G$P3MDOUT$0$0                      p3main
+     000000A7  _P2_7                              p3main
+     000000A7  _P3MDOUT                           p3main
+     000000A8  G$EX0$0$0                          p3main
+     000000A8  G$IE$0$0                           p3main
+     000000A8  _EX0                               p3main
+     000000A8  _IE                                p3main
+     000000A9  G$ET0$0$0                          p3main
+     000000A9  G$SADDR0$0$0                       p3main
+     000000A9  G$SADDR1$0$0                       p3main
+     000000A9  _ET0                               p3main
+     000000A9  _SADDR0                            p3main
+     000000A9  _SADDR1                            p3main
+     000000AA  G$EX1$0$0                          p3main
+     000000AA  _EX1                               p3main
+     000000AB  G$ET1$0$0                          p3main
+     000000AB  _ET1                               p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000AC  G$ES0$0$0                          p3main
+     000000AC  _ES0                               p3main
+     000000AD  G$ET2$0$0                          p3main
+     000000AD  G$P1MDIN$0$0                       p3main
+     000000AD  _ET2                               p3main
+     000000AD  _P1MDIN                            p3main
+     000000AE  G$P2MDIN$0$0                       p3main
+     000000AE  _P2MDIN                            p3main
+     000000AF  G$EA$0$0                           p3main
+     000000AF  G$P3MDIN$0$0                       p3main
+     000000AF  _EA                                p3main
+     000000AF  _P3MDIN                            p3main
+     000000B0  G$P3$0$0                           p3main
+     000000B0  G$P3_0$0$0                         p3main
+     000000B0  _P3                                p3main
+     000000B0  _P3_0                              p3main
+     000000B1  G$P3_1$0$0                         p3main
+     000000B1  _P3_1                              p3main
+     000000B2  G$P3_2$0$0                         p3main
+     000000B2  _P3_2                              p3main
+     000000B3  G$P3_3$0$0                         p3main
+     000000B3  _P3_3                              p3main
+     000000B4  G$P3_4$0$0                         p3main
+     000000B4  _P3_4                              p3main
+     000000B5  G$P3_5$0$0                         p3main
+     000000B5  _P3_5                              p3main
+     000000B6  G$P3_6$0$0                         p3main
+     000000B6  _P3_6                              p3main
+     000000B7  G$FLACL$0$0                        p3main
+     000000B7  G$FLSCL$0$0                        p3main
+     000000B7  G$P3_7$0$0                         p3main
+     000000B7  _FLACL                             p3main
+     000000B7  _FLSCL                             p3main
+     000000B7  _P3_7                              p3main
+     000000B8  G$IP$0$0                           p3main
+     000000B8  G$PX0$0$0                          p3main
+     000000B8  _IP                                p3main
+     000000B8  _PX0                               p3main
+     000000B9  G$PT0$0$0                          p3main
+     000000B9  G$SADEN0$0$0                       p3main
+     000000B9  _PT0                               p3main
+     000000B9  _SADEN0                            p3main
+     000000BA  G$AMX0CF$0$0                       p3main
+     000000BA  G$AMX2CF$0$0                       p3main
+     000000BA  G$PX1$0$0                          p3main
+     000000BA  _AMX0CF                            p3main
+     000000BA  _AMX2CF                            p3main
+     000000BA  _PX1                               p3main
+     000000BB  G$AMX0SL$0$0                       p3main
+     000000BB  G$AMX2SL$0$0                       p3main
+     000000BB  G$PT1$0$0                          p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000BB  _AMX0SL                            p3main
+     000000BB  _AMX2SL                            p3main
+     000000BB  _PT1                               p3main
+     000000BC  G$ADC0CF$0$0                       p3main
+     000000BC  G$ADC2CF$0$0                       p3main
+     000000BC  G$PS0$0$0                          p3main
+     000000BC  _ADC0CF                            p3main
+     000000BC  _ADC2CF                            p3main
+     000000BC  _PS0                               p3main
+     000000BD  G$AMX0PRT$0$0                      p3main
+     000000BD  G$PT2$0$0                          p3main
+     000000BD  _AMX0PRT                           p3main
+     000000BD  _PT2                               p3main
+     000000BE  G$ADC0L$0$0                        p3main
+     000000BE  G$ADC2$0$0                         p3main
+     000000BE  _ADC0L                             p3main
+     000000BE  _ADC2                              p3main
+     000000BF  G$ADC0H$0$0                        p3main
+     000000BF  _ADC0H                             p3main
+     000000C0  G$CAN0STA$0$0                      p3main
+     000000C0  G$LEC0$0$0                         p3main
+     000000C0  G$SMB0CN$0$0                       p3main
+     000000C0  G$SMBTOE$0$0                       p3main
+     000000C0  _CAN0STA                           p3main
+     000000C0  _LEC0                              p3main
+     000000C0  _SMB0CN                            p3main
+     000000C0  _SMBTOE                            p3main
+     000000C1  G$LEC1$0$0                         p3main
+     000000C1  G$SMB0STA$0$0                      p3main
+     000000C1  G$SMBFTE$0$0                       p3main
+     000000C1  _LEC1                              p3main
+     000000C1  _SMB0STA                           p3main
+     000000C1  _SMBFTE                            p3main
+     000000C2  G$AA$0$0                           p3main
+     000000C2  G$LEC2$0$0                         p3main
+     000000C2  G$SMB0DAT$0$0                      p3main
+     000000C2  _AA                                p3main
+     000000C2  _LEC2                              p3main
+     000000C2  _SMB0DAT                           p3main
+     000000C3  G$SI$0$0                           p3main
+     000000C3  G$SMB0ADR$0$0                      p3main
+     000000C3  G$TXOK$0$0                         p3main
+     000000C3  _SI                                p3main
+     000000C3  _SMB0ADR                           p3main
+     000000C3  _TXOK                              p3main
+     000000C4  G$ADC0GTL$0$0                      p3main
+     000000C4  G$ADC2GT$0$0                       p3main
+     000000C4  G$RXOK$0$0                         p3main
+     000000C4  G$STO$0$0                          p3main
+     000000C4  _ADC0GTL                           p3main
+     000000C4  _ADC2GT                            p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000C4  _RXOK                              p3main
+     000000C4  _STO                               p3main
+     000000C5  G$ADC0GTH$0$0                      p3main
+     000000C5  G$EPASS$0$0                        p3main
+     000000C5  G$STA$0$0                          p3main
+     000000C5  _ADC0GTH                           p3main
+     000000C5  _EPASS                             p3main
+     000000C5  _STA                               p3main
+     000000C6  G$ADC0LTL$0$0                      p3main
+     000000C6  G$ADC2LT$0$0                       p3main
+     000000C6  G$ENSMB$0$0                        p3main
+     000000C6  G$EWARN$0$0                        p3main
+     000000C6  _ADC0LTL                           p3main
+     000000C6  _ADC2LT                            p3main
+     000000C6  _ENSMB                             p3main
+     000000C6  _EWARN                             p3main
+     000000C7  G$ADC0LTH$0$0                      p3main
+     000000C7  G$BOFF$0$0                         p3main
+     000000C7  G$BUSY$0$0                         p3main
+     000000C7  _ADC0LTH                           p3main
+     000000C7  _BOFF                              p3main
+     000000C7  _BUSY                              p3main
+     000000C8  G$CPRL2$0$0                        p3main
+     000000C8  G$CPRL3$0$0                        p3main
+     000000C8  G$CPRL4$0$0                        p3main
+     000000C8  G$P4$0$0                           p3main
+     000000C8  G$P4_0$0$0                         p3main
+     000000C8  G$TMR2CN$0$0                       p3main
+     000000C8  G$TMR3CN$0$0                       p3main
+     000000C8  G$TMR4CN$0$0                       p3main
+     000000C8  _CPRL2                             p3main
+     000000C8  _CPRL3                             p3main
+     000000C8  _CPRL4                             p3main
+     000000C8  _P4                                p3main
+     000000C8  _P4_0                              p3main
+     000000C8  _TMR2CN                            p3main
+     000000C8  _TMR3CN                            p3main
+     000000C8  _TMR4CN                            p3main
+     000000C9  G$CT2$0$0                          p3main
+     000000C9  G$CT3$0$0                          p3main
+     000000C9  G$CT4$0$0                          p3main
+     000000C9  G$P4_1$0$0                         p3main
+     000000C9  G$TMR2CF$0$0                       p3main
+     000000C9  G$TMR3CF$0$0                       p3main
+     000000C9  G$TMR4CF$0$0                       p3main
+     000000C9  _CT2                               p3main
+     000000C9  _CT3                               p3main
+     000000C9  _CT4                               p3main
+     000000C9  _P4_1                              p3main
+     000000C9  _TMR2CF                            p3main
+     000000C9  _TMR3CF                            p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000C9  _TMR4CF                            p3main
+     000000CA  G$P4_2$0$0                         p3main
+     000000CA  G$RCAP2L$0$0                       p3main
+     000000CA  G$RCAP3L$0$0                       p3main
+     000000CA  G$RCAP4L$0$0                       p3main
+     000000CA  G$TR2$0$0                          p3main
+     000000CA  G$TR3$0$0                          p3main
+     000000CA  G$TR4$0$0                          p3main
+     000000CA  _P4_2                              p3main
+     000000CA  _RCAP2L                            p3main
+     000000CA  _RCAP3L                            p3main
+     000000CA  _RCAP4L                            p3main
+     000000CA  _TR2                               p3main
+     000000CA  _TR3                               p3main
+     000000CA  _TR4                               p3main
+     000000CB  G$EXEN2$0$0                        p3main
+     000000CB  G$EXEN3$0$0                        p3main
+     000000CB  G$EXEN4$0$0                        p3main
+     000000CB  G$P4_3$0$0                         p3main
+     000000CB  G$RCAP2H$0$0                       p3main
+     000000CB  G$RCAP3H$0$0                       p3main
+     000000CB  G$RCAP4H$0$0                       p3main
+     000000CB  _EXEN2                             p3main
+     000000CB  _EXEN3                             p3main
+     000000CB  _EXEN4                             p3main
+     000000CB  _P4_3                              p3main
+     000000CB  _RCAP2H                            p3main
+     000000CB  _RCAP3H                            p3main
+     000000CB  _RCAP4H                            p3main
+     000000CC  G$P4_4$0$0                         p3main
+     000000CC  G$TMR2L$0$0                        p3main
+     000000CC  G$TMR3L$0$0                        p3main
+     000000CC  G$TMR4L$0$0                        p3main
+     000000CC  _P4_4                              p3main
+     000000CC  _TMR2L                             p3main
+     000000CC  _TMR3L                             p3main
+     000000CC  _TMR4L                             p3main
+     000000CD  G$P4_5$0$0                         p3main
+     000000CD  G$TMR2H$0$0                        p3main
+     000000CD  G$TMR3H$0$0                        p3main
+     000000CD  G$TMR4H$0$0                        p3main
+     000000CD  _P4_5                              p3main
+     000000CD  _TMR2H                             p3main
+     000000CD  _TMR3H                             p3main
+     000000CD  _TMR4H                             p3main
+     000000CE  G$EXF2$0$0                         p3main
+     000000CE  G$EXF3$0$0                         p3main
+     000000CE  G$EXF4$0$0                         p3main
+     000000CE  G$P4_6$0$0                         p3main
+     000000CE  _EXF2                              p3main
+     000000CE  _EXF3                              p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000CE  _EXF4                              p3main
+     000000CE  _P4_6                              p3main
+     000000CF  G$P4_7$0$0                         p3main
+     000000CF  G$SMB0CR$0$0                       p3main
+     000000CF  G$TF2$0$0                          p3main
+     000000CF  G$TF3$0$0                          p3main
+     000000CF  G$TF4$0$0                          p3main
+     000000CF  _P4_7                              p3main
+     000000CF  _SMB0CR                            p3main
+     000000CF  _TF2                               p3main
+     000000CF  _TF3                               p3main
+     000000CF  _TF4                               p3main
+     000000D0  G$P$0$0                            p3main
+     000000D0  G$PSW$0$0                          p3main
+     000000D0  _P                                 p3main
+     000000D0  _PSW                               p3main
+     000000D1  G$F1$0$0                           p3main
+     000000D1  G$REF0CN$0$0                       p3main
+     000000D1  _F1                                p3main
+     000000D1  _REF0CN                            p3main
+     000000D2  G$DAC0L$0$0                        p3main
+     000000D2  G$DAC1L$0$0                        p3main
+     000000D2  G$OV$0$0                           p3main
+     000000D2  _DAC0L                             p3main
+     000000D2  _DAC1L                             p3main
+     000000D2  _OV                                p3main
+     000000D3  G$DAC0H$0$0                        p3main
+     000000D3  G$DAC1H$0$0                        p3main
+     000000D3  G$RS0$0$0                          p3main
+     000000D3  _DAC0H                             p3main
+     000000D3  _DAC1H                             p3main
+     000000D3  _RS0                               p3main
+     000000D4  G$DAC0CN$0$0                       p3main
+     000000D4  G$DAC1CN$0$0                       p3main
+     000000D4  G$RS1$0$0                          p3main
+     000000D4  _DAC0CN                            p3main
+     000000D4  _DAC1CN                            p3main
+     000000D4  _RS1                               p3main
+     000000D5  G$F0$0$0                           p3main
+     000000D5  _F0                                p3main
+     000000D6  G$AC$0$0                           p3main
+     000000D6  G$HVA0CN$0$0                       p3main
+     000000D6  _AC                                p3main
+     000000D6  _HVA0CN                            p3main
+     000000D7  G$CY$0$0                           p3main
+     000000D7  _CY                                p3main
+     000000D8  G$CAN0DATL$0$0                     p3main
+     000000D8  G$CCF0$0$0                         p3main
+     000000D8  G$P5$0$0                           p3main
+     000000D8  G$P5_0$0$0                         p3main
+     000000D8  G$PCA0CN$0$0                       p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000D8  _CAN0DATL                          p3main
+     000000D8  _CCF0                              p3main
+     000000D8  _P5                                p3main
+     000000D8  _P5_0                              p3main
+     000000D8  _PCA0CN                            p3main
+     000000D9  G$CAN0DATH$0$0                     p3main
+     000000D9  G$CCF1$0$0                         p3main
+     000000D9  G$P5_1$0$0                         p3main
+     000000D9  G$PCA0MD$0$0                       p3main
+     000000D9  _CAN0DATH                          p3main
+     000000D9  _CCF1                              p3main
+     000000D9  _P5_1                              p3main
+     000000D9  _PCA0MD                            p3main
+     000000DA  G$CAN0ADR$0$0                      p3main
+     000000DA  G$CCF2$0$0                         p3main
+     000000DA  G$P5_2$0$0                         p3main
+     000000DA  G$PCA0CPM0$0$0                     p3main
+     000000DA  _CAN0ADR                           p3main
+     000000DA  _CCF2                              p3main
+     000000DA  _P5_2                              p3main
+     000000DA  _PCA0CPM0                          p3main
+     000000DB  G$CAN0TST$0$0                      p3main
+     000000DB  G$CCF3$0$0                         p3main
+     000000DB  G$P5_3$0$0                         p3main
+     000000DB  G$PCA0CPM1$0$0                     p3main
+     000000DB  _CAN0TST                           p3main
+     000000DB  _CCF3                              p3main
+     000000DB  _P5_3                              p3main
+     000000DB  _PCA0CPM1                          p3main
+     000000DC  G$CCF4$0$0                         p3main
+     000000DC  G$P5_4$0$0                         p3main
+     000000DC  G$PCA0CPM2$0$0                     p3main
+     000000DC  _CCF4                              p3main
+     000000DC  _P5_4                              p3main
+     000000DC  _PCA0CPM2                          p3main
+     000000DD  G$CCF5$0$0                         p3main
+     000000DD  G$P5_5$0$0                         p3main
+     000000DD  G$PCA0CPM3$0$0                     p3main
+     000000DD  _CCF5                              p3main
+     000000DD  _P5_5                              p3main
+     000000DD  _PCA0CPM3                          p3main
+     000000DE  G$CR$0$0                           p3main
+     000000DE  G$P5_6$0$0                         p3main
+     000000DE  G$PCA0CPM4$0$0                     p3main
+     000000DE  _CR                                p3main
+     000000DE  _P5_6                              p3main
+     000000DE  _PCA0CPM4                          p3main
+     000000DF  G$CF$0$0                           p3main
+     000000DF  G$P5_7$0$0                         p3main
+     000000DF  G$PCA0CPM5$0$0                     p3main
+     000000DF  _CF                                p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000DF  _P5_7                              p3main
+     000000DF  _PCA0CPM5                          p3main
+     000000E0  G$ACC$0$0                          p3main
+     000000E0  _ACC                               p3main
+     000000E1  G$PCA0CPL5$0$0                     p3main
+     000000E1  G$XBR0$0$0                         p3main
+     000000E1  _PCA0CPL5                          p3main
+     000000E1  _XBR0                              p3main
+     000000E2  G$PCA0CPH5$0$0                     p3main
+     000000E2  G$XBR1$0$0                         p3main
+     000000E2  _PCA0CPH5                          p3main
+     000000E2  _XBR1                              p3main
+     000000E3  G$XBR2$0$0                         p3main
+     000000E3  _XBR2                              p3main
+     000000E4  G$XBR3$0$0                         p3main
+     000000E4  _XBR3                              p3main
+     000000E6  G$EIE1$0$0                         p3main
+     000000E6  _EIE1                              p3main
+     000000E7  G$EIE2$0$0                         p3main
+     000000E7  _EIE2                              p3main
+     000000E8  G$AD0LJST$0$0                      p3main
+     000000E8  G$AD2WINT$0$0                      p3main
+     000000E8  G$ADC0CN$0$0                       p3main
+     000000E8  G$ADC2CN$0$0                       p3main
+     000000E8  G$P6$0$0                           p3main
+     000000E8  G$P6_0$0$0                         p3main
+     000000E8  _AD0LJST                           p3main
+     000000E8  _AD2WINT                           p3main
+     000000E8  _ADC0CN                            p3main
+     000000E8  _ADC2CN                            p3main
+     000000E8  _P6                                p3main
+     000000E8  _P6_0                              p3main
+     000000E9  G$AD0WINT$0$0                      p3main
+     000000E9  G$AD2CM0$0$0                       p3main
+     000000E9  G$P6_1$0$0                         p3main
+     000000E9  G$PCA0CPL2$0$0                     p3main
+     000000E9  _AD0WINT                           p3main
+     000000E9  _AD2CM0                            p3main
+     000000E9  _P6_1                              p3main
+     000000E9  _PCA0CPL2                          p3main
+     000000EA  G$AD0CM0$0$0                       p3main
+     000000EA  G$AD2CM1$0$0                       p3main
+     000000EA  G$P6_2$0$0                         p3main
+     000000EA  G$PCA0CPH2$0$0                     p3main
+     000000EA  _AD0CM0                            p3main
+     000000EA  _AD2CM1                            p3main
+     000000EA  _P6_2                              p3main
+     000000EA  _PCA0CPH2                          p3main
+     000000EB  G$AD0CM1$0$0                       p3main
+     000000EB  G$AD2CM2$0$0                       p3main
+     000000EB  G$P6_3$0$0                         p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000EB  G$PCA0CPL3$0$0                     p3main
+     000000EB  _AD0CM1                            p3main
+     000000EB  _AD2CM2                            p3main
+     000000EB  _P6_3                              p3main
+     000000EB  _PCA0CPL3                          p3main
+     000000EC  G$AD0BUSY$0$0                      p3main
+     000000EC  G$AD2BUSY$0$0                      p3main
+     000000EC  G$P6_4$0$0                         p3main
+     000000EC  G$PCA0CPH3$0$0                     p3main
+     000000EC  _AD0BUSY                           p3main
+     000000EC  _AD2BUSY                           p3main
+     000000EC  _P6_4                              p3main
+     000000EC  _PCA0CPH3                          p3main
+     000000ED  G$AD0INT$0$0                       p3main
+     000000ED  G$AD2INT$0$0                       p3main
+     000000ED  G$P6_5$0$0                         p3main
+     000000ED  G$PCA0CPL4$0$0                     p3main
+     000000ED  _AD0INT                            p3main
+     000000ED  _AD2INT                            p3main
+     000000ED  _P6_5                              p3main
+     000000ED  _PCA0CPL4                          p3main
+     000000EE  G$AD0TM$0$0                        p3main
+     000000EE  G$AD2TM$0$0                        p3main
+     000000EE  G$P6_6$0$0                         p3main
+     000000EE  G$PCA0CPH4$0$0                     p3main
+     000000EE  _AD0TM                             p3main
+     000000EE  _AD2TM                             p3main
+     000000EE  _P6_6                              p3main
+     000000EE  _PCA0CPH4                          p3main
+     000000EF  G$AD0EN$0$0                        p3main
+     000000EF  G$AD2EN$0$0                        p3main
+     000000EF  G$P6_7$0$0                         p3main
+     000000EF  G$RSTSRC$0$0                       p3main
+     000000EF  _AD0EN                             p3main
+     000000EF  _AD2EN                             p3main
+     000000EF  _P6_7                              p3main
+     000000EF  _RSTSRC                            p3main
+     000000F0  G$B$0$0                            p3main
+     000000F0  _B                                 p3main
+     000000F5  _B_5                               _gptrget
+     000000F6  G$EIP1$0$0                         p3main
+     000000F6  _B_6                               _gptrget
+     000000F6  _EIP1                              p3main
+     000000F7  G$EIP2$0$0                         p3main
+     000000F7  _B_7                               _gptrget
+     000000F7  _EIP2                              p3main
+     000000F8  G$CAN0CN$0$0                       p3main
+     000000F8  G$CANINIT$0$0                      p3main
+     000000F8  G$P7$0$0                           p3main
+     000000F8  G$P7_0$0$0                         p3main
+     000000F8  G$SPI0CN$0$0                       p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000F8  G$SPIEN$0$0                        p3main
+     000000F8  _CAN0CN                            p3main
+     000000F8  _CANINIT                           p3main
+     000000F8  _P7                                p3main
+     000000F8  _P7_0                              p3main
+     000000F8  _SPI0CN                            p3main
+     000000F8  _SPIEN                             p3main
+     000000F9  G$CANIE$0$0                        p3main
+     000000F9  G$P7_1$0$0                         p3main
+     000000F9  G$PCA0L$0$0                        p3main
+     000000F9  G$TXBMT$0$0                        p3main
+     000000F9  _CANIE                             p3main
+     000000F9  _P7_1                              p3main
+     000000F9  _PCA0L                             p3main
+     000000F9  _TXBMT                             p3main
+     000000FA  G$CANSIE$0$0                       p3main
+     000000FA  G$NSSMD0$0$0                       p3main
+     000000FA  G$P7_2$0$0                         p3main
+     000000FA  G$PCA0H$0$0                        p3main
+     000000FA  _CANSIE                            p3main
+     000000FA  _NSSMD0                            p3main
+     000000FA  _P7_2                              p3main
+     000000FA  _PCA0H                             p3main
+     000000FB  G$CANEIE$0$0                       p3main
+     000000FB  G$NSSMD1$0$0                       p3main
+     000000FB  G$P7_3$0$0                         p3main
+     000000FB  G$PCA0CPL0$0$0                     p3main
+     000000FB  _CANEIE                            p3main
+     000000FB  _NSSMD1                            p3main
+     000000FB  _P7_3                              p3main
+     000000FB  _PCA0CPL0                          p3main
+     000000FC  G$CANIF$0$0                        p3main
+     000000FC  G$P7_4$0$0                         p3main
+     000000FC  G$PCA0CPH0$0$0                     p3main
+     000000FC  G$RXOVRN$0$0                       p3main
+     000000FC  _CANIF                             p3main
+     000000FC  _P7_4                              p3main
+     000000FC  _PCA0CPH0                          p3main
+     000000FC  _RXOVRN                            p3main
+     000000FD  G$CANDAR$0$0                       p3main
+     000000FD  G$MODF$0$0                         p3main
+     000000FD  G$P7_5$0$0                         p3main
+     000000FD  G$PCA0CPL1$0$0                     p3main
+     000000FD  _CANDAR                            p3main
+     000000FD  _MODF                              p3main
+     000000FD  _P7_5                              p3main
+     000000FD  _PCA0CPL1                          p3main
+     000000FE  G$CANCCE$0$0                       p3main
+     000000FE  G$P7_6$0$0                         p3main
+     000000FE  G$PCA0CPH1$0$0                     p3main
+     000000FE  G$WCOL$0$0                         p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000FE  _CANCCE                            p3main
+     000000FE  _P7_6                              p3main
+     000000FE  _PCA0CPH1                          p3main
+     000000FE  _WCOL                              p3main
+     000000FF  G$CANTEST$0$0                      p3main
+     000000FF  G$P7_7$0$0                         p3main
+     000000FF  G$SPIF$0$0                         p3main
+     000000FF  G$WDTCN$0$0                        p3main
+     000000FF  _CANTEST                           p3main
+     000000FF  _P7_7                              p3main
+     000000FF  _SPIF                              p3main
+     000000FF  _WDTCN                             p3main
+     00008382  G$DP$0$0                           p3main
+     00008382  _DP                                p3main
+     0000BFBE  G$ADC0$0$0                         p3main
+     0000BFBE  _ADC0                              p3main
+     0000C5C4  G$ADC0GT$0$0                       p3main
+     0000C5C4  _ADC0GT                            p3main
+     0000C7C6  G$ADC0LT$0$0                       p3main
+     0000C7C6  _ADC0LT                            p3main
+     0000CBCA  G$RCAP2$0$0                        p3main
+     0000CBCA  G$RCAP3$0$0                        p3main
+     0000CBCA  G$RCAP4$0$0                        p3main
+     0000CBCA  _RCAP2                             p3main
+     0000CBCA  _RCAP3                             p3main
+     0000CBCA  _RCAP4                             p3main
+     0000CDCC  G$TMR2$0$0                         p3main
+     0000CDCC  G$TMR3$0$0                         p3main
+     0000CDCC  G$TMR4$0$0                         p3main
+     0000CDCC  _TMR2                              p3main
+     0000CDCC  _TMR3                              p3main
+     0000CDCC  _TMR4                              p3main
+     0000D3D2  G$DAC0$0$0                         p3main
+     0000D3D2  G$DAC1$0$0                         p3main
+     0000D3D2  _DAC0                              p3main
+     0000D3D2  _DAC1                              p3main
+     0000D9D8  G$CAN0DAT$0$0                      p3main
+     0000D9D8  _CAN0DAT                           p3main
+     0000E2E1  G$PCA0CP5$0$0                      p3main
+     0000E2E1  _PCA0CP5                           p3main
+     0000EAE9  G$PCA0CP2$0$0                      p3main
+     0000EAE9  _PCA0CP2                           p3main
+     0000ECEB  G$PCA0CP3$0$0                      p3main
+     0000ECEB  _PCA0CP3                           p3main
+     0000EEED  G$PCA0CP4$0$0                      p3main
+     0000EEED  _PCA0CP4                           p3main
+     0000FAF9  G$PCA0$0$0                         p3main
+     0000FAF9  _PCA0                              p3main
+     0000FCFB  G$PCA0CP0$0$0                      p3main
+     0000FCFB  _PCA0CP0                           p3main
+     0000FEFD  G$PCA0CP1$0$0                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FEFD  _PCA0CP1                           p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+BSEG_BYTES                          00000020    00000001 =           1. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+REG_BANK_0                          00000000    00000008 =           8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+BIT_BANK                            00000021    00000001 =           1. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DSEG                                00000000    00000077 =         119. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000008  G$tecla$0$0                        p3main
+     00000008  _tecla                             p3main
+     00000009  G$estado$0$0                       p3main
+     00000009  _estado                            p3main
+     0000000A  G$counter$0$0                      p3main
+     0000000A  _counter                           p3main
+     00000014  _bp                                _bp
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+OSEG                                00000015    00000002 =           2. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000015  Lp3main.esc_RAM_SPI$dado$1$55      p3main
+     00000015  Lp3main.le_ADC0$ganho$1$60         p3main
+     00000015  __modsint_PARM_2                   _moduint
+     00000015  __moduint_PARM_2                   _moduint
+     00000015  _esc_RAM_SPI_PARM_2                p3main
+     00000015  _le_ADC0_PARM_2                    p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00000022    000000DE =         222. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000022  __start__stack                     p3main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00000000    00000031 =          49. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  A$p3main$1290                      p3main
+C:   00000003  A$p3main$1291                      p3main
+C:   0000000B  A$p3main$1293                      p3main
+C:   00000013  A$p3main$1295                      p3main
+C:   0000001B  A$p3main$1297                      p3main
+C:   00000023  A$p3main$1299                      p3main
+C:   0000002B  A$p3main$1301                      p3main
+C:   0000002E  A$p3main$1333                      p3main
+C:   0000002E  __sdcc_program_startup             p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT0                             00000031    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000031  __sdcc_gsinit_startup              
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT2                             00000034    0000000A =          10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT3                             0000003E    00000022 =          34. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000003E  __mcs51_genXINIT                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 29.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT4                             00000060    0000002A =          42. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000060  __mcs51_genRAMCLEAR                
+C:   00000066  __mcs51_genXRAMCLEAR               
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 30.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT                              0000008A    0000000C =          12. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000008A  A$p3main$1317                      p3main
+C:   0000008A  C$p3main.c$22$1$64                 p3main
+C:   0000008D  A$p3main$1320                      p3main
+C:   0000008D  C$p3main.c$25$1$64                 p3main
+C:   0000008E  A$p3main$1321                      p3main
+C:   00000090  A$p3main$1322                      p3main
+C:   00000092  A$p3main$1323                      p3main
+C:   00000094  A$p3main$1324                      p3main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             00000096    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000096  A$p3main$1326                      p3main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 32.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000099  A$p3main$1359                      p3main
+C:   00000099  C$config.c$10$0$0                  p3main
+C:   00000099  C$config.c$12$1$14                 p3main
+C:   00000099  G$Reset_Sources_Init$0$0           p3main
+C:   00000099  _Reset_Sources_Init                p3main
+C:   0000009C  A$p3main$1362                      p3main
+C:   0000009C  C$config.c$13$1$14                 p3main
+C:   0000009F  A$p3main$1365                      p3main
+C:   0000009F  C$config.c$14$1$14                 p3main
+C:   0000009F  XG$Reset_Sources_Init$0$0          p3main
+C:   000000A0  A$p3main$1378                      p3main
+C:   000000A0  C$config.c$16$1$14                 p3main
+C:   000000A0  C$config.c$18$1$15                 p3main
+C:   000000A0  G$Timer_Init$0$0                   p3main
+C:   000000A0  _Timer_Init                        p3main
+C:   000000A3  A$p3main$1381                      p3main
+C:   000000A3  C$config.c$19$1$15                 p3main
+C:   000000A6  A$p3main$1384                      p3main
+C:   000000A6  C$config.c$20$1$15                 p3main
+C:   000000A9  A$p3main$1387                      p3main
+C:   000000A9  C$config.c$21$1$15                 p3main
+C:   000000AC  A$p3main$1390                      p3main
+C:   000000AC  C$config.c$22$1$15                 p3main
+C:   000000AF  A$p3main$1393                      p3main
+C:   000000AF  C$config.c$23$1$15                 p3main
+C:   000000B2  A$p3main$1396                      p3main
+C:   000000B2  C$config.c$24$1$15                 p3main
+C:   000000B5  A$p3main$1399                      p3main
+C:   000000B5  C$config.c$25$1$15                 p3main
+C:   000000B8  A$p3main$1402                      p3main
+C:   000000B8  C$config.c$26$1$15                 p3main
+C:   000000BB  A$p3main$1405                      p3main
+C:   000000BB  C$config.c$27$1$15                 p3main
+C:   000000BE  A$p3main$1408                      p3main
+C:   000000BE  C$config.c$28$1$15                 p3main
+C:   000000C1  A$p3main$1411                      p3main
+C:   000000C1  C$config.c$29$1$15                 p3main
+C:   000000C4  A$p3main$1414                      p3main
+C:   000000C4  C$config.c$30$1$15                 p3main
+C:   000000C7  A$p3main$1417                      p3main
+C:   000000C7  C$config.c$31$1$15                 p3main
+C:   000000CA  A$p3main$1420                      p3main
+C:   000000CA  C$config.c$32$1$15                 p3main
+C:   000000CD  A$p3main$1423                      p3main
+C:   000000CD  C$config.c$33$1$15                 p3main
+C:   000000D0  A$p3main$1426                      p3main
+C:   000000D0  C$config.c$34$1$15                 p3main
+C:   000000D0  XG$Timer_Init$0$0                  p3main
+C:   000000D1  A$p3main$1439                      p3main
+C:   000000D1  C$config.c$36$1$15                 p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 33.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000D1  C$config.c$38$1$16                 p3main
+C:   000000D1  G$PCA_Init$0$0                     p3main
+C:   000000D1  _PCA_Init                          p3main
+C:   000000D4  A$p3main$1442                      p3main
+C:   000000D4  C$config.c$39$1$16                 p3main
+C:   000000D7  A$p3main$1445                      p3main
+C:   000000D7  C$config.c$40$1$16                 p3main
+C:   000000DA  A$p3main$1448                      p3main
+C:   000000DA  C$config.c$41$1$16                 p3main
+C:   000000DA  XG$PCA_Init$0$0                    p3main
+C:   000000DB  A$p3main$1461                      p3main
+C:   000000DB  C$config.c$43$1$16                 p3main
+C:   000000DB  C$config.c$45$1$17                 p3main
+C:   000000DB  G$UART_Init$0$0                    p3main
+C:   000000DB  _UART_Init                         p3main
+C:   000000DE  A$p3main$1464                      p3main
+C:   000000DE  C$config.c$46$1$17                 p3main
+C:   000000E1  A$p3main$1467                      p3main
+C:   000000E1  C$config.c$47$1$17                 p3main
+C:   000000E4  A$p3main$1470                      p3main
+C:   000000E4  C$config.c$48$1$17                 p3main
+C:   000000E4  XG$UART_Init$0$0                   p3main
+C:   000000E5  A$p3main$1483                      p3main
+C:   000000E5  C$config.c$50$1$17                 p3main
+C:   000000E5  C$config.c$52$1$18                 p3main
+C:   000000E5  G$SPI_Init$0$0                     p3main
+C:   000000E5  _SPI_Init                          p3main
+C:   000000E8  A$p3main$1486                      p3main
+C:   000000E8  C$config.c$53$1$18                 p3main
+C:   000000EB  A$p3main$1489                      p3main
+C:   000000EB  C$config.c$54$1$18                 p3main
+C:   000000EE  A$p3main$1492                      p3main
+C:   000000EE  C$config.c$55$1$18                 p3main
+C:   000000F1  A$p3main$1495                      p3main
+C:   000000F1  C$config.c$56$1$18                 p3main
+C:   000000F1  XG$SPI_Init$0$0                    p3main
+C:   000000F2  A$p3main$1508                      p3main
+C:   000000F2  C$config.c$58$1$18                 p3main
+C:   000000F2  C$config.c$60$1$19                 p3main
+C:   000000F2  G$ADC_Init$0$0                     p3main
+C:   000000F2  _ADC_Init                          p3main
+C:   000000F5  A$p3main$1511                      p3main
+C:   000000F5  C$config.c$61$1$19                 p3main
+C:   000000F8  A$p3main$1514                      p3main
+C:   000000F8  C$config.c$62$1$19                 p3main
+C:   000000F8  XG$ADC_Init$0$0                    p3main
+C:   000000F9  A$p3main$1527                      p3main
+C:   000000F9  C$config.c$64$1$19                 p3main
+C:   000000F9  C$config.c$66$1$20                 p3main
+C:   000000F9  G$DAC_Init$0$0                     p3main
+C:   000000F9  _DAC_Init                          p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 34.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000FC  A$p3main$1530                      p3main
+C:   000000FC  C$config.c$67$1$20                 p3main
+C:   000000FF  A$p3main$1533                      p3main
+C:   000000FF  C$config.c$68$1$20                 p3main
+C:   000000FF  XG$DAC_Init$0$0                    p3main
+C:   00000100  A$p3main$1546                      p3main
+C:   00000100  C$config.c$70$1$20                 p3main
+C:   00000100  C$config.c$72$1$21                 p3main
+C:   00000100  G$Voltage_Reference_Init$0$0       p3main
+C:   00000100  _Voltage_Reference_Init            p3main
+C:   00000103  A$p3main$1549                      p3main
+C:   00000103  C$config.c$73$1$21                 p3main
+C:   00000106  A$p3main$1552                      p3main
+C:   00000106  C$config.c$74$1$21                 p3main
+C:   00000106  XG$Voltage_Reference_Init$0$0      p3main
+C:   00000107  A$p3main$1565                      p3main
+C:   00000107  C$config.c$114$1$22                p3main
+C:   00000107  C$config.c$76$1$21                 p3main
+C:   00000107  G$Port_IO_Init$0$0                 p3main
+C:   00000107  _Port_IO_Init                      p3main
+C:   0000010A  A$p3main$1568                      p3main
+C:   0000010A  C$config.c$115$1$22                p3main
+C:   0000010D  A$p3main$1571                      p3main
+C:   0000010D  C$config.c$116$1$22                p3main
+C:   00000110  A$p3main$1574                      p3main
+C:   00000110  C$config.c$117$1$22                p3main
+C:   00000113  A$p3main$1577                      p3main
+C:   00000113  C$config.c$118$1$22                p3main
+C:   00000116  A$p3main$1580                      p3main
+C:   00000116  C$config.c$119$1$22                p3main
+C:   00000116  XG$Port_IO_Init$0$0                p3main
+C:   00000117  A$p3main$1595                      p3main
+C:   00000117  C$config.c$121$1$22                p3main
+C:   00000117  C$config.c$124$1$23                p3main
+C:   00000117  G$Oscillator_Init$0$0              p3main
+C:   00000117  _Oscillator_Init                   p3main
+C:   0000011A  A$p3main$1598                      p3main
+C:   0000011A  C$config.c$125$1$23                p3main
+C:   0000011D  A$p3main$1601                      p3main
+C:   0000011D  C$config.c$126$1$23                p3main
+C:   0000011F  A$p3main$1602                      p3main
+C:   00000121  A$p3main$1604                      p3main
+C:   00000122  A$p3main$1605                      p3main
+C:   00000124  A$p3main$1606                      p3main
+C:   00000125  A$p3main$1607                      p3main
+C:   00000126  A$p3main$1608                      p3main
+C:   00000128  A$p3main$1609                      p3main
+C:   00000129  A$p3main$1610                      p3main
+C:   0000012B  A$p3main$1611                      p3main
+C:   0000012D  A$p3main$1612                      p3main
+C:   0000012E  A$p3main$1613                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 35.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000012F  A$p3main$1614                      p3main
+C:   00000131  A$p3main$1618                      p3main
+C:   00000131  C$config.c$127$1$23                p3main
+C:   00000133  A$p3main$1619                      p3main
+C:   00000136  A$p3main$1622                      p3main
+C:   00000136  C$config.c$128$1$23                p3main
+C:   00000139  A$p3main$1625                      p3main
+C:   00000139  C$config.c$129$1$23                p3main
+C:   00000139  XG$Oscillator_Init$0$0             p3main
+C:   0000013A  A$p3main$1638                      p3main
+C:   0000013A  C$config.c$131$1$23                p3main
+C:   0000013A  C$config.c$133$1$24                p3main
+C:   0000013A  G$Interrupts_Init$0$0              p3main
+C:   0000013A  _Interrupts_Init                   p3main
+C:   0000013D  A$p3main$1641                      p3main
+C:   0000013D  C$config.c$134$1$24                p3main
+C:   00000140  A$p3main$1644                      p3main
+C:   00000140  C$config.c$135$1$24                p3main
+C:   00000140  XG$Interrupts_Init$0$0             p3main
+C:   00000141  A$p3main$1657                      p3main
+C:   00000141  C$config.c$139$1$24                p3main
+C:   00000141  C$config.c$141$1$26                p3main
+C:   00000141  G$Init_Device$0$0                  p3main
+C:   00000141  _Init_Device                       p3main
+C:   00000144  A$p3main$1660                      p3main
+C:   00000144  C$config.c$142$1$26                p3main
+C:   00000147  A$p3main$1663                      p3main
+C:   00000147  C$config.c$143$1$26                p3main
+C:   0000014A  A$p3main$1666                      p3main
+C:   0000014A  C$config.c$144$1$26                p3main
+C:   0000014D  A$p3main$1669                      p3main
+C:   0000014D  C$config.c$145$1$26                p3main
+C:   00000150  A$p3main$1672                      p3main
+C:   00000150  C$config.c$146$1$26                p3main
+C:   00000153  A$p3main$1675                      p3main
+C:   00000153  C$config.c$147$1$26                p3main
+C:   00000156  A$p3main$1678                      p3main
+C:   00000156  C$config.c$148$1$26                p3main
+C:   00000159  A$p3main$1681                      p3main
+C:   00000159  C$config.c$149$1$26                p3main
+C:   0000015C  A$p3main$1684                      p3main
+C:   0000015C  C$config.c$150$1$26                p3main
+C:   0000015F  A$p3main$1687                      p3main
+C:   0000015F  C$config.c$151$1$26                p3main
+C:   00000162  A$p3main$1690                      p3main
+C:   00000162  C$config.c$152$1$26                p3main
+C:   00000162  XG$Init_Device$0$0                 p3main
+C:   00000163  A$p3main$1703                      p3main
+C:   00000163  C$p3main.c$41$1$26                 p3main
+C:   00000163  C$p3main.c$43$1$34                 p3main
+C:   00000163  G$main$0$0                         p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 36.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000163  _main                              p3main
+C:   00000166  A$p3main$1706                      p3main
+C:   00000166  C$p3main.c$44$1$34                 p3main
+C:   00000169  A$p3main$1709                      p3main
+C:   00000169  C$p3main.c$46$1$34                 p3main
+C:   0000016C  A$p3main$1712                      p3main
+C:   0000016C  C$p3main.c$47$1$34                 p3main
+C:   0000016F  A$p3main$1715                      p3main
+C:   0000016F  C$p3main.c$48$1$34                 p3main
+C:   00000172  A$p3main$1718                      p3main
+C:   00000172  C$p3main.c$49$1$34                 p3main
+C:   00000175  A$p3main$1721                      p3main
+C:   00000175  C$p3main.c$50$1$34                 p3main
+C:   00000177  A$p3main$1724                      p3main
+C:   00000177  C$p3main.c$52$1$34                 p3main
+C:   0000017A  A$p3main$1727                      p3main
+C:   0000017A  C$p3main.c$54$1$34                 p3main
+C:   0000017C  A$p3main$1728                      p3main
+C:   0000017E  A$p3main$1729                      p3main
+C:   00000180  A$p3main$1730                      p3main
+C:   00000182  A$p3main$1731                      p3main
+C:   00000185  A$p3main$1732                      p3main
+C:   00000187  A$p3main$1733                      p3main
+C:   00000189  A$p3main$1739                      p3main
+C:   00000189  C$p3main.c$56$1$34                 p3main
+C:   00000189  C$p3main.c$58$2$35                 p3main
+C:   0000018B  A$p3main$1740                      p3main
+C:   0000018E  A$p3main$1741                      p3main
+C:   00000190  A$p3main$1743                      p3main
+C:   00000192  A$p3main$1744                      p3main
+C:   00000195  A$p3main$1745                      p3main
+C:   00000197  A$p3main$1747                      p3main
+C:   00000199  A$p3main$1748                      p3main
+C:   0000019C  A$p3main$1749                      p3main
+C:   0000019F  A$p3main$1753                      p3main
+C:   0000019F  C$p3main.c$61$3$36                 p3main
+C:   000001A1  A$p3main$1757                      p3main
+C:   000001A1  C$p3main.c$62$3$36                 p3main
+C:   000001A4  A$p3main$1762                      p3main
+C:   000001A4  C$p3main.c$63$3$36                 p3main
+C:   000001A4  C$p3main.c$66$3$36                 p3main
+C:   000001A6  A$p3main$1766                      p3main
+C:   000001A6  C$p3main.c$67$3$36                 p3main
+C:   000001A9  A$p3main$1767                      p3main
+C:   000001AC  A$p3main$1768                      p3main
+C:   000001AF  A$p3main$1769                      p3main
+C:   000001B2  A$p3main$1770                      p3main
+C:   000001B4  A$p3main$1771                      p3main
+C:   000001B6  A$p3main$1772                      p3main
+C:   000001B8  A$p3main$1773                      p3main
+C:   000001B9  A$p3main$1774                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 37.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000001BB  A$p3main$1775                      p3main
+C:   000001BD  A$p3main$1776                      p3main
+C:   000001BF  A$p3main$1777                      p3main
+C:   000001C1  A$p3main$1778                      p3main
+C:   000001C4  A$p3main$1779                      p3main
+C:   000001C7  A$p3main$1780                      p3main
+C:   000001C9  A$p3main$1781                      p3main
+C:   000001CC  A$p3main$1782                      p3main
+C:   000001CE  A$p3main$1783                      p3main
+C:   000001D0  A$p3main$1784                      p3main
+C:   000001D2  A$p3main$1785                      p3main
+C:   000001D3  A$p3main$1786                      p3main
+C:   000001D5  A$p3main$1787                      p3main
+C:   000001D7  A$p3main$1788                      p3main
+C:   000001D9  A$p3main$1789                      p3main
+C:   000001DB  A$p3main$1790                      p3main
+C:   000001DD  A$p3main$1791                      p3main
+C:   000001DF  A$p3main$1792                      p3main
+C:   000001E1  A$p3main$1793                      p3main
+C:   000001E3  A$p3main$1794                      p3main
+C:   000001E5  A$p3main$1795                      p3main
+C:   000001E7  A$p3main$1796                      p3main
+C:   000001E9  A$p3main$1797                      p3main
+C:   000001EB  A$p3main$1798                      p3main
+C:   000001ED  A$p3main$1799                      p3main
+C:   000001EF  A$p3main$1800                      p3main
+C:   000001F0  A$p3main$1801                      p3main
+C:   000001F3  A$p3main$1802                      p3main
+C:   000001F5  A$p3main$1803                      p3main
+C:   000001F7  A$p3main$1804                      p3main
+C:   000001F9  A$p3main$1805                      p3main
+C:   000001FA  A$p3main$1806                      p3main
+C:   000001FC  A$p3main$1807                      p3main
+C:   000001FE  A$p3main$1808                      p3main
+C:   00000200  A$p3main$1809                      p3main
+C:   00000202  A$p3main$1810                      p3main
+C:   00000204  A$p3main$1811                      p3main
+C:   00000206  A$p3main$1812                      p3main
+C:   00000208  A$p3main$1813                      p3main
+C:   0000020A  A$p3main$1814                      p3main
+C:   0000020C  A$p3main$1815                      p3main
+C:   0000020E  A$p3main$1816                      p3main
+C:   00000210  A$p3main$1817                      p3main
+C:   00000213  A$p3main$1818                      p3main
+C:   00000215  A$p3main$1819                      p3main
+C:   00000217  A$p3main$1820                      p3main
+C:   00000219  A$p3main$1823                      p3main
+C:   00000219  C$p3main.c$68$3$36                 p3main
+C:   0000021C  A$p3main$1829                      p3main
+C:   0000021C  C$p3main.c$71$3$36                 p3main
+C:   0000021C  C$p3main.c$72$3$36                 p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 38.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000021F  A$p3main$1832                      p3main
+C:   0000021F  C$p3main.c$73$3$36                 p3main
+C:   00000222  A$p3main$1837                      p3main
+C:   00000222  C$p3main.c$80$1$34                 p3main
+C:   00000222  C$p3main.c$81$1$34                 p3main
+C:   00000222  XG$main$0$0                        p3main
+C:   00000223  A$p3main$1850                      p3main
+C:   00000223  C$p3main.c$83$1$34                 p3main
+C:   00000223  G$delay_ms$0$0                     p3main
+C:   00000223  _delay_ms                          p3main
+C:   00000225  A$p3main$1851                      p3main
+C:   00000227  A$p3main$1854                      p3main
+C:   00000227  C$p3main.c$85$1$38                 p3main
+C:   0000022A  A$p3main$1857                      p3main
+C:   0000022A  C$p3main.c$86$1$38                 p3main
+C:   0000022D  A$p3main$1861                      p3main
+C:   0000022D  C$p3main.c$87$1$38                 p3main
+C:   0000022E  A$p3main$1862                      p3main
+C:   0000022F  A$p3main$1863                      p3main
+C:   00000231  A$p3main$1866                      p3main
+C:   00000231  C$p3main.c$89$2$39                 p3main
+C:   00000233  A$p3main$1869                      p3main
+C:   00000233  C$p3main.c$90$2$39                 p3main
+C:   00000235  A$p3main$1872                      p3main
+C:   00000235  C$p3main.c$91$2$39                 p3main
+C:   00000238  A$p3main$1875                      p3main
+C:   00000238  C$p3main.c$92$2$39                 p3main
+C:   0000023B  A$p3main$1878                      p3main
+C:   0000023B  C$p3main.c$93$2$39                 p3main
+C:   0000023D  A$p3main$1882                      p3main
+C:   0000023D  C$p3main.c$94$2$39                 p3main
+C:   00000240  A$p3main$1885                      p3main
+C:   00000240  C$p3main.c$95$2$39                 p3main
+C:   00000241  A$p3main$1886                      p3main
+C:   00000244  A$p3main$1887                      p3main
+C:   00000245  A$p3main$1889                      p3main
+C:   00000247  A$p3main$1893                      p3main
+C:   00000247  C$p3main.c$97$1$38                 p3main
+C:   00000247  XG$delay_ms$0$0                    p3main
+C:   00000248  A$p3main$1906                      p3main
+C:   00000248  C$p3main.c$100$1$38                p3main
+C:   00000248  G$putchar$0$0                      p3main
+C:   00000248  _putchar                           p3main
+C:   0000024B  A$p3main$1912                      p3main
+C:   0000024B  C$p3main.c$102$1$41                p3main
+C:   0000024B  C$p3main.c$103$1$41                p3main
+C:   0000024E  A$p3main$1913                      p3main
+C:   00000250  A$p3main$1917                      p3main
+C:   00000250  C$p3main.c$104$1$41                p3main
+C:   00000250  XG$putchar$0$0                     p3main
+C:   00000251  A$p3main$1928                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 39.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000251  C$p3main.c$108$1$41                p3main
+C:   00000251  G$int_serial$0$0                   p3main
+C:   00000251  _int_serial                        p3main
+C:   00000253  A$p3main$1929                      p3main
+C:   00000255  A$p3main$1930                      p3main
+C:   00000257  A$p3main$1931                      p3main
+C:   00000259  A$p3main$1932                      p3main
+C:   0000025B  A$p3main$1933                      p3main
+C:   0000025D  A$p3main$1934                      p3main
+C:   0000025F  A$p3main$1935                      p3main
+C:   00000261  A$p3main$1936                      p3main
+C:   00000263  A$p3main$1937                      p3main
+C:   00000265  A$p3main$1938                      p3main
+C:   00000267  A$p3main$1939                      p3main
+C:   00000269  A$p3main$1940                      p3main
+C:   0000026B  A$p3main$1941                      p3main
+C:   0000026D  A$p3main$1942                      p3main
+C:   00000270  A$p3main$1945                      p3main
+C:   00000270  C$p3main.c$109$1$43                p3main
+C:   00000273  A$p3main$1946                      p3main
+C:   00000276  A$p3main$1950                      p3main
+C:   00000276  C$p3main.c$110$2$44                p3main
+C:   00000278  A$p3main$1951                      p3main
+C:   0000027B  A$p3main$1952                      p3main
+C:   0000027E  A$p3main$1954                      p3main
+C:   00000281  A$p3main$1955                      p3main
+C:   00000284  A$p3main$1957                      p3main
+C:   00000287  A$p3main$1958                      p3main
+C:   0000028A  A$p3main$1960                      p3main
+C:   0000028D  A$p3main$1961                      p3main
+C:   00000290  A$p3main$1963                      p3main
+C:   00000293  A$p3main$1964                      p3main
+C:   00000296  A$p3main$1966                      p3main
+C:   00000299  A$p3main$1967                      p3main
+C:   0000029B  A$p3main$1969                      p3main
+C:   0000029E  A$p3main$1970                      p3main
+C:   000002A1  A$p3main$1972                      p3main
+C:   000002A4  A$p3main$1973                      p3main
+C:   000002A7  A$p3main$1975                      p3main
+C:   000002AA  A$p3main$1981                      p3main
+C:   000002AA  C$p3main.c$112$3$45                p3main
+C:   000002AA  C$p3main.c$113$3$45                p3main
+C:   000002AC  A$p3main$1982                      p3main
+C:   000002AE  A$p3main$1983                      p3main
+C:   000002B0  A$p3main$1984                      p3main
+C:   000002B2  A$p3main$1985                      p3main
+C:   000002B5  A$p3main$1986                      p3main
+C:   000002B7  A$p3main$1987                      p3main
+C:   000002B9  A$p3main$1990                      p3main
+C:   000002B9  C$p3main.c$114$3$45                p3main
+C:   000002BB  A$p3main$1991                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 40.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000002BD  A$p3main$1992                      p3main
+C:   000002BF  A$p3main$1993                      p3main
+C:   000002C1  A$p3main$1994                      p3main
+C:   000002C4  A$p3main$1995                      p3main
+C:   000002C6  A$p3main$1996                      p3main
+C:   000002C8  A$p3main$1999                      p3main
+C:   000002C8  C$p3main.c$115$3$45                p3main
+C:   000002CA  A$p3main$2000                      p3main
+C:   000002CC  A$p3main$2001                      p3main
+C:   000002CE  A$p3main$2002                      p3main
+C:   000002D0  A$p3main$2003                      p3main
+C:   000002D3  A$p3main$2004                      p3main
+C:   000002D5  A$p3main$2005                      p3main
+C:   000002D7  A$p3main$2008                      p3main
+C:   000002D7  C$p3main.c$116$3$45                p3main
+C:   000002D9  A$p3main$2009                      p3main
+C:   000002DB  A$p3main$2010                      p3main
+C:   000002DD  A$p3main$2011                      p3main
+C:   000002DF  A$p3main$2012                      p3main
+C:   000002E2  A$p3main$2013                      p3main
+C:   000002E4  A$p3main$2014                      p3main
+C:   000002E6  A$p3main$2017                      p3main
+C:   000002E6  C$p3main.c$117$3$45                p3main
+C:   000002E8  A$p3main$2018                      p3main
+C:   000002EA  A$p3main$2019                      p3main
+C:   000002EC  A$p3main$2020                      p3main
+C:   000002EE  A$p3main$2021                      p3main
+C:   000002F1  A$p3main$2022                      p3main
+C:   000002F3  A$p3main$2023                      p3main
+C:   000002F5  A$p3main$2026                      p3main
+C:   000002F5  C$p3main.c$118$3$45                p3main
+C:   000002F7  A$p3main$2027                      p3main
+C:   000002F9  A$p3main$2028                      p3main
+C:   000002FB  A$p3main$2029                      p3main
+C:   000002FD  A$p3main$2030                      p3main
+C:   00000300  A$p3main$2031                      p3main
+C:   00000302  A$p3main$2032                      p3main
+C:   00000304  A$p3main$2035                      p3main
+C:   00000304  C$p3main.c$119$3$45                p3main
+C:   00000306  A$p3main$2036                      p3main
+C:   00000308  A$p3main$2037                      p3main
+C:   0000030A  A$p3main$2038                      p3main
+C:   0000030C  A$p3main$2039                      p3main
+C:   0000030F  A$p3main$2040                      p3main
+C:   00000311  A$p3main$2041                      p3main
+C:   00000313  A$p3main$2044                      p3main
+C:   00000313  C$p3main.c$120$3$45                p3main
+C:   00000315  A$p3main$2045                      p3main
+C:   00000317  A$p3main$2046                      p3main
+C:   00000319  A$p3main$2047                      p3main
+C:   0000031B  A$p3main$2048                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 41.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000031E  A$p3main$2049                      p3main
+C:   00000320  A$p3main$2050                      p3main
+C:   00000322  A$p3main$2053                      p3main
+C:   00000322  C$p3main.c$121$3$45                p3main
+C:   00000324  A$p3main$2054                      p3main
+C:   00000326  A$p3main$2055                      p3main
+C:   00000328  A$p3main$2056                      p3main
+C:   0000032A  A$p3main$2057                      p3main
+C:   0000032D  A$p3main$2058                      p3main
+C:   0000032F  A$p3main$2059                      p3main
+C:   00000331  A$p3main$2062                      p3main
+C:   00000331  C$p3main.c$123$3$45                p3main
+C:   00000334  A$p3main$2068                      p3main
+C:   00000334  C$p3main.c$126$3$45                p3main
+C:   00000334  C$p3main.c$127$3$45                p3main
+C:   00000336  A$p3main$2069                      p3main
+C:   00000338  A$p3main$2070                      p3main
+C:   0000033A  A$p3main$2071                      p3main
+C:   0000033D  A$p3main$2075                      p3main
+C:   0000033D  C$p3main.c$128$3$45                p3main
+C:   0000033F  A$p3main$2078                      p3main
+C:   0000033F  C$p3main.c$130$3$45                p3main
+C:   00000342  A$p3main$2084                      p3main
+C:   00000342  C$p3main.c$133$3$45                p3main
+C:   00000342  C$p3main.c$134$3$45                p3main
+C:   00000344  A$p3main$2085                      p3main
+C:   00000346  A$p3main$2086                      p3main
+C:   00000349  A$p3main$2090                      p3main
+C:   00000349  C$p3main.c$135$3$45                p3main
+C:   0000034B  A$p3main$2093                      p3main
+C:   0000034B  C$p3main.c$137$3$45                p3main
+C:   0000034E  A$p3main$2099                      p3main
+C:   0000034E  C$p3main.c$140$3$45                p3main
+C:   0000034E  C$p3main.c$141$3$45                p3main
+C:   00000350  A$p3main$2102                      p3main
+C:   00000350  C$p3main.c$143$3$45                p3main
+C:   00000352  A$p3main$2103                      p3main
+C:   00000354  A$p3main$2104                      p3main
+C:   00000356  A$p3main$2105                      p3main
+C:   00000358  A$p3main$2106                      p3main
+C:   0000035B  A$p3main$2107                      p3main
+C:   0000035D  A$p3main$2108                      p3main
+C:   0000035F  A$p3main$2111                      p3main
+C:   0000035F  C$p3main.c$145$3$45                p3main
+C:   00000362  A$p3main$2114                      p3main
+C:   00000362  C$p3main.c$146$3$45                p3main
+C:   00000364  A$p3main$2115                      p3main
+C:   00000366  A$p3main$2116                      p3main
+C:   00000368  A$p3main$2117                      p3main
+C:   0000036A  A$p3main$2118                      p3main
+C:   0000036D  A$p3main$2119                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 42.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000036F  A$p3main$2120                      p3main
+C:   00000371  A$p3main$2121                      p3main
+C:   00000374  A$p3main$2125                      p3main
+C:   00000374  C$p3main.c$148$3$45                p3main
+C:   00000376  A$p3main$2126                      p3main
+C:   00000378  A$p3main$2127                      p3main
+C:   0000037A  A$p3main$2128                      p3main
+C:   0000037C  A$p3main$2129                      p3main
+C:   0000037F  A$p3main$2130                      p3main
+C:   00000381  A$p3main$2131                      p3main
+C:   00000383  A$p3main$2134                      p3main
+C:   00000383  C$p3main.c$150$3$45                p3main
+C:   00000386  A$p3main$2140                      p3main
+C:   00000386  C$p3main.c$153$3$45                p3main
+C:   00000386  C$p3main.c$154$3$45                p3main
+C:   00000389  A$p3main$2141                      p3main
+C:   0000038B  A$p3main$2142                      p3main
+C:   0000038D  A$p3main$2143                      p3main
+C:   0000038F  A$p3main$2144                      p3main
+C:   00000390  A$p3main$2145                      p3main
+C:   00000392  A$p3main$2146                      p3main
+C:   00000394  A$p3main$2147                      p3main
+C:   00000396  A$p3main$2148                      p3main
+C:   00000398  A$p3main$2149                      p3main
+C:   0000039B  A$p3main$2150                      p3main
+C:   0000039E  A$p3main$2151                      p3main
+C:   000003A0  A$p3main$2152                      p3main
+C:   000003A3  A$p3main$2153                      p3main
+C:   000003A5  A$p3main$2154                      p3main
+C:   000003A7  A$p3main$2155                      p3main
+C:   000003A9  A$p3main$2156                      p3main
+C:   000003AA  A$p3main$2157                      p3main
+C:   000003AC  A$p3main$2158                      p3main
+C:   000003AE  A$p3main$2159                      p3main
+C:   000003B0  A$p3main$2160                      p3main
+C:   000003B2  A$p3main$2161                      p3main
+C:   000003B4  A$p3main$2162                      p3main
+C:   000003B6  A$p3main$2163                      p3main
+C:   000003B8  A$p3main$2164                      p3main
+C:   000003BB  A$p3main$2165                      p3main
+C:   000003BE  A$p3main$2166                      p3main
+C:   000003C0  A$p3main$2167                      p3main
+C:   000003C3  A$p3main$2168                      p3main
+C:   000003C5  A$p3main$2169                      p3main
+C:   000003C7  A$p3main$2170                      p3main
+C:   000003C9  A$p3main$2171                      p3main
+C:   000003CA  A$p3main$2172                      p3main
+C:   000003CC  A$p3main$2173                      p3main
+C:   000003CE  A$p3main$2174                      p3main
+C:   000003D0  A$p3main$2175                      p3main
+C:   000003D2  A$p3main$2176                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 43.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000003D4  A$p3main$2177                      p3main
+C:   000003D6  A$p3main$2178                      p3main
+C:   000003D8  A$p3main$2179                      p3main
+C:   000003DA  A$p3main$2180                      p3main
+C:   000003DC  A$p3main$2181                      p3main
+C:   000003DE  A$p3main$2182                      p3main
+C:   000003E0  A$p3main$2183                      p3main
+C:   000003E3  A$p3main$2184                      p3main
+C:   000003E5  A$p3main$2185                      p3main
+C:   000003E7  A$p3main$2186                      p3main
+C:   000003E9  A$p3main$2189                      p3main
+C:   000003E9  C$p3main.c$155$3$45                p3main
+C:   000003EC  A$p3main$2195                      p3main
+C:   000003EC  C$p3main.c$158$3$45                p3main
+C:   000003EC  C$p3main.c$159$3$45                p3main
+C:   000003EE  A$p3main$2198                      p3main
+C:   000003EE  C$p3main.c$160$3$45                p3main
+C:   000003F1  A$p3main$2199                      p3main
+C:   000003F4  A$p3main$2202                      p3main
+C:   000003F4  C$p3main.c$161$3$45                p3main
+C:   000003F6  A$p3main$2205                      p3main
+C:   000003F6  C$p3main.c$162$3$45                p3main
+C:   000003F9  A$p3main$2206                      p3main
+C:   000003FC  A$p3main$2209                      p3main
+C:   000003FC  C$p3main.c$163$3$45                p3main
+C:   000003FE  A$p3main$2212                      p3main
+C:   000003FE  C$p3main.c$165$3$45                p3main
+C:   00000401  A$p3main$2213                      p3main
+C:   00000404  A$p3main$2216                      p3main
+C:   00000404  C$p3main.c$167$3$45                p3main
+C:   00000406  A$p3main$2219                      p3main
+C:   00000406  C$p3main.c$168$3$45                p3main
+C:   00000409  A$p3main$2220                      p3main
+C:   0000040C  A$p3main$2223                      p3main
+C:   0000040C  C$p3main.c$169$3$45                p3main
+C:   0000040E  A$p3main$2226                      p3main
+C:   0000040E  C$p3main.c$170$3$45                p3main
+C:   00000411  A$p3main$2227                      p3main
+C:   00000414  A$p3main$2230                      p3main
+C:   00000414  C$p3main.c$171$3$45                p3main
+C:   00000416  A$p3main$2235                      p3main
+C:   00000416  C$p3main.c$172$3$45                p3main
+C:   00000416  C$p3main.c$175$3$45                p3main
+C:   00000418  A$p3main$2239                      p3main
+C:   00000418  C$p3main.c$176$3$45                p3main
+C:   0000041A  A$p3main$2242                      p3main
+C:   0000041A  C$p3main.c$177$3$45                p3main
+C:   0000041D  A$p3main$2243                      p3main
+C:   00000420  A$p3main$2246                      p3main
+C:   00000420  C$p3main.c$178$3$45                p3main
+C:   00000422  A$p3main$2249                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 44.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000422  C$p3main.c$179$3$45                p3main
+C:   00000425  A$p3main$2250                      p3main
+C:   00000428  A$p3main$2253                      p3main
+C:   00000428  C$p3main.c$180$3$45                p3main
+C:   0000042A  A$p3main$2256                      p3main
+C:   0000042A  C$p3main.c$182$3$45                p3main
+C:   0000042D  A$p3main$2257                      p3main
+C:   00000430  A$p3main$2260                      p3main
+C:   00000430  C$p3main.c$184$3$45                p3main
+C:   00000432  A$p3main$2263                      p3main
+C:   00000432  C$p3main.c$185$3$45                p3main
+C:   00000435  A$p3main$2264                      p3main
+C:   00000438  A$p3main$2267                      p3main
+C:   00000438  C$p3main.c$186$3$45                p3main
+C:   0000043A  A$p3main$2270                      p3main
+C:   0000043A  C$p3main.c$187$3$45                p3main
+C:   0000043D  A$p3main$2271                      p3main
+C:   00000440  A$p3main$2274                      p3main
+C:   00000440  C$p3main.c$188$3$45                p3main
+C:   00000442  A$p3main$2279                      p3main
+C:   00000442  C$p3main.c$189$3$45                p3main
+C:   00000442  C$p3main.c$192$3$45                p3main
+C:   00000444  A$p3main$2283                      p3main
+C:   00000444  C$p3main.c$193$3$45                p3main
+C:   00000446  A$p3main$2286                      p3main
+C:   00000446  C$p3main.c$194$3$45                p3main
+C:   00000449  A$p3main$2287                      p3main
+C:   0000044C  A$p3main$2290                      p3main
+C:   0000044C  C$p3main.c$195$3$45                p3main
+C:   0000044E  A$p3main$2293                      p3main
+C:   0000044E  C$p3main.c$196$3$45                p3main
+C:   00000451  A$p3main$2294                      p3main
+C:   00000454  A$p3main$2297                      p3main
+C:   00000454  C$p3main.c$197$3$45                p3main
+C:   00000456  A$p3main$2300                      p3main
+C:   00000456  C$p3main.c$199$3$45                p3main
+C:   00000459  A$p3main$2301                      p3main
+C:   0000045C  A$p3main$2304                      p3main
+C:   0000045C  C$p3main.c$201$3$45                p3main
+C:   0000045E  A$p3main$2307                      p3main
+C:   0000045E  C$p3main.c$202$3$45                p3main
+C:   00000461  A$p3main$2308                      p3main
+C:   00000464  A$p3main$2311                      p3main
+C:   00000464  C$p3main.c$203$3$45                p3main
+C:   00000466  A$p3main$2314                      p3main
+C:   00000466  C$p3main.c$204$3$45                p3main
+C:   00000469  A$p3main$2315                      p3main
+C:   0000046C  A$p3main$2318                      p3main
+C:   0000046C  C$p3main.c$205$3$45                p3main
+C:   0000046E  A$p3main$2324                      p3main
+C:   0000046E  C$p3main.c$210$2$44                p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 45.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000046E  C$p3main.c$212$2$44                p3main
+C:   00000470  A$p3main$2326                      p3main
+C:   00000472  A$p3main$2327                      p3main
+C:   00000474  A$p3main$2328                      p3main
+C:   00000476  A$p3main$2329                      p3main
+C:   00000478  A$p3main$2330                      p3main
+C:   0000047A  A$p3main$2331                      p3main
+C:   0000047C  A$p3main$2332                      p3main
+C:   0000047E  A$p3main$2333                      p3main
+C:   00000480  A$p3main$2334                      p3main
+C:   00000482  A$p3main$2335                      p3main
+C:   00000484  A$p3main$2336                      p3main
+C:   00000486  A$p3main$2337                      p3main
+C:   00000488  A$p3main$2338                      p3main
+C:   0000048A  A$p3main$2339                      p3main
+C:   0000048C  A$p3main$2342                      p3main
+C:   0000048C  C$p3main.c$214$1$43                p3main
+C:   0000048C  XG$int_serial$0$0                  p3main
+C:   0000048D  A$p3main$2359                      p3main
+C:   0000048D  C$p3main.c$217$1$43                p3main
+C:   0000048D  C$p3main.c$219$1$47                p3main
+C:   0000048D  G$le_tec$0$0                       p3main
+C:   0000048D  _le_tec                            p3main
+C:   0000048F  A$p3main$2360                      p3main
+C:   00000492  A$p3main$2361                      p3main
+C:   00000494  A$p3main$2365                      p3main
+C:   00000494  C$p3main.c$221$2$48                p3main
+C:   00000496  A$p3main$2366                      p3main
+C:   00000497  A$p3main$2367                      p3main
+C:   00000498  A$p3main$2370                      p3main
+C:   00000498  C$p3main.c$222$1$47                p3main
+C:   0000049A  A$p3main$2374                      p3main
+C:   0000049A  C$p3main.c$226$1$47                p3main
+C:   0000049D  A$p3main$2377                      p3main
+C:   0000049D  C$p3main.c$228$1$47                p3main
+C:   0000049F  A$p3main$2379                      p3main
+C:   000004A1  A$p3main$2381                      p3main
+C:   000004A2  A$p3main$2382                      p3main
+C:   000004A5  A$p3main$2383                      p3main
+C:   000004A8  A$p3main$2385                      p3main
+C:   000004AA  A$p3main$2388                      p3main
+C:   000004AA  C$p3main.c$230$2$49                p3main
+C:   000004AB  A$p3main$2389                      p3main
+C:   000004AC  A$p3main$2390                      p3main
+C:   000004AD  A$p3main$2391                      p3main
+C:   000004AE  A$p3main$2394                      p3main
+C:   000004AE  C$p3main.c$231$2$49                p3main
+C:   000004AF  A$p3main$2395                      p3main
+C:   000004B1  A$p3main$2399                      p3main
+C:   000004B1  C$p3main.c$234$1$47                p3main
+C:   000004B3  A$p3main$2403                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 46.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000004B3  C$p3main.c$235$1$47                p3main
+C:   000004B3  XG$le_tec$0$0                      p3main
+C:   000004B4  A$p3main$2414                      p3main
+C:   000004B4  C$p3main.c$237$1$47                p3main
+C:   000004B4  G$isr_timer2$0$0                   p3main
+C:   000004B4  _isr_timer2                        p3main
+C:   000004B6  A$p3main$2415                      p3main
+C:   000004B8  A$p3main$2416                      p3main
+C:   000004BA  A$p3main$2417                      p3main
+C:   000004BC  A$p3main$2418                      p3main
+C:   000004BE  A$p3main$2419                      p3main
+C:   000004C0  A$p3main$2420                      p3main
+C:   000004C2  A$p3main$2421                      p3main
+C:   000004C4  A$p3main$2422                      p3main
+C:   000004C6  A$p3main$2423                      p3main
+C:   000004C8  A$p3main$2424                      p3main
+C:   000004CA  A$p3main$2425                      p3main
+C:   000004CC  A$p3main$2426                      p3main
+C:   000004CE  A$p3main$2427                      p3main
+C:   000004D0  A$p3main$2428                      p3main
+C:   000004D3  A$p3main$2431                      p3main
+C:   000004D3  C$p3main.c$241$1$50                p3main
+C:   000004D5  A$p3main$2434                      p3main
+C:   000004D5  C$p3main.c$243$1$50                p3main
+C:   000004D7  A$p3main$2435                      p3main
+C:   000004DA  A$p3main$2438                      p3main
+C:   000004DA  C$p3main.c$244$1$50                p3main
+C:   000004DD  A$p3main$2442                      p3main
+C:   000004DD  C$p3main.c$245$1$50                p3main
+C:   000004DF  A$p3main$2443                      p3main
+C:   000004E1  A$p3main$2446                      p3main
+C:   000004E1  C$p3main.c$247$2$51                p3main
+C:   000004E4  A$p3main$2447                      p3main
+C:   000004E7  A$p3main$2451                      p3main
+C:   000004E7  C$p3main.c$249$1$50                p3main
+C:   000004E9  A$p3main$2452                      p3main
+C:   000004EC  A$p3main$2453                      p3main
+C:   000004EE  A$p3main$2455                      p3main
+C:   000004F0  A$p3main$2456                      p3main
+C:   000004F2  A$p3main$2459                      p3main
+C:   000004F2  C$p3main.c$251$2$52                p3main
+C:   000004F5  A$p3main$2461                      p3main
+C:   000004F7  A$p3main$2462                      p3main
+C:   000004F9  A$p3main$2463                      p3main
+C:   000004FB  A$p3main$2464                      p3main
+C:   000004FD  A$p3main$2465                      p3main
+C:   000004FF  A$p3main$2466                      p3main
+C:   00000501  A$p3main$2467                      p3main
+C:   00000503  A$p3main$2468                      p3main
+C:   00000505  A$p3main$2469                      p3main
+C:   00000507  A$p3main$2470                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 47.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000509  A$p3main$2471                      p3main
+C:   0000050B  A$p3main$2472                      p3main
+C:   0000050D  A$p3main$2473                      p3main
+C:   0000050F  A$p3main$2474                      p3main
+C:   00000511  A$p3main$2477                      p3main
+C:   00000511  C$p3main.c$254$1$50                p3main
+C:   00000511  XG$isr_timer2$0$0                  p3main
+C:   00000512  A$p3main$2492                      p3main
+C:   00000512  C$p3main.c$257$1$50                p3main
+C:   00000512  G$le_RAM_SPI$0$0                   p3main
+C:   00000512  _le_RAM_SPI                        p3main
+C:   00000514  A$p3main$2493                      p3main
+C:   00000516  A$p3main$2496                      p3main
+C:   00000516  C$p3main.c$259$1$54                p3main
+C:   00000518  A$p3main$2501                      p3main
+C:   00000518  C$p3main.c$260$1$54                p3main
+C:   00000518  C$p3main.c$261$1$54                p3main
+C:   0000051A  A$p3main$2504                      p3main
+C:   0000051A  C$p3main.c$263$1$54                p3main
+C:   0000051D  A$p3main$2508                      p3main
+C:   0000051D  C$p3main.c$264$1$54                p3main
+C:   00000520  A$p3main$2511                      p3main
+C:   00000520  C$p3main.c$265$1$54                p3main
+C:   00000522  A$p3main$2515                      p3main
+C:   00000522  C$p3main.c$266$1$54                p3main
+C:   00000525  A$p3main$2518                      p3main
+C:   00000525  C$p3main.c$267$1$54                p3main
+C:   00000527  A$p3main$2522                      p3main
+C:   00000527  C$p3main.c$268$1$54                p3main
+C:   0000052A  A$p3main$2525                      p3main
+C:   0000052A  C$p3main.c$269$1$54                p3main
+C:   0000052D  A$p3main$2529                      p3main
+C:   0000052D  C$p3main.c$270$1$54                p3main
+C:   00000530  A$p3main$2532                      p3main
+C:   00000530  C$p3main.c$271$1$54                p3main
+C:   00000532  A$p3main$2538                      p3main
+C:   00000532  C$p3main.c$272$1$54                p3main
+C:   00000532  C$p3main.c$273$1$54                p3main
+C:   00000535  A$p3main$2539                      p3main
+C:   00000537  A$p3main$2543                      p3main
+C:   00000537  C$p3main.c$274$1$54                p3main
+C:   00000539  A$p3main$2546                      p3main
+C:   00000539  C$p3main.c$276$1$54                p3main
+C:   0000053C  A$p3main$2549                      p3main
+C:   0000053C  C$p3main.c$277$1$54                p3main
+C:   0000053C  XG$le_RAM_SPI$0$0                  p3main
+C:   0000053D  A$p3main$2565                      p3main
+C:   0000053D  C$p3main.c$279$1$54                p3main
+C:   0000053D  G$esc_RAM_SPI$0$0                  p3main
+C:   0000053D  _esc_RAM_SPI                       p3main
+C:   0000053F  A$p3main$2566                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 48.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000541  A$p3main$2569                      p3main
+C:   00000541  C$p3main.c$281$1$56                p3main
+C:   00000543  A$p3main$2574                      p3main
+C:   00000543  C$p3main.c$282$1$56                p3main
+C:   00000543  C$p3main.c$283$1$56                p3main
+C:   00000545  A$p3main$2577                      p3main
+C:   00000545  C$p3main.c$285$1$56                p3main
+C:   00000548  A$p3main$2581                      p3main
+C:   00000548  C$p3main.c$286$1$56                p3main
+C:   0000054B  A$p3main$2584                      p3main
+C:   0000054B  C$p3main.c$287$1$56                p3main
+C:   0000054D  A$p3main$2588                      p3main
+C:   0000054D  C$p3main.c$288$1$56                p3main
+C:   00000550  A$p3main$2591                      p3main
+C:   00000550  C$p3main.c$289$1$56                p3main
+C:   00000552  A$p3main$2595                      p3main
+C:   00000552  C$p3main.c$290$1$56                p3main
+C:   00000555  A$p3main$2598                      p3main
+C:   00000555  C$p3main.c$291$1$56                p3main
+C:   00000558  A$p3main$2602                      p3main
+C:   00000558  C$p3main.c$292$1$56                p3main
+C:   0000055B  A$p3main$2605                      p3main
+C:   0000055B  C$p3main.c$293$1$56                p3main
+C:   0000055D  A$p3main$2611                      p3main
+C:   0000055D  C$p3main.c$294$1$56                p3main
+C:   0000055D  C$p3main.c$295$1$56                p3main
+C:   00000560  A$p3main$2612                      p3main
+C:   00000562  A$p3main$2616                      p3main
+C:   00000562  C$p3main.c$296$1$56                p3main
+C:   00000564  A$p3main$2619                      p3main
+C:   00000564  C$p3main.c$297$1$56                p3main
+C:   00000564  XG$esc_RAM_SPI$0$0                 p3main
+C:   00000565  A$p3main$2635                      p3main
+C:   00000565  C$p3main.c$299$1$56                p3main
+C:   00000565  C$p3main.c$300$1$56                p3main
+C:   00000565  G$test_RAM_SPI$0$0                 p3main
+C:   00000565  _test_RAM_SPI                      p3main
+C:   00000567  A$p3main$2636                      p3main
+C:   00000569  A$p3main$2639                      p3main
+C:   00000569  C$p3main.c$302$2$58                p3main
+C:   0000056B  A$p3main$2640                      p3main
+C:   0000056D  A$p3main$2644                      p3main
+C:   0000056D  C$p3main.c$303$1$57                p3main
+C:   00000570  A$p3main$2645                      p3main
+C:   00000573  A$p3main$2646                      p3main
+C:   00000575  A$p3main$2647                      p3main
+C:   00000577  A$p3main$2648                      p3main
+C:   00000579  A$p3main$2649                      p3main
+C:   0000057B  A$p3main$2650                      p3main
+C:   0000057D  A$p3main$2651                      p3main
+C:   0000057F  A$p3main$2652                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 49.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000582  A$p3main$2653                      p3main
+C:   00000584  A$p3main$2654                      p3main
+C:   00000587  A$p3main$2655                      p3main
+C:   00000589  A$p3main$2656                      p3main
+C:   0000058B  A$p3main$2657                      p3main
+C:   0000058D  A$p3main$2658                      p3main
+C:   0000058F  A$p3main$2659                      p3main
+C:   00000591  A$p3main$2660                      p3main
+C:   00000593  A$p3main$2663                      p3main
+C:   00000593  C$p3main.c$304$2$58                p3main
+C:   00000595  A$p3main$2664                      p3main
+C:   00000597  A$p3main$2665                      p3main
+C:   00000599  A$p3main$2666                      p3main
+C:   0000059B  A$p3main$2667                      p3main
+C:   0000059D  A$p3main$2668                      p3main
+C:   0000059F  A$p3main$2669                      p3main
+C:   000005A1  A$p3main$2670                      p3main
+C:   000005A3  A$p3main$2671                      p3main
+C:   000005A5  A$p3main$2672                      p3main
+C:   000005A7  A$p3main$2673                      p3main
+C:   000005AA  A$p3main$2674                      p3main
+C:   000005AC  A$p3main$2675                      p3main
+C:   000005AE  A$p3main$2676                      p3main
+C:   000005B0  A$p3main$2677                      p3main
+C:   000005B2  A$p3main$2678                      p3main
+C:   000005B4  A$p3main$2679                      p3main
+C:   000005B6  A$p3main$2680                      p3main
+C:   000005B8  A$p3main$2684                      p3main
+C:   000005B8  C$p3main.c$305$2$58                p3main
+C:   000005BB  A$p3main$2685                      p3main
+C:   000005BD  A$p3main$2686                      p3main
+C:   000005BF  A$p3main$2687                      p3main
+C:   000005C1  A$p3main$2688                      p3main
+C:   000005C3  A$p3main$2689                      p3main
+C:   000005C5  A$p3main$2690                      p3main
+C:   000005C7  A$p3main$2691                      p3main
+C:   000005CA  A$p3main$2692                      p3main
+C:   000005CC  A$p3main$2693                      p3main
+C:   000005CE  A$p3main$2696                      p3main
+C:   000005CE  C$p3main.c$306$2$58                p3main
+C:   000005D0  A$p3main$2697                      p3main
+C:   000005D2  A$p3main$2698                      p3main
+C:   000005D4  A$p3main$2699                      p3main
+C:   000005D6  A$p3main$2700                      p3main
+C:   000005D9  A$p3main$2701                      p3main
+C:   000005DB  A$p3main$2702                      p3main
+C:   000005DD  A$p3main$2703                      p3main
+C:   000005DF  A$p3main$2704                      p3main
+C:   000005E1  A$p3main$2705                      p3main
+C:   000005E3  A$p3main$2706                      p3main
+C:   000005E6  A$p3main$2707                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 50.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000005E8  A$p3main$2711                      p3main
+C:   000005E8  C$p3main.c$307$3$59                p3main
+C:   000005EA  A$p3main$2712                      p3main
+C:   000005EC  A$p3main$2715                      p3main
+C:   000005EC  C$p3main.c$308$3$59                p3main
+C:   000005EE  A$p3main$2719                      p3main
+C:   000005EE  C$p3main.c$302$1$57                p3main
+C:   000005EF  A$p3main$2720                      p3main
+C:   000005F2  A$p3main$2721                      p3main
+C:   000005F3  A$p3main$2723                      p3main
+C:   000005F5  A$p3main$2724                      p3main
+C:   000005F6  A$p3main$2725                      p3main
+C:   000005F8  A$p3main$2726                      p3main
+C:   000005FB  A$p3main$2731                      p3main
+C:   000005FB  C$p3main.c$312$1$57                p3main
+C:   000005FD  A$p3main$2732                      p3main
+C:   000005FF  A$p3main$2733                      p3main
+C:   00000601  A$p3main$2734                      p3main
+C:   00000603  A$p3main$2735                      p3main
+C:   00000605  A$p3main$2736                      p3main
+C:   00000607  A$p3main$2737                      p3main
+C:   0000060A  A$p3main$2738                      p3main
+C:   0000060C  A$p3main$2739                      p3main
+C:   0000060E  A$p3main$2740                      p3main
+C:   00000610  A$p3main$2741                      p3main
+C:   00000612  A$p3main$2744                      p3main
+C:   00000612  C$p3main.c$314$1$57                p3main
+C:   00000613  A$p3main$2745                      p3main
+C:   00000614  A$p3main$2746                      p3main
+C:   00000616  A$p3main$2749                      p3main
+C:   00000616  C$p3main.c$315$1$57                p3main
+C:   00000618  A$p3main$2750                      p3main
+C:   0000061A  A$p3main$2751                      p3main
+C:   0000061C  A$p3main$2752                      p3main
+C:   0000061E  A$p3main$2753                      p3main
+C:   00000620  A$p3main$2754                      p3main
+C:   00000622  A$p3main$2755                      p3main
+C:   00000625  A$p3main$2756                      p3main
+C:   00000627  A$p3main$2757                      p3main
+C:   00000629  A$p3main$2758                      p3main
+C:   0000062B  A$p3main$2759                      p3main
+C:   0000062D  A$p3main$2763                      p3main
+C:   0000062D  C$p3main.c$317$1$57                p3main
+C:   0000062F  A$p3main$2764                      p3main
+C:   00000631  A$p3main$2765                      p3main
+C:   00000633  A$p3main$2766                      p3main
+C:   00000635  A$p3main$2767                      p3main
+C:   00000638  A$p3main$2768                      p3main
+C:   0000063A  A$p3main$2769                      p3main
+C:   0000063C  A$p3main$2773                      p3main
+C:   0000063C  C$p3main.c$318$1$57                p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 51.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000063C  XG$test_RAM_SPI$0$0                p3main
+C:   0000063D  A$p3main$2787                      p3main
+C:   0000063D  C$p3main.c$321$1$57                p3main
+C:   0000063D  G$le_ADC0$0$0                      p3main
+C:   0000063D  _le_ADC0                           p3main
+C:   0000063F  A$p3main$2790                      p3main
+C:   0000063F  C$p3main.c$322$1$61                p3main
+C:   00000641  A$p3main$2791                      p3main
+C:   00000643  A$p3main$2792                      p3main
+C:   00000645  A$p3main$2793                      p3main
+C:   00000647  A$p3main$2796                      p3main
+C:   00000647  C$p3main.c$323$1$61                p3main
+C:   00000649  A$p3main$2799                      p3main
+C:   00000649  C$p3main.c$324$1$61                p3main
+C:   0000064B  A$p3main$2802                      p3main
+C:   0000064B  C$p3main.c$325$1$61                p3main
+C:   0000064C  A$p3main$2806                      p3main
+C:   0000064C  C$p3main.c$326$1$61                p3main
+C:   0000064F  A$p3main$2809                      p3main
+C:   0000064F  C$p3main.c$328$1$61                p3main
+C:   00000651  A$p3main$2810                      p3main
+C:   00000653  A$p3main$2811                      p3main
+C:   00000655  A$p3main$2812                      p3main
+C:   00000657  A$p3main$2813                      p3main
+C:   00000658  A$p3main$2814                      p3main
+C:   00000659  A$p3main$2815                      p3main
+C:   0000065B  A$p3main$2816                      p3main
+C:   0000065C  A$p3main$2817                      p3main
+C:   0000065D  A$p3main$2818                      p3main
+C:   0000065F  A$p3main$2821                      p3main
+C:   0000065F  C$p3main.c$330$1$61                p3main
+C:   0000065F  XG$le_ADC0$0$0                     p3main
+C:   00000660  A$p3main$2836                      p3main
+C:   00000660  C$p3main.c$333$1$61                p3main
+C:   00000660  C$p3main.c$334$1$62                p3main
+C:   00000660  G$le_LM35$0$0                      p3main
+C:   00000660  _le_LM35                           p3main
+C:   00000663  A$p3main$2837                      p3main
+C:   00000666  A$p3main$2838                      p3main
+C:   00000669  A$p3main$2841                      p3main
+C:   00000669  C$p3main.c$335$1$62                p3main
+C:   0000066C  A$p3main$2842                      p3main
+C:   0000066E  A$p3main$2843                      p3main
+C:   00000670  A$p3main$2844                      p3main
+C:   00000672  A$p3main$2845                      p3main
+C:   00000673  A$p3main$2846                      p3main
+C:   00000675  A$p3main$2847                      p3main
+C:   00000677  A$p3main$2848                      p3main
+C:   00000679  A$p3main$2849                      p3main
+C:   0000067B  A$p3main$2850                      p3main
+C:   0000067E  A$p3main$2851                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 52.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000681  A$p3main$2852                      p3main
+C:   00000683  A$p3main$2853                      p3main
+C:   00000686  A$p3main$2854                      p3main
+C:   00000688  A$p3main$2855                      p3main
+C:   0000068A  A$p3main$2856                      p3main
+C:   0000068C  A$p3main$2857                      p3main
+C:   0000068D  A$p3main$2858                      p3main
+C:   0000068F  A$p3main$2859                      p3main
+C:   00000691  A$p3main$2860                      p3main
+C:   00000693  A$p3main$2861                      p3main
+C:   00000695  A$p3main$2862                      p3main
+C:   00000697  A$p3main$2863                      p3main
+C:   00000699  A$p3main$2864                      p3main
+C:   0000069B  A$p3main$2865                      p3main
+C:   0000069E  A$p3main$2866                      p3main
+C:   000006A1  A$p3main$2867                      p3main
+C:   000006A3  A$p3main$2868                      p3main
+C:   000006A6  A$p3main$2869                      p3main
+C:   000006A8  A$p3main$2870                      p3main
+C:   000006AA  A$p3main$2871                      p3main
+C:   000006AC  A$p3main$2872                      p3main
+C:   000006AD  A$p3main$2873                      p3main
+C:   000006AF  A$p3main$2874                      p3main
+C:   000006B1  A$p3main$2875                      p3main
+C:   000006B3  A$p3main$2876                      p3main
+C:   000006B5  A$p3main$2877                      p3main
+C:   000006B7  A$p3main$2878                      p3main
+C:   000006B9  A$p3main$2879                      p3main
+C:   000006BB  A$p3main$2880                      p3main
+C:   000006BD  A$p3main$2881                      p3main
+C:   000006BF  A$p3main$2882                      p3main
+C:   000006C1  A$p3main$2883                      p3main
+C:   000006C3  A$p3main$2884                      p3main
+C:   000006C6  A$p3main$2885                      p3main
+C:   000006C8  A$p3main$2886                      p3main
+C:   000006CA  A$p3main$2887                      p3main
+C:   000006CC  A$p3main$2890                      p3main
+C:   000006CC  C$p3main.c$336$1$62                p3main
+C:   000006CC  XG$le_LM35$0$0                     p3main
+C:   000006CD  A$p3main$2901                      p3main
+C:   000006CD  C$p3main.c$339$1$62                p3main
+C:   000006CD  G$int_tc1$0$0                      p3main
+C:   000006CD  _int_tc1                           p3main
+C:   000006CF  A$p3main$2902                      p3main
+C:   000006D1  A$p3main$2903                      p3main
+C:   000006D3  A$p3main$2904                      p3main
+C:   000006D5  A$p3main$2905                      p3main
+C:   000006D7  A$p3main$2906                      p3main
+C:   000006D9  A$p3main$2907                      p3main
+C:   000006DB  A$p3main$2908                      p3main
+C:   000006DD  A$p3main$2909                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 53.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000006DF  A$p3main$2910                      p3main
+C:   000006E1  A$p3main$2911                      p3main
+C:   000006E3  A$p3main$2912                      p3main
+C:   000006E5  A$p3main$2913                      p3main
+C:   000006E7  A$p3main$2914                      p3main
+C:   000006E9  A$p3main$2915                      p3main
+C:   000006EC  A$p3main$2918                      p3main
+C:   000006EC  C$p3main.c$340$1$63                p3main
+C:   000006EE  A$p3main$2921                      p3main
+C:   000006EE  C$p3main.c$341$1$63                p3main
+C:   000006F0  A$p3main$2922                      p3main
+C:   000006F2  A$p3main$2923                      p3main
+C:   000006F4  A$p3main$2924                      p3main
+C:   000006F6  A$p3main$2925                      p3main
+C:   000006F8  A$p3main$2926                      p3main
+C:   000006FA  A$p3main$2927                      p3main
+C:   000006FC  A$p3main$2928                      p3main
+C:   000006FE  A$p3main$2929                      p3main
+C:   00000701  A$p3main$2930                      p3main
+C:   00000704  A$p3main$2931                      p3main
+C:   00000707  A$p3main$2932                      p3main
+C:   00000709  A$p3main$2933                      p3main
+C:   0000070C  A$p3main$2934                      p3main
+C:   0000070F  A$p3main$2935                      p3main
+C:   00000712  A$p3main$2936                      p3main
+C:   00000715  A$p3main$2937                      p3main
+C:   00000717  A$p3main$2938                      p3main
+C:   00000719  A$p3main$2939                      p3main
+C:   0000071B  A$p3main$2940                      p3main
+C:   0000071D  A$p3main$2943                      p3main
+C:   0000071D  C$p3main.c$342$1$63                p3main
+C:   0000071E  A$p3main$2944                      p3main
+C:   00000720  A$p3main$2945                      p3main
+C:   00000722  A$p3main$2946                      p3main
+C:   00000724  A$p3main$2947                      p3main
+C:   00000726  A$p3main$2948                      p3main
+C:   00000728  A$p3main$2949                      p3main
+C:   0000072A  A$p3main$2950                      p3main
+C:   0000072D  A$p3main$2951                      p3main
+C:   00000730  A$p3main$2952                      p3main
+C:   00000733  A$p3main$2953                      p3main
+C:   00000735  A$p3main$2954                      p3main
+C:   00000738  A$p3main$2955                      p3main
+C:   0000073A  A$p3main$2956                      p3main
+C:   0000073C  A$p3main$2957                      p3main
+C:   0000073E  A$p3main$2958                      p3main
+C:   00000740  A$p3main$2959                      p3main
+C:   00000741  A$p3main$2960                      p3main
+C:   00000743  A$p3main$2961                      p3main
+C:   00000745  A$p3main$2963                      p3main
+C:   00000747  A$p3main$2964                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 54.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000749  A$p3main$2965                      p3main
+C:   0000074B  A$p3main$2966                      p3main
+C:   0000074D  A$p3main$2967                      p3main
+C:   0000074F  A$p3main$2968                      p3main
+C:   00000751  A$p3main$2969                      p3main
+C:   00000753  A$p3main$2970                      p3main
+C:   00000755  A$p3main$2971                      p3main
+C:   00000757  A$p3main$2972                      p3main
+C:   00000759  A$p3main$2973                      p3main
+C:   0000075B  A$p3main$2974                      p3main
+C:   0000075D  A$p3main$2975                      p3main
+C:   0000075F  A$p3main$2976                      p3main
+C:   00000761  A$p3main$2979                      p3main
+C:   00000761  C$p3main.c$343$1$63                p3main
+C:   00000761  XG$int_tc1$0$0                     p3main
+C:   00000762  A$p3main$2995                      p3main
+C:   00000762  C$p3main.c$345$1$63                p3main
+C:   00000762  C$p3main.c$348$1$64                p3main
+C:   00000762  G$le_pulso$0$0                     p3main
+C:   00000762  _le_pulso                          p3main
+C:   00000765  A$p3main$2998                      p3main
+C:   00000765  C$p3main.c$350$1$64                p3main
+C:   00000766  A$p3main$2999                      p3main
+C:   00000768  A$p3main$3000                      p3main
+C:   0000076A  A$p3main$3001                      p3main
+C:   0000076C  A$p3main$3002                      p3main
+C:   0000076E  A$p3main$3005                      p3main
+C:   0000076E  C$p3main.c$351$1$64                p3main
+C:   00000770  A$p3main$3008                      p3main
+C:   00000770  C$p3main.c$352$1$64                p3main
+C:   00000772  A$p3main$3012                      p3main
+C:   00000772  C$p3main.c$353$1$64                p3main
+C:   00000775  A$p3main$3015                      p3main
+C:   00000775  C$p3main.c$354$1$64                p3main
+C:   00000777  A$p3main$3018                      p3main
+C:   00000777  C$p3main.c$355$1$64                p3main
+C:   00000779  A$p3main$3021                      p3main
+C:   00000779  C$p3main.c$356$1$64                p3main
+C:   0000077B  A$p3main$3022                      p3main
+C:   0000077D  A$p3main$3023                      p3main
+C:   0000077F  A$p3main$3024                      p3main
+C:   00000781  A$p3main$3025                      p3main
+C:   00000782  A$p3main$3026                      p3main
+C:   00000783  A$p3main$3027                      p3main
+C:   00000785  A$p3main$3028                      p3main
+C:   00000786  A$p3main$3029                      p3main
+C:   00000787  A$p3main$3030                      p3main
+C:   00000789  A$p3main$3034                      p3main
+C:   00000789  C$p3main.c$357$1$64                p3main
+C:   0000078B  A$p3main$3038                      p3main
+C:   0000078B  C$p3main.c$358$1$64                p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 55.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000078D  A$p3main$3041                      p3main
+C:   0000078D  C$p3main.c$359$1$64                p3main
+C:   00000790  A$p3main$3042                      p3main
+C:   00000792  A$p3main$3043                      p3main
+C:   00000794  A$p3main$3044                      p3main
+C:   00000796  A$p3main$3045                      p3main
+C:   00000797  A$p3main$3046                      p3main
+C:   00000799  A$p3main$3047                      p3main
+C:   0000079B  A$p3main$3048                      p3main
+C:   0000079D  A$p3main$3049                      p3main
+C:   0000079F  A$p3main$3050                      p3main
+C:   000007A1  A$p3main$3051                      p3main
+C:   000007A3  A$p3main$3052                      p3main
+C:   000007A5  A$p3main$3053                      p3main
+C:   000007A7  A$p3main$3054                      p3main
+C:   000007A9  A$p3main$3055                      p3main
+C:   000007AB  A$p3main$3056                      p3main
+C:   000007AD  A$p3main$3057                      p3main
+C:   000007AE  A$p3main$3058                      p3main
+C:   000007B1  A$p3main$3059                      p3main
+C:   000007B3  A$p3main$3060                      p3main
+C:   000007B5  A$p3main$3061                      p3main
+C:   000007B7  A$p3main$3062                      p3main
+C:   000007B8  A$p3main$3063                      p3main
+C:   000007BA  A$p3main$3064                      p3main
+C:   000007BC  A$p3main$3065                      p3main
+C:   000007BE  A$p3main$3066                      p3main
+C:   000007C0  A$p3main$3067                      p3main
+C:   000007C2  A$p3main$3068                      p3main
+C:   000007C4  A$p3main$3069                      p3main
+C:   000007C6  A$p3main$3070                      p3main
+C:   000007C9  A$p3main$3071                      p3main
+C:   000007CC  A$p3main$3072                      p3main
+C:   000007CF  A$p3main$3073                      p3main
+C:   000007D1  A$p3main$3074                      p3main
+C:   000007D4  A$p3main$3075                      p3main
+C:   000007D7  A$p3main$3076                      p3main
+C:   000007DA  A$p3main$3077                      p3main
+C:   000007DD  A$p3main$3078                      p3main
+C:   000007DF  A$p3main$3079                      p3main
+C:   000007E1  A$p3main$3080                      p3main
+C:   000007E3  A$p3main$3081                      p3main
+C:   000007E5  A$p3main$3084                      p3main
+C:   000007E5  C$p3main.c$361$1$64                p3main
+C:   000007E8  A$p3main$3085                      p3main
+C:   000007EB  A$p3main$3086                      p3main
+C:   000007EE  A$p3main$3087                      p3main
+C:   000007F0  A$p3main$3090                      p3main
+C:   000007F0  C$p3main.c$362$1$64                p3main
+C:   000007F0  XG$le_pulso$0$0                    p3main
+C:   000007F1  _printf_fast_f                     printf_fast_f
+ASxxxx Linker V03.00 + NoICE + sdld,  page 56.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00000FAA =        4010. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000C72  ___fsmul                           _fsmul
+C:   00000D15  fsgetargs                          _fsget2args
+C:   00000D43  fs_rshift_a                        _fsrshift
+C:   00000D86  fs_normalize_a                     _fsnormalize
+C:   00000DB9  ___fsgt                            _fsgt
+C:   00000DE9  __moduint                          _moduint
+C:   00000E36  ___fsadd                           _fsadd
+C:   00000E39  fsadd_direct_entry                 _fsadd
+C:   00000E8F  fs_compare_uint32                  _fscmp
+C:   00000EAD  fs_check_negative_zeros            _fscmp
+C:   00000ED8  ___uint2fs                         _uint2fs
+C:   00000EE4  fs_round_and_return                _fsreturnval
+C:   00000EFC  fs_zerocheck_return                _fsreturnval
+C:   00000F05  fs_return_zero                     _fsreturnval
+C:   00000F0D  fs_direct_return                   _fsreturnval
+C:   00000F1B  fs_return_inf                      _fsreturnval
+C:   00000F28  fs_return_nan                      _fsreturnval
+C:   00000F33  fs_swap_a_b                        _fsswapargs
+C:   00000F4D  ___fsdiv                           _fsdiv
+C:   00001010  __gptrget                          _gptrget
+C:   0000102C  ___ulong2fs                        _ulong2fs
+C:   00001035  ulong2fs_doit                      _ulong2fs
+C:   0000103F  __sdcc_external_startup            _startup
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 57.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CONST                               00001043    0000039B =         923. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00001043  Fp3main$__str_0$0$0                p3main
+C:   00001058  Fp3main$__str_1$0$0                p3main
+C:   00001081  Fp3main$__str_2$0$0                p3main
+C:   0000108A  Fp3main$__str_3$0$0                p3main
+C:   000010A4  Fp3main$__str_4$0$0                p3main
+C:   000010BE  Fp3main$__str_5$0$0                p3main
+C:   000010EF  Fp3main$__str_6$0$0                p3main
+C:   0000110A  Fp3main$__str_7$0$0                p3main
+C:   00001129  Fp3main$__str_8$0$0                p3main
+C:   00001153  Fp3main$__str_9$0$0                p3main
+C:   00001166  Fp3main$__str_10$0$0               p3main
+C:   00001168  Fp3main$__str_11$0$0               p3main
+C:   0000116A  Fp3main$__str_12$0$0               p3main
+C:   0000117D  Fp3main$__str_13$0$0               p3main
+C:   00001193  Fp3main$__str_14$0$0               p3main
+C:   000011AC  Fp3main$__str_15$0$0               p3main
+C:   000011B2  Fp3main$__str_16$0$0               p3main
+C:   000011C2  Fp3main$__str_17$0$0               p3main
+C:   000011DD  Fp3main$__str_18$0$0               p3main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 58.
+
+Files Linked                              [ module(s) ]
+
+Z:\9semestre\micap\micap-master\p3\p3main.rel
+                                          [  ]
+
+
+Libraries Linked                          [ object file ]
+
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ printf_fast_f.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsmul.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsget2args.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtclear.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsrshift.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsnormalize.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtxinit.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsgt.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libint.lib
+                                          [ _moduint.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtxclear.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsadd.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fscmp.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _uint2fs.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsreturnval.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _bp.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtpagesfr.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsswapargs.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _fsdiv.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtstart.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _gptrget.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
+                                          [ _ulong2fs.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _startup.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 59.
+
+User Base Address Definitions
+
+HOME = 0x0000
+XSEG = 0x0001
+PSEG = 0x0001
+ISEG = 0x0000
+BSEG = 0x0000
+
+
