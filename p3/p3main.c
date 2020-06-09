@@ -22,6 +22,9 @@
 unsigned char tecla;
 unsigned char estado = 0;  
 
+// pulse reading related 
+volatile float counter = 0;
+
 // FUNCTIONS HEADERS
 void delay_ms(unsigned int t) __reentrant;
 void putchar (char c );
@@ -54,26 +57,7 @@ int main() {
 	while(1){
 
 		switch(tecla) {
-			// increase motor speed
-	        case 0:
-	            printf_fast_f("%d\n", tecla);
-	            break;
-
-            // decrease motor speed 
-	        case 1:
-	            printf_fast_f("%d\n", tecla);
-	            break;
-
-            // turn on peltier module power source
-	        case 2:
-	            printf_fast_f("%d\n", tecla);
-	            break;
-
-            // turn off peltier module power source
-	        case 3:
-	            printf_fast_f("%d\n", tecla);
-	            break;
-
+		
             // measure motor rotation 
 	        case 4:
 	            printf_fast_f("%d\n", tecla);
@@ -86,7 +70,7 @@ int main() {
 
             // measure peltier module voltage *NEEDS TESTING*
 	        case 6:
-	            printf_fast_f("Tensão aplicada à placa peltier: %3.1fV\n", (float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1);
+	            printf_fast_f("Tensao aplicada a placa peltier: %3.1fV\n", (float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1);
 	            break;
 
             // test RAM SPI *TESTED*
@@ -130,74 +114,35 @@ void putchar (char c ) {
 void int_serial(void) __interrupt 4 {
     if (RI0 == 1) {
         switch (SBUF0) {
-            // increase motor speed
-	        case '0':
-	            // simulates bouncing when the button is pressed
-	            P3_0 = 0;
-	            delay_ms(5);
-	            P3_0 = 1;
-	            delay_ms(5);
-	            P3_0 = 0;
+			// show menu
+			case 'm':
+				printf_fast_f("\n MENU:\n");
+				printf_fast_f("a: Aumenta RPM do motor.\n");
+				printf_fast_f("d: Diminui RPM do motor.\n");
+				printf_fast_f("p: Liga/desliga fonte de energia placa peltier.\n");
 
-	            delay_ms(150); 
+				break;
 
-	            // simulates bouncing when the button is released
-	            P3_0 = 1;
-	            delay_ms(5);
-	            P3_0 = 0;
-	            delay_ms(5);
-	            P3_0 = 1;
+            // decrease motor speed
+	        case 'd':
+	            if (PCA0CPH0 < 255)
+					PCA0CPH0++;
 	            break;
 
-            // decrease motor speed 
-	        case '1':
-	            P3_1 = 0;
-	            delay_ms(5);
-	            P3_1 = 1;
-	            delay_ms(5);
-	            P3_1 = 0;
-
-	            delay_ms(150); 
-
-	            P3_1 = 1;
-	            delay_ms(5);
-	            P3_1 = 0;
-	            delay_ms(5);
-	            P3_1 = 1;
+			// increase motor speed
+	        case 'a':
+	            if (PCA0CPH0 > 0)
+					PCA0CPH0--;
 	            break;
 
-            // turn on peltier module 
-	        case '2':
-	            P3_2 = 0;
-	            delay_ms(5);
-	            P3_2 = 1;
-	            delay_ms(5);
-	            P3_2 = 0;
+			// turn on/off peltier module power source
+	        case 'p':
+	            P0_7 = !P0_7;
 
-	            delay_ms(150); 
-
-	            P3_2 = 1;
-	            delay_ms(5);
-	            P3_2 = 0;
-	            delay_ms(5);
-	            P3_2 = 1;
-	            break;
-
-            // turn off peltier module
-	        case '3':
-	            P3_3 = 0;
-	            delay_ms(5);
-	            P3_3 = 1;
-	            delay_ms(5);
-	            P3_3 = 0;
-
-	            delay_ms(150); 
-
-	            P3_3 = 1;
-	            delay_ms(5);
-	            P3_3 = 0;
-	            delay_ms(5);
-	            P3_3 = 1;
+				if (P0_7)
+					printf_fast_f("Fonte 12V ligada.\n");
+				else 
+					printf_fast_f("Fonte 12V desligada.\n");
 	            break;
 
             // measure motor rotation
@@ -393,8 +338,8 @@ unsigned int le_ADC0(unsigned char canal, unsigned char ganho) {
 
 // LM35 READING FUNCTION
 void le_LM35() {
-	ladc = le_ADC0(AIN0_0, G1);
-	printf_fast_f("\x01 Temperatura da placa peltier: %2.1f °C", (ladc * 0.00059326171875 / 1) * 100);
+	unsigned int ladc = le_ADC0(AIN0_0, G1);
+	printf_fast_f("\x01 Temperatura da placa peltier: %2.1f C\n", (ladc * 0.00059326171875 / 1) * 100);
 }
 
 // PULSE READING FUNCTIONS
