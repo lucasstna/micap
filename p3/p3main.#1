@@ -122,10 +122,10 @@ void int_serial(void) __interrupt 4 {
 
             // decrease motor speed
 	        case 'd':
-	            if (PCA0CPH0 < 191)
+	            if (PCA0CPH0 < 186)
 					PCA0CPH0 += 5;
-
-				printf("%d ", PCA0CPH0);
+				else
+					printf_fast_f("RPM mínimo atingido\n");
 
 	            break;
 
@@ -152,8 +152,8 @@ void int_serial(void) __interrupt 4 {
             // measure motor rotation
 	        case 'r':
 				rpm = 30/(le_pulso()*10);
-				if (rpm <= 5)
-					printf_fast_f("Rotacao do motor <= 5\n");
+				if (rpm <= 6)
+					printf_fast_f("Rotacao do motor <= 6\n");
 				else
 		            printf_fast_f("Rotacao do motor: %3.1f\n", rpm);
 				break;
@@ -351,14 +351,14 @@ void le_LM35() {
 	unsigned int ladc;
 	le_ADC0(AIN0_0, G1); // ignore first reading (ADC0 channel switching related)
 	ladc = le_ADC0(AIN0_0, G1);
-	printf_fast_f("Temperatura da placa peltier: %2.1f C\n", (ladc * 0.00059326171875 / 1) * 100);
+	printf_fast_f("Temperatura do motor: %2.1f C\n", (ladc * 0.00059326171875 / 1) * 100);
 }
 
 // PULSE READING FUNCTIONS
 int int_tc1() interrupt 3 { // occurs every 2.62144 ms
 	TF1 = 0;
 	counter += 0.00262144;
-	if (counter > 2) IE1 = 1; // stop reading if pulse width > 1s
+	if (counter > 3) IE1 = 1; // stop reading if pulse width > 3s
 }
 
 float le_pulso() {

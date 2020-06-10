@@ -51,7 +51,7 @@ int main() {
 	TR2 = 1;
 	
 	P3 = 0xff;
-	PCA0CPH0 = 6;
+
 
 	printf_fast_f("Iniciando firmware.\n");
 	mostra_menu();
@@ -124,8 +124,8 @@ void int_serial(void) __interrupt 4 {
 	        case 'd':
 	            if (PCA0CPH0 < 191)
 					PCA0CPH0 += 5;
-
-				printf("%d ", PCA0CPH0);
+				else
+					printf_fast_f("RPM mínimo atingido\n");
 
 	            break;
 
@@ -152,8 +152,8 @@ void int_serial(void) __interrupt 4 {
             // measure motor rotation
 	        case 'r':
 				rpm = 30/(le_pulso()*10);
-				if (rpm <= 5)
-					printf_fast_f("Rotacao do motor <= 5\n");
+				if (rpm <= 6)
+					printf_fast_f("Rotacao do motor <= 6\n");
 				else
 		            printf_fast_f("Rotacao do motor: %3.1f\n", rpm);
 				break;
@@ -358,7 +358,7 @@ void le_LM35() {
 int int_tc1() interrupt 3 { // occurs every 2.62144 ms
 	TF1 = 0;
 	counter += 0.00262144;
-	if (counter > 2) IE1 = 1; // stop reading if pulse width > 1s
+	if (counter > 3) IE1 = 1; // stop reading if pulse width > 3s
 }
 
 float le_pulso() {

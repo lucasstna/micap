@@ -11,6 +11,7 @@ C:   00000000  l_CABS
 C:   00000000  l_GSINIT1                       
 C:   00000000  l_GSINIT5                       
 C:   00000000  l_IABS                          
+C:   00000000  l_ISEG                          
 C:   00000000  l_PSEG                          
 C:   00000000  l_REG_BANK_1                    
 C:   00000000  l_REG_BANK_2                    
@@ -28,35 +29,34 @@ C:   00000000  s_CABS
 C:   00000000  s_DSEG                          
 C:   00000000  s_HOME                          
 C:   00000000  s_IABS                          
+C:   00000000  s_ISEG                          
 C:   00000000  s_REG_BANK_0                    
 C:   00000000  s_RSEG                          
 C:   00000000  s_RSEG0                         
 C:   00000000  s_RSEG1                         
 C:   00000000  s_XABS                          
 C:   00000001  l_BIT_BANK                      
+C:   00000001  l_BSEG_BYTES                    
 C:   00000001  s_PSEG                          
 C:   00000001  s_XISEG                         
 C:   00000001  s_XSEG                          
-C:   00000003  l_BSEG_BYTES                    
+C:   00000002  l_OSEG                          
 C:   00000003  l_GSFINAL                       
 C:   00000003  l_GSINIT0                       
-C:   00000006  l_ISEG                          
-C:   00000006  l_OSEG                          
+C:   00000008  l_BSEG                          
 C:   00000008  l_REG_BANK_0                    
 C:   00000008  s_REG_BANK_1                    
 C:   0000000A  l_GSINIT2                       
 C:   0000000C  l_GSINIT                        
 C:   00000010  s_REG_BANK_2                    
-C:   00000012  l_BSEG                          
-C:   00000016  s_OSEG                          
+C:   00000015  s_OSEG                          
 C:   00000018  s_REG_BANK_3                    
 C:   00000020  s_BSEG_BYTES                    
 C:   00000020  s__CODE                         
+C:   00000021  s_BIT_BANK                      
 C:   00000022  l_GSINIT3                       
-C:   00000023  s_BIT_BANK                      
+C:   00000022  s_SSEG                          
 C:   0000002A  l_GSINIT4                       
-C:   00000031  l_HOME                          
-C:   00000031  s_GSINIT0                       
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
@@ -66,23 +66,23 @@ CABS                                00000000    00000000 =           0. bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
+C:   00000031  l_HOME                          
+C:   00000031  s_GSINIT0                       
 C:   00000034  s_GSINIT1                       
 C:   00000034  s_GSINIT2                       
 C:   0000003E  s_GSINIT3                       
-C:   0000003E  s_ISEG                          
-C:   00000044  s_SSEG                          
 C:   00000060  s_GSINIT4                       
-C:   0000007C  l_DSEG                          
+C:   00000077  l_DSEG                          
 C:   0000008A  s_GSINIT                        
 C:   0000008A  s_GSINIT5                       
 C:   00000096  s_GSFINAL                       
 C:   00000099  s_CSEG                          
-C:   000000BC  l_SSEG                          
+C:   000000DE  l_SSEG                          
 C:   00000100  l_IRAM                          
-C:   000003C1  l_CONST                         
-C:   0000163E  l_CSEG                          
-C:   000016D7  s_CONST                         
-C:   00001A98  s_XINIT                         
+C:   000003C7  l_CONST                         
+C:   00001013  l_CSEG                          
+C:   000010AC  s_CONST                         
+C:   00001473  s_XINIT                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -998,7 +998,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-BSEG_BYTES                          00000020    00000003 =           3. bytes (REL,CON)
+BSEG_BYTES                          00000020    00000001 =           1. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -1016,7 +1016,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-BIT_BANK                            00000023    00000001 =           1. bytes (REL,OVR)
+BIT_BANK                            00000021    00000001 =           1. bytes (REL,OVR)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -1025,7 +1025,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-DSEG                                00000000    0000007C =         124. bytes (REL,CON)
+DSEG                                00000000    00000077 =         119. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -1036,47 +1036,34 @@ DSEG                                00000000    0000007C =         124. bytes (R
      0000000A  G$counter$0$0                      p3main
      0000000A  _counter                           p3main
      00000014  _bp                                _bp
-     00000015  _vprintf_PARM_2                    vprintf
-     00000030  __print_format_PARM_2              printf_large
-     00000033  __print_format_PARM_3              printf_large
-     00000036  __print_format_PARM_4              printf_large
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-OSEG                                00000016    00000006 =           6. bytes (REL,OVR)
+OSEG                                00000015    00000002 =           2. bytes (REL,OVR)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000016  Lp3main.esc_RAM_SPI$dado$1$55      p3main
-     00000016  Lp3main.le_ADC0$ganho$1$60         p3main
-     00000016  __modsint_PARM_2                   _moduint
-     00000016  __moduint_PARM_2                   _moduint
-     00000016  _esc_RAM_SPI_PARM_2                p3main
-     00000016  _le_ADC0_PARM_2                    p3main
+     00000015  Lp3main.esc_RAM_SPI$dado$1$55      p3main
+     00000015  Lp3main.le_ADC0$ganho$1$60         p3main
+     00000015  __modsint_PARM_2                   _moduint
+     00000015  __moduint_PARM_2                   _moduint
+     00000015  _esc_RAM_SPI_PARM_2                p3main
+     00000015  _le_ADC0_PARM_2                    p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-ISEG                                0000003E    00000006 =           6. bytes (REL,CON)
+SSEG                                00000022    000000DE =         222. bytes (REL,OVR)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
+     00000022  __start__stack                     p3main
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-SSEG                                00000044    000000BC =         188. bytes (REL,OVR)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-     00000044  __start__stack                     p3main
-
-ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -1085,16 +1072,16 @@ HOME                                00000000    00000031 =          49. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000000  A$p3main$1294                      p3main
-C:   00000003  A$p3main$1295                      p3main
-C:   0000000B  A$p3main$1297                      p3main
-C:   00000013  A$p3main$1299                      p3main
-C:   0000001B  A$p3main$1301                      p3main
-C:   00000023  A$p3main$1303                      p3main
-C:   0000002B  A$p3main$1305                      p3main
-C:   0000002E  A$p3main$1337                      p3main
+C:   00000000  A$p3main$1293                      p3main
+C:   00000003  A$p3main$1294                      p3main
+C:   0000000B  A$p3main$1296                      p3main
+C:   00000013  A$p3main$1298                      p3main
+C:   0000001B  A$p3main$1300                      p3main
+C:   00000023  A$p3main$1302                      p3main
+C:   0000002B  A$p3main$1304                      p3main
+C:   0000002E  A$p3main$1336                      p3main
 C:   0000002E  __sdcc_program_startup             p3main
-ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -1105,7 +1092,7 @@ GSINIT0                             00000031    00000003 =           3. bytes (R
       -----  --------------------------------   ------------------------
 C:   00000031  __sdcc_gsinit_startup              
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -1114,7 +1101,7 @@ GSINIT2                             00000034    0000000A =          10. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-ASxxxx Linker V03.00 + NoICE + sdld,  page 29.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -1125,7 +1112,7 @@ GSINIT3                             0000003E    00000022 =          34. bytes (R
       -----  --------------------------------   ------------------------
 C:   0000003E  __mcs51_genXINIT                   
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 30.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 29.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -1137,7 +1124,7 @@ GSINIT4                             00000060    0000002A =          42. bytes (R
 C:   00000060  __mcs51_genRAMCLEAR                
 C:   00000066  __mcs51_genXRAMCLEAR               
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 30.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -1146,16 +1133,16 @@ GSINIT                              0000008A    0000000C =          12. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000008A  A$p3main$1321                      p3main
+C:   0000008A  A$p3main$1320                      p3main
 C:   0000008A  C$p3main.c$22$1$64                 p3main
-C:   0000008D  A$p3main$1324                      p3main
+C:   0000008D  A$p3main$1323                      p3main
 C:   0000008D  C$p3main.c$25$1$64                 p3main
-C:   0000008E  A$p3main$1325                      p3main
-C:   00000090  A$p3main$1326                      p3main
-C:   00000092  A$p3main$1327                      p3main
-C:   00000094  A$p3main$1328                      p3main
+C:   0000008E  A$p3main$1324                      p3main
+C:   00000090  A$p3main$1325                      p3main
+C:   00000092  A$p3main$1326                      p3main
+C:   00000094  A$p3main$1327                      p3main
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 32.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -1164,193 +1151,193 @@ GSFINAL                             00000096    00000003 =           3. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000096  A$p3main$1330                      p3main
+C:   00000096  A$p3main$1329                      p3main
 
+ASxxxx Linker V03.00 + NoICE + sdld,  page 32.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000099  A$p3main$1362                      p3main
+C:   00000099  C$config.c$10$0$0                  p3main
+C:   00000099  C$config.c$12$1$14                 p3main
+C:   00000099  G$Reset_Sources_Init$0$0           p3main
+C:   00000099  _Reset_Sources_Init                p3main
+C:   0000009C  A$p3main$1365                      p3main
+C:   0000009C  C$config.c$13$1$14                 p3main
+C:   0000009F  A$p3main$1368                      p3main
+C:   0000009F  C$config.c$14$1$14                 p3main
+C:   0000009F  XG$Reset_Sources_Init$0$0          p3main
+C:   000000A0  A$p3main$1381                      p3main
+C:   000000A0  C$config.c$16$1$14                 p3main
+C:   000000A0  C$config.c$18$1$15                 p3main
+C:   000000A0  G$Timer_Init$0$0                   p3main
+C:   000000A0  _Timer_Init                        p3main
+C:   000000A3  A$p3main$1384                      p3main
+C:   000000A3  C$config.c$19$1$15                 p3main
+C:   000000A6  A$p3main$1387                      p3main
+C:   000000A6  C$config.c$20$1$15                 p3main
+C:   000000A9  A$p3main$1390                      p3main
+C:   000000A9  C$config.c$21$1$15                 p3main
+C:   000000AC  A$p3main$1393                      p3main
+C:   000000AC  C$config.c$22$1$15                 p3main
+C:   000000AF  A$p3main$1396                      p3main
+C:   000000AF  C$config.c$23$1$15                 p3main
+C:   000000B2  A$p3main$1399                      p3main
+C:   000000B2  C$config.c$24$1$15                 p3main
+C:   000000B5  A$p3main$1402                      p3main
+C:   000000B5  C$config.c$25$1$15                 p3main
+C:   000000B8  A$p3main$1405                      p3main
+C:   000000B8  C$config.c$26$1$15                 p3main
+C:   000000BB  A$p3main$1408                      p3main
+C:   000000BB  C$config.c$27$1$15                 p3main
+C:   000000BE  A$p3main$1411                      p3main
+C:   000000BE  C$config.c$28$1$15                 p3main
+C:   000000C1  A$p3main$1414                      p3main
+C:   000000C1  C$config.c$29$1$15                 p3main
+C:   000000C4  A$p3main$1417                      p3main
+C:   000000C4  C$config.c$30$1$15                 p3main
+C:   000000C7  A$p3main$1420                      p3main
+C:   000000C7  C$config.c$31$1$15                 p3main
+C:   000000CA  A$p3main$1423                      p3main
+C:   000000CA  C$config.c$32$1$15                 p3main
+C:   000000CD  A$p3main$1426                      p3main
+C:   000000CD  C$config.c$33$1$15                 p3main
+C:   000000D0  A$p3main$1429                      p3main
+C:   000000D0  C$config.c$34$1$15                 p3main
+C:   000000D0  XG$Timer_Init$0$0                  p3main
+C:   000000D1  A$p3main$1442                      p3main
+C:   000000D1  C$config.c$36$1$15                 p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 33.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000099  A$p3main$1363                      p3main
-C:   00000099  C$config.c$10$0$0                  p3main
-C:   00000099  C$config.c$12$1$14                 p3main
-C:   00000099  G$Reset_Sources_Init$0$0           p3main
-C:   00000099  _Reset_Sources_Init                p3main
-C:   0000009C  A$p3main$1366                      p3main
-C:   0000009C  C$config.c$13$1$14                 p3main
-C:   0000009F  A$p3main$1369                      p3main
-C:   0000009F  C$config.c$14$1$14                 p3main
-C:   0000009F  XG$Reset_Sources_Init$0$0          p3main
-C:   000000A0  A$p3main$1382                      p3main
-C:   000000A0  C$config.c$16$1$14                 p3main
-C:   000000A0  C$config.c$18$1$15                 p3main
-C:   000000A0  G$Timer_Init$0$0                   p3main
-C:   000000A0  _Timer_Init                        p3main
-C:   000000A3  A$p3main$1385                      p3main
-C:   000000A3  C$config.c$19$1$15                 p3main
-C:   000000A6  A$p3main$1388                      p3main
-C:   000000A6  C$config.c$20$1$15                 p3main
-C:   000000A9  A$p3main$1391                      p3main
-C:   000000A9  C$config.c$21$1$15                 p3main
-C:   000000AC  A$p3main$1394                      p3main
-C:   000000AC  C$config.c$22$1$15                 p3main
-C:   000000AF  A$p3main$1397                      p3main
-C:   000000AF  C$config.c$23$1$15                 p3main
-C:   000000B2  A$p3main$1400                      p3main
-C:   000000B2  C$config.c$24$1$15                 p3main
-C:   000000B5  A$p3main$1403                      p3main
-C:   000000B5  C$config.c$25$1$15                 p3main
-C:   000000B8  A$p3main$1406                      p3main
-C:   000000B8  C$config.c$26$1$15                 p3main
-C:   000000BB  A$p3main$1409                      p3main
-C:   000000BB  C$config.c$27$1$15                 p3main
-C:   000000BE  A$p3main$1412                      p3main
-C:   000000BE  C$config.c$28$1$15                 p3main
-C:   000000C1  A$p3main$1415                      p3main
-C:   000000C1  C$config.c$29$1$15                 p3main
-C:   000000C4  A$p3main$1418                      p3main
-C:   000000C4  C$config.c$30$1$15                 p3main
-C:   000000C7  A$p3main$1421                      p3main
-C:   000000C7  C$config.c$31$1$15                 p3main
-C:   000000CA  A$p3main$1424                      p3main
-C:   000000CA  C$config.c$32$1$15                 p3main
-C:   000000CD  A$p3main$1427                      p3main
-C:   000000CD  C$config.c$33$1$15                 p3main
-C:   000000D0  A$p3main$1430                      p3main
-C:   000000D0  C$config.c$34$1$15                 p3main
-C:   000000D0  XG$Timer_Init$0$0                  p3main
-C:   000000D1  A$p3main$1443                      p3main
-C:   000000D1  C$config.c$36$1$15                 p3main
-ASxxxx Linker V03.00 + NoICE + sdld,  page 34.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
 C:   000000D1  C$config.c$38$1$16                 p3main
 C:   000000D1  G$PCA_Init$0$0                     p3main
 C:   000000D1  _PCA_Init                          p3main
-C:   000000D4  A$p3main$1446                      p3main
+C:   000000D4  A$p3main$1445                      p3main
 C:   000000D4  C$config.c$39$1$16                 p3main
-C:   000000D7  A$p3main$1449                      p3main
+C:   000000D7  A$p3main$1448                      p3main
 C:   000000D7  C$config.c$40$1$16                 p3main
-C:   000000DA  A$p3main$1452                      p3main
+C:   000000DA  A$p3main$1451                      p3main
 C:   000000DA  C$config.c$41$1$16                 p3main
 C:   000000DA  XG$PCA_Init$0$0                    p3main
-C:   000000DB  A$p3main$1465                      p3main
+C:   000000DB  A$p3main$1464                      p3main
 C:   000000DB  C$config.c$43$1$16                 p3main
 C:   000000DB  C$config.c$45$1$17                 p3main
 C:   000000DB  G$UART_Init$0$0                    p3main
 C:   000000DB  _UART_Init                         p3main
-C:   000000DE  A$p3main$1468                      p3main
+C:   000000DE  A$p3main$1467                      p3main
 C:   000000DE  C$config.c$46$1$17                 p3main
-C:   000000E1  A$p3main$1471                      p3main
+C:   000000E1  A$p3main$1470                      p3main
 C:   000000E1  C$config.c$47$1$17                 p3main
-C:   000000E4  A$p3main$1474                      p3main
+C:   000000E4  A$p3main$1473                      p3main
 C:   000000E4  C$config.c$48$1$17                 p3main
 C:   000000E4  XG$UART_Init$0$0                   p3main
-C:   000000E5  A$p3main$1487                      p3main
+C:   000000E5  A$p3main$1486                      p3main
 C:   000000E5  C$config.c$50$1$17                 p3main
 C:   000000E5  C$config.c$52$1$18                 p3main
 C:   000000E5  G$SPI_Init$0$0                     p3main
 C:   000000E5  _SPI_Init                          p3main
-C:   000000E8  A$p3main$1490                      p3main
+C:   000000E8  A$p3main$1489                      p3main
 C:   000000E8  C$config.c$53$1$18                 p3main
-C:   000000EB  A$p3main$1493                      p3main
+C:   000000EB  A$p3main$1492                      p3main
 C:   000000EB  C$config.c$54$1$18                 p3main
-C:   000000EE  A$p3main$1496                      p3main
+C:   000000EE  A$p3main$1495                      p3main
 C:   000000EE  C$config.c$55$1$18                 p3main
-C:   000000F1  A$p3main$1499                      p3main
+C:   000000F1  A$p3main$1498                      p3main
 C:   000000F1  C$config.c$56$1$18                 p3main
 C:   000000F1  XG$SPI_Init$0$0                    p3main
-C:   000000F2  A$p3main$1512                      p3main
+C:   000000F2  A$p3main$1511                      p3main
 C:   000000F2  C$config.c$58$1$18                 p3main
 C:   000000F2  C$config.c$60$1$19                 p3main
 C:   000000F2  G$ADC_Init$0$0                     p3main
 C:   000000F2  _ADC_Init                          p3main
-C:   000000F5  A$p3main$1515                      p3main
+C:   000000F5  A$p3main$1514                      p3main
 C:   000000F5  C$config.c$61$1$19                 p3main
-C:   000000F8  A$p3main$1518                      p3main
+C:   000000F8  A$p3main$1517                      p3main
 C:   000000F8  C$config.c$62$1$19                 p3main
 C:   000000F8  XG$ADC_Init$0$0                    p3main
-C:   000000F9  A$p3main$1531                      p3main
+C:   000000F9  A$p3main$1530                      p3main
 C:   000000F9  C$config.c$64$1$19                 p3main
 C:   000000F9  C$config.c$66$1$20                 p3main
 C:   000000F9  G$Voltage_Reference_Init$0$0       p3main
 C:   000000F9  _Voltage_Reference_Init            p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 34.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000FC  A$p3main$1533                      p3main
+C:   000000FC  C$config.c$67$1$20                 p3main
+C:   000000FF  A$p3main$1536                      p3main
+C:   000000FF  C$config.c$68$1$20                 p3main
+C:   000000FF  XG$Voltage_Reference_Init$0$0      p3main
+C:   00000100  A$p3main$1549                      p3main
+C:   00000100  C$config.c$108$1$21                p3main
+C:   00000100  C$config.c$70$1$20                 p3main
+C:   00000100  G$Port_IO_Init$0$0                 p3main
+C:   00000100  _Port_IO_Init                      p3main
+C:   00000103  A$p3main$1552                      p3main
+C:   00000103  C$config.c$109$1$21                p3main
+C:   00000106  A$p3main$1555                      p3main
+C:   00000106  C$config.c$110$1$21                p3main
+C:   00000109  A$p3main$1558                      p3main
+C:   00000109  C$config.c$111$1$21                p3main
+C:   0000010C  A$p3main$1561                      p3main
+C:   0000010C  C$config.c$112$1$21                p3main
+C:   0000010F  A$p3main$1564                      p3main
+C:   0000010F  C$config.c$113$1$21                p3main
+C:   0000010F  XG$Port_IO_Init$0$0                p3main
+C:   00000110  A$p3main$1579                      p3main
+C:   00000110  C$config.c$115$1$21                p3main
+C:   00000110  C$config.c$118$1$22                p3main
+C:   00000110  G$Oscillator_Init$0$0              p3main
+C:   00000110  _Oscillator_Init                   p3main
+C:   00000113  A$p3main$1582                      p3main
+C:   00000113  C$config.c$119$1$22                p3main
+C:   00000116  A$p3main$1585                      p3main
+C:   00000116  C$config.c$120$1$22                p3main
+C:   00000118  A$p3main$1586                      p3main
+C:   0000011A  A$p3main$1588                      p3main
+C:   0000011B  A$p3main$1589                      p3main
+C:   0000011D  A$p3main$1590                      p3main
+C:   0000011E  A$p3main$1591                      p3main
+C:   0000011F  A$p3main$1592                      p3main
+C:   00000121  A$p3main$1593                      p3main
+C:   00000122  A$p3main$1594                      p3main
+C:   00000124  A$p3main$1595                      p3main
+C:   00000126  A$p3main$1596                      p3main
+C:   00000127  A$p3main$1597                      p3main
+C:   00000128  A$p3main$1598                      p3main
+C:   0000012A  A$p3main$1602                      p3main
+C:   0000012A  C$config.c$121$1$22                p3main
+C:   0000012C  A$p3main$1603                      p3main
+C:   0000012F  A$p3main$1606                      p3main
+C:   0000012F  C$config.c$122$1$22                p3main
+C:   00000132  A$p3main$1609                      p3main
+C:   00000132  C$config.c$123$1$22                p3main
+C:   00000132  XG$Oscillator_Init$0$0             p3main
+C:   00000133  A$p3main$1622                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 35.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000000FC  A$p3main$1534                      p3main
-C:   000000FC  C$config.c$67$1$20                 p3main
-C:   000000FF  A$p3main$1537                      p3main
-C:   000000FF  C$config.c$68$1$20                 p3main
-C:   000000FF  XG$Voltage_Reference_Init$0$0      p3main
-C:   00000100  A$p3main$1550                      p3main
-C:   00000100  C$config.c$108$1$21                p3main
-C:   00000100  C$config.c$70$1$20                 p3main
-C:   00000100  G$Port_IO_Init$0$0                 p3main
-C:   00000100  _Port_IO_Init                      p3main
-C:   00000103  A$p3main$1553                      p3main
-C:   00000103  C$config.c$109$1$21                p3main
-C:   00000106  A$p3main$1556                      p3main
-C:   00000106  C$config.c$110$1$21                p3main
-C:   00000109  A$p3main$1559                      p3main
-C:   00000109  C$config.c$111$1$21                p3main
-C:   0000010C  A$p3main$1562                      p3main
-C:   0000010C  C$config.c$112$1$21                p3main
-C:   0000010F  A$p3main$1565                      p3main
-C:   0000010F  C$config.c$113$1$21                p3main
-C:   0000010F  XG$Port_IO_Init$0$0                p3main
-C:   00000110  A$p3main$1580                      p3main
-C:   00000110  C$config.c$115$1$21                p3main
-C:   00000110  C$config.c$118$1$22                p3main
-C:   00000110  G$Oscillator_Init$0$0              p3main
-C:   00000110  _Oscillator_Init                   p3main
-C:   00000113  A$p3main$1583                      p3main
-C:   00000113  C$config.c$119$1$22                p3main
-C:   00000116  A$p3main$1586                      p3main
-C:   00000116  C$config.c$120$1$22                p3main
-C:   00000118  A$p3main$1587                      p3main
-C:   0000011A  A$p3main$1589                      p3main
-C:   0000011B  A$p3main$1590                      p3main
-C:   0000011D  A$p3main$1591                      p3main
-C:   0000011E  A$p3main$1592                      p3main
-C:   0000011F  A$p3main$1593                      p3main
-C:   00000121  A$p3main$1594                      p3main
-C:   00000122  A$p3main$1595                      p3main
-C:   00000124  A$p3main$1596                      p3main
-C:   00000126  A$p3main$1597                      p3main
-C:   00000127  A$p3main$1598                      p3main
-C:   00000128  A$p3main$1599                      p3main
-C:   0000012A  A$p3main$1603                      p3main
-C:   0000012A  C$config.c$121$1$22                p3main
-C:   0000012C  A$p3main$1604                      p3main
-C:   0000012F  A$p3main$1607                      p3main
-C:   0000012F  C$config.c$122$1$22                p3main
-C:   00000132  A$p3main$1610                      p3main
-C:   00000132  C$config.c$123$1$22                p3main
-C:   00000132  XG$Oscillator_Init$0$0             p3main
-C:   00000133  A$p3main$1623                      p3main
-ASxxxx Linker V03.00 + NoICE + sdld,  page 36.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -1358,1396 +1345,1385 @@ C:   00000133  C$config.c$125$1$22                p3main
 C:   00000133  C$config.c$127$1$23                p3main
 C:   00000133  G$Interrupts_Init$0$0              p3main
 C:   00000133  _Interrupts_Init                   p3main
-C:   00000136  A$p3main$1626                      p3main
+C:   00000136  A$p3main$1625                      p3main
 C:   00000136  C$config.c$128$1$23                p3main
-C:   00000139  A$p3main$1629                      p3main
+C:   00000139  A$p3main$1628                      p3main
 C:   00000139  C$config.c$129$1$23                p3main
 C:   00000139  XG$Interrupts_Init$0$0             p3main
-C:   0000013A  A$p3main$1642                      p3main
+C:   0000013A  A$p3main$1641                      p3main
 C:   0000013A  C$config.c$133$1$23                p3main
 C:   0000013A  C$config.c$135$1$25                p3main
 C:   0000013A  G$Init_Device$0$0                  p3main
 C:   0000013A  _Init_Device                       p3main
-C:   0000013D  A$p3main$1645                      p3main
+C:   0000013D  A$p3main$1644                      p3main
 C:   0000013D  C$config.c$136$1$25                p3main
-C:   00000140  A$p3main$1648                      p3main
+C:   00000140  A$p3main$1647                      p3main
 C:   00000140  C$config.c$137$1$25                p3main
-C:   00000143  A$p3main$1651                      p3main
+C:   00000143  A$p3main$1650                      p3main
 C:   00000143  C$config.c$138$1$25                p3main
-C:   00000146  A$p3main$1654                      p3main
+C:   00000146  A$p3main$1653                      p3main
 C:   00000146  C$config.c$139$1$25                p3main
-C:   00000149  A$p3main$1657                      p3main
+C:   00000149  A$p3main$1656                      p3main
 C:   00000149  C$config.c$140$1$25                p3main
-C:   0000014C  A$p3main$1660                      p3main
+C:   0000014C  A$p3main$1659                      p3main
 C:   0000014C  C$config.c$141$1$25                p3main
-C:   0000014F  A$p3main$1663                      p3main
+C:   0000014F  A$p3main$1662                      p3main
 C:   0000014F  C$config.c$142$1$25                p3main
-C:   00000152  A$p3main$1666                      p3main
+C:   00000152  A$p3main$1665                      p3main
 C:   00000152  C$config.c$143$1$25                p3main
-C:   00000155  A$p3main$1669                      p3main
+C:   00000155  A$p3main$1668                      p3main
 C:   00000155  C$config.c$144$1$25                p3main
-C:   00000158  A$p3main$1672                      p3main
+C:   00000158  A$p3main$1671                      p3main
 C:   00000158  C$config.c$145$1$25                p3main
 C:   00000158  XG$Init_Device$0$0                 p3main
-C:   00000159  A$p3main$1685                      p3main
+C:   00000159  A$p3main$1684                      p3main
 C:   00000159  C$p3main.c$42$1$25                 p3main
 C:   00000159  C$p3main.c$44$1$33                 p3main
 C:   00000159  G$main$0$0                         p3main
 C:   00000159  _main                              p3main
-C:   0000015C  A$p3main$1688                      p3main
+C:   0000015C  A$p3main$1687                      p3main
 C:   0000015C  C$p3main.c$45$1$33                 p3main
-C:   0000015F  A$p3main$1691                      p3main
+C:   0000015F  A$p3main$1690                      p3main
 C:   0000015F  C$p3main.c$47$1$33                 p3main
-C:   00000162  A$p3main$1694                      p3main
+C:   00000162  A$p3main$1693                      p3main
 C:   00000162  C$p3main.c$48$1$33                 p3main
-C:   00000165  A$p3main$1697                      p3main
+C:   00000165  A$p3main$1696                      p3main
 C:   00000165  C$p3main.c$49$1$33                 p3main
-C:   00000168  A$p3main$1700                      p3main
+C:   00000168  A$p3main$1699                      p3main
 C:   00000168  C$p3main.c$50$1$33                 p3main
-C:   0000016B  A$p3main$1703                      p3main
+C:   0000016B  A$p3main$1702                      p3main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 36.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000016B  C$p3main.c$51$1$33                 p3main
+C:   0000016D  A$p3main$1705                      p3main
+C:   0000016D  C$p3main.c$53$1$33                 p3main
+C:   00000170  A$p3main$1708                      p3main
+C:   00000170  C$p3main.c$56$1$33                 p3main
+C:   00000172  A$p3main$1709                      p3main
+C:   00000174  A$p3main$1710                      p3main
+C:   00000176  A$p3main$1711                      p3main
+C:   00000178  A$p3main$1712                      p3main
+C:   0000017B  A$p3main$1713                      p3main
+C:   0000017D  A$p3main$1714                      p3main
+C:   0000017F  A$p3main$1717                      p3main
+C:   0000017F  C$p3main.c$57$1$33                 p3main
+C:   00000182  A$p3main$1723                      p3main
+C:   00000182  C$p3main.c$60$1$33                 p3main
+C:   00000182  C$p3main.c$62$2$34                 p3main
+C:   00000184  A$p3main$1724                      p3main
+C:   00000187  A$p3main$1725                      p3main
+C:   00000189  A$p3main$1727                      p3main
+C:   0000018B  A$p3main$1728                      p3main
+C:   0000018E  A$p3main$1729                      p3main
+C:   00000190  A$p3main$1731                      p3main
+C:   00000192  A$p3main$1732                      p3main
+C:   00000195  A$p3main$1733                      p3main
+C:   00000198  A$p3main$1737                      p3main
+C:   00000198  C$p3main.c$65$3$35                 p3main
+C:   0000019A  A$p3main$1741                      p3main
+C:   0000019A  C$p3main.c$66$3$35                 p3main
+C:   0000019D  A$p3main$1746                      p3main
+C:   0000019D  C$p3main.c$67$3$35                 p3main
+C:   0000019D  C$p3main.c$70$3$35                 p3main
+C:   0000019F  A$p3main$1750                      p3main
+C:   0000019F  C$p3main.c$71$3$35                 p3main
+C:   000001A2  A$p3main$1751                      p3main
+C:   000001A5  A$p3main$1752                      p3main
+C:   000001A8  A$p3main$1755                      p3main
+C:   000001A8  C$p3main.c$72$3$35                 p3main
+C:   000001AB  A$p3main$1756                      p3main
+C:   000001AE  A$p3main$1757                      p3main
+C:   000001B1  A$p3main$1758                      p3main
+C:   000001B4  A$p3main$1759                      p3main
+C:   000001B6  A$p3main$1760                      p3main
+C:   000001B8  A$p3main$1761                      p3main
+C:   000001BA  A$p3main$1762                      p3main
+C:   000001BB  A$p3main$1763                      p3main
+C:   000001BD  A$p3main$1764                      p3main
+C:   000001BF  A$p3main$1765                      p3main
+C:   000001C1  A$p3main$1766                      p3main
+C:   000001C3  A$p3main$1767                      p3main
+C:   000001C6  A$p3main$1768                      p3main
+C:   000001C9  A$p3main$1769                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 37.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000016B  C$p3main.c$51$1$33                 p3main
-C:   0000016D  A$p3main$1706                      p3main
-C:   0000016D  C$p3main.c$53$1$33                 p3main
-C:   00000170  A$p3main$1709                      p3main
-C:   00000170  C$p3main.c$56$1$33                 p3main
-C:   00000172  A$p3main$1710                      p3main
-C:   00000174  A$p3main$1711                      p3main
-C:   00000176  A$p3main$1712                      p3main
-C:   00000178  A$p3main$1713                      p3main
-C:   0000017B  A$p3main$1714                      p3main
-C:   0000017D  A$p3main$1715                      p3main
-C:   0000017F  A$p3main$1718                      p3main
-C:   0000017F  C$p3main.c$57$1$33                 p3main
-C:   00000182  A$p3main$1724                      p3main
-C:   00000182  C$p3main.c$60$1$33                 p3main
-C:   00000182  C$p3main.c$62$2$34                 p3main
-C:   00000184  A$p3main$1725                      p3main
-C:   00000187  A$p3main$1726                      p3main
-C:   00000189  A$p3main$1728                      p3main
-C:   0000018B  A$p3main$1729                      p3main
-C:   0000018E  A$p3main$1730                      p3main
-C:   00000190  A$p3main$1732                      p3main
-C:   00000192  A$p3main$1733                      p3main
-C:   00000195  A$p3main$1734                      p3main
-C:   00000198  A$p3main$1738                      p3main
-C:   00000198  C$p3main.c$65$3$35                 p3main
-C:   0000019A  A$p3main$1742                      p3main
-C:   0000019A  C$p3main.c$66$3$35                 p3main
-C:   0000019D  A$p3main$1747                      p3main
-C:   0000019D  C$p3main.c$67$3$35                 p3main
-C:   0000019D  C$p3main.c$70$3$35                 p3main
-C:   0000019F  A$p3main$1751                      p3main
-C:   0000019F  C$p3main.c$71$3$35                 p3main
-C:   000001A2  A$p3main$1752                      p3main
-C:   000001A5  A$p3main$1753                      p3main
-C:   000001A8  A$p3main$1756                      p3main
-C:   000001A8  C$p3main.c$72$3$35                 p3main
-C:   000001AB  A$p3main$1757                      p3main
-C:   000001AE  A$p3main$1758                      p3main
-C:   000001B1  A$p3main$1759                      p3main
-C:   000001B4  A$p3main$1760                      p3main
-C:   000001B6  A$p3main$1761                      p3main
-C:   000001B8  A$p3main$1762                      p3main
-C:   000001BA  A$p3main$1763                      p3main
-C:   000001BB  A$p3main$1764                      p3main
-C:   000001BD  A$p3main$1765                      p3main
-C:   000001BF  A$p3main$1766                      p3main
-C:   000001C1  A$p3main$1767                      p3main
-C:   000001C3  A$p3main$1768                      p3main
-C:   000001C6  A$p3main$1769                      p3main
-C:   000001C9  A$p3main$1770                      p3main
+C:   000001CB  A$p3main$1770                      p3main
+C:   000001CE  A$p3main$1771                      p3main
+C:   000001D0  A$p3main$1772                      p3main
+C:   000001D2  A$p3main$1773                      p3main
+C:   000001D4  A$p3main$1774                      p3main
+C:   000001D5  A$p3main$1775                      p3main
+C:   000001D7  A$p3main$1776                      p3main
+C:   000001D9  A$p3main$1777                      p3main
+C:   000001DB  A$p3main$1778                      p3main
+C:   000001DD  A$p3main$1779                      p3main
+C:   000001DF  A$p3main$1780                      p3main
+C:   000001E1  A$p3main$1781                      p3main
+C:   000001E3  A$p3main$1782                      p3main
+C:   000001E5  A$p3main$1783                      p3main
+C:   000001E7  A$p3main$1784                      p3main
+C:   000001E9  A$p3main$1785                      p3main
+C:   000001EB  A$p3main$1786                      p3main
+C:   000001ED  A$p3main$1787                      p3main
+C:   000001EF  A$p3main$1788                      p3main
+C:   000001F1  A$p3main$1789                      p3main
+C:   000001F2  A$p3main$1790                      p3main
+C:   000001F5  A$p3main$1791                      p3main
+C:   000001F7  A$p3main$1792                      p3main
+C:   000001F9  A$p3main$1793                      p3main
+C:   000001FB  A$p3main$1794                      p3main
+C:   000001FC  A$p3main$1795                      p3main
+C:   000001FE  A$p3main$1796                      p3main
+C:   00000200  A$p3main$1797                      p3main
+C:   00000202  A$p3main$1798                      p3main
+C:   00000204  A$p3main$1799                      p3main
+C:   00000206  A$p3main$1800                      p3main
+C:   00000208  A$p3main$1801                      p3main
+C:   0000020A  A$p3main$1802                      p3main
+C:   0000020C  A$p3main$1803                      p3main
+C:   0000020E  A$p3main$1804                      p3main
+C:   00000210  A$p3main$1805                      p3main
+C:   00000212  A$p3main$1806                      p3main
+C:   00000215  A$p3main$1807                      p3main
+C:   00000217  A$p3main$1808                      p3main
+C:   00000219  A$p3main$1809                      p3main
+C:   0000021B  A$p3main$1812                      p3main
+C:   0000021B  C$p3main.c$73$3$35                 p3main
+C:   0000021E  A$p3main$1818                      p3main
+C:   0000021E  C$p3main.c$76$3$35                 p3main
+C:   0000021E  C$p3main.c$77$3$35                 p3main
+C:   00000221  A$p3main$1821                      p3main
+C:   00000221  C$p3main.c$78$3$35                 p3main
+C:   00000224  A$p3main$1826                      p3main
+C:   00000224  C$p3main.c$85$1$33                 p3main
+C:   00000224  C$p3main.c$86$1$33                 p3main
+C:   00000224  XG$main$0$0                        p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 38.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000001CB  A$p3main$1771                      p3main
-C:   000001CE  A$p3main$1772                      p3main
-C:   000001D0  A$p3main$1773                      p3main
-C:   000001D2  A$p3main$1774                      p3main
-C:   000001D4  A$p3main$1775                      p3main
-C:   000001D5  A$p3main$1776                      p3main
-C:   000001D7  A$p3main$1777                      p3main
-C:   000001D9  A$p3main$1778                      p3main
-C:   000001DB  A$p3main$1779                      p3main
-C:   000001DD  A$p3main$1780                      p3main
-C:   000001DF  A$p3main$1781                      p3main
-C:   000001E1  A$p3main$1782                      p3main
-C:   000001E3  A$p3main$1783                      p3main
-C:   000001E5  A$p3main$1784                      p3main
-C:   000001E7  A$p3main$1785                      p3main
-C:   000001E9  A$p3main$1786                      p3main
-C:   000001EB  A$p3main$1787                      p3main
-C:   000001ED  A$p3main$1788                      p3main
-C:   000001EF  A$p3main$1789                      p3main
-C:   000001F1  A$p3main$1790                      p3main
-C:   000001F2  A$p3main$1791                      p3main
-C:   000001F5  A$p3main$1792                      p3main
-C:   000001F7  A$p3main$1793                      p3main
-C:   000001F9  A$p3main$1794                      p3main
-C:   000001FB  A$p3main$1795                      p3main
-C:   000001FC  A$p3main$1796                      p3main
-C:   000001FE  A$p3main$1797                      p3main
-C:   00000200  A$p3main$1798                      p3main
-C:   00000202  A$p3main$1799                      p3main
-C:   00000204  A$p3main$1800                      p3main
-C:   00000206  A$p3main$1801                      p3main
-C:   00000208  A$p3main$1802                      p3main
-C:   0000020A  A$p3main$1803                      p3main
-C:   0000020C  A$p3main$1804                      p3main
-C:   0000020E  A$p3main$1805                      p3main
-C:   00000210  A$p3main$1806                      p3main
-C:   00000212  A$p3main$1807                      p3main
-C:   00000215  A$p3main$1808                      p3main
-C:   00000217  A$p3main$1809                      p3main
-C:   00000219  A$p3main$1810                      p3main
-C:   0000021B  A$p3main$1813                      p3main
-C:   0000021B  C$p3main.c$73$3$35                 p3main
-C:   0000021E  A$p3main$1819                      p3main
-C:   0000021E  C$p3main.c$76$3$35                 p3main
-C:   0000021E  C$p3main.c$77$3$35                 p3main
-C:   00000221  A$p3main$1822                      p3main
-C:   00000221  C$p3main.c$78$3$35                 p3main
-C:   00000224  A$p3main$1827                      p3main
-C:   00000224  C$p3main.c$85$1$33                 p3main
-C:   00000224  C$p3main.c$86$1$33                 p3main
-C:   00000224  XG$main$0$0                        p3main
+C:   00000225  A$p3main$1839                      p3main
+C:   00000225  C$p3main.c$88$1$33                 p3main
+C:   00000225  G$delay_ms$0$0                     p3main
+C:   00000225  _delay_ms                          p3main
+C:   00000227  A$p3main$1840                      p3main
+C:   00000229  A$p3main$1843                      p3main
+C:   00000229  C$p3main.c$90$1$37                 p3main
+C:   0000022C  A$p3main$1846                      p3main
+C:   0000022C  C$p3main.c$91$1$37                 p3main
+C:   0000022F  A$p3main$1850                      p3main
+C:   0000022F  C$p3main.c$92$1$37                 p3main
+C:   00000230  A$p3main$1851                      p3main
+C:   00000231  A$p3main$1852                      p3main
+C:   00000233  A$p3main$1855                      p3main
+C:   00000233  C$p3main.c$94$2$38                 p3main
+C:   00000235  A$p3main$1858                      p3main
+C:   00000235  C$p3main.c$95$2$38                 p3main
+C:   00000237  A$p3main$1861                      p3main
+C:   00000237  C$p3main.c$96$2$38                 p3main
+C:   0000023A  A$p3main$1864                      p3main
+C:   0000023A  C$p3main.c$97$2$38                 p3main
+C:   0000023D  A$p3main$1867                      p3main
+C:   0000023D  C$p3main.c$98$2$38                 p3main
+C:   0000023F  A$p3main$1871                      p3main
+C:   0000023F  C$p3main.c$99$2$38                 p3main
+C:   00000242  A$p3main$1874                      p3main
+C:   00000242  C$p3main.c$100$2$38                p3main
+C:   00000243  A$p3main$1875                      p3main
+C:   00000246  A$p3main$1876                      p3main
+C:   00000247  A$p3main$1878                      p3main
+C:   00000249  A$p3main$1882                      p3main
+C:   00000249  C$p3main.c$102$1$37                p3main
+C:   00000249  XG$delay_ms$0$0                    p3main
+C:   0000024A  A$p3main$1895                      p3main
+C:   0000024A  C$p3main.c$105$1$37                p3main
+C:   0000024A  G$putchar$0$0                      p3main
+C:   0000024A  _putchar                           p3main
+C:   0000024D  A$p3main$1901                      p3main
+C:   0000024D  C$p3main.c$107$1$40                p3main
+C:   0000024D  C$p3main.c$108$1$40                p3main
+C:   00000250  A$p3main$1902                      p3main
+C:   00000252  A$p3main$1906                      p3main
+C:   00000252  C$p3main.c$109$1$40                p3main
+C:   00000252  XG$putchar$0$0                     p3main
+C:   00000253  A$p3main$1919                      p3main
+C:   00000253  C$p3main.c$113$1$40                p3main
+C:   00000253  G$int_serial$0$0                   p3main
+C:   00000253  _int_serial                        p3main
+C:   00000255  A$p3main$1920                      p3main
+C:   00000257  A$p3main$1921                      p3main
+C:   00000259  A$p3main$1922                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 39.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000225  A$p3main$1840                      p3main
-C:   00000225  C$p3main.c$88$1$33                 p3main
-C:   00000225  G$delay_ms$0$0                     p3main
-C:   00000225  _delay_ms                          p3main
-C:   00000227  A$p3main$1841                      p3main
-C:   00000229  A$p3main$1844                      p3main
-C:   00000229  C$p3main.c$90$1$37                 p3main
-C:   0000022C  A$p3main$1847                      p3main
-C:   0000022C  C$p3main.c$91$1$37                 p3main
-C:   0000022F  A$p3main$1851                      p3main
-C:   0000022F  C$p3main.c$92$1$37                 p3main
-C:   00000230  A$p3main$1852                      p3main
-C:   00000231  A$p3main$1853                      p3main
-C:   00000233  A$p3main$1856                      p3main
-C:   00000233  C$p3main.c$94$2$38                 p3main
-C:   00000235  A$p3main$1859                      p3main
-C:   00000235  C$p3main.c$95$2$38                 p3main
-C:   00000237  A$p3main$1862                      p3main
-C:   00000237  C$p3main.c$96$2$38                 p3main
-C:   0000023A  A$p3main$1865                      p3main
-C:   0000023A  C$p3main.c$97$2$38                 p3main
-C:   0000023D  A$p3main$1868                      p3main
-C:   0000023D  C$p3main.c$98$2$38                 p3main
-C:   0000023F  A$p3main$1872                      p3main
-C:   0000023F  C$p3main.c$99$2$38                 p3main
-C:   00000242  A$p3main$1875                      p3main
-C:   00000242  C$p3main.c$100$2$38                p3main
-C:   00000243  A$p3main$1876                      p3main
-C:   00000246  A$p3main$1877                      p3main
-C:   00000247  A$p3main$1879                      p3main
-C:   00000249  A$p3main$1883                      p3main
-C:   00000249  C$p3main.c$102$1$37                p3main
-C:   00000249  XG$delay_ms$0$0                    p3main
-C:   0000024A  A$p3main$1896                      p3main
-C:   0000024A  C$p3main.c$105$1$37                p3main
-C:   0000024A  G$putchar$0$0                      p3main
-C:   0000024A  _putchar                           p3main
-C:   0000024D  A$p3main$1902                      p3main
-C:   0000024D  C$p3main.c$107$1$40                p3main
-C:   0000024D  C$p3main.c$108$1$40                p3main
-C:   00000250  A$p3main$1903                      p3main
-C:   00000252  A$p3main$1907                      p3main
-C:   00000252  C$p3main.c$109$1$40                p3main
-C:   00000252  XG$putchar$0$0                     p3main
-C:   00000253  A$p3main$1920                      p3main
-C:   00000253  C$p3main.c$113$1$40                p3main
-C:   00000253  G$int_serial$0$0                   p3main
-C:   00000253  _int_serial                        p3main
-C:   00000255  A$p3main$1921                      p3main
-C:   00000257  A$p3main$1922                      p3main
-C:   00000259  A$p3main$1923                      p3main
+C:   0000025B  A$p3main$1923                      p3main
+C:   0000025D  A$p3main$1924                      p3main
+C:   0000025F  A$p3main$1925                      p3main
+C:   00000261  A$p3main$1926                      p3main
+C:   00000263  A$p3main$1927                      p3main
+C:   00000265  A$p3main$1928                      p3main
+C:   00000267  A$p3main$1929                      p3main
+C:   00000269  A$p3main$1930                      p3main
+C:   0000026B  A$p3main$1931                      p3main
+C:   0000026D  A$p3main$1932                      p3main
+C:   0000026F  A$p3main$1933                      p3main
+C:   00000272  A$p3main$1936                      p3main
+C:   00000272  C$p3main.c$115$1$42                p3main
+C:   00000275  A$p3main$1937                      p3main
+C:   00000278  A$p3main$1941                      p3main
+C:   00000278  C$p3main.c$116$2$43                p3main
+C:   0000027A  A$p3main$1942                      p3main
+C:   0000027D  A$p3main$1943                      p3main
+C:   00000280  A$p3main$1945                      p3main
+C:   00000283  A$p3main$1946                      p3main
+C:   00000286  A$p3main$1948                      p3main
+C:   00000289  A$p3main$1949                      p3main
+C:   0000028C  A$p3main$1951                      p3main
+C:   0000028F  A$p3main$1952                      p3main
+C:   00000291  A$p3main$1954                      p3main
+C:   00000294  A$p3main$1955                      p3main
+C:   00000296  A$p3main$1957                      p3main
+C:   00000299  A$p3main$1958                      p3main
+C:   0000029B  A$p3main$1960                      p3main
+C:   0000029E  A$p3main$1961                      p3main
+C:   000002A0  A$p3main$1963                      p3main
+C:   000002A3  A$p3main$1964                      p3main
+C:   000002A5  A$p3main$1966                      p3main
+C:   000002A8  A$p3main$1972                      p3main
+C:   000002A8  C$p3main.c$118$3$44                p3main
+C:   000002A8  C$p3main.c$119$3$44                p3main
+C:   000002AB  A$p3main$1975                      p3main
+C:   000002AB  C$p3main.c$121$3$44                p3main
+C:   000002AE  A$p3main$1981                      p3main
+C:   000002AE  C$p3main.c$124$3$44                p3main
+C:   000002AE  C$p3main.c$125$3$44                p3main
+C:   000002B0  A$p3main$1982                      p3main
+C:   000002B2  A$p3main$1983                      p3main
+C:   000002B4  A$p3main$1986                      p3main
+C:   000002B4  C$p3main.c$126$3$44                p3main
+C:   000002B6  A$p3main$1987                      p3main
+C:   000002B8  A$p3main$1988                      p3main
+C:   000002BA  A$p3main$1989                      p3main
+C:   000002BD  A$p3main$1993                      p3main
+C:   000002BD  C$p3main.c$128$3$44                p3main
+C:   000002BF  A$p3main$1994                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 40.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000025B  A$p3main$1924                      p3main
-C:   0000025D  A$p3main$1925                      p3main
-C:   0000025F  A$p3main$1926                      p3main
-C:   00000261  A$p3main$1927                      p3main
-C:   00000263  A$p3main$1928                      p3main
-C:   00000265  A$p3main$1929                      p3main
-C:   00000267  A$p3main$1930                      p3main
-C:   00000269  A$p3main$1931                      p3main
-C:   0000026B  A$p3main$1932                      p3main
-C:   0000026D  A$p3main$1933                      p3main
-C:   0000026F  A$p3main$1934                      p3main
-C:   00000272  A$p3main$1937                      p3main
-C:   00000272  C$p3main.c$115$1$42                p3main
-C:   00000275  A$p3main$1938                      p3main
-C:   00000278  A$p3main$1942                      p3main
-C:   00000278  C$p3main.c$116$2$43                p3main
-C:   0000027A  A$p3main$1943                      p3main
-C:   0000027D  A$p3main$1944                      p3main
-C:   00000280  A$p3main$1946                      p3main
-C:   00000283  A$p3main$1947                      p3main
-C:   00000286  A$p3main$1949                      p3main
-C:   00000289  A$p3main$1950                      p3main
-C:   0000028C  A$p3main$1952                      p3main
-C:   0000028F  A$p3main$1953                      p3main
-C:   00000291  A$p3main$1955                      p3main
-C:   00000294  A$p3main$1956                      p3main
-C:   00000296  A$p3main$1958                      p3main
-C:   00000299  A$p3main$1959                      p3main
-C:   0000029B  A$p3main$1961                      p3main
-C:   0000029E  A$p3main$1962                      p3main
-C:   000002A0  A$p3main$1964                      p3main
-C:   000002A3  A$p3main$1965                      p3main
-C:   000002A6  A$p3main$1967                      p3main
-C:   000002A9  A$p3main$1973                      p3main
-C:   000002A9  C$p3main.c$118$3$44                p3main
-C:   000002A9  C$p3main.c$119$3$44                p3main
-C:   000002AC  A$p3main$1976                      p3main
-C:   000002AC  C$p3main.c$121$3$44                p3main
-C:   000002AF  A$p3main$1982                      p3main
-C:   000002AF  C$p3main.c$124$3$44                p3main
-C:   000002AF  C$p3main.c$125$3$44                p3main
-C:   000002B1  A$p3main$1983                      p3main
-C:   000002B3  A$p3main$1984                      p3main
-C:   000002B5  A$p3main$1987                      p3main
-C:   000002B5  C$p3main.c$126$3$44                p3main
-C:   000002B7  A$p3main$1988                      p3main
-C:   000002B9  A$p3main$1989                      p3main
-C:   000002BB  A$p3main$1993                      p3main
-C:   000002BB  C$p3main.c$128$3$44                p3main
-C:   000002BD  A$p3main$1994                      p3main
-C:   000002BF  A$p3main$1995                      p3main
+C:   000002C1  A$p3main$1995                      p3main
+C:   000002C3  A$p3main$1996                      p3main
+C:   000002C5  A$p3main$1997                      p3main
+C:   000002C8  A$p3main$1998                      p3main
+C:   000002CA  A$p3main$1999                      p3main
+C:   000002CC  A$p3main$2002                      p3main
+C:   000002CC  C$p3main.c$130$3$44                p3main
+C:   000002CF  A$p3main$2008                      p3main
+C:   000002CF  C$p3main.c$133$3$44                p3main
+C:   000002CF  C$p3main.c$134$3$44                p3main
+C:   000002D1  A$p3main$2009                      p3main
+C:   000002D3  A$p3main$2010                      p3main
+C:   000002D5  A$p3main$2011                      p3main
+C:   000002D8  A$p3main$2015                      p3main
+C:   000002D8  C$p3main.c$135$3$44                p3main
+C:   000002DA  A$p3main$2016                      p3main
+C:   000002DC  A$p3main$2017                      p3main
+C:   000002DE  A$p3main$2020                      p3main
+C:   000002DE  C$p3main.c$137$3$44                p3main
+C:   000002E1  A$p3main$2026                      p3main
+C:   000002E1  C$p3main.c$140$3$44                p3main
+C:   000002E1  C$p3main.c$141$3$44                p3main
+C:   000002E3  A$p3main$2029                      p3main
+C:   000002E3  C$p3main.c$143$3$44                p3main
+C:   000002E5  A$p3main$2030                      p3main
+C:   000002E7  A$p3main$2031                      p3main
+C:   000002E9  A$p3main$2032                      p3main
+C:   000002EB  A$p3main$2033                      p3main
+C:   000002EE  A$p3main$2034                      p3main
+C:   000002F0  A$p3main$2035                      p3main
+C:   000002F2  A$p3main$2038                      p3main
+C:   000002F2  C$p3main.c$145$3$44                p3main
+C:   000002F5  A$p3main$2041                      p3main
+C:   000002F5  C$p3main.c$146$3$44                p3main
+C:   000002F7  A$p3main$2042                      p3main
+C:   000002F9  A$p3main$2043                      p3main
+C:   000002FB  A$p3main$2044                      p3main
+C:   000002FD  A$p3main$2045                      p3main
+C:   00000300  A$p3main$2046                      p3main
+C:   00000302  A$p3main$2047                      p3main
+C:   00000304  A$p3main$2048                      p3main
+C:   00000307  A$p3main$2052                      p3main
+C:   00000307  C$p3main.c$148$3$44                p3main
+C:   00000309  A$p3main$2053                      p3main
+C:   0000030B  A$p3main$2054                      p3main
+C:   0000030D  A$p3main$2055                      p3main
+C:   0000030F  A$p3main$2056                      p3main
+C:   00000312  A$p3main$2057                      p3main
+C:   00000314  A$p3main$2058                      p3main
+C:   00000316  A$p3main$2061                      p3main
+C:   00000316  C$p3main.c$150$3$44                p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 41.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000002C1  A$p3main$1996                      p3main
-C:   000002C3  A$p3main$1997                      p3main
-C:   000002C5  A$p3main$1998                      p3main
-C:   000002C7  A$p3main$1999                      p3main
-C:   000002C9  A$p3main$2000                      p3main
-C:   000002CB  A$p3main$2001                      p3main
-C:   000002CD  A$p3main$2002                      p3main
-C:   000002CF  A$p3main$2003                      p3main
-C:   000002D2  A$p3main$2004                      p3main
-C:   000002D4  A$p3main$2005                      p3main
-C:   000002D6  A$p3main$2006                      p3main
-C:   000002D8  A$p3main$2009                      p3main
-C:   000002D8  C$p3main.c$130$3$44                p3main
-C:   000002DB  A$p3main$2015                      p3main
-C:   000002DB  C$p3main.c$133$3$44                p3main
-C:   000002DB  C$p3main.c$134$3$44                p3main
-C:   000002DD  A$p3main$2016                      p3main
-C:   000002DF  A$p3main$2017                      p3main
-C:   000002E1  A$p3main$2018                      p3main
-C:   000002E4  A$p3main$2022                      p3main
-C:   000002E4  C$p3main.c$135$3$44                p3main
-C:   000002E6  A$p3main$2023                      p3main
-C:   000002E8  A$p3main$2024                      p3main
-C:   000002EA  A$p3main$2027                      p3main
-C:   000002EA  C$p3main.c$137$3$44                p3main
-C:   000002ED  A$p3main$2033                      p3main
-C:   000002ED  C$p3main.c$140$3$44                p3main
-C:   000002ED  C$p3main.c$141$3$44                p3main
-C:   000002EF  A$p3main$2036                      p3main
-C:   000002EF  C$p3main.c$143$3$44                p3main
-C:   000002F1  A$p3main$2037                      p3main
-C:   000002F3  A$p3main$2038                      p3main
-C:   000002F5  A$p3main$2039                      p3main
-C:   000002F7  A$p3main$2040                      p3main
-C:   000002FA  A$p3main$2041                      p3main
-C:   000002FC  A$p3main$2042                      p3main
-C:   000002FE  A$p3main$2045                      p3main
-C:   000002FE  C$p3main.c$145$3$44                p3main
-C:   00000301  A$p3main$2048                      p3main
-C:   00000301  C$p3main.c$146$3$44                p3main
-C:   00000303  A$p3main$2049                      p3main
-C:   00000305  A$p3main$2050                      p3main
-C:   00000307  A$p3main$2051                      p3main
-C:   00000309  A$p3main$2052                      p3main
-C:   0000030C  A$p3main$2053                      p3main
-C:   0000030E  A$p3main$2054                      p3main
-C:   00000310  A$p3main$2055                      p3main
-C:   00000313  A$p3main$2059                      p3main
-C:   00000313  C$p3main.c$148$3$44                p3main
-C:   00000315  A$p3main$2060                      p3main
-C:   00000317  A$p3main$2061                      p3main
+C:   00000319  A$p3main$2067                      p3main
+C:   00000319  C$p3main.c$153$3$44                p3main
+C:   00000319  C$p3main.c$154$3$44                p3main
+C:   0000031C  A$p3main$2068                      p3main
+C:   0000031E  A$p3main$2069                      p3main
+C:   00000320  A$p3main$2070                      p3main
+C:   00000322  A$p3main$2071                      p3main
+C:   00000323  A$p3main$2072                      p3main
+C:   00000325  A$p3main$2073                      p3main
+C:   00000327  A$p3main$2074                      p3main
+C:   00000329  A$p3main$2075                      p3main
+C:   0000032B  A$p3main$2076                      p3main
+C:   0000032E  A$p3main$2077                      p3main
+C:   00000331  A$p3main$2078                      p3main
+C:   00000333  A$p3main$2079                      p3main
+C:   00000336  A$p3main$2080                      p3main
+C:   00000338  A$p3main$2081                      p3main
+C:   0000033A  A$p3main$2082                      p3main
+C:   0000033C  A$p3main$2083                      p3main
+C:   0000033D  A$p3main$2084                      p3main
+C:   0000033F  A$p3main$2085                      p3main
+C:   00000341  A$p3main$2086                      p3main
+C:   00000343  A$p3main$2087                      p3main
+C:   00000345  A$p3main$2088                      p3main
+C:   00000347  A$p3main$2089                      p3main
+C:   00000349  A$p3main$2090                      p3main
+C:   0000034B  A$p3main$2091                      p3main
+C:   0000034E  A$p3main$2092                      p3main
+C:   00000351  A$p3main$2093                      p3main
+C:   00000353  A$p3main$2094                      p3main
+C:   00000356  A$p3main$2095                      p3main
+C:   00000358  A$p3main$2096                      p3main
+C:   0000035A  A$p3main$2097                      p3main
+C:   0000035C  A$p3main$2098                      p3main
+C:   0000035D  A$p3main$2099                      p3main
+C:   0000035F  A$p3main$2100                      p3main
+C:   00000361  A$p3main$2101                      p3main
+C:   00000363  A$p3main$2104                      p3main
+C:   00000363  C$p3main.c$155$1$42                p3main
+C:   00000365  A$p3main$2105                      p3main
+C:   00000367  A$p3main$2106                      p3main
+C:   00000369  A$p3main$2107                      p3main
+C:   0000036B  A$p3main$2108                      p3main
+C:   0000036C  A$p3main$2109                      p3main
+C:   0000036E  A$p3main$2110                      p3main
+C:   00000370  A$p3main$2111                      p3main
+C:   00000372  A$p3main$2112                      p3main
+C:   00000374  A$p3main$2113                      p3main
+C:   00000376  A$p3main$2114                      p3main
+C:   00000378  A$p3main$2115                      p3main
+C:   0000037A  A$p3main$2116                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 42.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000319  A$p3main$2062                      p3main
-C:   0000031B  A$p3main$2063                      p3main
-C:   0000031E  A$p3main$2064                      p3main
-C:   00000320  A$p3main$2065                      p3main
-C:   00000322  A$p3main$2068                      p3main
-C:   00000322  C$p3main.c$150$3$44                p3main
-C:   00000325  A$p3main$2074                      p3main
-C:   00000325  C$p3main.c$153$3$44                p3main
-C:   00000325  C$p3main.c$154$3$44                p3main
-C:   00000328  A$p3main$2075                      p3main
-C:   0000032A  A$p3main$2076                      p3main
-C:   0000032C  A$p3main$2077                      p3main
-C:   0000032E  A$p3main$2078                      p3main
-C:   0000032F  A$p3main$2079                      p3main
-C:   00000331  A$p3main$2080                      p3main
-C:   00000333  A$p3main$2081                      p3main
-C:   00000335  A$p3main$2082                      p3main
-C:   00000337  A$p3main$2083                      p3main
-C:   0000033A  A$p3main$2084                      p3main
-C:   0000033D  A$p3main$2085                      p3main
-C:   0000033F  A$p3main$2086                      p3main
-C:   00000342  A$p3main$2087                      p3main
-C:   00000344  A$p3main$2088                      p3main
-C:   00000346  A$p3main$2089                      p3main
-C:   00000348  A$p3main$2090                      p3main
-C:   00000349  A$p3main$2091                      p3main
-C:   0000034B  A$p3main$2092                      p3main
-C:   0000034D  A$p3main$2093                      p3main
-C:   0000034F  A$p3main$2094                      p3main
-C:   00000351  A$p3main$2095                      p3main
-C:   00000353  A$p3main$2096                      p3main
-C:   00000355  A$p3main$2097                      p3main
-C:   00000357  A$p3main$2098                      p3main
-C:   0000035A  A$p3main$2099                      p3main
-C:   0000035D  A$p3main$2100                      p3main
-C:   0000035F  A$p3main$2101                      p3main
-C:   00000362  A$p3main$2102                      p3main
-C:   00000364  A$p3main$2103                      p3main
-C:   00000366  A$p3main$2104                      p3main
-C:   00000368  A$p3main$2105                      p3main
-C:   00000369  A$p3main$2106                      p3main
-C:   0000036B  A$p3main$2107                      p3main
-C:   0000036D  A$p3main$2108                      p3main
-C:   0000036F  A$p3main$2111                      p3main
-C:   0000036F  C$p3main.c$155$1$42                p3main
-C:   00000371  A$p3main$2112                      p3main
-C:   00000373  A$p3main$2113                      p3main
-C:   00000375  A$p3main$2114                      p3main
-C:   00000377  A$p3main$2115                      p3main
-C:   00000378  A$p3main$2116                      p3main
-C:   0000037A  A$p3main$2117                      p3main
+C:   0000037C  A$p3main$2117                      p3main
+C:   0000037E  A$p3main$2118                      p3main
+C:   0000037F  A$p3main$2119                      p3main
+C:   00000382  A$p3main$2120                      p3main
+C:   00000384  A$p3main$2121                      p3main
+C:   00000386  A$p3main$2122                      p3main
+C:   00000388  A$p3main$2123                      p3main
+C:   0000038A  A$p3main$2124                      p3main
+C:   0000038C  A$p3main$2125                      p3main
+C:   0000038E  A$p3main$2126                      p3main
+C:   00000390  A$p3main$2127                      p3main
+C:   00000392  A$p3main$2128                      p3main
+C:   00000394  A$p3main$2129                      p3main
+C:   00000396  A$p3main$2130                      p3main
+C:   00000398  A$p3main$2133                      p3main
+C:   00000398  C$p3main.c$156$3$44                p3main
+C:   0000039A  A$p3main$2134                      p3main
+C:   0000039C  A$p3main$2135                      p3main
+C:   0000039E  A$p3main$2136                      p3main
+C:   000003A0  A$p3main$2137                      p3main
+C:   000003A3  A$p3main$2138                      p3main
+C:   000003A5  A$p3main$2139                      p3main
+C:   000003A7  A$p3main$2140                      p3main
+C:   000003AA  A$p3main$2144                      p3main
+C:   000003AA  C$p3main.c$158$3$44                p3main
+C:   000003AC  A$p3main$2145                      p3main
+C:   000003AE  A$p3main$2146                      p3main
+C:   000003B0  A$p3main$2147                      p3main
+C:   000003B2  A$p3main$2148                      p3main
+C:   000003B4  A$p3main$2149                      p3main
+C:   000003B6  A$p3main$2150                      p3main
+C:   000003B8  A$p3main$2151                      p3main
+C:   000003BA  A$p3main$2152                      p3main
+C:   000003BD  A$p3main$2153                      p3main
+C:   000003BF  A$p3main$2154                      p3main
+C:   000003C1  A$p3main$2155                      p3main
+C:   000003C3  A$p3main$2158                      p3main
+C:   000003C3  C$p3main.c$159$3$44                p3main
+C:   000003C6  A$p3main$2164                      p3main
+C:   000003C6  C$p3main.c$162$3$44                p3main
+C:   000003C6  C$p3main.c$163$3$44                p3main
+C:   000003C8  A$p3main$2167                      p3main
+C:   000003C8  C$p3main.c$164$3$44                p3main
+C:   000003CB  A$p3main$2168                      p3main
+C:   000003CE  A$p3main$2171                      p3main
+C:   000003CE  C$p3main.c$165$3$44                p3main
+C:   000003D0  A$p3main$2174                      p3main
+C:   000003D0  C$p3main.c$166$3$44                p3main
+C:   000003D3  A$p3main$2175                      p3main
+C:   000003D6  A$p3main$2178                      p3main
+C:   000003D6  C$p3main.c$167$3$44                p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 43.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000037C  A$p3main$2118                      p3main
-C:   0000037E  A$p3main$2119                      p3main
-C:   00000380  A$p3main$2120                      p3main
-C:   00000382  A$p3main$2121                      p3main
-C:   00000384  A$p3main$2122                      p3main
-C:   00000386  A$p3main$2123                      p3main
-C:   00000388  A$p3main$2124                      p3main
-C:   0000038A  A$p3main$2125                      p3main
-C:   0000038B  A$p3main$2126                      p3main
-C:   0000038E  A$p3main$2127                      p3main
-C:   00000390  A$p3main$2128                      p3main
-C:   00000392  A$p3main$2129                      p3main
-C:   00000394  A$p3main$2130                      p3main
-C:   00000396  A$p3main$2131                      p3main
-C:   00000398  A$p3main$2132                      p3main
-C:   0000039A  A$p3main$2133                      p3main
-C:   0000039C  A$p3main$2134                      p3main
-C:   0000039E  A$p3main$2135                      p3main
-C:   000003A0  A$p3main$2136                      p3main
-C:   000003A2  A$p3main$2137                      p3main
-C:   000003A4  A$p3main$2140                      p3main
-C:   000003A4  C$p3main.c$156$3$44                p3main
-C:   000003A6  A$p3main$2141                      p3main
-C:   000003A8  A$p3main$2142                      p3main
-C:   000003AA  A$p3main$2143                      p3main
-C:   000003AC  A$p3main$2144                      p3main
-C:   000003AF  A$p3main$2145                      p3main
-C:   000003B1  A$p3main$2146                      p3main
-C:   000003B3  A$p3main$2147                      p3main
-C:   000003B6  A$p3main$2151                      p3main
-C:   000003B6  C$p3main.c$158$3$44                p3main
-C:   000003B8  A$p3main$2152                      p3main
-C:   000003BA  A$p3main$2153                      p3main
-C:   000003BC  A$p3main$2154                      p3main
-C:   000003BE  A$p3main$2155                      p3main
-C:   000003C0  A$p3main$2156                      p3main
-C:   000003C2  A$p3main$2157                      p3main
-C:   000003C4  A$p3main$2158                      p3main
-C:   000003C6  A$p3main$2159                      p3main
-C:   000003C9  A$p3main$2160                      p3main
-C:   000003CB  A$p3main$2161                      p3main
-C:   000003CD  A$p3main$2162                      p3main
-C:   000003CF  A$p3main$2165                      p3main
-C:   000003CF  C$p3main.c$159$3$44                p3main
-C:   000003D2  A$p3main$2171                      p3main
-C:   000003D2  C$p3main.c$162$3$44                p3main
-C:   000003D2  C$p3main.c$163$3$44                p3main
-C:   000003D4  A$p3main$2174                      p3main
-C:   000003D4  C$p3main.c$164$3$44                p3main
-C:   000003D7  A$p3main$2175                      p3main
-C:   000003DA  A$p3main$2178                      p3main
+C:   000003D8  A$p3main$2181                      p3main
+C:   000003D8  C$p3main.c$169$3$44                p3main
+C:   000003DB  A$p3main$2182                      p3main
+C:   000003DE  A$p3main$2185                      p3main
+C:   000003DE  C$p3main.c$171$3$44                p3main
+C:   000003E0  A$p3main$2188                      p3main
+C:   000003E0  C$p3main.c$172$3$44                p3main
+C:   000003E3  A$p3main$2189                      p3main
+C:   000003E6  A$p3main$2192                      p3main
+C:   000003E6  C$p3main.c$173$3$44                p3main
+C:   000003E8  A$p3main$2195                      p3main
+C:   000003E8  C$p3main.c$174$3$44                p3main
+C:   000003EB  A$p3main$2196                      p3main
+C:   000003EE  A$p3main$2199                      p3main
+C:   000003EE  C$p3main.c$175$3$44                p3main
+C:   000003F0  A$p3main$2204                      p3main
+C:   000003F0  C$p3main.c$176$3$44                p3main
+C:   000003F0  C$p3main.c$179$3$44                p3main
+C:   000003F2  A$p3main$2208                      p3main
+C:   000003F2  C$p3main.c$180$3$44                p3main
+C:   000003F4  A$p3main$2211                      p3main
+C:   000003F4  C$p3main.c$181$3$44                p3main
+C:   000003F7  A$p3main$2212                      p3main
+C:   000003FA  A$p3main$2215                      p3main
+C:   000003FA  C$p3main.c$182$3$44                p3main
+C:   000003FC  A$p3main$2218                      p3main
+C:   000003FC  C$p3main.c$183$3$44                p3main
+C:   000003FF  A$p3main$2219                      p3main
+C:   00000402  A$p3main$2222                      p3main
+C:   00000402  C$p3main.c$184$3$44                p3main
+C:   00000404  A$p3main$2225                      p3main
+C:   00000404  C$p3main.c$186$3$44                p3main
+C:   00000407  A$p3main$2226                      p3main
+C:   0000040A  A$p3main$2229                      p3main
+C:   0000040A  C$p3main.c$188$3$44                p3main
+C:   0000040C  A$p3main$2232                      p3main
+C:   0000040C  C$p3main.c$189$3$44                p3main
+C:   0000040F  A$p3main$2233                      p3main
+C:   00000412  A$p3main$2236                      p3main
+C:   00000412  C$p3main.c$190$3$44                p3main
+C:   00000414  A$p3main$2239                      p3main
+C:   00000414  C$p3main.c$191$3$44                p3main
+C:   00000417  A$p3main$2240                      p3main
+C:   0000041A  A$p3main$2243                      p3main
+C:   0000041A  C$p3main.c$192$3$44                p3main
+C:   0000041C  A$p3main$2248                      p3main
+C:   0000041C  C$p3main.c$193$3$44                p3main
+C:   0000041C  C$p3main.c$196$3$44                p3main
+C:   0000041E  A$p3main$2252                      p3main
+C:   0000041E  C$p3main.c$197$3$44                p3main
+C:   00000420  A$p3main$2255                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 44.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000003DA  C$p3main.c$165$3$44                p3main
-C:   000003DC  A$p3main$2181                      p3main
-C:   000003DC  C$p3main.c$166$3$44                p3main
-C:   000003DF  A$p3main$2182                      p3main
-C:   000003E2  A$p3main$2185                      p3main
-C:   000003E2  C$p3main.c$167$3$44                p3main
-C:   000003E4  A$p3main$2188                      p3main
-C:   000003E4  C$p3main.c$169$3$44                p3main
-C:   000003E7  A$p3main$2189                      p3main
-C:   000003EA  A$p3main$2192                      p3main
-C:   000003EA  C$p3main.c$171$3$44                p3main
-C:   000003EC  A$p3main$2195                      p3main
-C:   000003EC  C$p3main.c$172$3$44                p3main
-C:   000003EF  A$p3main$2196                      p3main
-C:   000003F2  A$p3main$2199                      p3main
-C:   000003F2  C$p3main.c$173$3$44                p3main
-C:   000003F4  A$p3main$2202                      p3main
-C:   000003F4  C$p3main.c$174$3$44                p3main
-C:   000003F7  A$p3main$2203                      p3main
-C:   000003FA  A$p3main$2206                      p3main
-C:   000003FA  C$p3main.c$175$3$44                p3main
-C:   000003FC  A$p3main$2211                      p3main
-C:   000003FC  C$p3main.c$176$3$44                p3main
-C:   000003FC  C$p3main.c$179$3$44                p3main
-C:   000003FE  A$p3main$2215                      p3main
-C:   000003FE  C$p3main.c$180$3$44                p3main
-C:   00000400  A$p3main$2218                      p3main
-C:   00000400  C$p3main.c$181$3$44                p3main
-C:   00000403  A$p3main$2219                      p3main
-C:   00000406  A$p3main$2222                      p3main
-C:   00000406  C$p3main.c$182$3$44                p3main
-C:   00000408  A$p3main$2225                      p3main
-C:   00000408  C$p3main.c$183$3$44                p3main
-C:   0000040B  A$p3main$2226                      p3main
-C:   0000040E  A$p3main$2229                      p3main
-C:   0000040E  C$p3main.c$184$3$44                p3main
-C:   00000410  A$p3main$2232                      p3main
-C:   00000410  C$p3main.c$186$3$44                p3main
-C:   00000413  A$p3main$2233                      p3main
-C:   00000416  A$p3main$2236                      p3main
-C:   00000416  C$p3main.c$188$3$44                p3main
-C:   00000418  A$p3main$2239                      p3main
-C:   00000418  C$p3main.c$189$3$44                p3main
-C:   0000041B  A$p3main$2240                      p3main
-C:   0000041E  A$p3main$2243                      p3main
-C:   0000041E  C$p3main.c$190$3$44                p3main
-C:   00000420  A$p3main$2246                      p3main
-C:   00000420  C$p3main.c$191$3$44                p3main
-C:   00000423  A$p3main$2247                      p3main
-C:   00000426  A$p3main$2250                      p3main
-C:   00000426  C$p3main.c$192$3$44                p3main
+C:   00000420  C$p3main.c$198$3$44                p3main
+C:   00000423  A$p3main$2256                      p3main
+C:   00000426  A$p3main$2259                      p3main
+C:   00000426  C$p3main.c$199$3$44                p3main
+C:   00000428  A$p3main$2262                      p3main
+C:   00000428  C$p3main.c$200$3$44                p3main
+C:   0000042B  A$p3main$2263                      p3main
+C:   0000042E  A$p3main$2266                      p3main
+C:   0000042E  C$p3main.c$201$3$44                p3main
+C:   00000430  A$p3main$2269                      p3main
+C:   00000430  C$p3main.c$203$3$44                p3main
+C:   00000433  A$p3main$2270                      p3main
+C:   00000436  A$p3main$2273                      p3main
+C:   00000436  C$p3main.c$205$3$44                p3main
+C:   00000438  A$p3main$2276                      p3main
+C:   00000438  C$p3main.c$206$3$44                p3main
+C:   0000043B  A$p3main$2277                      p3main
+C:   0000043E  A$p3main$2280                      p3main
+C:   0000043E  C$p3main.c$207$3$44                p3main
+C:   00000440  A$p3main$2283                      p3main
+C:   00000440  C$p3main.c$208$3$44                p3main
+C:   00000443  A$p3main$2284                      p3main
+C:   00000446  A$p3main$2287                      p3main
+C:   00000446  C$p3main.c$209$3$44                p3main
+C:   00000448  A$p3main$2293                      p3main
+C:   00000448  C$p3main.c$214$2$43                p3main
+C:   00000448  C$p3main.c$216$2$43                p3main
+C:   0000044A  A$p3main$2295                      p3main
+C:   0000044C  A$p3main$2296                      p3main
+C:   0000044E  A$p3main$2297                      p3main
+C:   00000450  A$p3main$2298                      p3main
+C:   00000452  A$p3main$2299                      p3main
+C:   00000454  A$p3main$2300                      p3main
+C:   00000456  A$p3main$2301                      p3main
+C:   00000458  A$p3main$2302                      p3main
+C:   0000045A  A$p3main$2303                      p3main
+C:   0000045C  A$p3main$2304                      p3main
+C:   0000045E  A$p3main$2305                      p3main
+C:   00000460  A$p3main$2306                      p3main
+C:   00000462  A$p3main$2307                      p3main
+C:   00000464  A$p3main$2308                      p3main
+C:   00000466  A$p3main$2311                      p3main
+C:   00000466  C$p3main.c$218$1$42                p3main
+C:   00000466  XG$int_serial$0$0                  p3main
+C:   00000467  A$p3main$2324                      p3main
+C:   00000467  C$p3main.c$221$1$42                p3main
+C:   00000467  C$p3main.c$222$1$45                p3main
+C:   00000467  G$mostra_menu$0$0                  p3main
+C:   00000467  _mostra_menu                       p3main
+C:   00000469  A$p3main$2325                      p3main
+C:   0000046B  A$p3main$2326                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 45.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000428  A$p3main$2255                      p3main
-C:   00000428  C$p3main.c$193$3$44                p3main
-C:   00000428  C$p3main.c$196$3$44                p3main
-C:   0000042A  A$p3main$2259                      p3main
-C:   0000042A  C$p3main.c$197$3$44                p3main
-C:   0000042C  A$p3main$2262                      p3main
-C:   0000042C  C$p3main.c$198$3$44                p3main
-C:   0000042F  A$p3main$2263                      p3main
-C:   00000432  A$p3main$2266                      p3main
-C:   00000432  C$p3main.c$199$3$44                p3main
-C:   00000434  A$p3main$2269                      p3main
-C:   00000434  C$p3main.c$200$3$44                p3main
-C:   00000437  A$p3main$2270                      p3main
-C:   0000043A  A$p3main$2273                      p3main
-C:   0000043A  C$p3main.c$201$3$44                p3main
-C:   0000043C  A$p3main$2276                      p3main
-C:   0000043C  C$p3main.c$203$3$44                p3main
-C:   0000043F  A$p3main$2277                      p3main
-C:   00000442  A$p3main$2280                      p3main
-C:   00000442  C$p3main.c$205$3$44                p3main
-C:   00000444  A$p3main$2283                      p3main
-C:   00000444  C$p3main.c$206$3$44                p3main
-C:   00000447  A$p3main$2284                      p3main
-C:   0000044A  A$p3main$2287                      p3main
-C:   0000044A  C$p3main.c$207$3$44                p3main
-C:   0000044C  A$p3main$2290                      p3main
-C:   0000044C  C$p3main.c$208$3$44                p3main
-C:   0000044F  A$p3main$2291                      p3main
-C:   00000452  A$p3main$2294                      p3main
-C:   00000452  C$p3main.c$209$3$44                p3main
-C:   00000454  A$p3main$2300                      p3main
-C:   00000454  C$p3main.c$214$2$43                p3main
-C:   00000454  C$p3main.c$216$2$43                p3main
-C:   00000456  A$p3main$2302                      p3main
-C:   00000458  A$p3main$2303                      p3main
-C:   0000045A  A$p3main$2304                      p3main
-C:   0000045C  A$p3main$2305                      p3main
-C:   0000045E  A$p3main$2306                      p3main
-C:   00000460  A$p3main$2307                      p3main
-C:   00000462  A$p3main$2308                      p3main
-C:   00000464  A$p3main$2309                      p3main
-C:   00000466  A$p3main$2310                      p3main
-C:   00000468  A$p3main$2311                      p3main
-C:   0000046A  A$p3main$2312                      p3main
-C:   0000046C  A$p3main$2313                      p3main
-C:   0000046E  A$p3main$2314                      p3main
-C:   00000470  A$p3main$2315                      p3main
-C:   00000472  A$p3main$2318                      p3main
-C:   00000472  C$p3main.c$218$1$42                p3main
-C:   00000472  XG$int_serial$0$0                  p3main
-C:   00000473  A$p3main$2331                      p3main
+C:   0000046D  A$p3main$2327                      p3main
+C:   0000046F  A$p3main$2328                      p3main
+C:   00000472  A$p3main$2329                      p3main
+C:   00000474  A$p3main$2330                      p3main
+C:   00000476  A$p3main$2333                      p3main
+C:   00000476  C$p3main.c$223$1$45                p3main
+C:   00000478  A$p3main$2334                      p3main
+C:   0000047A  A$p3main$2335                      p3main
+C:   0000047C  A$p3main$2336                      p3main
+C:   0000047E  A$p3main$2337                      p3main
+C:   00000481  A$p3main$2338                      p3main
+C:   00000483  A$p3main$2339                      p3main
+C:   00000485  A$p3main$2342                      p3main
+C:   00000485  C$p3main.c$224$1$45                p3main
+C:   00000487  A$p3main$2343                      p3main
+C:   00000489  A$p3main$2344                      p3main
+C:   0000048B  A$p3main$2345                      p3main
+C:   0000048D  A$p3main$2346                      p3main
+C:   00000490  A$p3main$2347                      p3main
+C:   00000492  A$p3main$2348                      p3main
+C:   00000494  A$p3main$2351                      p3main
+C:   00000494  C$p3main.c$225$1$45                p3main
+C:   00000496  A$p3main$2352                      p3main
+C:   00000498  A$p3main$2353                      p3main
+C:   0000049A  A$p3main$2354                      p3main
+C:   0000049C  A$p3main$2355                      p3main
+C:   0000049F  A$p3main$2356                      p3main
+C:   000004A1  A$p3main$2357                      p3main
+C:   000004A3  A$p3main$2360                      p3main
+C:   000004A3  C$p3main.c$226$1$45                p3main
+C:   000004A5  A$p3main$2361                      p3main
+C:   000004A7  A$p3main$2362                      p3main
+C:   000004A9  A$p3main$2363                      p3main
+C:   000004AB  A$p3main$2364                      p3main
+C:   000004AE  A$p3main$2365                      p3main
+C:   000004B0  A$p3main$2366                      p3main
+C:   000004B2  A$p3main$2369                      p3main
+C:   000004B2  C$p3main.c$227$1$45                p3main
+C:   000004B4  A$p3main$2370                      p3main
+C:   000004B6  A$p3main$2371                      p3main
+C:   000004B8  A$p3main$2372                      p3main
+C:   000004BA  A$p3main$2373                      p3main
+C:   000004BD  A$p3main$2374                      p3main
+C:   000004BF  A$p3main$2375                      p3main
+C:   000004C1  A$p3main$2378                      p3main
+C:   000004C1  C$p3main.c$228$1$45                p3main
+C:   000004C3  A$p3main$2379                      p3main
+C:   000004C5  A$p3main$2380                      p3main
+C:   000004C7  A$p3main$2381                      p3main
+C:   000004C9  A$p3main$2382                      p3main
+C:   000004CC  A$p3main$2383                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 46.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000473  C$p3main.c$221$1$42                p3main
-C:   00000473  C$p3main.c$222$1$45                p3main
-C:   00000473  G$mostra_menu$0$0                  p3main
-C:   00000473  _mostra_menu                       p3main
-C:   00000475  A$p3main$2332                      p3main
-C:   00000477  A$p3main$2333                      p3main
-C:   00000479  A$p3main$2334                      p3main
-C:   0000047B  A$p3main$2335                      p3main
-C:   0000047E  A$p3main$2336                      p3main
-C:   00000480  A$p3main$2337                      p3main
-C:   00000482  A$p3main$2340                      p3main
-C:   00000482  C$p3main.c$223$1$45                p3main
-C:   00000484  A$p3main$2341                      p3main
-C:   00000486  A$p3main$2342                      p3main
-C:   00000488  A$p3main$2343                      p3main
-C:   0000048A  A$p3main$2344                      p3main
-C:   0000048D  A$p3main$2345                      p3main
-C:   0000048F  A$p3main$2346                      p3main
-C:   00000491  A$p3main$2349                      p3main
-C:   00000491  C$p3main.c$224$1$45                p3main
-C:   00000493  A$p3main$2350                      p3main
-C:   00000495  A$p3main$2351                      p3main
-C:   00000497  A$p3main$2352                      p3main
-C:   00000499  A$p3main$2353                      p3main
-C:   0000049C  A$p3main$2354                      p3main
-C:   0000049E  A$p3main$2355                      p3main
-C:   000004A0  A$p3main$2358                      p3main
-C:   000004A0  C$p3main.c$225$1$45                p3main
-C:   000004A2  A$p3main$2359                      p3main
-C:   000004A4  A$p3main$2360                      p3main
-C:   000004A6  A$p3main$2361                      p3main
-C:   000004A8  A$p3main$2362                      p3main
-C:   000004AB  A$p3main$2363                      p3main
-C:   000004AD  A$p3main$2364                      p3main
-C:   000004AF  A$p3main$2367                      p3main
-C:   000004AF  C$p3main.c$226$1$45                p3main
-C:   000004B1  A$p3main$2368                      p3main
-C:   000004B3  A$p3main$2369                      p3main
-C:   000004B5  A$p3main$2370                      p3main
-C:   000004B7  A$p3main$2371                      p3main
-C:   000004BA  A$p3main$2372                      p3main
-C:   000004BC  A$p3main$2373                      p3main
-C:   000004BE  A$p3main$2376                      p3main
-C:   000004BE  C$p3main.c$227$1$45                p3main
-C:   000004C0  A$p3main$2377                      p3main
-C:   000004C2  A$p3main$2378                      p3main
-C:   000004C4  A$p3main$2379                      p3main
-C:   000004C6  A$p3main$2380                      p3main
-C:   000004C9  A$p3main$2381                      p3main
-C:   000004CB  A$p3main$2382                      p3main
-C:   000004CD  A$p3main$2385                      p3main
+C:   000004CE  A$p3main$2384                      p3main
+C:   000004D0  A$p3main$2387                      p3main
+C:   000004D0  C$p3main.c$229$1$45                p3main
+C:   000004D2  A$p3main$2388                      p3main
+C:   000004D4  A$p3main$2389                      p3main
+C:   000004D6  A$p3main$2390                      p3main
+C:   000004D8  A$p3main$2391                      p3main
+C:   000004DB  A$p3main$2392                      p3main
+C:   000004DD  A$p3main$2393                      p3main
+C:   000004DF  A$p3main$2396                      p3main
+C:   000004DF  C$p3main.c$230$1$45                p3main
+C:   000004E1  A$p3main$2397                      p3main
+C:   000004E3  A$p3main$2398                      p3main
+C:   000004E5  A$p3main$2399                      p3main
+C:   000004E7  A$p3main$2400                      p3main
+C:   000004EA  A$p3main$2401                      p3main
+C:   000004EC  A$p3main$2402                      p3main
+C:   000004EE  A$p3main$2405                      p3main
+C:   000004EE  C$p3main.c$231$1$45                p3main
+C:   000004EE  XG$mostra_menu$0$0                 p3main
+C:   000004EF  A$p3main$2422                      p3main
+C:   000004EF  C$p3main.c$234$1$45                p3main
+C:   000004EF  C$p3main.c$236$1$47                p3main
+C:   000004EF  G$le_tec$0$0                       p3main
+C:   000004EF  _le_tec                            p3main
+C:   000004F1  A$p3main$2423                      p3main
+C:   000004F4  A$p3main$2424                      p3main
+C:   000004F6  A$p3main$2428                      p3main
+C:   000004F6  C$p3main.c$238$2$48                p3main
+C:   000004F8  A$p3main$2429                      p3main
+C:   000004F9  A$p3main$2430                      p3main
+C:   000004FA  A$p3main$2433                      p3main
+C:   000004FA  C$p3main.c$239$1$47                p3main
+C:   000004FC  A$p3main$2437                      p3main
+C:   000004FC  C$p3main.c$243$1$47                p3main
+C:   000004FF  A$p3main$2440                      p3main
+C:   000004FF  C$p3main.c$245$1$47                p3main
+C:   00000501  A$p3main$2442                      p3main
+C:   00000503  A$p3main$2444                      p3main
+C:   00000504  A$p3main$2445                      p3main
+C:   00000507  A$p3main$2446                      p3main
+C:   0000050A  A$p3main$2448                      p3main
+C:   0000050C  A$p3main$2451                      p3main
+C:   0000050C  C$p3main.c$247$2$49                p3main
+C:   0000050D  A$p3main$2452                      p3main
+C:   0000050E  A$p3main$2453                      p3main
+C:   0000050F  A$p3main$2454                      p3main
+C:   00000510  A$p3main$2457                      p3main
+C:   00000510  C$p3main.c$248$2$49                p3main
+C:   00000511  A$p3main$2458                      p3main
+C:   00000513  A$p3main$2462                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 47.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000004CD  C$p3main.c$228$1$45                p3main
-C:   000004CF  A$p3main$2386                      p3main
-C:   000004D1  A$p3main$2387                      p3main
-C:   000004D3  A$p3main$2388                      p3main
-C:   000004D5  A$p3main$2389                      p3main
-C:   000004D8  A$p3main$2390                      p3main
-C:   000004DA  A$p3main$2391                      p3main
-C:   000004DC  A$p3main$2394                      p3main
-C:   000004DC  C$p3main.c$229$1$45                p3main
-C:   000004DE  A$p3main$2395                      p3main
-C:   000004E0  A$p3main$2396                      p3main
-C:   000004E2  A$p3main$2397                      p3main
-C:   000004E4  A$p3main$2398                      p3main
-C:   000004E7  A$p3main$2399                      p3main
-C:   000004E9  A$p3main$2400                      p3main
-C:   000004EB  A$p3main$2403                      p3main
-C:   000004EB  C$p3main.c$230$1$45                p3main
-C:   000004ED  A$p3main$2404                      p3main
-C:   000004EF  A$p3main$2405                      p3main
-C:   000004F1  A$p3main$2406                      p3main
-C:   000004F3  A$p3main$2407                      p3main
-C:   000004F6  A$p3main$2408                      p3main
-C:   000004F8  A$p3main$2409                      p3main
-C:   000004FA  A$p3main$2412                      p3main
-C:   000004FA  C$p3main.c$231$1$45                p3main
-C:   000004FA  XG$mostra_menu$0$0                 p3main
-C:   000004FB  A$p3main$2429                      p3main
-C:   000004FB  C$p3main.c$234$1$45                p3main
-C:   000004FB  C$p3main.c$236$1$47                p3main
-C:   000004FB  G$le_tec$0$0                       p3main
-C:   000004FB  _le_tec                            p3main
-C:   000004FD  A$p3main$2430                      p3main
-C:   00000500  A$p3main$2431                      p3main
-C:   00000502  A$p3main$2435                      p3main
-C:   00000502  C$p3main.c$238$2$48                p3main
-C:   00000504  A$p3main$2436                      p3main
-C:   00000505  A$p3main$2437                      p3main
-C:   00000506  A$p3main$2440                      p3main
-C:   00000506  C$p3main.c$239$1$47                p3main
-C:   00000508  A$p3main$2444                      p3main
-C:   00000508  C$p3main.c$243$1$47                p3main
-C:   0000050B  A$p3main$2447                      p3main
-C:   0000050B  C$p3main.c$245$1$47                p3main
-C:   0000050D  A$p3main$2449                      p3main
-C:   0000050F  A$p3main$2451                      p3main
-C:   00000510  A$p3main$2452                      p3main
-C:   00000513  A$p3main$2453                      p3main
-C:   00000516  A$p3main$2455                      p3main
-C:   00000518  A$p3main$2458                      p3main
-C:   00000518  C$p3main.c$247$2$49                p3main
-C:   00000519  A$p3main$2459                      p3main
+C:   00000513  C$p3main.c$251$1$47                p3main
+C:   00000515  A$p3main$2466                      p3main
+C:   00000515  C$p3main.c$252$1$47                p3main
+C:   00000515  XG$le_tec$0$0                      p3main
+C:   00000516  A$p3main$2477                      p3main
+C:   00000516  C$p3main.c$254$1$47                p3main
+C:   00000516  G$isr_timer2$0$0                   p3main
+C:   00000516  _isr_timer2                        p3main
+C:   00000518  A$p3main$2478                      p3main
+C:   0000051A  A$p3main$2479                      p3main
+C:   0000051C  A$p3main$2480                      p3main
+C:   0000051E  A$p3main$2481                      p3main
+C:   00000520  A$p3main$2482                      p3main
+C:   00000522  A$p3main$2483                      p3main
+C:   00000524  A$p3main$2484                      p3main
+C:   00000526  A$p3main$2485                      p3main
+C:   00000528  A$p3main$2486                      p3main
+C:   0000052A  A$p3main$2487                      p3main
+C:   0000052C  A$p3main$2488                      p3main
+C:   0000052E  A$p3main$2489                      p3main
+C:   00000530  A$p3main$2490                      p3main
+C:   00000532  A$p3main$2491                      p3main
+C:   00000535  A$p3main$2494                      p3main
+C:   00000535  C$p3main.c$258$1$50                p3main
+C:   00000537  A$p3main$2497                      p3main
+C:   00000537  C$p3main.c$260$1$50                p3main
+C:   00000539  A$p3main$2498                      p3main
+C:   0000053C  A$p3main$2501                      p3main
+C:   0000053C  C$p3main.c$261$1$50                p3main
+C:   0000053F  A$p3main$2505                      p3main
+C:   0000053F  C$p3main.c$262$1$50                p3main
+C:   00000541  A$p3main$2506                      p3main
+C:   00000543  A$p3main$2509                      p3main
+C:   00000543  C$p3main.c$264$2$51                p3main
+C:   00000546  A$p3main$2510                      p3main
+C:   00000549  A$p3main$2514                      p3main
+C:   00000549  C$p3main.c$266$1$50                p3main
+C:   0000054B  A$p3main$2515                      p3main
+C:   0000054E  A$p3main$2516                      p3main
+C:   00000550  A$p3main$2518                      p3main
+C:   00000552  A$p3main$2519                      p3main
+C:   00000554  A$p3main$2522                      p3main
+C:   00000554  C$p3main.c$268$2$52                p3main
+C:   00000557  A$p3main$2524                      p3main
+C:   00000559  A$p3main$2525                      p3main
+C:   0000055B  A$p3main$2526                      p3main
+C:   0000055D  A$p3main$2527                      p3main
+C:   0000055F  A$p3main$2528                      p3main
+C:   00000561  A$p3main$2529                      p3main
+C:   00000563  A$p3main$2530                      p3main
+C:   00000565  A$p3main$2531                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 48.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000051A  A$p3main$2460                      p3main
-C:   0000051B  A$p3main$2461                      p3main
-C:   0000051C  A$p3main$2464                      p3main
-C:   0000051C  C$p3main.c$248$2$49                p3main
-C:   0000051D  A$p3main$2465                      p3main
-C:   0000051F  A$p3main$2469                      p3main
-C:   0000051F  C$p3main.c$251$1$47                p3main
-C:   00000521  A$p3main$2473                      p3main
-C:   00000521  C$p3main.c$252$1$47                p3main
-C:   00000521  XG$le_tec$0$0                      p3main
-C:   00000522  A$p3main$2484                      p3main
-C:   00000522  C$p3main.c$254$1$47                p3main
-C:   00000522  G$isr_timer2$0$0                   p3main
-C:   00000522  _isr_timer2                        p3main
-C:   00000524  A$p3main$2485                      p3main
-C:   00000526  A$p3main$2486                      p3main
-C:   00000528  A$p3main$2487                      p3main
-C:   0000052A  A$p3main$2488                      p3main
-C:   0000052C  A$p3main$2489                      p3main
-C:   0000052E  A$p3main$2490                      p3main
-C:   00000530  A$p3main$2491                      p3main
-C:   00000532  A$p3main$2492                      p3main
-C:   00000534  A$p3main$2493                      p3main
-C:   00000536  A$p3main$2494                      p3main
-C:   00000538  A$p3main$2495                      p3main
-C:   0000053A  A$p3main$2496                      p3main
-C:   0000053C  A$p3main$2497                      p3main
-C:   0000053E  A$p3main$2498                      p3main
-C:   00000541  A$p3main$2501                      p3main
-C:   00000541  C$p3main.c$258$1$50                p3main
-C:   00000543  A$p3main$2504                      p3main
-C:   00000543  C$p3main.c$260$1$50                p3main
-C:   00000545  A$p3main$2505                      p3main
-C:   00000548  A$p3main$2508                      p3main
-C:   00000548  C$p3main.c$261$1$50                p3main
-C:   0000054B  A$p3main$2512                      p3main
-C:   0000054B  C$p3main.c$262$1$50                p3main
-C:   0000054D  A$p3main$2513                      p3main
-C:   0000054F  A$p3main$2516                      p3main
-C:   0000054F  C$p3main.c$264$2$51                p3main
-C:   00000552  A$p3main$2517                      p3main
-C:   00000555  A$p3main$2521                      p3main
-C:   00000555  C$p3main.c$266$1$50                p3main
-C:   00000557  A$p3main$2522                      p3main
-C:   0000055A  A$p3main$2523                      p3main
-C:   0000055C  A$p3main$2525                      p3main
-C:   0000055E  A$p3main$2526                      p3main
-C:   00000560  A$p3main$2529                      p3main
-C:   00000560  C$p3main.c$268$2$52                p3main
-C:   00000563  A$p3main$2531                      p3main
-C:   00000565  A$p3main$2532                      p3main
+C:   00000567  A$p3main$2532                      p3main
+C:   00000569  A$p3main$2533                      p3main
+C:   0000056B  A$p3main$2534                      p3main
+C:   0000056D  A$p3main$2535                      p3main
+C:   0000056F  A$p3main$2536                      p3main
+C:   00000571  A$p3main$2537                      p3main
+C:   00000573  A$p3main$2540                      p3main
+C:   00000573  C$p3main.c$271$1$50                p3main
+C:   00000573  XG$isr_timer2$0$0                  p3main
+C:   00000574  A$p3main$2555                      p3main
+C:   00000574  C$p3main.c$274$1$50                p3main
+C:   00000574  G$le_RAM_SPI$0$0                   p3main
+C:   00000574  _le_RAM_SPI                        p3main
+C:   00000576  A$p3main$2556                      p3main
+C:   00000578  A$p3main$2559                      p3main
+C:   00000578  C$p3main.c$276$1$54                p3main
+C:   0000057A  A$p3main$2564                      p3main
+C:   0000057A  C$p3main.c$277$1$54                p3main
+C:   0000057A  C$p3main.c$278$1$54                p3main
+C:   0000057C  A$p3main$2567                      p3main
+C:   0000057C  C$p3main.c$280$1$54                p3main
+C:   0000057F  A$p3main$2571                      p3main
+C:   0000057F  C$p3main.c$281$1$54                p3main
+C:   00000582  A$p3main$2574                      p3main
+C:   00000582  C$p3main.c$282$1$54                p3main
+C:   00000584  A$p3main$2578                      p3main
+C:   00000584  C$p3main.c$283$1$54                p3main
+C:   00000587  A$p3main$2581                      p3main
+C:   00000587  C$p3main.c$284$1$54                p3main
+C:   00000589  A$p3main$2585                      p3main
+C:   00000589  C$p3main.c$285$1$54                p3main
+C:   0000058C  A$p3main$2588                      p3main
+C:   0000058C  C$p3main.c$286$1$54                p3main
+C:   0000058F  A$p3main$2592                      p3main
+C:   0000058F  C$p3main.c$287$1$54                p3main
+C:   00000592  A$p3main$2595                      p3main
+C:   00000592  C$p3main.c$288$1$54                p3main
+C:   00000594  A$p3main$2601                      p3main
+C:   00000594  C$p3main.c$289$1$54                p3main
+C:   00000594  C$p3main.c$290$1$54                p3main
+C:   00000597  A$p3main$2602                      p3main
+C:   00000599  A$p3main$2606                      p3main
+C:   00000599  C$p3main.c$291$1$54                p3main
+C:   0000059B  A$p3main$2609                      p3main
+C:   0000059B  C$p3main.c$293$1$54                p3main
+C:   0000059E  A$p3main$2612                      p3main
+C:   0000059E  C$p3main.c$294$1$54                p3main
+C:   0000059E  XG$le_RAM_SPI$0$0                  p3main
+C:   0000059F  A$p3main$2628                      p3main
+C:   0000059F  C$p3main.c$296$1$54                p3main
+C:   0000059F  G$esc_RAM_SPI$0$0                  p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 49.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000567  A$p3main$2533                      p3main
-C:   00000569  A$p3main$2534                      p3main
-C:   0000056B  A$p3main$2535                      p3main
-C:   0000056D  A$p3main$2536                      p3main
-C:   0000056F  A$p3main$2537                      p3main
-C:   00000571  A$p3main$2538                      p3main
-C:   00000573  A$p3main$2539                      p3main
-C:   00000575  A$p3main$2540                      p3main
-C:   00000577  A$p3main$2541                      p3main
-C:   00000579  A$p3main$2542                      p3main
-C:   0000057B  A$p3main$2543                      p3main
-C:   0000057D  A$p3main$2544                      p3main
-C:   0000057F  A$p3main$2547                      p3main
-C:   0000057F  C$p3main.c$271$1$50                p3main
-C:   0000057F  XG$isr_timer2$0$0                  p3main
-C:   00000580  A$p3main$2562                      p3main
-C:   00000580  C$p3main.c$274$1$50                p3main
-C:   00000580  G$le_RAM_SPI$0$0                   p3main
-C:   00000580  _le_RAM_SPI                        p3main
-C:   00000582  A$p3main$2563                      p3main
-C:   00000584  A$p3main$2566                      p3main
-C:   00000584  C$p3main.c$276$1$54                p3main
-C:   00000586  A$p3main$2571                      p3main
-C:   00000586  C$p3main.c$277$1$54                p3main
-C:   00000586  C$p3main.c$278$1$54                p3main
-C:   00000588  A$p3main$2574                      p3main
-C:   00000588  C$p3main.c$280$1$54                p3main
-C:   0000058B  A$p3main$2578                      p3main
-C:   0000058B  C$p3main.c$281$1$54                p3main
-C:   0000058E  A$p3main$2581                      p3main
-C:   0000058E  C$p3main.c$282$1$54                p3main
-C:   00000590  A$p3main$2585                      p3main
-C:   00000590  C$p3main.c$283$1$54                p3main
-C:   00000593  A$p3main$2588                      p3main
-C:   00000593  C$p3main.c$284$1$54                p3main
-C:   00000595  A$p3main$2592                      p3main
-C:   00000595  C$p3main.c$285$1$54                p3main
-C:   00000598  A$p3main$2595                      p3main
-C:   00000598  C$p3main.c$286$1$54                p3main
-C:   0000059B  A$p3main$2599                      p3main
-C:   0000059B  C$p3main.c$287$1$54                p3main
-C:   0000059E  A$p3main$2602                      p3main
-C:   0000059E  C$p3main.c$288$1$54                p3main
-C:   000005A0  A$p3main$2608                      p3main
-C:   000005A0  C$p3main.c$289$1$54                p3main
-C:   000005A0  C$p3main.c$290$1$54                p3main
-C:   000005A3  A$p3main$2609                      p3main
-C:   000005A5  A$p3main$2613                      p3main
-C:   000005A5  C$p3main.c$291$1$54                p3main
-C:   000005A7  A$p3main$2616                      p3main
-C:   000005A7  C$p3main.c$293$1$54                p3main
+C:   0000059F  _esc_RAM_SPI                       p3main
+C:   000005A1  A$p3main$2629                      p3main
+C:   000005A3  A$p3main$2632                      p3main
+C:   000005A3  C$p3main.c$298$1$56                p3main
+C:   000005A5  A$p3main$2637                      p3main
+C:   000005A5  C$p3main.c$299$1$56                p3main
+C:   000005A5  C$p3main.c$300$1$56                p3main
+C:   000005A7  A$p3main$2640                      p3main
+C:   000005A7  C$p3main.c$302$1$56                p3main
+C:   000005AA  A$p3main$2644                      p3main
+C:   000005AA  C$p3main.c$303$1$56                p3main
+C:   000005AD  A$p3main$2647                      p3main
+C:   000005AD  C$p3main.c$304$1$56                p3main
+C:   000005AF  A$p3main$2651                      p3main
+C:   000005AF  C$p3main.c$305$1$56                p3main
+C:   000005B2  A$p3main$2654                      p3main
+C:   000005B2  C$p3main.c$306$1$56                p3main
+C:   000005B4  A$p3main$2658                      p3main
+C:   000005B4  C$p3main.c$307$1$56                p3main
+C:   000005B7  A$p3main$2661                      p3main
+C:   000005B7  C$p3main.c$308$1$56                p3main
+C:   000005BA  A$p3main$2665                      p3main
+C:   000005BA  C$p3main.c$309$1$56                p3main
+C:   000005BD  A$p3main$2668                      p3main
+C:   000005BD  C$p3main.c$310$1$56                p3main
+C:   000005BF  A$p3main$2674                      p3main
+C:   000005BF  C$p3main.c$311$1$56                p3main
+C:   000005BF  C$p3main.c$312$1$56                p3main
+C:   000005C2  A$p3main$2675                      p3main
+C:   000005C4  A$p3main$2679                      p3main
+C:   000005C4  C$p3main.c$313$1$56                p3main
+C:   000005C6  A$p3main$2682                      p3main
+C:   000005C6  C$p3main.c$314$1$56                p3main
+C:   000005C6  XG$esc_RAM_SPI$0$0                 p3main
+C:   000005C7  A$p3main$2698                      p3main
+C:   000005C7  C$p3main.c$316$1$56                p3main
+C:   000005C7  C$p3main.c$317$1$56                p3main
+C:   000005C7  G$test_RAM_SPI$0$0                 p3main
+C:   000005C7  _test_RAM_SPI                      p3main
+C:   000005C9  A$p3main$2699                      p3main
+C:   000005CB  A$p3main$2702                      p3main
+C:   000005CB  C$p3main.c$319$2$58                p3main
+C:   000005CD  A$p3main$2703                      p3main
+C:   000005CF  A$p3main$2707                      p3main
+C:   000005CF  C$p3main.c$320$1$57                p3main
+C:   000005D2  A$p3main$2708                      p3main
+C:   000005D5  A$p3main$2709                      p3main
+C:   000005D7  A$p3main$2710                      p3main
+C:   000005D9  A$p3main$2711                      p3main
+C:   000005DB  A$p3main$2712                      p3main
+C:   000005DD  A$p3main$2713                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 50.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000005AA  A$p3main$2619                      p3main
-C:   000005AA  C$p3main.c$294$1$54                p3main
-C:   000005AA  XG$le_RAM_SPI$0$0                  p3main
-C:   000005AB  A$p3main$2635                      p3main
-C:   000005AB  C$p3main.c$296$1$54                p3main
-C:   000005AB  G$esc_RAM_SPI$0$0                  p3main
-C:   000005AB  _esc_RAM_SPI                       p3main
-C:   000005AD  A$p3main$2636                      p3main
-C:   000005AF  A$p3main$2639                      p3main
-C:   000005AF  C$p3main.c$298$1$56                p3main
-C:   000005B1  A$p3main$2644                      p3main
-C:   000005B1  C$p3main.c$299$1$56                p3main
-C:   000005B1  C$p3main.c$300$1$56                p3main
-C:   000005B3  A$p3main$2647                      p3main
-C:   000005B3  C$p3main.c$302$1$56                p3main
-C:   000005B6  A$p3main$2651                      p3main
-C:   000005B6  C$p3main.c$303$1$56                p3main
-C:   000005B9  A$p3main$2654                      p3main
-C:   000005B9  C$p3main.c$304$1$56                p3main
-C:   000005BB  A$p3main$2658                      p3main
-C:   000005BB  C$p3main.c$305$1$56                p3main
-C:   000005BE  A$p3main$2661                      p3main
-C:   000005BE  C$p3main.c$306$1$56                p3main
-C:   000005C0  A$p3main$2665                      p3main
-C:   000005C0  C$p3main.c$307$1$56                p3main
-C:   000005C3  A$p3main$2668                      p3main
-C:   000005C3  C$p3main.c$308$1$56                p3main
-C:   000005C6  A$p3main$2672                      p3main
-C:   000005C6  C$p3main.c$309$1$56                p3main
-C:   000005C9  A$p3main$2675                      p3main
-C:   000005C9  C$p3main.c$310$1$56                p3main
-C:   000005CB  A$p3main$2681                      p3main
-C:   000005CB  C$p3main.c$311$1$56                p3main
-C:   000005CB  C$p3main.c$312$1$56                p3main
-C:   000005CE  A$p3main$2682                      p3main
-C:   000005D0  A$p3main$2686                      p3main
-C:   000005D0  C$p3main.c$313$1$56                p3main
-C:   000005D2  A$p3main$2689                      p3main
-C:   000005D2  C$p3main.c$314$1$56                p3main
-C:   000005D2  XG$esc_RAM_SPI$0$0                 p3main
-C:   000005D3  A$p3main$2705                      p3main
-C:   000005D3  C$p3main.c$316$1$56                p3main
-C:   000005D3  C$p3main.c$317$1$56                p3main
-C:   000005D3  G$test_RAM_SPI$0$0                 p3main
-C:   000005D3  _test_RAM_SPI                      p3main
-C:   000005D5  A$p3main$2706                      p3main
-C:   000005D7  A$p3main$2709                      p3main
-C:   000005D7  C$p3main.c$319$2$58                p3main
-C:   000005D9  A$p3main$2710                      p3main
-C:   000005DB  A$p3main$2714                      p3main
-C:   000005DB  C$p3main.c$320$1$57                p3main
+C:   000005DF  A$p3main$2714                      p3main
+C:   000005E1  A$p3main$2715                      p3main
+C:   000005E4  A$p3main$2716                      p3main
+C:   000005E6  A$p3main$2717                      p3main
+C:   000005E9  A$p3main$2718                      p3main
+C:   000005EB  A$p3main$2719                      p3main
+C:   000005ED  A$p3main$2720                      p3main
+C:   000005EF  A$p3main$2721                      p3main
+C:   000005F1  A$p3main$2722                      p3main
+C:   000005F3  A$p3main$2723                      p3main
+C:   000005F5  A$p3main$2726                      p3main
+C:   000005F5  C$p3main.c$321$2$58                p3main
+C:   000005F7  A$p3main$2727                      p3main
+C:   000005F9  A$p3main$2728                      p3main
+C:   000005FB  A$p3main$2729                      p3main
+C:   000005FD  A$p3main$2730                      p3main
+C:   000005FF  A$p3main$2731                      p3main
+C:   00000601  A$p3main$2732                      p3main
+C:   00000603  A$p3main$2733                      p3main
+C:   00000605  A$p3main$2734                      p3main
+C:   00000607  A$p3main$2735                      p3main
+C:   00000609  A$p3main$2736                      p3main
+C:   0000060C  A$p3main$2737                      p3main
+C:   0000060E  A$p3main$2738                      p3main
+C:   00000610  A$p3main$2739                      p3main
+C:   00000612  A$p3main$2740                      p3main
+C:   00000614  A$p3main$2741                      p3main
+C:   00000616  A$p3main$2742                      p3main
+C:   00000618  A$p3main$2743                      p3main
+C:   0000061A  A$p3main$2747                      p3main
+C:   0000061A  C$p3main.c$322$2$58                p3main
+C:   0000061D  A$p3main$2748                      p3main
+C:   0000061F  A$p3main$2749                      p3main
+C:   00000621  A$p3main$2750                      p3main
+C:   00000623  A$p3main$2751                      p3main
+C:   00000625  A$p3main$2752                      p3main
+C:   00000627  A$p3main$2753                      p3main
+C:   00000629  A$p3main$2754                      p3main
+C:   0000062C  A$p3main$2755                      p3main
+C:   0000062E  A$p3main$2756                      p3main
+C:   00000630  A$p3main$2759                      p3main
+C:   00000630  C$p3main.c$323$2$58                p3main
+C:   00000632  A$p3main$2760                      p3main
+C:   00000634  A$p3main$2761                      p3main
+C:   00000636  A$p3main$2762                      p3main
+C:   00000638  A$p3main$2763                      p3main
+C:   0000063B  A$p3main$2764                      p3main
+C:   0000063D  A$p3main$2765                      p3main
+C:   0000063F  A$p3main$2766                      p3main
+C:   00000641  A$p3main$2767                      p3main
+C:   00000643  A$p3main$2768                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 51.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000005DE  A$p3main$2715                      p3main
-C:   000005E1  A$p3main$2716                      p3main
-C:   000005E3  A$p3main$2717                      p3main
-C:   000005E5  A$p3main$2718                      p3main
-C:   000005E7  A$p3main$2719                      p3main
-C:   000005E9  A$p3main$2720                      p3main
-C:   000005EB  A$p3main$2721                      p3main
-C:   000005ED  A$p3main$2722                      p3main
-C:   000005F0  A$p3main$2723                      p3main
-C:   000005F2  A$p3main$2724                      p3main
-C:   000005F5  A$p3main$2725                      p3main
-C:   000005F7  A$p3main$2726                      p3main
-C:   000005F9  A$p3main$2727                      p3main
-C:   000005FB  A$p3main$2728                      p3main
-C:   000005FD  A$p3main$2729                      p3main
-C:   000005FF  A$p3main$2730                      p3main
-C:   00000601  A$p3main$2733                      p3main
-C:   00000601  C$p3main.c$321$2$58                p3main
-C:   00000603  A$p3main$2734                      p3main
-C:   00000605  A$p3main$2735                      p3main
-C:   00000607  A$p3main$2736                      p3main
-C:   00000609  A$p3main$2737                      p3main
-C:   0000060B  A$p3main$2738                      p3main
-C:   0000060D  A$p3main$2739                      p3main
-C:   0000060F  A$p3main$2740                      p3main
-C:   00000611  A$p3main$2741                      p3main
-C:   00000613  A$p3main$2742                      p3main
-C:   00000615  A$p3main$2743                      p3main
-C:   00000618  A$p3main$2744                      p3main
-C:   0000061A  A$p3main$2745                      p3main
-C:   0000061C  A$p3main$2746                      p3main
-C:   0000061E  A$p3main$2747                      p3main
-C:   00000620  A$p3main$2748                      p3main
-C:   00000622  A$p3main$2749                      p3main
-C:   00000624  A$p3main$2750                      p3main
-C:   00000626  A$p3main$2754                      p3main
-C:   00000626  C$p3main.c$322$2$58                p3main
-C:   00000629  A$p3main$2755                      p3main
-C:   0000062B  A$p3main$2756                      p3main
-C:   0000062D  A$p3main$2757                      p3main
-C:   0000062F  A$p3main$2758                      p3main
-C:   00000631  A$p3main$2759                      p3main
-C:   00000633  A$p3main$2760                      p3main
-C:   00000635  A$p3main$2761                      p3main
-C:   00000638  A$p3main$2762                      p3main
-C:   0000063A  A$p3main$2763                      p3main
-C:   0000063C  A$p3main$2766                      p3main
-C:   0000063C  C$p3main.c$323$2$58                p3main
-C:   0000063E  A$p3main$2767                      p3main
-C:   00000640  A$p3main$2768                      p3main
-C:   00000642  A$p3main$2769                      p3main
+C:   00000645  A$p3main$2769                      p3main
+C:   00000648  A$p3main$2770                      p3main
+C:   0000064A  A$p3main$2774                      p3main
+C:   0000064A  C$p3main.c$324$3$59                p3main
+C:   0000064C  A$p3main$2775                      p3main
+C:   0000064E  A$p3main$2778                      p3main
+C:   0000064E  C$p3main.c$325$3$59                p3main
+C:   00000650  A$p3main$2782                      p3main
+C:   00000650  C$p3main.c$319$1$57                p3main
+C:   00000651  A$p3main$2783                      p3main
+C:   00000654  A$p3main$2784                      p3main
+C:   00000655  A$p3main$2786                      p3main
+C:   00000657  A$p3main$2787                      p3main
+C:   00000658  A$p3main$2788                      p3main
+C:   0000065A  A$p3main$2789                      p3main
+C:   0000065D  A$p3main$2794                      p3main
+C:   0000065D  C$p3main.c$329$1$57                p3main
+C:   0000065F  A$p3main$2795                      p3main
+C:   00000661  A$p3main$2796                      p3main
+C:   00000663  A$p3main$2797                      p3main
+C:   00000665  A$p3main$2798                      p3main
+C:   00000667  A$p3main$2799                      p3main
+C:   00000669  A$p3main$2800                      p3main
+C:   0000066C  A$p3main$2801                      p3main
+C:   0000066E  A$p3main$2802                      p3main
+C:   00000670  A$p3main$2803                      p3main
+C:   00000672  A$p3main$2804                      p3main
+C:   00000674  A$p3main$2807                      p3main
+C:   00000674  C$p3main.c$331$1$57                p3main
+C:   00000675  A$p3main$2808                      p3main
+C:   00000676  A$p3main$2809                      p3main
+C:   00000678  A$p3main$2812                      p3main
+C:   00000678  C$p3main.c$332$1$57                p3main
+C:   0000067A  A$p3main$2813                      p3main
+C:   0000067C  A$p3main$2814                      p3main
+C:   0000067E  A$p3main$2815                      p3main
+C:   00000680  A$p3main$2816                      p3main
+C:   00000682  A$p3main$2817                      p3main
+C:   00000684  A$p3main$2818                      p3main
+C:   00000687  A$p3main$2819                      p3main
+C:   00000689  A$p3main$2820                      p3main
+C:   0000068B  A$p3main$2821                      p3main
+C:   0000068D  A$p3main$2822                      p3main
+C:   0000068F  A$p3main$2826                      p3main
+C:   0000068F  C$p3main.c$334$1$57                p3main
+C:   00000691  A$p3main$2827                      p3main
+C:   00000693  A$p3main$2828                      p3main
+C:   00000695  A$p3main$2829                      p3main
+C:   00000697  A$p3main$2830                      p3main
+C:   0000069A  A$p3main$2831                      p3main
+C:   0000069C  A$p3main$2832                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 52.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000644  A$p3main$2770                      p3main
-C:   00000647  A$p3main$2771                      p3main
-C:   00000649  A$p3main$2772                      p3main
-C:   0000064B  A$p3main$2773                      p3main
-C:   0000064D  A$p3main$2774                      p3main
-C:   0000064F  A$p3main$2775                      p3main
-C:   00000651  A$p3main$2776                      p3main
-C:   00000654  A$p3main$2777                      p3main
-C:   00000656  A$p3main$2781                      p3main
-C:   00000656  C$p3main.c$324$3$59                p3main
-C:   00000658  A$p3main$2782                      p3main
-C:   0000065A  A$p3main$2785                      p3main
-C:   0000065A  C$p3main.c$325$3$59                p3main
-C:   0000065C  A$p3main$2789                      p3main
-C:   0000065C  C$p3main.c$319$1$57                p3main
-C:   0000065D  A$p3main$2790                      p3main
-C:   00000660  A$p3main$2791                      p3main
-C:   00000661  A$p3main$2793                      p3main
-C:   00000663  A$p3main$2794                      p3main
-C:   00000664  A$p3main$2795                      p3main
-C:   00000666  A$p3main$2796                      p3main
-C:   00000669  A$p3main$2801                      p3main
-C:   00000669  C$p3main.c$329$1$57                p3main
-C:   0000066B  A$p3main$2802                      p3main
-C:   0000066D  A$p3main$2803                      p3main
-C:   0000066F  A$p3main$2804                      p3main
-C:   00000671  A$p3main$2805                      p3main
-C:   00000673  A$p3main$2806                      p3main
-C:   00000675  A$p3main$2807                      p3main
-C:   00000678  A$p3main$2808                      p3main
-C:   0000067A  A$p3main$2809                      p3main
-C:   0000067C  A$p3main$2810                      p3main
-C:   0000067E  A$p3main$2811                      p3main
-C:   00000680  A$p3main$2814                      p3main
-C:   00000680  C$p3main.c$331$1$57                p3main
-C:   00000681  A$p3main$2815                      p3main
-C:   00000682  A$p3main$2816                      p3main
-C:   00000684  A$p3main$2819                      p3main
-C:   00000684  C$p3main.c$332$1$57                p3main
-C:   00000686  A$p3main$2820                      p3main
-C:   00000688  A$p3main$2821                      p3main
-C:   0000068A  A$p3main$2822                      p3main
-C:   0000068C  A$p3main$2823                      p3main
-C:   0000068E  A$p3main$2824                      p3main
-C:   00000690  A$p3main$2825                      p3main
-C:   00000693  A$p3main$2826                      p3main
-C:   00000695  A$p3main$2827                      p3main
-C:   00000697  A$p3main$2828                      p3main
-C:   00000699  A$p3main$2829                      p3main
-C:   0000069B  A$p3main$2833                      p3main
-C:   0000069B  C$p3main.c$334$1$57                p3main
+C:   0000069E  A$p3main$2836                      p3main
+C:   0000069E  C$p3main.c$335$1$57                p3main
+C:   0000069E  XG$test_RAM_SPI$0$0                p3main
+C:   0000069F  A$p3main$2850                      p3main
+C:   0000069F  C$p3main.c$338$1$57                p3main
+C:   0000069F  G$le_ADC0$0$0                      p3main
+C:   0000069F  _le_ADC0                           p3main
+C:   000006A1  A$p3main$2853                      p3main
+C:   000006A1  C$p3main.c$339$1$61                p3main
+C:   000006A3  A$p3main$2854                      p3main
+C:   000006A5  A$p3main$2855                      p3main
+C:   000006A7  A$p3main$2856                      p3main
+C:   000006A9  A$p3main$2859                      p3main
+C:   000006A9  C$p3main.c$340$1$61                p3main
+C:   000006AB  A$p3main$2862                      p3main
+C:   000006AB  C$p3main.c$341$1$61                p3main
+C:   000006AD  A$p3main$2865                      p3main
+C:   000006AD  C$p3main.c$342$1$61                p3main
+C:   000006AE  A$p3main$2869                      p3main
+C:   000006AE  C$p3main.c$343$1$61                p3main
+C:   000006B1  A$p3main$2872                      p3main
+C:   000006B1  C$p3main.c$345$1$61                p3main
+C:   000006B3  A$p3main$2873                      p3main
+C:   000006B5  A$p3main$2874                      p3main
+C:   000006B7  A$p3main$2875                      p3main
+C:   000006B9  A$p3main$2876                      p3main
+C:   000006BA  A$p3main$2877                      p3main
+C:   000006BB  A$p3main$2878                      p3main
+C:   000006BD  A$p3main$2879                      p3main
+C:   000006BE  A$p3main$2880                      p3main
+C:   000006BF  A$p3main$2881                      p3main
+C:   000006C1  A$p3main$2884                      p3main
+C:   000006C1  C$p3main.c$347$1$61                p3main
+C:   000006C1  XG$le_ADC0$0$0                     p3main
+C:   000006C2  A$p3main$2899                      p3main
+C:   000006C2  C$p3main.c$350$1$61                p3main
+C:   000006C2  C$p3main.c$352$1$62                p3main
+C:   000006C2  G$le_LM35$0$0                      p3main
+C:   000006C2  _le_LM35                           p3main
+C:   000006C5  A$p3main$2900                      p3main
+C:   000006C8  A$p3main$2901                      p3main
+C:   000006CB  A$p3main$2904                      p3main
+C:   000006CB  C$p3main.c$353$1$62                p3main
+C:   000006CE  A$p3main$2905                      p3main
+C:   000006D1  A$p3main$2906                      p3main
+C:   000006D4  A$p3main$2909                      p3main
+C:   000006D4  C$p3main.c$354$1$62                p3main
+C:   000006D7  A$p3main$2910                      p3main
+C:   000006D9  A$p3main$2911                      p3main
+C:   000006DB  A$p3main$2912                      p3main
+C:   000006DD  A$p3main$2913                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 53.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   0000069D  A$p3main$2834                      p3main
-C:   0000069F  A$p3main$2835                      p3main
-C:   000006A1  A$p3main$2836                      p3main
-C:   000006A3  A$p3main$2837                      p3main
-C:   000006A6  A$p3main$2838                      p3main
-C:   000006A8  A$p3main$2839                      p3main
-C:   000006AA  A$p3main$2843                      p3main
-C:   000006AA  C$p3main.c$335$1$57                p3main
-C:   000006AA  XG$test_RAM_SPI$0$0                p3main
-C:   000006AB  A$p3main$2857                      p3main
-C:   000006AB  C$p3main.c$338$1$57                p3main
-C:   000006AB  G$le_ADC0$0$0                      p3main
-C:   000006AB  _le_ADC0                           p3main
-C:   000006AD  A$p3main$2860                      p3main
-C:   000006AD  C$p3main.c$339$1$61                p3main
-C:   000006AF  A$p3main$2861                      p3main
-C:   000006B1  A$p3main$2862                      p3main
-C:   000006B3  A$p3main$2863                      p3main
-C:   000006B5  A$p3main$2866                      p3main
-C:   000006B5  C$p3main.c$340$1$61                p3main
-C:   000006B7  A$p3main$2869                      p3main
-C:   000006B7  C$p3main.c$341$1$61                p3main
-C:   000006B9  A$p3main$2872                      p3main
-C:   000006B9  C$p3main.c$342$1$61                p3main
-C:   000006BA  A$p3main$2876                      p3main
-C:   000006BA  C$p3main.c$343$1$61                p3main
-C:   000006BD  A$p3main$2879                      p3main
-C:   000006BD  C$p3main.c$345$1$61                p3main
-C:   000006BF  A$p3main$2880                      p3main
-C:   000006C1  A$p3main$2881                      p3main
-C:   000006C3  A$p3main$2882                      p3main
-C:   000006C5  A$p3main$2883                      p3main
-C:   000006C6  A$p3main$2884                      p3main
-C:   000006C7  A$p3main$2885                      p3main
-C:   000006C9  A$p3main$2886                      p3main
-C:   000006CA  A$p3main$2887                      p3main
-C:   000006CB  A$p3main$2888                      p3main
-C:   000006CD  A$p3main$2891                      p3main
-C:   000006CD  C$p3main.c$347$1$61                p3main
-C:   000006CD  XG$le_ADC0$0$0                     p3main
-C:   000006CE  A$p3main$2906                      p3main
-C:   000006CE  C$p3main.c$350$1$61                p3main
-C:   000006CE  C$p3main.c$352$1$62                p3main
-C:   000006CE  G$le_LM35$0$0                      p3main
-C:   000006CE  _le_LM35                           p3main
-C:   000006D1  A$p3main$2907                      p3main
-C:   000006D4  A$p3main$2908                      p3main
-C:   000006D7  A$p3main$2911                      p3main
-C:   000006D7  C$p3main.c$353$1$62                p3main
-C:   000006DA  A$p3main$2912                      p3main
-C:   000006DD  A$p3main$2913                      p3main
+C:   000006DE  A$p3main$2914                      p3main
+C:   000006E0  A$p3main$2915                      p3main
+C:   000006E2  A$p3main$2916                      p3main
+C:   000006E4  A$p3main$2917                      p3main
+C:   000006E6  A$p3main$2918                      p3main
+C:   000006E9  A$p3main$2919                      p3main
+C:   000006EC  A$p3main$2920                      p3main
+C:   000006EE  A$p3main$2921                      p3main
+C:   000006F1  A$p3main$2922                      p3main
+C:   000006F3  A$p3main$2923                      p3main
+C:   000006F5  A$p3main$2924                      p3main
+C:   000006F7  A$p3main$2925                      p3main
+C:   000006F8  A$p3main$2926                      p3main
+C:   000006FA  A$p3main$2927                      p3main
+C:   000006FC  A$p3main$2928                      p3main
+C:   000006FE  A$p3main$2929                      p3main
+C:   00000700  A$p3main$2930                      p3main
+C:   00000702  A$p3main$2931                      p3main
+C:   00000704  A$p3main$2932                      p3main
+C:   00000706  A$p3main$2933                      p3main
+C:   00000709  A$p3main$2934                      p3main
+C:   0000070C  A$p3main$2935                      p3main
+C:   0000070E  A$p3main$2936                      p3main
+C:   00000711  A$p3main$2937                      p3main
+C:   00000713  A$p3main$2938                      p3main
+C:   00000715  A$p3main$2939                      p3main
+C:   00000717  A$p3main$2940                      p3main
+C:   00000718  A$p3main$2941                      p3main
+C:   0000071A  A$p3main$2942                      p3main
+C:   0000071C  A$p3main$2943                      p3main
+C:   0000071E  A$p3main$2944                      p3main
+C:   00000720  A$p3main$2945                      p3main
+C:   00000722  A$p3main$2946                      p3main
+C:   00000724  A$p3main$2947                      p3main
+C:   00000726  A$p3main$2948                      p3main
+C:   00000728  A$p3main$2949                      p3main
+C:   0000072A  A$p3main$2950                      p3main
+C:   0000072C  A$p3main$2951                      p3main
+C:   0000072E  A$p3main$2952                      p3main
+C:   00000731  A$p3main$2953                      p3main
+C:   00000733  A$p3main$2954                      p3main
+C:   00000735  A$p3main$2955                      p3main
+C:   00000737  A$p3main$2958                      p3main
+C:   00000737  C$p3main.c$355$1$62                p3main
+C:   00000737  XG$le_LM35$0$0                     p3main
+C:   00000738  A$p3main$2969                      p3main
+C:   00000738  C$p3main.c$358$1$62                p3main
+C:   00000738  G$int_tc1$0$0                      p3main
+C:   00000738  _int_tc1                           p3main
+C:   0000073A  A$p3main$2970                      p3main
+C:   0000073C  A$p3main$2971                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 54.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000006E0  A$p3main$2916                      p3main
-C:   000006E0  C$p3main.c$354$1$62                p3main
-C:   000006E3  A$p3main$2917                      p3main
-C:   000006E5  A$p3main$2918                      p3main
-C:   000006E7  A$p3main$2919                      p3main
-C:   000006E9  A$p3main$2920                      p3main
-C:   000006EA  A$p3main$2921                      p3main
-C:   000006EC  A$p3main$2922                      p3main
-C:   000006EE  A$p3main$2923                      p3main
-C:   000006F0  A$p3main$2924                      p3main
-C:   000006F2  A$p3main$2925                      p3main
-C:   000006F5  A$p3main$2926                      p3main
-C:   000006F8  A$p3main$2927                      p3main
-C:   000006FA  A$p3main$2928                      p3main
-C:   000006FD  A$p3main$2929                      p3main
-C:   000006FF  A$p3main$2930                      p3main
-C:   00000701  A$p3main$2931                      p3main
-C:   00000703  A$p3main$2932                      p3main
-C:   00000704  A$p3main$2933                      p3main
-C:   00000706  A$p3main$2934                      p3main
-C:   00000708  A$p3main$2935                      p3main
-C:   0000070A  A$p3main$2936                      p3main
-C:   0000070C  A$p3main$2937                      p3main
-C:   0000070E  A$p3main$2938                      p3main
-C:   00000710  A$p3main$2939                      p3main
-C:   00000712  A$p3main$2940                      p3main
-C:   00000715  A$p3main$2941                      p3main
-C:   00000718  A$p3main$2942                      p3main
-C:   0000071A  A$p3main$2943                      p3main
-C:   0000071D  A$p3main$2944                      p3main
-C:   0000071F  A$p3main$2945                      p3main
-C:   00000721  A$p3main$2946                      p3main
-C:   00000723  A$p3main$2947                      p3main
-C:   00000724  A$p3main$2948                      p3main
-C:   00000726  A$p3main$2949                      p3main
-C:   00000728  A$p3main$2950                      p3main
-C:   0000072A  A$p3main$2951                      p3main
-C:   0000072C  A$p3main$2952                      p3main
-C:   0000072E  A$p3main$2953                      p3main
-C:   00000730  A$p3main$2954                      p3main
-C:   00000732  A$p3main$2955                      p3main
-C:   00000734  A$p3main$2956                      p3main
-C:   00000736  A$p3main$2957                      p3main
-C:   00000738  A$p3main$2958                      p3main
-C:   0000073A  A$p3main$2959                      p3main
-C:   0000073D  A$p3main$2960                      p3main
-C:   0000073F  A$p3main$2961                      p3main
-C:   00000741  A$p3main$2962                      p3main
-C:   00000743  A$p3main$2965                      p3main
-C:   00000743  C$p3main.c$355$1$62                p3main
-C:   00000743  XG$le_LM35$0$0                     p3main
+C:   0000073E  A$p3main$2972                      p3main
+C:   00000740  A$p3main$2973                      p3main
+C:   00000742  A$p3main$2974                      p3main
+C:   00000744  A$p3main$2975                      p3main
+C:   00000746  A$p3main$2976                      p3main
+C:   00000748  A$p3main$2977                      p3main
+C:   0000074A  A$p3main$2978                      p3main
+C:   0000074C  A$p3main$2979                      p3main
+C:   0000074E  A$p3main$2980                      p3main
+C:   00000750  A$p3main$2981                      p3main
+C:   00000752  A$p3main$2982                      p3main
+C:   00000754  A$p3main$2983                      p3main
+C:   00000757  A$p3main$2986                      p3main
+C:   00000757  C$p3main.c$359$1$63                p3main
+C:   00000759  A$p3main$2989                      p3main
+C:   00000759  C$p3main.c$360$1$63                p3main
+C:   0000075B  A$p3main$2990                      p3main
+C:   0000075D  A$p3main$2991                      p3main
+C:   0000075F  A$p3main$2992                      p3main
+C:   00000761  A$p3main$2993                      p3main
+C:   00000763  A$p3main$2994                      p3main
+C:   00000765  A$p3main$2995                      p3main
+C:   00000767  A$p3main$2996                      p3main
+C:   00000769  A$p3main$2997                      p3main
+C:   0000076C  A$p3main$2998                      p3main
+C:   0000076F  A$p3main$2999                      p3main
+C:   00000772  A$p3main$3000                      p3main
+C:   00000774  A$p3main$3001                      p3main
+C:   00000777  A$p3main$3002                      p3main
+C:   0000077A  A$p3main$3003                      p3main
+C:   0000077D  A$p3main$3004                      p3main
+C:   00000780  A$p3main$3005                      p3main
+C:   00000782  A$p3main$3006                      p3main
+C:   00000784  A$p3main$3007                      p3main
+C:   00000786  A$p3main$3008                      p3main
+C:   00000788  A$p3main$3011                      p3main
+C:   00000788  C$p3main.c$361$1$63                p3main
+C:   00000789  A$p3main$3012                      p3main
+C:   0000078B  A$p3main$3013                      p3main
+C:   0000078D  A$p3main$3014                      p3main
+C:   0000078F  A$p3main$3015                      p3main
+C:   00000791  A$p3main$3016                      p3main
+C:   00000793  A$p3main$3017                      p3main
+C:   00000796  A$p3main$3018                      p3main
+C:   00000799  A$p3main$3019                      p3main
+C:   0000079C  A$p3main$3020                      p3main
+C:   0000079E  A$p3main$3021                      p3main
+C:   000007A1  A$p3main$3022                      p3main
+C:   000007A3  A$p3main$3023                      p3main
+C:   000007A5  A$p3main$3024                      p3main
+C:   000007A7  A$p3main$3025                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 55.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000744  A$p3main$2976                      p3main
-C:   00000744  C$p3main.c$358$1$62                p3main
-C:   00000744  G$int_tc1$0$0                      p3main
-C:   00000744  _int_tc1                           p3main
-C:   00000746  A$p3main$2977                      p3main
-C:   00000748  A$p3main$2978                      p3main
-C:   0000074A  A$p3main$2979                      p3main
-C:   0000074C  A$p3main$2980                      p3main
-C:   0000074E  A$p3main$2981                      p3main
-C:   00000750  A$p3main$2982                      p3main
-C:   00000752  A$p3main$2983                      p3main
-C:   00000754  A$p3main$2984                      p3main
-C:   00000756  A$p3main$2985                      p3main
-C:   00000758  A$p3main$2986                      p3main
-C:   0000075A  A$p3main$2987                      p3main
-C:   0000075C  A$p3main$2988                      p3main
-C:   0000075E  A$p3main$2989                      p3main
-C:   00000760  A$p3main$2990                      p3main
-C:   00000763  A$p3main$2993                      p3main
-C:   00000763  C$p3main.c$359$1$63                p3main
-C:   00000765  A$p3main$2996                      p3main
-C:   00000765  C$p3main.c$360$1$63                p3main
-C:   00000767  A$p3main$2997                      p3main
-C:   00000769  A$p3main$2998                      p3main
-C:   0000076B  A$p3main$2999                      p3main
-C:   0000076D  A$p3main$3000                      p3main
-C:   0000076F  A$p3main$3001                      p3main
-C:   00000771  A$p3main$3002                      p3main
-C:   00000773  A$p3main$3003                      p3main
-C:   00000775  A$p3main$3004                      p3main
-C:   00000778  A$p3main$3005                      p3main
-C:   0000077B  A$p3main$3006                      p3main
-C:   0000077E  A$p3main$3007                      p3main
-C:   00000780  A$p3main$3008                      p3main
-C:   00000783  A$p3main$3009                      p3main
-C:   00000786  A$p3main$3010                      p3main
-C:   00000789  A$p3main$3011                      p3main
-C:   0000078C  A$p3main$3012                      p3main
-C:   0000078E  A$p3main$3013                      p3main
-C:   00000790  A$p3main$3014                      p3main
-C:   00000792  A$p3main$3015                      p3main
-C:   00000794  A$p3main$3018                      p3main
-C:   00000794  C$p3main.c$361$1$63                p3main
-C:   00000795  A$p3main$3019                      p3main
-C:   00000797  A$p3main$3020                      p3main
-C:   00000799  A$p3main$3021                      p3main
-C:   0000079B  A$p3main$3022                      p3main
-C:   0000079D  A$p3main$3023                      p3main
-C:   0000079F  A$p3main$3024                      p3main
-C:   000007A2  A$p3main$3025                      p3main
-C:   000007A5  A$p3main$3026                      p3main
+C:   000007A9  A$p3main$3026                      p3main
+C:   000007AA  A$p3main$3027                      p3main
+C:   000007AC  A$p3main$3028                      p3main
+C:   000007AE  A$p3main$3030                      p3main
+C:   000007B0  A$p3main$3031                      p3main
+C:   000007B2  A$p3main$3032                      p3main
+C:   000007B4  A$p3main$3033                      p3main
+C:   000007B6  A$p3main$3034                      p3main
+C:   000007B8  A$p3main$3035                      p3main
+C:   000007BA  A$p3main$3036                      p3main
+C:   000007BC  A$p3main$3037                      p3main
+C:   000007BE  A$p3main$3038                      p3main
+C:   000007C0  A$p3main$3039                      p3main
+C:   000007C2  A$p3main$3040                      p3main
+C:   000007C4  A$p3main$3041                      p3main
+C:   000007C6  A$p3main$3042                      p3main
+C:   000007C8  A$p3main$3043                      p3main
+C:   000007CA  A$p3main$3046                      p3main
+C:   000007CA  C$p3main.c$362$1$63                p3main
+C:   000007CA  XG$int_tc1$0$0                     p3main
+C:   000007CB  A$p3main$3062                      p3main
+C:   000007CB  C$p3main.c$364$1$63                p3main
+C:   000007CB  C$p3main.c$367$1$64                p3main
+C:   000007CB  G$le_pulso$0$0                     p3main
+C:   000007CB  _le_pulso                          p3main
+C:   000007CE  A$p3main$3065                      p3main
+C:   000007CE  C$p3main.c$369$1$64                p3main
+C:   000007CF  A$p3main$3066                      p3main
+C:   000007D1  A$p3main$3067                      p3main
+C:   000007D3  A$p3main$3068                      p3main
+C:   000007D5  A$p3main$3069                      p3main
+C:   000007D7  A$p3main$3072                      p3main
+C:   000007D7  C$p3main.c$370$1$64                p3main
+C:   000007D9  A$p3main$3075                      p3main
+C:   000007D9  C$p3main.c$371$1$64                p3main
+C:   000007DB  A$p3main$3079                      p3main
+C:   000007DB  C$p3main.c$372$1$64                p3main
+C:   000007DE  A$p3main$3082                      p3main
+C:   000007DE  C$p3main.c$373$1$64                p3main
+C:   000007E0  A$p3main$3085                      p3main
+C:   000007E0  C$p3main.c$374$1$64                p3main
+C:   000007E2  A$p3main$3088                      p3main
+C:   000007E2  C$p3main.c$375$1$64                p3main
+C:   000007E4  A$p3main$3089                      p3main
+C:   000007E6  A$p3main$3090                      p3main
+C:   000007E8  A$p3main$3091                      p3main
+C:   000007EA  A$p3main$3092                      p3main
+C:   000007EB  A$p3main$3093                      p3main
+C:   000007EC  A$p3main$3094                      p3main
+C:   000007EE  A$p3main$3095                      p3main
+C:   000007EF  A$p3main$3096                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 56.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000007A8  A$p3main$3027                      p3main
-C:   000007AA  A$p3main$3028                      p3main
-C:   000007AD  A$p3main$3029                      p3main
-C:   000007AF  A$p3main$3030                      p3main
-C:   000007B1  A$p3main$3031                      p3main
-C:   000007B3  A$p3main$3032                      p3main
-C:   000007B5  A$p3main$3033                      p3main
-C:   000007B6  A$p3main$3034                      p3main
-C:   000007B8  A$p3main$3035                      p3main
-C:   000007BA  A$p3main$3037                      p3main
-C:   000007BC  A$p3main$3038                      p3main
-C:   000007BE  A$p3main$3039                      p3main
-C:   000007C0  A$p3main$3040                      p3main
-C:   000007C2  A$p3main$3041                      p3main
-C:   000007C4  A$p3main$3042                      p3main
-C:   000007C6  A$p3main$3043                      p3main
-C:   000007C8  A$p3main$3044                      p3main
-C:   000007CA  A$p3main$3045                      p3main
-C:   000007CC  A$p3main$3046                      p3main
-C:   000007CE  A$p3main$3047                      p3main
-C:   000007D0  A$p3main$3048                      p3main
-C:   000007D2  A$p3main$3049                      p3main
-C:   000007D4  A$p3main$3050                      p3main
-C:   000007D6  A$p3main$3053                      p3main
-C:   000007D6  C$p3main.c$362$1$63                p3main
-C:   000007D6  XG$int_tc1$0$0                     p3main
-C:   000007D7  A$p3main$3069                      p3main
-C:   000007D7  C$p3main.c$364$1$63                p3main
-C:   000007D7  C$p3main.c$367$1$64                p3main
-C:   000007D7  G$le_pulso$0$0                     p3main
-C:   000007D7  _le_pulso                          p3main
-C:   000007DA  A$p3main$3072                      p3main
-C:   000007DA  C$p3main.c$369$1$64                p3main
-C:   000007DB  A$p3main$3073                      p3main
-C:   000007DD  A$p3main$3074                      p3main
-C:   000007DF  A$p3main$3075                      p3main
-C:   000007E1  A$p3main$3076                      p3main
-C:   000007E3  A$p3main$3079                      p3main
-C:   000007E3  C$p3main.c$370$1$64                p3main
-C:   000007E5  A$p3main$3082                      p3main
-C:   000007E5  C$p3main.c$371$1$64                p3main
-C:   000007E7  A$p3main$3086                      p3main
-C:   000007E7  C$p3main.c$372$1$64                p3main
-C:   000007EA  A$p3main$3089                      p3main
-C:   000007EA  C$p3main.c$373$1$64                p3main
-C:   000007EC  A$p3main$3092                      p3main
-C:   000007EC  C$p3main.c$374$1$64                p3main
-C:   000007EE  A$p3main$3095                      p3main
-C:   000007EE  C$p3main.c$375$1$64                p3main
-C:   000007F0  A$p3main$3096                      p3main
-C:   000007F2  A$p3main$3097                      p3main
+C:   000007F0  A$p3main$3097                      p3main
+C:   000007F2  A$p3main$3101                      p3main
+C:   000007F2  C$p3main.c$376$1$64                p3main
+C:   000007F4  A$p3main$3105                      p3main
+C:   000007F4  C$p3main.c$377$1$64                p3main
+C:   000007F6  A$p3main$3108                      p3main
+C:   000007F6  C$p3main.c$378$1$64                p3main
+C:   000007F9  A$p3main$3109                      p3main
+C:   000007FB  A$p3main$3110                      p3main
+C:   000007FD  A$p3main$3111                      p3main
+C:   000007FF  A$p3main$3112                      p3main
+C:   00000800  A$p3main$3113                      p3main
+C:   00000802  A$p3main$3114                      p3main
+C:   00000804  A$p3main$3115                      p3main
+C:   00000806  A$p3main$3116                      p3main
+C:   00000808  A$p3main$3117                      p3main
+C:   0000080A  A$p3main$3118                      p3main
+C:   0000080C  A$p3main$3119                      p3main
+C:   0000080E  A$p3main$3120                      p3main
+C:   00000810  A$p3main$3121                      p3main
+C:   00000812  A$p3main$3122                      p3main
+C:   00000814  A$p3main$3123                      p3main
+C:   00000816  A$p3main$3124                      p3main
+C:   00000817  A$p3main$3125                      p3main
+C:   0000081A  A$p3main$3126                      p3main
+C:   0000081C  A$p3main$3127                      p3main
+C:   0000081E  A$p3main$3128                      p3main
+C:   00000820  A$p3main$3129                      p3main
+C:   00000821  A$p3main$3130                      p3main
+C:   00000823  A$p3main$3131                      p3main
+C:   00000825  A$p3main$3132                      p3main
+C:   00000827  A$p3main$3133                      p3main
+C:   00000829  A$p3main$3134                      p3main
+C:   0000082B  A$p3main$3135                      p3main
+C:   0000082D  A$p3main$3136                      p3main
+C:   0000082F  A$p3main$3137                      p3main
+C:   00000832  A$p3main$3138                      p3main
+C:   00000835  A$p3main$3139                      p3main
+C:   00000838  A$p3main$3140                      p3main
+C:   0000083A  A$p3main$3141                      p3main
+C:   0000083D  A$p3main$3142                      p3main
+C:   00000840  A$p3main$3143                      p3main
+C:   00000843  A$p3main$3144                      p3main
+C:   00000846  A$p3main$3145                      p3main
+C:   00000848  A$p3main$3146                      p3main
+C:   0000084A  A$p3main$3147                      p3main
+C:   0000084C  A$p3main$3148                      p3main
+C:   0000084E  A$p3main$3151                      p3main
+C:   0000084E  C$p3main.c$380$1$64                p3main
+C:   00000851  A$p3main$3152                      p3main
+C:   00000854  A$p3main$3153                      p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 57.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CSEG                                00000099    00001013 =        4115. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000007F4  A$p3main$3098                      p3main
-C:   000007F6  A$p3main$3099                      p3main
-C:   000007F7  A$p3main$3100                      p3main
-C:   000007F8  A$p3main$3101                      p3main
-C:   000007FA  A$p3main$3102                      p3main
-C:   000007FB  A$p3main$3103                      p3main
-C:   000007FC  A$p3main$3104                      p3main
-C:   000007FE  A$p3main$3108                      p3main
-C:   000007FE  C$p3main.c$376$1$64                p3main
-C:   00000800  A$p3main$3112                      p3main
-C:   00000800  C$p3main.c$377$1$64                p3main
-C:   00000802  A$p3main$3115                      p3main
-C:   00000802  C$p3main.c$378$1$64                p3main
-C:   00000805  A$p3main$3116                      p3main
-C:   00000807  A$p3main$3117                      p3main
-C:   00000809  A$p3main$3118                      p3main
-C:   0000080B  A$p3main$3119                      p3main
-C:   0000080C  A$p3main$3120                      p3main
-C:   0000080E  A$p3main$3121                      p3main
-C:   00000810  A$p3main$3122                      p3main
-C:   00000812  A$p3main$3123                      p3main
-C:   00000814  A$p3main$3124                      p3main
-C:   00000816  A$p3main$3125                      p3main
-C:   00000818  A$p3main$3126                      p3main
-C:   0000081A  A$p3main$3127                      p3main
-C:   0000081C  A$p3main$3128                      p3main
-C:   0000081E  A$p3main$3129                      p3main
-C:   00000820  A$p3main$3130                      p3main
-C:   00000822  A$p3main$3131                      p3main
-C:   00000823  A$p3main$3132                      p3main
-C:   00000826  A$p3main$3133                      p3main
-C:   00000828  A$p3main$3134                      p3main
-C:   0000082A  A$p3main$3135                      p3main
-C:   0000082C  A$p3main$3136                      p3main
-C:   0000082D  A$p3main$3137                      p3main
-C:   0000082F  A$p3main$3138                      p3main
-C:   00000831  A$p3main$3139                      p3main
-C:   00000833  A$p3main$3140                      p3main
-C:   00000835  A$p3main$3141                      p3main
-C:   00000837  A$p3main$3142                      p3main
-C:   00000839  A$p3main$3143                      p3main
-C:   0000083B  A$p3main$3144                      p3main
-C:   0000083E  A$p3main$3145                      p3main
-C:   00000841  A$p3main$3146                      p3main
-C:   00000844  A$p3main$3147                      p3main
-C:   00000846  A$p3main$3148                      p3main
-C:   00000849  A$p3main$3149                      p3main
-C:   0000084C  A$p3main$3150                      p3main
-C:   0000084F  A$p3main$3151                      p3main
-C:   00000852  A$p3main$3152                      p3main
-C:   00000854  A$p3main$3153                      p3main
+C:   00000857  A$p3main$3154                      p3main
+C:   00000859  A$p3main$3157                      p3main
+C:   00000859  C$p3main.c$381$1$64                p3main
+C:   00000859  XG$le_pulso$0$0                    p3main
+C:   0000085A  _printf_fast_f                     printf_fast_f
+C:   00000CDB  ___fsmul                           _fsmul
+C:   00000D7E  fsgetargs                          _fsget2args
+C:   00000DAC  fs_rshift_a                        _fsrshift
+C:   00000DEF  fs_normalize_a                     _fsnormalize
+C:   00000E22  ___fsgt                            _fsgt
+C:   00000E52  __moduint                          _moduint
+C:   00000E9F  ___fsadd                           _fsadd
+C:   00000EA2  fsadd_direct_entry                 _fsadd
+C:   00000EF8  fs_compare_uint32                  _fscmp
+C:   00000F16  fs_check_negative_zeros            _fscmp
+C:   00000F41  ___uint2fs                         _uint2fs
+C:   00000F4D  fs_round_and_return                _fsreturnval
+C:   00000F65  fs_zerocheck_return                _fsreturnval
+C:   00000F6E  fs_return_zero                     _fsreturnval
+C:   00000F76  fs_direct_return                   _fsreturnval
+C:   00000F84  fs_return_inf                      _fsreturnval
+C:   00000F91  fs_return_nan                      _fsreturnval
+C:   00000F9C  fs_swap_a_b                        _fsswapargs
+C:   00000FB6  ___fsdiv                           _fsdiv
+C:   00001079  __gptrget                          _gptrget
+C:   00001095  ___ulong2fs                        _ulong2fs
+C:   0000109E  ulong2fs_doit                      _ulong2fs
+C:   000010A8  __sdcc_external_startup            _startup
 ASxxxx Linker V03.00 + NoICE + sdld,  page 58.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000099    0000163E =        5694. bytes (REL,CON,CODE)
+CONST                               000010AC    000003C7 =         967. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000856  A$p3main$3154                      p3main
-C:   00000858  A$p3main$3155                      p3main
-C:   0000085A  A$p3main$3158                      p3main
-C:   0000085A  C$p3main.c$380$1$64                p3main
-C:   0000085D  A$p3main$3159                      p3main
-C:   00000860  A$p3main$3160                      p3main
-C:   00000863  A$p3main$3161                      p3main
-C:   00000865  A$p3main$3164                      p3main
-C:   00000865  C$p3main.c$381$1$64                p3main
-C:   00000865  XG$le_pulso$0$0                    p3main
-C:   00000866  _printf_fast_f                     printf_fast_f
-C:   00000CE7  ___fsmul                           _fsmul
-C:   00000D8A  fsgetargs                          _fsget2args
-C:   00000DB8  fs_rshift_a                        _fsrshift
-C:   00000DFB  fs_normalize_a                     _fsnormalize
-C:   00000E2E  ___fsgt                            _fsgt
-C:   00000E5E  __moduint                          _moduint
-C:   00000EAB  ___fsadd                           _fsadd
-C:   00000EAE  fsadd_direct_entry                 _fsadd
-C:   00000F04  fs_compare_uint32                  _fscmp
-C:   00000F22  fs_check_negative_zeros            _fscmp
-C:   00000F4D  ___uint2fs                         _uint2fs
-C:   00000F59  fs_round_and_return                _fsreturnval
-C:   00000F71  fs_zerocheck_return                _fsreturnval
-C:   00000F7A  fs_return_zero                     _fsreturnval
-C:   00000F82  fs_direct_return                   _fsreturnval
-C:   00000F90  fs_return_inf                      _fsreturnval
-C:   00000F9D  fs_return_nan                      _fsreturnval
-C:   00000FB3  _vprintf                           vprintf
-C:   00000FCC  _printf                            vprintf
-C:   000010A3  __print_format                     printf_large
-C:   000015AF  fs_swap_a_b                        _fsswapargs
-C:   000015C9  _strlen                            _strlen
-C:   000015E1  ___fsdiv                           _fsdiv
-C:   000016A4  __gptrget                          _gptrget
-C:   000016C0  ___ulong2fs                        _ulong2fs
-C:   000016C9  ulong2fs_doit                      _ulong2fs
-C:   000016D3  __sdcc_external_startup            _startup
-
+C:   000010AC  Fp3main$__str_0$0$0                p3main
+C:   000010C1  Fp3main$__str_1$0$0                p3main
+C:   000010EA  Fp3main$__str_2$0$0                p3main
+C:   000010FF  Fp3main$__str_3$0$0                p3main
+C:   00001101  Fp3main$__str_4$0$0                p3main
+C:   00001114  Fp3main$__str_5$0$0                p3main
+C:   0000112A  Fp3main$__str_6$0$0                p3main
+C:   00001145  Fp3main$__str_7$0$0                p3main
+C:   00001162  Fp3main$__str_8$0$0                p3main
+C:   0000116B  Fp3main$__str_9$0$0                p3main
+C:   00001185  Fp3main$__str_10$0$0               p3main
+C:   0000119F  Fp3main$__str_11$0$0               p3main
+C:   000011D0  Fp3main$__str_12$0$0               p3main
+C:   000011EB  Fp3main$__str_13$0$0               p3main
+C:   0000120A  Fp3main$__str_14$0$0               p3main
+C:   00001234  Fp3main$__str_15$0$0               p3main
+C:   00001247  Fp3main$__str_16$0$0               p3main
+C:   00001249  Fp3main$__str_17$0$0               p3main
+C:   0000124F  Fp3main$__str_18$0$0               p3main
+C:   0000125F  Fp3main$__str_19$0$0               p3main
+C:   0000127A  Fp3main$__str_20$0$0               p3main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 59.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CONST                               000016D7    000003C1 =         961. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000016D7  Fp3main$__str_0$0$0                p3main
-C:   000016EC  Fp3main$__str_1$0$0                p3main
-C:   00001715  Fp3main$__str_2$0$0                p3main
-C:   00001719  Fp3main$__str_3$0$0                p3main
-C:   0000171B  Fp3main$__str_4$0$0                p3main
-C:   0000172E  Fp3main$__str_5$0$0                p3main
-C:   00001744  Fp3main$__str_6$0$0                p3main
-C:   0000175B  Fp3main$__str_7$0$0                p3main
-C:   00001774  Fp3main$__str_8$0$0                p3main
-C:   0000177D  Fp3main$__str_9$0$0                p3main
-C:   00001797  Fp3main$__str_10$0$0               p3main
-C:   000017B1  Fp3main$__str_11$0$0               p3main
-C:   000017E2  Fp3main$__str_12$0$0               p3main
-C:   000017FD  Fp3main$__str_13$0$0               p3main
-C:   0000181C  Fp3main$__str_14$0$0               p3main
-C:   00001846  Fp3main$__str_15$0$0               p3main
-C:   00001859  Fp3main$__str_16$0$0               p3main
-C:   0000185B  Fp3main$__str_17$0$0               p3main
-C:   00001861  Fp3main$__str_18$0$0               p3main
-C:   00001871  Fp3main$__str_19$0$0               p3main
-C:   0000188C  Fp3main$__str_20$0$0               p3main
-ASxxxx Linker V03.00 + NoICE + sdld,  page 60.
 
 Files Linked                              [ module(s) ]
 
-Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.rel
+C:\Users\201619050501\Downloads\micap-master\p3\p3main.rel
                                           [  ]
 
 
@@ -2783,16 +2759,10 @@ C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
                                           [ _fsreturnval.rel ]
 C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ _bp.rel ]
-C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
-                                          [ vprintf.rel ]
-C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
-                                          [ printf_large.rel ]
 C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
                                           [ crtpagesfr.rel ]
 C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
                                           [ _fsswapargs.rel ]
-C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
-                                          [ _strlen.rel ]
 C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
                                           [ _fsdiv.rel ]
 C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
@@ -2804,7 +2774,7 @@ C:\Program Files\SDCC\bin\..\lib\small/libfloat.lib
 C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
                                           [ _startup.rel ]
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 61.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 60.
 
 User Base Address Definitions
 
