@@ -16,7 +16,6 @@
 	.globl _Oscillator_Init
 	.globl _Port_IO_Init
 	.globl _Voltage_Reference_Init
-	.globl _DAC_Init
 	.globl _ADC_Init
 	.globl _SPI_Init
 	.globl _UART_Init
@@ -24,6 +23,7 @@
 	.globl _Timer_Init
 	.globl _Reset_Sources_Init
 	.globl _printf_fast_f
+	.globl _printf
 	.globl _CANTEST
 	.globl _CANCCE
 	.globl _CANDAR
@@ -410,6 +410,7 @@
 	.globl _delay_ms
 	.globl _putchar
 	.globl _int_serial
+	.globl _mostra_menu
 	.globl _le_tec
 	.globl _isr_timer2
 	.globl _le_RAM_SPI
@@ -1256,6 +1257,9 @@ __start__stack:
 ; bit data
 ;--------------------------------------------------------
 	.area BSEG    (BIT)
+Lp3main.int_serial$sloc0$1$0==.
+_int_serial_sloc0_1_0:
+	.ds 1
 ;--------------------------------------------------------
 ; paged external ram data
 ;--------------------------------------------------------
@@ -1313,10 +1317,10 @@ __interrupt_vect:
 	.globl __mcs51_genXRAMCLEAR
 	.globl __mcs51_genRAMCLEAR
 	C$p3main.c$22$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:22: unsigned char estado = 0;  
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:22: unsigned char estado = 0;  
 	mov	_estado,#0x00
 	C$p3main.c$25$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:25: volatile float counter = 0;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:25: volatile float counter = 0;
 	clr	a
 	mov	_counter,a
 	mov	(_counter + 1),a
@@ -1341,7 +1345,7 @@ __sdcc_program_startup:
 ;------------------------------------------------------------
 	G$Reset_Sources_Init$0$0 ==.
 	C$config.c$10$0$0 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:10: void Reset_Sources_Init()
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:10: void Reset_Sources_Init()
 ;	-----------------------------------------
 ;	 function Reset_Sources_Init
 ;	-----------------------------------------
@@ -1355,10 +1359,10 @@ _Reset_Sources_Init:
 	ar1 = 0x01
 	ar0 = 0x00
 	C$config.c$12$1$14 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:12: WDTCN     = 0xDE;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:12: WDTCN     = 0xDE;
 	mov	_WDTCN,#0xde
 	C$config.c$13$1$14 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:13: WDTCN     = 0xAD;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:13: WDTCN     = 0xAD;
 	mov	_WDTCN,#0xad
 	C$config.c$14$1$14 ==.
 	XG$Reset_Sources_Init$0$0 ==.
@@ -1368,58 +1372,58 @@ _Reset_Sources_Init:
 ;------------------------------------------------------------
 	G$Timer_Init$0$0 ==.
 	C$config.c$16$1$14 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:16: void Timer_Init()
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:16: void Timer_Init()
 ;	-----------------------------------------
 ;	 function Timer_Init
 ;	-----------------------------------------
 _Timer_Init:
 	C$config.c$18$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:18: SFRPAGE   = TIMER01_PAGE;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:18: SFRPAGE   = TIMER01_PAGE;
 	mov	_SFRPAGE,#0x00
 	C$config.c$19$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:19: TCON      = 0x05;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:19: TCON      = 0x05;
 	mov	_TCON,#0x05
 	C$config.c$20$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:20: TMOD      = 0x91;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:20: TMOD      = 0x91;
 	mov	_TMOD,#0x91
 	C$config.c$21$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:21: CKCON     = 0x18;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:21: CKCON     = 0x18;
 	mov	_CKCON,#0x18
 	C$config.c$22$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:22: SFRPAGE   = TMR2_PAGE;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:22: SFRPAGE   = TMR2_PAGE;
 	mov	_SFRPAGE,#0x00
 	C$config.c$23$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:23: TMR2CN    = 0x04;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:23: TMR2CN    = 0x04;
 	mov	_TMR2CN,#0x04
 	C$config.c$24$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:24: TMR2CF    = 0x08;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:24: TMR2CF    = 0x08;
 	mov	_TMR2CF,#0x08
 	C$config.c$25$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:25: RCAP2L    = 0xDC;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:25: RCAP2L    = 0xDC;
 	mov	_RCAP2L,#0xdc
 	C$config.c$26$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:26: RCAP2H    = 0x0B;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:26: RCAP2H    = 0x0B;
 	mov	_RCAP2H,#0x0b
 	C$config.c$27$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:27: TMR2L     = 0xDC;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:27: TMR2L     = 0xDC;
 	mov	_TMR2L,#0xdc
 	C$config.c$28$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:28: TMR2H     = 0x0B;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:28: TMR2H     = 0x0B;
 	mov	_TMR2H,#0x0b
 	C$config.c$29$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:29: SFRPAGE   = TMR3_PAGE;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:29: SFRPAGE   = TMR3_PAGE;
 	mov	_SFRPAGE,#0x01
 	C$config.c$30$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:30: TMR3CN    = 0x04;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:30: TMR3CN    = 0x04;
 	mov	_TMR3CN,#0x04
 	C$config.c$31$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:31: TMR3CF    = 0x08;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:31: TMR3CF    = 0x08;
 	mov	_TMR3CF,#0x08
 	C$config.c$32$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:32: RCAP3L    = 0x5D;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:32: RCAP3L    = 0x5D;
 	mov	_RCAP3L,#0x5d
 	C$config.c$33$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:33: RCAP3H    = 0xFF;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:33: RCAP3H    = 0xFF;
 	mov	_RCAP3H,#0xff
 	C$config.c$34$1$15 ==.
 	XG$Timer_Init$0$0 ==.
@@ -1429,19 +1433,19 @@ _Timer_Init:
 ;------------------------------------------------------------
 	G$PCA_Init$0$0 ==.
 	C$config.c$36$1$15 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:36: void PCA_Init()
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:36: void PCA_Init()
 ;	-----------------------------------------
 ;	 function PCA_Init
 ;	-----------------------------------------
 _PCA_Init:
 	C$config.c$38$1$16 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:38: SFRPAGE   = PCA0_PAGE;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:38: SFRPAGE   = PCA0_PAGE;
 	mov	_SFRPAGE,#0x00
 	C$config.c$39$1$16 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:39: PCA0CN    = 0x40;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:39: PCA0CN    = 0x40;
 	mov	_PCA0CN,#0x40
 	C$config.c$40$1$16 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:40: PCA0CPM0  = 0x42;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:40: PCA0CPM0  = 0x42;
 	mov	_PCA0CPM0,#0x42
 	C$config.c$41$1$16 ==.
 	XG$PCA_Init$0$0 ==.
@@ -1451,19 +1455,19 @@ _PCA_Init:
 ;------------------------------------------------------------
 	G$UART_Init$0$0 ==.
 	C$config.c$43$1$16 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:43: void UART_Init()
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:43: void UART_Init()
 ;	-----------------------------------------
 ;	 function UART_Init
 ;	-----------------------------------------
 _UART_Init:
 	C$config.c$45$1$17 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:45: SFRPAGE   = UART0_PAGE;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:45: SFRPAGE   = UART0_PAGE;
 	mov	_SFRPAGE,#0x00
 	C$config.c$46$1$17 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:46: SCON0     = 0x50;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:46: SCON0     = 0x50;
 	mov	_SCON0,#0x50
 	C$config.c$47$1$17 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:47: SSTA0     = 0x0A;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:47: SSTA0     = 0x0A;
 	mov	_SSTA0,#0x0a
 	C$config.c$48$1$17 ==.
 	XG$UART_Init$0$0 ==.
@@ -1473,22 +1477,22 @@ _UART_Init:
 ;------------------------------------------------------------
 	G$SPI_Init$0$0 ==.
 	C$config.c$50$1$17 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:50: void SPI_Init()
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:50: void SPI_Init()
 ;	-----------------------------------------
 ;	 function SPI_Init
 ;	-----------------------------------------
 _SPI_Init:
 	C$config.c$52$1$18 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:52: SFRPAGE   = SPI0_PAGE;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:52: SFRPAGE   = SPI0_PAGE;
 	mov	_SFRPAGE,#0x00
 	C$config.c$53$1$18 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:53: SPI0CFG   = 0x40;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:53: SPI0CFG   = 0x40;
 	mov	_SPI0CFG,#0x40
 	C$config.c$54$1$18 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:54: SPI0CN    = 0x01;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:54: SPI0CN    = 0x01;
 	mov	_SPI0CN,#0x01
 	C$config.c$55$1$18 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:55: SPI0CKR   = 0x7C;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:55: SPI0CKR   = 0x7C;
 	mov	_SPI0CKR,#0x7c
 	C$config.c$56$1$18 ==.
 	XG$SPI_Init$0$0 ==.
@@ -1498,84 +1502,65 @@ _SPI_Init:
 ;------------------------------------------------------------
 	G$ADC_Init$0$0 ==.
 	C$config.c$58$1$18 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:58: void ADC_Init()
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:58: void ADC_Init()
 ;	-----------------------------------------
 ;	 function ADC_Init
 ;	-----------------------------------------
 _ADC_Init:
 	C$config.c$60$1$19 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:60: SFRPAGE   = ADC0_PAGE;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:60: SFRPAGE   = ADC0_PAGE;
 	mov	_SFRPAGE,#0x00
 	C$config.c$61$1$19 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:61: ADC0CN    = 0x80;
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:61: ADC0CN    = 0x80;
 	mov	_ADC0CN,#0x80
 	C$config.c$62$1$19 ==.
 	XG$ADC_Init$0$0 ==.
 	ret
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'DAC_Init'
-;------------------------------------------------------------
-	G$DAC_Init$0$0 ==.
-	C$config.c$64$1$19 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:64: void DAC_Init()
-;	-----------------------------------------
-;	 function DAC_Init
-;	-----------------------------------------
-_DAC_Init:
-	C$config.c$66$1$20 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:66: SFRPAGE   = DAC0_PAGE;
-	mov	_SFRPAGE,#0x00
-	C$config.c$67$1$20 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:67: DAC0CN    = 0x80;
-	mov	_DAC0CN,#0x80
-	C$config.c$68$1$20 ==.
-	XG$DAC_Init$0$0 ==.
-	ret
-;------------------------------------------------------------
 ;Allocation info for local variables in function 'Voltage_Reference_Init'
 ;------------------------------------------------------------
 	G$Voltage_Reference_Init$0$0 ==.
-	C$config.c$70$1$20 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:70: void Voltage_Reference_Init()
+	C$config.c$64$1$19 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:64: void Voltage_Reference_Init()
 ;	-----------------------------------------
 ;	 function Voltage_Reference_Init
 ;	-----------------------------------------
 _Voltage_Reference_Init:
-	C$config.c$72$1$21 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:72: SFRPAGE   = ADC0_PAGE;
+	C$config.c$66$1$20 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:66: SFRPAGE   = ADC0_PAGE;
 	mov	_SFRPAGE,#0x00
-	C$config.c$73$1$21 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:73: REF0CN    = 0x03;
+	C$config.c$67$1$20 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:67: REF0CN    = 0x03;
 	mov	_REF0CN,#0x03
-	C$config.c$74$1$21 ==.
+	C$config.c$68$1$20 ==.
 	XG$Voltage_Reference_Init$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'Port_IO_Init'
 ;------------------------------------------------------------
 	G$Port_IO_Init$0$0 ==.
-	C$config.c$76$1$21 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:76: void Port_IO_Init()
+	C$config.c$70$1$20 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:70: void Port_IO_Init()
 ;	-----------------------------------------
 ;	 function Port_IO_Init
 ;	-----------------------------------------
 _Port_IO_Init:
-	C$config.c$114$1$22 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:114: SFRPAGE   = CONFIG_PAGE;
+	C$config.c$108$1$21 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:108: SFRPAGE   = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
-	C$config.c$115$1$22 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:115: P0MDOUT   = 0xB5;
+	C$config.c$109$1$21 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:109: P0MDOUT   = 0xB5;
 	mov	_P0MDOUT,#0xb5
-	C$config.c$116$1$22 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:116: XBR0      = 0x0E;
+	C$config.c$110$1$21 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:110: XBR0      = 0x0E;
 	mov	_XBR0,#0x0e
-	C$config.c$117$1$22 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:117: XBR1      = 0x10;
+	C$config.c$111$1$21 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:111: XBR1      = 0x10;
 	mov	_XBR1,#0x10
-	C$config.c$118$1$22 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:118: XBR2      = 0x40;
+	C$config.c$112$1$21 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:112: XBR2      = 0x40;
 	mov	_XBR2,#0x40
-	C$config.c$119$1$22 ==.
+	C$config.c$113$1$21 ==.
 	XG$Port_IO_Init$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -1584,20 +1569,20 @@ _Port_IO_Init:
 ;i                         Allocated to registers r6 r7 
 ;------------------------------------------------------------
 	G$Oscillator_Init$0$0 ==.
-	C$config.c$121$1$22 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:121: void Oscillator_Init()
+	C$config.c$115$1$21 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:115: void Oscillator_Init()
 ;	-----------------------------------------
 ;	 function Oscillator_Init
 ;	-----------------------------------------
 _Oscillator_Init:
-	C$config.c$124$1$23 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:124: SFRPAGE   = CONFIG_PAGE;
+	C$config.c$118$1$22 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:118: SFRPAGE   = CONFIG_PAGE;
 	mov	_SFRPAGE,#0x0f
-	C$config.c$125$1$23 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:125: OSCXCN    = 0x67;
+	C$config.c$119$1$22 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:119: OSCXCN    = 0x67;
 	mov	_OSCXCN,#0x67
-	C$config.c$126$1$23 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:126: for (i = 0; i < 3000; i++);  // Wait 1ms for initialization
+	C$config.c$120$1$22 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:120: for (i = 0; i < 3000; i++);  // Wait 1ms for initialization
 	mov	r6,#0xb8
 	mov	r7,#0x0b
 00107$:
@@ -1612,118 +1597,115 @@ _Oscillator_Init:
 	mov	a,r4
 	orl	a,r5
 	jnz	00107$
-	C$config.c$127$1$23 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:127: while ((OSCXCN & 0x80) == 0);
+	C$config.c$121$1$22 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:121: while ((OSCXCN & 0x80) == 0);
 00102$:
 	mov	a,_OSCXCN
 	jnb	acc.7,00102$
-	C$config.c$128$1$23 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:128: CLKSEL    = 0x01;
+	C$config.c$122$1$22 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:122: CLKSEL    = 0x01;
 	mov	_CLKSEL,#0x01
-	C$config.c$129$1$23 ==.
+	C$config.c$123$1$22 ==.
 	XG$Oscillator_Init$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'Interrupts_Init'
 ;------------------------------------------------------------
 	G$Interrupts_Init$0$0 ==.
-	C$config.c$131$1$23 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:131: void Interrupts_Init()
+	C$config.c$125$1$22 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:125: void Interrupts_Init()
 ;	-----------------------------------------
 ;	 function Interrupts_Init
 ;	-----------------------------------------
 _Interrupts_Init:
-	C$config.c$133$1$24 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:133: IE        = 0xB8;
+	C$config.c$127$1$23 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:127: IE        = 0xB8;
 	mov	_IE,#0xb8
-	C$config.c$134$1$24 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:134: IP        = 0xE8;
+	C$config.c$128$1$23 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:128: IP        = 0xE8;
 	mov	_IP,#0xe8
-	C$config.c$135$1$24 ==.
+	C$config.c$129$1$23 ==.
 	XG$Interrupts_Init$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'Init_Device'
 ;------------------------------------------------------------
 	G$Init_Device$0$0 ==.
-	C$config.c$139$1$24 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:139: void Init_Device(void)
+	C$config.c$133$1$23 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:133: void Init_Device(void)
 ;	-----------------------------------------
 ;	 function Init_Device
 ;	-----------------------------------------
 _Init_Device:
-	C$config.c$141$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:141: Reset_Sources_Init();
+	C$config.c$135$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:135: Reset_Sources_Init();
 	lcall	_Reset_Sources_Init
-	C$config.c$142$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:142: Timer_Init();
+	C$config.c$136$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:136: Timer_Init();
 	lcall	_Timer_Init
-	C$config.c$143$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:143: PCA_Init();
+	C$config.c$137$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:137: PCA_Init();
 	lcall	_PCA_Init
-	C$config.c$144$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:144: UART_Init();
+	C$config.c$138$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:138: UART_Init();
 	lcall	_UART_Init
-	C$config.c$145$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:145: SPI_Init();
+	C$config.c$139$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:139: SPI_Init();
 	lcall	_SPI_Init
-	C$config.c$146$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:146: ADC_Init();
+	C$config.c$140$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:140: ADC_Init();
 	lcall	_ADC_Init
-	C$config.c$147$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:147: DAC_Init();
-	lcall	_DAC_Init
-	C$config.c$148$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:148: Voltage_Reference_Init();
+	C$config.c$141$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:141: Voltage_Reference_Init();
 	lcall	_Voltage_Reference_Init
-	C$config.c$149$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:149: Port_IO_Init();
+	C$config.c$142$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:142: Port_IO_Init();
 	lcall	_Port_IO_Init
-	C$config.c$150$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:150: Oscillator_Init();
+	C$config.c$143$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:143: Oscillator_Init();
 	lcall	_Oscillator_Init
-	C$config.c$151$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\/config.c:151: Interrupts_Init();
+	C$config.c$144$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:144: Interrupts_Init();
 	lcall	_Interrupts_Init
-	C$config.c$152$1$26 ==.
+	C$config.c$145$1$25 ==.
 	XG$Init_Device$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
 	G$main$0$0 ==.
-	C$p3main.c$41$1$26 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:41: int main() {
+	C$p3main.c$42$1$25 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:42: int main() {
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-	C$p3main.c$43$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:43: Init_Device();
+	C$p3main.c$44$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:44: Init_Device();
 	lcall	_Init_Device
-	C$p3main.c$44$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:44: SFRPAGE = LEGACY_PAGE;
+	C$p3main.c$45$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:45: SFRPAGE = LEGACY_PAGE;
 	mov	_SFRPAGE,#0x00
-	C$p3main.c$46$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:46: TMR2H = 0x0B;
+	C$p3main.c$47$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:47: TMR2H = 0x0B;
 	mov	_TMR2H,#0x0b
-	C$p3main.c$47$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:47: TMR2L = 0xDC;
+	C$p3main.c$48$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:48: TMR2L = 0xDC;
 	mov	_TMR2L,#0xdc
-	C$p3main.c$48$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:48: RCAP2H = 0x0B; 
+	C$p3main.c$49$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:49: RCAP2H = 0x0B; 
 	mov	_RCAP2H,#0x0b
-	C$p3main.c$49$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:49: RCAP2L = 0xDC;
+	C$p3main.c$50$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:50: RCAP2L = 0xDC;
 	mov	_RCAP2L,#0xdc
-	C$p3main.c$50$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:50: TR2 = 1;
+	C$p3main.c$51$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:51: TR2 = 1;
 	setb	_TR2
-	C$p3main.c$52$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:52: P3 = 0xff;
+	C$p3main.c$53$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:53: P3 = 0xff;
 	mov	_P3,#0xff
-	C$p3main.c$54$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:54: printf_fast_f("Iniciando firmware.\n");
+	C$p3main.c$56$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:56: printf_fast_f("Iniciando firmware.\n");
 	mov	a,#___str_0
 	push	acc
 	mov	a,#(___str_0 >> 8)
@@ -1731,11 +1713,14 @@ _main:
 	lcall	_printf_fast_f
 	dec	sp
 	dec	sp
-	C$p3main.c$56$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:56: while(1){
+	C$p3main.c$57$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:57: mostra_menu();
+	lcall	_mostra_menu
+	C$p3main.c$60$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:60: while(1){
 00107$:
-	C$p3main.c$58$2$35 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:58: switch(tecla) {
+	C$p3main.c$62$2$34 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:62: switch(tecla) {
 	mov	a,#0x01
 	cjne	a,_tecla,00123$
 	sjmp	00101$
@@ -1748,21 +1733,26 @@ _main:
 	cjne	a,_tecla,00125$
 	ljmp	00103$
 00125$:
-	C$p3main.c$61$3$36 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:61: case 1:
+	C$p3main.c$65$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:65: case 1:
 	sjmp	00107$
 00101$:
-	C$p3main.c$62$3$36 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:62: le_LM35();
+	C$p3main.c$66$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:66: le_LM35();
 	lcall	_le_LM35
-	C$p3main.c$63$3$36 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:63: break;
-	C$p3main.c$66$3$36 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:66: case 2:
+	C$p3main.c$67$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:67: break;
+	C$p3main.c$70$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:70: case 2:
 	sjmp	00107$
 00102$:
-	C$p3main.c$67$3$36 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:67: printf_fast_f("Tensao aplicada a placa peltier: %3.1fV\n", ((float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1) / 0.1803);
+	C$p3main.c$71$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:71: le_ADC0(AIN0_1, G1); // ignore first reading (ADC0 channel switching related)
+	mov	_le_ADC0_PARM_2,#0x00
+	mov	dpl,#0x01
+	lcall	_le_ADC0
+	C$p3main.c$72$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:72: printf_fast_f("Tensao aplicada a placa peltier: %3.1fV\n", ((float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1) / 0.1803);
 	mov	_le_ADC0_PARM_2,#0x00
 	mov	dpl,#0x01
 	lcall	_le_ADC0
@@ -1818,21 +1808,21 @@ _main:
 	mov	a,sp
 	add	a,#0xfa
 	mov	sp,a
-	C$p3main.c$68$3$36 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:68: break;
+	C$p3main.c$73$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:73: break;
 	ljmp	00107$
-	C$p3main.c$71$3$36 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:71: case 3:
+	C$p3main.c$76$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:76: case 3:
 00103$:
-	C$p3main.c$72$3$36 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:72: test_RAM_SPI();
+	C$p3main.c$77$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:77: test_RAM_SPI();
 	lcall	_test_RAM_SPI
-	C$p3main.c$73$3$36 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:73: break;
+	C$p3main.c$78$3$35 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:78: break;
 	ljmp	00107$
-	C$p3main.c$80$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:80: return 0;
-	C$p3main.c$81$1$34 ==.
+	C$p3main.c$85$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:85: return 0;
+	C$p3main.c$86$1$33 ==.
 	XG$main$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -1841,54 +1831,54 @@ _main:
 ;t                         Allocated to registers r6 r7 
 ;------------------------------------------------------------
 	G$delay_ms$0$0 ==.
-	C$p3main.c$83$1$34 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:83: void delay_ms(unsigned int t) __reentrant
+	C$p3main.c$88$1$33 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:88: void delay_ms(unsigned int t) __reentrant
 ;	-----------------------------------------
 ;	 function delay_ms
 ;	-----------------------------------------
 _delay_ms:
 	mov	r6,dpl
 	mov	r7,dph
-	C$p3main.c$85$1$38 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:85: TMOD |= 0x01;
+	C$p3main.c$90$1$37 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:90: TMOD |= 0x01;
 	orl	_TMOD,#0x01
-	C$p3main.c$86$1$38 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:86: TMOD &= ~0x02; 
+	C$p3main.c$91$1$37 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:91: TMOD &= ~0x02; 
 	anl	_TMOD,#0xfd
-	C$p3main.c$87$1$38 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:87: while(t>0)
+	C$p3main.c$92$1$37 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:92: while(t>0)
 00104$:
 	mov	a,r6
 	orl	a,r7
 	jz	00107$
-	C$p3main.c$89$2$39 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:89: TR0 = 0;
+	C$p3main.c$94$2$38 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:94: TR0 = 0;
 	clr	_TR0
-	C$p3main.c$90$2$39 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:90: TF0 = 0;
+	C$p3main.c$95$2$38 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:95: TF0 = 0;
 	clr	_TF0
-	C$p3main.c$91$2$39 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:91: TH0 = 0x9E; 
+	C$p3main.c$96$2$38 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:96: TH0 = 0x9E; 
 	mov	_TH0,#0x9e
-	C$p3main.c$92$2$39 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:92: TL0 = 0x58;
+	C$p3main.c$97$2$38 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:97: TL0 = 0x58;
 	mov	_TL0,#0x58
-	C$p3main.c$93$2$39 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:93: TR0 = 1;
+	C$p3main.c$98$2$38 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:98: TR0 = 1;
 	setb	_TR0
-	C$p3main.c$94$2$39 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:94: while(TF0 != 1);
+	C$p3main.c$99$2$38 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:99: while(TF0 != 1);
 00101$:
 	jnb	_TF0,00101$
-	C$p3main.c$95$2$39 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:95: t--;
+	C$p3main.c$100$2$38 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:100: t--;
 	dec	r6
 	cjne	r6,#0xff,00124$
 	dec	r7
 00124$:
 	sjmp	00104$
 00107$:
-	C$p3main.c$97$1$38 ==.
+	C$p3main.c$102$1$37 ==.
 	XG$delay_ms$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -1897,30 +1887,32 @@ _delay_ms:
 ;c                         Allocated to registers 
 ;------------------------------------------------------------
 	G$putchar$0$0 ==.
-	C$p3main.c$100$1$38 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:100: void putchar (char c ) {
+	C$p3main.c$105$1$37 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:105: void putchar (char c ) {
 ;	-----------------------------------------
 ;	 function putchar
 ;	-----------------------------------------
 _putchar:
 	mov	_SBUF0,dpl
-	C$p3main.c$102$1$41 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:102: while (TI0 == 0); 
+	C$p3main.c$107$1$40 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:107: while (TI0 == 0); 
 00101$:
-	C$p3main.c$103$1$41 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:103: TI0 = 0;
+	C$p3main.c$108$1$40 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:108: TI0 = 0;
 	jbc	_TI0,00112$
 	sjmp	00101$
 00112$:
-	C$p3main.c$104$1$41 ==.
+	C$p3main.c$109$1$40 ==.
 	XG$putchar$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'int_serial'
 ;------------------------------------------------------------
+;rpm                       Allocated to registers r4 r5 r6 r7 
+;------------------------------------------------------------
 	G$int_serial$0$0 ==.
-	C$p3main.c$108$1$41 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:108: void int_serial(void) __interrupt 4 {
+	C$p3main.c$113$1$40 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:113: void int_serial(void) __interrupt 4 {
 ;	-----------------------------------------
 ;	 function int_serial
 ;	-----------------------------------------
@@ -1940,53 +1932,107 @@ _int_serial:
 	push	(0+0)
 	push	psw
 	mov	psw,#0x00
-	C$p3main.c$109$1$43 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:109: if (RI0 == 1) {
-	jb	_RI0,00158$
-	ljmp	00120$
-00158$:
-	C$p3main.c$110$2$44 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:110: switch (SBUF0) {
-	mov	r7,_SBUF0
-	cjne	r7,#0x31,00159$
-	ljmp	00113$
-00159$:
-	cjne	r7,#0x32,00160$
-	ljmp	00114$
-00160$:
-	cjne	r7,#0x33,00161$
-	ljmp	00115$
-00161$:
-	cjne	r7,#0x61,00162$
-	ljmp	00105$
-00162$:
-	cjne	r7,#0x64,00163$
-	ljmp	00102$
-00163$:
-	cjne	r7,#0x6d,00164$
-	sjmp	00101$
+	C$p3main.c$115$1$42 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:115: if (RI0 == 1) {
+	jb	_RI0,00164$
+	ljmp	00123$
 00164$:
-	cjne	r7,#0x70,00165$
-	ljmp	00108$
+	C$p3main.c$116$2$43 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:116: switch (SBUF0) {
+	mov	r7,_SBUF0
+	cjne	r7,#0x31,00165$
+	ljmp	00116$
 00165$:
-	cjne	r7,#0x72,00166$
-	ljmp	00112$
-00166$:
+	cjne	r7,#0x32,00166$
 	ljmp	00117$
-	C$p3main.c$112$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:112: case 'm':
+00166$:
+	cjne	r7,#0x33,00167$
+	ljmp	00118$
+00167$:
+	cjne	r7,#0x61,00168$
+	sjmp	00105$
+00168$:
+	cjne	r7,#0x64,00169$
+	sjmp	00102$
+00169$:
+	cjne	r7,#0x6d,00170$
+	sjmp	00101$
+00170$:
+	cjne	r7,#0x70,00171$
+	sjmp	00108$
+00171$:
+	cjne	r7,#0x72,00172$
+	ljmp	00112$
+00172$:
+	ljmp	00120$
+	C$p3main.c$118$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:118: case 'm':
 00101$:
-	C$p3main.c$113$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:113: printf_fast_f("\n MENU:\n");
+	C$p3main.c$119$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:119: mostra_menu();
+	lcall	_mostra_menu
+	C$p3main.c$121$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:121: break;
+	ljmp	00120$
+	C$p3main.c$124$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:124: case 'd':
+00102$:
+	C$p3main.c$125$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:125: if (PCA0CPH0 < 191)
+	mov	a,#0x100 - 0xbf
+	add	a,_PCA0CPH0
+	jc	00104$
+	C$p3main.c$126$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:126: PCA0CPH0 += 5;
+	mov	a,#0x05
+	add	a,_PCA0CPH0
+	mov	_PCA0CPH0,a
+00104$:
+	C$p3main.c$128$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:128: printf("%d ", PCA0CPH0);
+	mov	r6,_PCA0CPH0
+	mov	r7,#0x00
+	push	ar6
+	push	ar7
 	mov	a,#___str_2
 	push	acc
 	mov	a,#(___str_2 >> 8)
 	push	acc
-	lcall	_printf_fast_f
-	dec	sp
-	dec	sp
-	C$p3main.c$114$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:114: printf_fast_f("a: Aumenta RPM do motor.\n");
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+	C$p3main.c$130$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:130: break;
+	ljmp	00120$
+	C$p3main.c$133$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:133: case 'a':
+00105$:
+	C$p3main.c$134$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:134: if (PCA0CPH0 > 5)
+	mov	a,_PCA0CPH0
+	add	a,#0xff - 0x05
+	jc	00174$
+	ljmp	00120$
+00174$:
+	C$p3main.c$135$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:135: PCA0CPH0 -= 5;
+	mov	a,_PCA0CPH0
+	add	a,#0xfb
+	mov	_PCA0CPH0,a
+	C$p3main.c$137$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:137: break;
+	ljmp	00120$
+	C$p3main.c$140$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:140: case 'p':
+00108$:
+	C$p3main.c$141$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:141: P0_7 = !P0_7;
+	cpl	_P0_7
+	C$p3main.c$143$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:143: printf_fast_f(" ");
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1994,8 +2040,11 @@ _int_serial:
 	lcall	_printf_fast_f
 	dec	sp
 	dec	sp
-	C$p3main.c$115$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:115: printf_fast_f("d: Diminui RPM do motor.\n");
+	C$p3main.c$145$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:145: if (P0_7)
+	jnb	_P0_7,00110$
+	C$p3main.c$146$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:146: printf_fast_f("Fonte 12V ligada.\n");
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -2003,8 +2052,10 @@ _int_serial:
 	lcall	_printf_fast_f
 	dec	sp
 	dec	sp
-	C$p3main.c$116$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:116: printf_fast_f("p: Liga/desliga fonte de energia placa peltier.\n");
+	ljmp	00120$
+00110$:
+	C$p3main.c$148$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:148: printf_fast_f("Fonte 12V desligada.\n");
 	mov	a,#___str_5
 	push	acc
 	mov	a,#(___str_5 >> 8)
@@ -2012,131 +2063,14 @@ _int_serial:
 	lcall	_printf_fast_f
 	dec	sp
 	dec	sp
-	C$p3main.c$117$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:117: printf_fast_f("r: Mede rotacao do motor.\n");
-	mov	a,#___str_6
-	push	acc
-	mov	a,#(___str_6 >> 8)
-	push	acc
-	lcall	_printf_fast_f
-	dec	sp
-	dec	sp
-	C$p3main.c$118$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:118: printf_fast_f("1: Mede temperatura do motor.\n");
-	mov	a,#___str_7
-	push	acc
-	mov	a,#(___str_7 >> 8)
-	push	acc
-	lcall	_printf_fast_f
-	dec	sp
-	dec	sp
-	C$p3main.c$119$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:119: printf_fast_f("2: Mede tensao aplicada a placa peltier.\n");
-	mov	a,#___str_8
-	push	acc
-	mov	a,#(___str_8 >> 8)
-	push	acc
-	lcall	_printf_fast_f
-	dec	sp
-	dec	sp
-	C$p3main.c$120$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:120: printf_fast_f("3: Testa RAM SPI.\n");
-	mov	a,#___str_9
-	push	acc
-	mov	a,#(___str_9 >> 8)
-	push	acc
-	lcall	_printf_fast_f
-	dec	sp
-	dec	sp
-	C$p3main.c$121$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:121: printf_fast_f("\n");
-	mov	a,#___str_10
-	push	acc
-	mov	a,#(___str_10 >> 8)
-	push	acc
-	lcall	_printf_fast_f
-	dec	sp
-	dec	sp
-	C$p3main.c$123$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:123: break;
-	ljmp	00117$
-	C$p3main.c$126$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:126: case 'd':
-00102$:
-	C$p3main.c$127$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:127: if (PCA0CPH0 < 255)
-	mov	a,#0x100 - 0xff
-	add	a,_PCA0CPH0
-	jnc	00167$
-	ljmp	00117$
-00167$:
-	C$p3main.c$128$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:128: PCA0CPH0++;
-	inc	_PCA0CPH0
-	C$p3main.c$130$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:130: break;
-	ljmp	00117$
-	C$p3main.c$133$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:133: case 'a':
-00105$:
-	C$p3main.c$134$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:134: if (PCA0CPH0 > 0)
-	mov	a,_PCA0CPH0
-	jnz	00168$
-	ljmp	00117$
-00168$:
-	C$p3main.c$135$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:135: PCA0CPH0--;
-	dec	_PCA0CPH0
-	C$p3main.c$137$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:137: break;
-	ljmp	00117$
-	C$p3main.c$140$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:140: case 'p':
-00108$:
-	C$p3main.c$141$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:141: P0_7 = !P0_7;
-	cpl	_P0_7
-	C$p3main.c$143$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:143: printf_fast_f(" ");
-	mov	a,#___str_11
-	push	acc
-	mov	a,#(___str_11 >> 8)
-	push	acc
-	lcall	_printf_fast_f
-	dec	sp
-	dec	sp
-	C$p3main.c$145$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:145: if (P0_7)
-	jnb	_P0_7,00110$
-	C$p3main.c$146$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:146: printf_fast_f("Fonte 12V ligada.\n");
-	mov	a,#___str_12
-	push	acc
-	mov	a,#(___str_12 >> 8)
-	push	acc
-	lcall	_printf_fast_f
-	dec	sp
-	dec	sp
-	ljmp	00117$
-00110$:
-	C$p3main.c$148$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:148: printf_fast_f("Fonte 12V desligada.\n");
-	mov	a,#___str_13
-	push	acc
-	mov	a,#(___str_13 >> 8)
-	push	acc
-	lcall	_printf_fast_f
-	dec	sp
-	dec	sp
-	C$p3main.c$150$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:150: break;
-	ljmp	00117$
-	C$p3main.c$153$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:153: case 'r':
+	C$p3main.c$150$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:150: break;
+	ljmp	00120$
+	C$p3main.c$153$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:153: case 'r':
 00112$:
-	C$p3main.c$154$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:154: printf_fast_f("Rotacao do motor: %3.1f\n", 30/(le_pulso()*10));
+	C$p3main.c$154$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:154: rpm = 30/(le_pulso()*10);
 	lcall	_le_pulso
 	mov	r4,dpl
 	mov	r5,dph
@@ -2172,157 +2106,199 @@ _int_serial:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
+	C$p3main.c$155$1$42 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:155: if (rpm <= 5)
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	clr	a
+	push	acc
+	push	acc
+	mov	a,#0xa0
+	push	acc
+	mov	a,#0x40
+	push	acc
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
+	mov	a,r7
+	lcall	___fsgt
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+	mov	a,dpl
+	add	a,#0xff
+	mov	_int_serial_sloc0_1_0,c
+	jc	00114$
+	C$p3main.c$156$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:156: printf_fast_f("Rotacao do motor <= 5\n");
+	mov	a,#___str_6
+	push	acc
+	mov	a,#(___str_6 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	ljmp	00120$
+00114$:
+	C$p3main.c$158$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:158: printf_fast_f("Rotacao do motor: %3.1f\n", rpm);
 	push	ar4
 	push	ar5
 	push	ar6
 	push	ar7
-	mov	a,#___str_14
+	mov	a,#___str_7
 	push	acc
-	mov	a,#(___str_14 >> 8)
+	mov	a,#(___str_7 >> 8)
 	push	acc
 	lcall	_printf_fast_f
 	mov	a,sp
 	add	a,#0xfa
 	mov	sp,a
-	C$p3main.c$155$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:155: break;
-	ljmp	00117$
-	C$p3main.c$158$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:158: case '1':
-00113$:
-	C$p3main.c$159$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:159: P3_1 = 0;
+	C$p3main.c$159$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:159: break;
+	ljmp	00120$
+	C$p3main.c$162$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:162: case '1':
+00116$:
+	C$p3main.c$163$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:163: P3_1 = 0;
 	clr	_P3_1
-	C$p3main.c$160$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:160: delay_ms(5);
+	C$p3main.c$164$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:164: delay_ms(5);
 	mov	dptr,#0x0005
 	lcall	_delay_ms
-	C$p3main.c$161$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:161: P3_1 = 1;
+	C$p3main.c$165$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:165: P3_1 = 1;
 	setb	_P3_1
-	C$p3main.c$162$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:162: delay_ms(5);
+	C$p3main.c$166$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:166: delay_ms(5);
 	mov	dptr,#0x0005
 	lcall	_delay_ms
-	C$p3main.c$163$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:163: P3_1 = 0;
+	C$p3main.c$167$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:167: P3_1 = 0;
 	clr	_P3_1
-	C$p3main.c$165$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:165: delay_ms(150); 
+	C$p3main.c$169$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:169: delay_ms(150); 
 	mov	dptr,#0x0096
 	lcall	_delay_ms
-	C$p3main.c$167$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:167: P3_1 = 1;
+	C$p3main.c$171$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:171: P3_1 = 1;
 	setb	_P3_1
-	C$p3main.c$168$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:168: delay_ms(5);
+	C$p3main.c$172$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:172: delay_ms(5);
 	mov	dptr,#0x0005
 	lcall	_delay_ms
-	C$p3main.c$169$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:169: P3_1 = 0;
+	C$p3main.c$173$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:173: P3_1 = 0;
 	clr	_P3_1
-	C$p3main.c$170$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:170: delay_ms(5);
+	C$p3main.c$174$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:174: delay_ms(5);
 	mov	dptr,#0x0005
 	lcall	_delay_ms
-	C$p3main.c$171$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:171: P3_1 = 1;
+	C$p3main.c$175$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:175: P3_1 = 1;
 	setb	_P3_1
-	C$p3main.c$172$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:172: break;
-	C$p3main.c$175$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:175: case '2':
-	sjmp	00117$
-00114$:
-	C$p3main.c$176$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:176: P3_2 = 0;
-	clr	_P3_2
-	C$p3main.c$177$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:177: delay_ms(5);
-	mov	dptr,#0x0005
-	lcall	_delay_ms
-	C$p3main.c$178$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:178: P3_2 = 1;
-	setb	_P3_2
-	C$p3main.c$179$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:179: delay_ms(5);
-	mov	dptr,#0x0005
-	lcall	_delay_ms
-	C$p3main.c$180$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:180: P3_2 = 0;
-	clr	_P3_2
-	C$p3main.c$182$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:182: delay_ms(150); 
-	mov	dptr,#0x0096
-	lcall	_delay_ms
-	C$p3main.c$184$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:184: P3_2 = 1;
-	setb	_P3_2
-	C$p3main.c$185$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:185: delay_ms(5);
-	mov	dptr,#0x0005
-	lcall	_delay_ms
-	C$p3main.c$186$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:186: P3_2 = 0;
-	clr	_P3_2
-	C$p3main.c$187$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:187: delay_ms(5);
-	mov	dptr,#0x0005
-	lcall	_delay_ms
-	C$p3main.c$188$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:188: P3_2 = 1;
-	setb	_P3_2
-	C$p3main.c$189$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:189: break;
-	C$p3main.c$192$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:192: case '3':
-	sjmp	00117$
-00115$:
-	C$p3main.c$193$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:193: P3_3 = 0;
-	clr	_P3_3
-	C$p3main.c$194$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:194: delay_ms(5);
-	mov	dptr,#0x0005
-	lcall	_delay_ms
-	C$p3main.c$195$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:195: P3_3 = 1;
-	setb	_P3_3
-	C$p3main.c$196$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:196: delay_ms(5);
-	mov	dptr,#0x0005
-	lcall	_delay_ms
-	C$p3main.c$197$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:197: P3_3 = 0;
-	clr	_P3_3
-	C$p3main.c$199$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:199: delay_ms(150); 
-	mov	dptr,#0x0096
-	lcall	_delay_ms
-	C$p3main.c$201$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:201: P3_3 = 1;
-	setb	_P3_3
-	C$p3main.c$202$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:202: delay_ms(5);
-	mov	dptr,#0x0005
-	lcall	_delay_ms
-	C$p3main.c$203$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:203: P3_3 = 0;
-	clr	_P3_3
-	C$p3main.c$204$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:204: delay_ms(5);
-	mov	dptr,#0x0005
-	lcall	_delay_ms
-	C$p3main.c$205$3$45 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:205: P3_3 = 1;
-	setb	_P3_3
-	C$p3main.c$210$2$44 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:210: }
+	C$p3main.c$176$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:176: break;
+	C$p3main.c$179$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:179: case '2':
+	sjmp	00120$
 00117$:
-	C$p3main.c$212$2$44 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:212: RI0 = 0;
-	clr	_RI0
+	C$p3main.c$180$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:180: P3_2 = 0;
+	clr	_P3_2
+	C$p3main.c$181$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:181: delay_ms(5);
+	mov	dptr,#0x0005
+	lcall	_delay_ms
+	C$p3main.c$182$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:182: P3_2 = 1;
+	setb	_P3_2
+	C$p3main.c$183$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:183: delay_ms(5);
+	mov	dptr,#0x0005
+	lcall	_delay_ms
+	C$p3main.c$184$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:184: P3_2 = 0;
+	clr	_P3_2
+	C$p3main.c$186$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:186: delay_ms(150); 
+	mov	dptr,#0x0096
+	lcall	_delay_ms
+	C$p3main.c$188$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:188: P3_2 = 1;
+	setb	_P3_2
+	C$p3main.c$189$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:189: delay_ms(5);
+	mov	dptr,#0x0005
+	lcall	_delay_ms
+	C$p3main.c$190$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:190: P3_2 = 0;
+	clr	_P3_2
+	C$p3main.c$191$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:191: delay_ms(5);
+	mov	dptr,#0x0005
+	lcall	_delay_ms
+	C$p3main.c$192$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:192: P3_2 = 1;
+	setb	_P3_2
+	C$p3main.c$193$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:193: break;
+	C$p3main.c$196$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:196: case '3':
+	sjmp	00120$
+00118$:
+	C$p3main.c$197$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:197: P3_3 = 0;
+	clr	_P3_3
+	C$p3main.c$198$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:198: delay_ms(5);
+	mov	dptr,#0x0005
+	lcall	_delay_ms
+	C$p3main.c$199$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:199: P3_3 = 1;
+	setb	_P3_3
+	C$p3main.c$200$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:200: delay_ms(5);
+	mov	dptr,#0x0005
+	lcall	_delay_ms
+	C$p3main.c$201$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:201: P3_3 = 0;
+	clr	_P3_3
+	C$p3main.c$203$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:203: delay_ms(150); 
+	mov	dptr,#0x0096
+	lcall	_delay_ms
+	C$p3main.c$205$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:205: P3_3 = 1;
+	setb	_P3_3
+	C$p3main.c$206$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:206: delay_ms(5);
+	mov	dptr,#0x0005
+	lcall	_delay_ms
+	C$p3main.c$207$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:207: P3_3 = 0;
+	clr	_P3_3
+	C$p3main.c$208$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:208: delay_ms(5);
+	mov	dptr,#0x0005
+	lcall	_delay_ms
+	C$p3main.c$209$3$44 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:209: P3_3 = 1;
+	setb	_P3_3
+	C$p3main.c$214$2$43 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:214: }
 00120$:
+	C$p3main.c$216$2$43 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:216: RI0 = 0;
+	clr	_RI0
+00123$:
 	pop	psw
 	pop	(0+0)
 	pop	(0+1)
@@ -2337,9 +2313,103 @@ _int_serial:
 	pop	b
 	pop	acc
 	pop	bits
-	C$p3main.c$214$1$43 ==.
+	C$p3main.c$218$1$42 ==.
 	XG$int_serial$0$0 ==.
 	reti
+;------------------------------------------------------------
+;Allocation info for local variables in function 'mostra_menu'
+;------------------------------------------------------------
+	G$mostra_menu$0$0 ==.
+	C$p3main.c$221$1$42 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:221: void mostra_menu() {
+;	-----------------------------------------
+;	 function mostra_menu
+;	-----------------------------------------
+_mostra_menu:
+	C$p3main.c$222$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:222: printf_fast_f("\n MENU:\n");
+	mov	a,#___str_8
+	push	acc
+	mov	a,#(___str_8 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	C$p3main.c$223$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:223: printf_fast_f("a: Aumenta RPM do motor.\n");
+	mov	a,#___str_9
+	push	acc
+	mov	a,#(___str_9 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	C$p3main.c$224$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:224: printf_fast_f("d: Diminui RPM do motor.\n");
+	mov	a,#___str_10
+	push	acc
+	mov	a,#(___str_10 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	C$p3main.c$225$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:225: printf_fast_f("p: Liga/desliga fonte de energia placa peltier.\n");
+	mov	a,#___str_11
+	push	acc
+	mov	a,#(___str_11 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	C$p3main.c$226$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:226: printf_fast_f("r: Mede rotacao do motor.\n");
+	mov	a,#___str_12
+	push	acc
+	mov	a,#(___str_12 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	C$p3main.c$227$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:227: printf_fast_f("1: Mede temperatura do motor.\n");
+	mov	a,#___str_13
+	push	acc
+	mov	a,#(___str_13 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	C$p3main.c$228$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:228: printf_fast_f("2: Mede tensao aplicada a placa peltier.\n");
+	mov	a,#___str_14
+	push	acc
+	mov	a,#(___str_14 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	C$p3main.c$229$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:229: printf_fast_f("3: Testa RAM SPI.\n");
+	mov	a,#___str_15
+	push	acc
+	mov	a,#(___str_15 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	C$p3main.c$230$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:230: printf_fast_f("\n");
+	mov	a,#___str_16
+	push	acc
+	mov	a,#(___str_16 >> 8)
+	push	acc
+	lcall	_printf_fast_f
+	dec	sp
+	dec	sp
+	C$p3main.c$231$1$45 ==.
+	XG$mostra_menu$0$0 ==.
+	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'le_tec'
 ;------------------------------------------------------------
@@ -2348,32 +2418,32 @@ _int_serial:
 ;m                         Allocated to registers 
 ;------------------------------------------------------------
 	G$le_tec$0$0 ==.
-	C$p3main.c$217$1$43 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:217: unsigned char le_tec(void) {
+	C$p3main.c$234$1$45 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:234: unsigned char le_tec(void) {
 ;	-----------------------------------------
 ;	 function le_tec
 ;	-----------------------------------------
 _le_tec:
-	C$p3main.c$219$1$47 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:219: if(P3 != 0xff)
+	C$p3main.c$236$1$47 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:236: if(P3 != 0xff)
 	mov	a,#0xff
 	cjne	a,_P3,00123$
 	sjmp	00102$
 00123$:
-	C$p3main.c$221$2$48 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:221: vp = ~P3;
+	C$p3main.c$238$2$48 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:238: vp = ~P3;
 	mov	a,_P3
 	cpl	a
 	mov	r7,a
-	C$p3main.c$222$1$47 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:222: m = 0;
+	C$p3main.c$239$1$47 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:239: m = 0;
 	sjmp	00113$
 00102$:
-	C$p3main.c$226$1$47 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:226: return 21;
+	C$p3main.c$243$1$47 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:243: return 21;
 	mov	dpl,#0x15
-	C$p3main.c$228$1$47 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:228: while((vp & 0x01)==0 && i<8)
+	C$p3main.c$245$1$47 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:245: while((vp & 0x01)==0 && i<8)
 	sjmp	00108$
 00113$:
 	mov	r6,#0x00
@@ -2383,30 +2453,30 @@ _le_tec:
 	cjne	r6,#0x08,00125$
 00125$:
 	jnc	00107$
-	C$p3main.c$230$2$49 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:230: vp = vp >> 1;
+	C$p3main.c$247$2$49 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:247: vp = vp >> 1;
 	mov	a,r7
 	clr	c
 	rrc	a
 	mov	r7,a
-	C$p3main.c$231$2$49 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:231: i++;
+	C$p3main.c$248$2$49 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:248: i++;
 	inc	r6
 	sjmp	00105$
 00107$:
-	C$p3main.c$234$1$47 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:234: return(i+m*8);
+	C$p3main.c$251$1$47 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:251: return(i+m*8);
 	mov	dpl,r6
 00108$:
-	C$p3main.c$235$1$47 ==.
+	C$p3main.c$252$1$47 ==.
 	XG$le_tec$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'isr_timer2'
 ;------------------------------------------------------------
 	G$isr_timer2$0$0 ==.
-	C$p3main.c$237$1$47 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:237: void isr_timer2() __interrupt 5
+	C$p3main.c$254$1$47 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:254: void isr_timer2() __interrupt 5
 ;	-----------------------------------------
 ;	 function isr_timer2
 ;	-----------------------------------------
@@ -2426,36 +2496,36 @@ _isr_timer2:
 	push	(0+0)
 	push	psw
 	mov	psw,#0x00
-	C$p3main.c$241$1$50 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:241: TF2 = 0; // zera overflow
+	C$p3main.c$258$1$50 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:258: TF2 = 0; // zera overflow
 	clr	_TF2
-	C$p3main.c$243$1$50 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:243: if(P3 == 0xff)
+	C$p3main.c$260$1$50 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:260: if(P3 == 0xff)
 	mov	a,#0xff
 	cjne	a,_P3,00102$
-	C$p3main.c$244$1$50 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:244: estado = 0;
+	C$p3main.c$261$1$50 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:261: estado = 0;
 	mov	_estado,#0x00
 00102$:
-	C$p3main.c$245$1$50 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:245: if(estado == 0)
+	C$p3main.c$262$1$50 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:262: if(estado == 0)
 	mov	a,_estado
 	jnz	00104$
-	C$p3main.c$247$2$51 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:247: tecla = le_tec();
+	C$p3main.c$264$2$51 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:264: tecla = le_tec();
 	lcall	_le_tec
 	mov	_tecla,dpl
 00104$:
-	C$p3main.c$249$1$50 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:249: if(tecla != 21 && estado == 0)
+	C$p3main.c$266$1$50 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:266: if(tecla != 21 && estado == 0)
 	mov	a,#0x15
 	cjne	a,_tecla,00125$
 	sjmp	00108$
 00125$:
 	mov	a,_estado
 	jnz	00108$
-	C$p3main.c$251$2$52 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:251: estado = 1;
+	C$p3main.c$268$2$52 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:268: estado = 1;
 	mov	_estado,#0x01
 00108$:
 	pop	psw
@@ -2472,7 +2542,7 @@ _isr_timer2:
 	pop	b
 	pop	acc
 	pop	bits
-	C$p3main.c$254$1$50 ==.
+	C$p3main.c$271$1$50 ==.
 	XG$isr_timer2$0$0 ==.
 	reti
 ;------------------------------------------------------------
@@ -2483,68 +2553,68 @@ _isr_timer2:
 ;end_H                     Allocated to registers r7 
 ;------------------------------------------------------------
 	G$le_RAM_SPI$0$0 ==.
-	C$p3main.c$257$1$50 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:257: unsigned char le_RAM_SPI(unsigned int end) {
+	C$p3main.c$274$1$50 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:274: unsigned char le_RAM_SPI(unsigned int end) {
 ;	-----------------------------------------
 ;	 function le_RAM_SPI
 ;	-----------------------------------------
 _le_RAM_SPI:
 	mov	r6,dpl
 	mov	r7,dph
-	C$p3main.c$259$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:259: end_L = end;
+	C$p3main.c$276$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:276: end_L = end;
 	mov	ar5,r6
-	C$p3main.c$260$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:260: end_H = end >> 8;
-	C$p3main.c$261$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:261: CS = 0;
+	C$p3main.c$277$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:277: end_H = end >> 8;
+	C$p3main.c$278$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:278: CS = 0;
 	clr	_P2_3
-	C$p3main.c$263$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:263: SPI0DAT = 0x03; //codigo da leitura
+	C$p3main.c$280$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:280: SPI0DAT = 0x03; //codigo da leitura
 	mov	_SPI0DAT,#0x03
-	C$p3main.c$264$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:264: while(!TXBMT);
+	C$p3main.c$281$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:281: while(!TXBMT);
 00101$:
 	jnb	_TXBMT,00101$
-	C$p3main.c$265$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:265: SPI0DAT = end_H;
+	C$p3main.c$282$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:282: SPI0DAT = end_H;
 	mov	_SPI0DAT,r7
-	C$p3main.c$266$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:266: while(!TXBMT);
+	C$p3main.c$283$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:283: while(!TXBMT);
 00104$:
 	jnb	_TXBMT,00104$
-	C$p3main.c$267$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:267: SPI0DAT = end_L;
+	C$p3main.c$284$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:284: SPI0DAT = end_L;
 	mov	_SPI0DAT,r5
-	C$p3main.c$268$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:268: while(!TXBMT);
+	C$p3main.c$285$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:285: while(!TXBMT);
 00107$:
 	jnb	_TXBMT,00107$
-	C$p3main.c$269$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:269: SPI0DAT = 0x00;
+	C$p3main.c$286$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:286: SPI0DAT = 0x00;
 	mov	_SPI0DAT,#0x00
-	C$p3main.c$270$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:270: while(!TXBMT);
+	C$p3main.c$287$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:287: while(!TXBMT);
 00110$:
 	jnb	_TXBMT,00110$
-	C$p3main.c$271$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:271: SPIF = 0;
+	C$p3main.c$288$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:288: SPIF = 0;
 	clr	_SPIF
-	C$p3main.c$272$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:272: while(!SPIF); // espera o t�rmino do deslocamento do �ltimo valor
+	C$p3main.c$289$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:289: while(!SPIF); // espera o t�rmino do deslocamento do �ltimo valor
 00113$:
-	C$p3main.c$273$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:273: SPIF = 0;
+	C$p3main.c$290$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:290: SPIF = 0;
 	jbc	_SPIF,00152$
 	sjmp	00113$
 00152$:
-	C$p3main.c$274$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:274: CS = 1;
+	C$p3main.c$291$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:291: CS = 1;
 	setb	_P2_3
-	C$p3main.c$276$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:276: return (SPI0DAT);   
+	C$p3main.c$293$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:293: return (SPI0DAT);   
 	mov	dpl,_SPI0DAT
-	C$p3main.c$277$1$54 ==.
+	C$p3main.c$294$1$54 ==.
 	XG$le_RAM_SPI$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -2556,65 +2626,65 @@ _le_RAM_SPI:
 ;end_H                     Allocated to registers r7 
 ;------------------------------------------------------------
 	G$esc_RAM_SPI$0$0 ==.
-	C$p3main.c$279$1$54 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:279: void esc_RAM_SPI(unsigned int end, unsigned char dado) {
+	C$p3main.c$296$1$54 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:296: void esc_RAM_SPI(unsigned int end, unsigned char dado) {
 ;	-----------------------------------------
 ;	 function esc_RAM_SPI
 ;	-----------------------------------------
 _esc_RAM_SPI:
 	mov	r6,dpl
 	mov	r7,dph
-	C$p3main.c$281$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:281: end_L = end;
+	C$p3main.c$298$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:298: end_L = end;
 	mov	ar5,r6
-	C$p3main.c$282$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:282: end_H = end >> 8;
-	C$p3main.c$283$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:283: CS = 0;    
+	C$p3main.c$299$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:299: end_H = end >> 8;
+	C$p3main.c$300$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:300: CS = 0;    
 	clr	_P2_3
-	C$p3main.c$285$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:285: SPI0DAT = 0x02; //codigo da escrita
+	C$p3main.c$302$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:302: SPI0DAT = 0x02; //codigo da escrita
 	mov	_SPI0DAT,#0x02
-	C$p3main.c$286$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:286: while(!TXBMT);
+	C$p3main.c$303$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:303: while(!TXBMT);
 00101$:
 	jnb	_TXBMT,00101$
-	C$p3main.c$287$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:287: SPI0DAT = end_H;
+	C$p3main.c$304$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:304: SPI0DAT = end_H;
 	mov	_SPI0DAT,r7
-	C$p3main.c$288$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:288: while(!TXBMT);
+	C$p3main.c$305$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:305: while(!TXBMT);
 00104$:
 	jnb	_TXBMT,00104$
-	C$p3main.c$289$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:289: SPI0DAT = end_L;
+	C$p3main.c$306$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:306: SPI0DAT = end_L;
 	mov	_SPI0DAT,r5
-	C$p3main.c$290$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:290: while(!TXBMT);
+	C$p3main.c$307$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:307: while(!TXBMT);
 00107$:
 	jnb	_TXBMT,00107$
-	C$p3main.c$291$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:291: SPI0DAT = dado;
+	C$p3main.c$308$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:308: SPI0DAT = dado;
 	mov	_SPI0DAT,_esc_RAM_SPI_PARM_2
-	C$p3main.c$292$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:292: while(!TXBMT);
+	C$p3main.c$309$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:309: while(!TXBMT);
 00110$:
 	jnb	_TXBMT,00110$
-	C$p3main.c$293$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:293: SPIF = 0;
+	C$p3main.c$310$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:310: SPIF = 0;
 	clr	_SPIF
-	C$p3main.c$294$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:294: while(!SPIF); // espera o t�rmino do deslocamento do �ltimo valor
+	C$p3main.c$311$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:311: while(!SPIF); // espera o t�rmino do deslocamento do �ltimo valor
 00113$:
-	C$p3main.c$295$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:295: SPIF = 0;
+	C$p3main.c$312$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:312: SPIF = 0;
 	jbc	_SPIF,00152$
 	sjmp	00113$
 00152$:
-	C$p3main.c$296$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:296: CS = 1;
+	C$p3main.c$313$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:313: CS = 1;
 	setb	_P2_3
-	C$p3main.c$297$1$56 ==.
+	C$p3main.c$314$1$56 ==.
 	XG$esc_RAM_SPI$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -2624,23 +2694,23 @@ _esc_RAM_SPI:
 ;error                     Allocated to registers r6 r7 
 ;------------------------------------------------------------
 	G$test_RAM_SPI$0$0 ==.
-	C$p3main.c$299$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:299: void test_RAM_SPI() {
+	C$p3main.c$316$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:316: void test_RAM_SPI() {
 ;	-----------------------------------------
 ;	 function test_RAM_SPI
 ;	-----------------------------------------
 _test_RAM_SPI:
-	C$p3main.c$300$1$56 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:300: unsigned int end, error = 0;
+	C$p3main.c$317$1$56 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:317: unsigned int end, error = 0;
 	mov	r6,#0x00
 	mov	r7,#0x00
-	C$p3main.c$302$2$58 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:302: for (end = 0; end < 8192; end++) {
+	C$p3main.c$319$2$58 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:319: for (end = 0; end < 8192; end++) {
 	mov	r4,#0x00
 	mov	r5,#0x00
 00109$:
-	C$p3main.c$303$1$57 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:303: if (end % 100 == 0)
+	C$p3main.c$320$1$57 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:320: if (end % 100 == 0)
 	mov	__moduint_PARM_2,#0x64
 	mov	(__moduint_PARM_2 + 1),#0x00
 	mov	dpl,r4
@@ -2658,17 +2728,17 @@ _test_RAM_SPI:
 	pop	ar7
 	orl	a,b
 	jnz	00102$
-	C$p3main.c$304$2$58 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:304: printf_fast_f("%05u ", end);
+	C$p3main.c$321$2$58 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:321: printf_fast_f("%05u ", end);
 	push	ar7
 	push	ar6
 	push	ar5
 	push	ar4
 	push	ar4
 	push	ar5
-	mov	a,#___str_15
+	mov	a,#___str_17
 	push	acc
-	mov	a,#(___str_15 >> 8)
+	mov	a,#(___str_17 >> 8)
 	push	acc
 	lcall	_printf_fast_f
 	mov	a,sp
@@ -2679,8 +2749,8 @@ _test_RAM_SPI:
 	pop	ar6
 	pop	ar7
 00102$:
-	C$p3main.c$305$2$58 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:305: esc_RAM_SPI(end, 123);
+	C$p3main.c$322$2$58 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:322: esc_RAM_SPI(end, 123);
 	mov	_esc_RAM_SPI_PARM_2,#0x7b
 	mov	dpl,r4
 	mov	dph,r5
@@ -2691,8 +2761,8 @@ _test_RAM_SPI:
 	lcall	_esc_RAM_SPI
 	pop	ar4
 	pop	ar5
-	C$p3main.c$306$2$58 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:306: if (le_RAM_SPI(end) != 123) {
+	C$p3main.c$323$2$58 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:323: if (le_RAM_SPI(end) != 123) {
 	mov	dpl,r4
 	mov	dph,r5
 	push	ar5
@@ -2706,16 +2776,16 @@ _test_RAM_SPI:
 	cjne	r3,#0x7b,00126$
 	sjmp	00110$
 00126$:
-	C$p3main.c$307$3$59 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:307: error = 1;
+	C$p3main.c$324$3$59 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:324: error = 1;
 	mov	r6,#0x01
 	mov	r7,#0x00
-	C$p3main.c$308$3$59 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:308: break;
+	C$p3main.c$325$3$59 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:325: break;
 	sjmp	00105$
 00110$:
-	C$p3main.c$302$1$57 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:302: for (end = 0; end < 8192; end++) {
+	C$p3main.c$319$1$57 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:319: for (end = 0; end < 8192; end++) {
 	inc	r4
 	cjne	r4,#0x00,00127$
 	inc	r5
@@ -2726,31 +2796,31 @@ _test_RAM_SPI:
 	ljmp	00109$
 00128$:
 00105$:
-	C$p3main.c$312$1$57 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:312: printf_fast_f("\n");
+	C$p3main.c$329$1$57 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:329: printf_fast_f("\n");
 	push	ar7
 	push	ar6
-	mov	a,#___str_10
+	mov	a,#___str_16
 	push	acc
-	mov	a,#(___str_10 >> 8)
+	mov	a,#(___str_16 >> 8)
 	push	acc
 	lcall	_printf_fast_f
 	dec	sp
 	dec	sp
 	pop	ar6
 	pop	ar7
-	C$p3main.c$314$1$57 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:314: if(error)
+	C$p3main.c$331$1$57 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:331: if(error)
 	mov	a,r6
 	orl	a,r7
 	jz	00107$
-	C$p3main.c$315$1$57 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:315: printf_fast_f("Erro end. %05u\n", error);
+	C$p3main.c$332$1$57 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:332: printf_fast_f("Erro end. %05u\n", error);
 	push	ar6
 	push	ar7
-	mov	a,#___str_16
+	mov	a,#___str_18
 	push	acc
-	mov	a,#(___str_16 >> 8)
+	mov	a,#(___str_18 >> 8)
 	push	acc
 	lcall	_printf_fast_f
 	mov	a,sp
@@ -2758,17 +2828,17 @@ _test_RAM_SPI:
 	mov	sp,a
 	sjmp	00111$
 00107$:
-	C$p3main.c$317$1$57 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:317: printf_fast_f("Fim do teste. RAM SPI ok!\n");		
-	mov	a,#___str_17
+	C$p3main.c$334$1$57 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:334: printf_fast_f("Fim do teste. RAM SPI ok!\n");		
+	mov	a,#___str_19
 	push	acc
-	mov	a,#(___str_17 >> 8)
+	mov	a,#(___str_19 >> 8)
 	push	acc
 	lcall	_printf_fast_f
 	dec	sp
 	dec	sp
 00111$:
-	C$p3main.c$318$1$57 ==.
+	C$p3main.c$335$1$57 ==.
 	XG$test_RAM_SPI$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -2778,34 +2848,34 @@ _test_RAM_SPI:
 ;canal                     Allocated to registers r7 
 ;------------------------------------------------------------
 	G$le_ADC0$0$0 ==.
-	C$p3main.c$321$1$57 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:321: unsigned int le_ADC0(unsigned char canal, unsigned char ganho) {
+	C$p3main.c$338$1$57 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:338: unsigned int le_ADC0(unsigned char canal, unsigned char ganho) {
 ;	-----------------------------------------
 ;	 function le_ADC0
 ;	-----------------------------------------
 _le_ADC0:
 	mov	r7,dpl
-	C$p3main.c$322$1$61 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:322: ADC0CF = (ADC0CF & 0xf8) | ganho;
+	C$p3main.c$339$1$61 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:339: ADC0CF = (ADC0CF & 0xf8) | ganho;
 	mov	a,#0xf8
 	anl	a,_ADC0CF
 	orl	a,_le_ADC0_PARM_2
 	mov	_ADC0CF,a
-	C$p3main.c$323$1$61 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:323: AMX0SL = canal;
+	C$p3main.c$340$1$61 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:340: AMX0SL = canal;
 	mov	_AMX0SL,r7
-	C$p3main.c$324$1$61 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:324: AD0BUSY = 1; // fire up AD conversion
+	C$p3main.c$341$1$61 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:341: AD0BUSY = 1; // fire up AD conversion
 	setb	_AD0BUSY
-	C$p3main.c$325$1$61 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:325: NOP();
+	C$p3main.c$342$1$61 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:342: NOP();
 	NOP	
-	C$p3main.c$326$1$61 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:326: while(AD0BUSY); // wait untill conversion is finished
+	C$p3main.c$343$1$61 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:343: while(AD0BUSY); // wait untill conversion is finished
 00101$:
 	jb	_AD0BUSY,00101$
-	C$p3main.c$328$1$61 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:328: return (ADC0H << 8 | ADC0L);
+	C$p3main.c$345$1$61 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:345: return (ADC0H << 8 | ADC0L);
 	mov	r7,_ADC0H
 	mov	r6,#0x00
 	mov	r4,_ADC0L
@@ -2816,7 +2886,7 @@ _le_ADC0:
 	mov	a,r5
 	orl	a,r7
 	mov	dph,a
-	C$p3main.c$330$1$61 ==.
+	C$p3main.c$347$1$61 ==.
 	XG$le_ADC0$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -2825,19 +2895,24 @@ _le_ADC0:
 ;ladc                      Allocated to registers 
 ;------------------------------------------------------------
 	G$le_LM35$0$0 ==.
-	C$p3main.c$333$1$61 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:333: void le_LM35() {
+	C$p3main.c$350$1$61 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:350: void le_LM35() {
 ;	-----------------------------------------
 ;	 function le_LM35
 ;	-----------------------------------------
 _le_LM35:
-	C$p3main.c$334$1$62 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:334: unsigned int ladc = le_ADC0(AIN0_0, G1);
+	C$p3main.c$352$1$62 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:352: le_ADC0(AIN0_0, G1); // ignore first reading (ADC0 channel switching related)
 	mov	_le_ADC0_PARM_2,#0x00
 	mov	dpl,#0x00
 	lcall	_le_ADC0
-	C$p3main.c$335$1$62 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:335: printf_fast_f("Temperatura da placa peltier: %2.1f C\n", (ladc * 0.00059326171875 / 1) * 100);
+	C$p3main.c$353$1$62 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:353: ladc = le_ADC0(AIN0_0, G1);
+	mov	_le_ADC0_PARM_2,#0x00
+	mov	dpl,#0x00
+	lcall	_le_ADC0
+	C$p3main.c$354$1$62 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:354: printf_fast_f("Temperatura da placa peltier: %2.1f C\n", (ladc * 0.00059326171875 / 1) * 100);
 	lcall	___uint2fs
 	mov	r4,dpl
 	mov	r5,dph
@@ -2877,23 +2952,23 @@ _le_LM35:
 	push	ar5
 	push	ar6
 	push	ar7
-	mov	a,#___str_18
+	mov	a,#___str_20
 	push	acc
-	mov	a,#(___str_18 >> 8)
+	mov	a,#(___str_20 >> 8)
 	push	acc
 	lcall	_printf_fast_f
 	mov	a,sp
 	add	a,#0xfa
 	mov	sp,a
-	C$p3main.c$336$1$62 ==.
+	C$p3main.c$355$1$62 ==.
 	XG$le_LM35$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'int_tc1'
 ;------------------------------------------------------------
 	G$int_tc1$0$0 ==.
-	C$p3main.c$339$1$62 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:339: int int_tc1() interrupt 3 { // occurs every 2.62144 ms
+	C$p3main.c$358$1$62 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:358: int int_tc1() interrupt 3 { // occurs every 2.62144 ms
 ;	-----------------------------------------
 ;	 function int_tc1
 ;	-----------------------------------------
@@ -2913,11 +2988,11 @@ _int_tc1:
 	push	(0+0)
 	push	psw
 	mov	psw,#0x00
-	C$p3main.c$340$1$63 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:340: TF1 = 0;
+	C$p3main.c$359$1$63 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:359: TF1 = 0;
 	clr	_TF1
-	C$p3main.c$341$1$63 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:341: counter += 0.00262144;
+	C$p3main.c$360$1$63 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:360: counter += 0.00262144;
 	mov	a,#0x77
 	push	acc
 	mov	a,#0xcc
@@ -2938,14 +3013,13 @@ _int_tc1:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	C$p3main.c$342$1$63 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:342: if (counter > 1) IE1 = 1; // stop reading if pulse width > 1s
+	C$p3main.c$361$1$63 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:361: if (counter > 2) IE1 = 1; // stop reading if pulse width > 2s
 	clr	a
 	push	acc
 	push	acc
-	mov	a,#0x80
 	push	acc
-	mov	a,#0x3f
+	mov	a,#0x40
 	push	acc
 	mov	dpl,_counter
 	mov	dph,(_counter + 1)
@@ -2974,7 +3048,7 @@ _int_tc1:
 	pop	b
 	pop	acc
 	pop	bits
-	C$p3main.c$343$1$63 ==.
+	C$p3main.c$362$1$63 ==.
 	XG$int_tc1$0$0 ==.
 	reti
 ;------------------------------------------------------------
@@ -2983,41 +3057,41 @@ _int_tc1:
 ;t                         Allocated to registers 
 ;------------------------------------------------------------
 	G$le_pulso$0$0 ==.
-	C$p3main.c$345$1$63 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:345: float le_pulso() {
+	C$p3main.c$364$1$63 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:364: float le_pulso() {
 ;	-----------------------------------------
 ;	 function le_pulso
 ;	-----------------------------------------
 _le_pulso:
-	C$p3main.c$348$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:348: while (P0_6);
+	C$p3main.c$367$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:367: while (P0_6);
 00101$:
 	jb	_P0_6,00101$
-	C$p3main.c$350$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:350: counter = 0;
+	C$p3main.c$369$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:369: counter = 0;
 	clr	a
 	mov	_counter,a
 	mov	(_counter + 1),a
 	mov	(_counter + 2),a
 	mov	(_counter + 3),a
-	C$p3main.c$351$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:351: IE1 = 0; // turn off external interrupt 1 flag
+	C$p3main.c$370$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:370: IE1 = 0; // turn off external interrupt 1 flag
 	clr	_IE1
-	C$p3main.c$352$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:352: TR1 = 1; // turn TC1 on, counting while INT1 pin is 1
+	C$p3main.c$371$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:371: TR1 = 1; // turn TC1 on, counting while INT1 pin is 1
 	setb	_TR1
-	C$p3main.c$353$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:353: while(!IE1); // wait for 1->0 trasition to start counting 
+	C$p3main.c$372$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:372: while(!IE1); // wait for 1->0 trasition to start counting 
 00104$:
 	jnb	_IE1,00104$
-	C$p3main.c$354$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:354: TR1 = 0; // turn TC1 on
+	C$p3main.c$373$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:373: TR1 = 0; // turn TC1 on
 	clr	_TR1
-	C$p3main.c$355$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:355: TF1 = 0; // turn off TC1 overflow flag
+	C$p3main.c$374$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:374: TF1 = 0; // turn off TC1 overflow flag
 	clr	_TF1
-	C$p3main.c$356$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:356: t = (unsigned int)TH1 * 256 + (unsigned int)TL1; // concatenates two 8 bit registers	
+	C$p3main.c$375$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:375: t = (unsigned int)TH1 * 256 + (unsigned int)TL1; // concatenates two 8 bit registers	
 	mov	r7,_TH1
 	mov	r6,#0x00
 	mov	r4,_TL1
@@ -3028,16 +3102,16 @@ _le_pulso:
 	mov	a,r5
 	addc	a,r7
 	mov	dph,a
-	C$p3main.c$357$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:357: TL1 = 0;
+	C$p3main.c$376$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:376: TL1 = 0;
 ;	1-genFromRTrack replaced	mov	_TL1,#0x00
 	mov	_TL1,r6
-	C$p3main.c$358$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:358: TH1 = 0;
+	C$p3main.c$377$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:377: TH1 = 0;
 ;	1-genFromRTrack replaced	mov	_TH1,#0x00
 	mov	_TH1,r6
-	C$p3main.c$359$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:359: counter += (float)t / CLOCK; 
+	C$p3main.c$378$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:378: counter += (float)t / CLOCK; 
 	lcall	___uint2fs
 	mov	r4,dpl
 	mov	r5,dph
@@ -3079,13 +3153,13 @@ _le_pulso:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	C$p3main.c$361$1$64 ==.
-;	Z:\9semestre\micap\micap-master\p3\p3main.c:361: return counter;
+	C$p3main.c$380$1$64 ==.
+;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:380: return counter;
 	mov	dpl,_counter
 	mov	dph,(_counter + 1)
 	mov	b,(_counter + 2)
 	mov	a,(_counter + 3)
-	C$p3main.c$362$1$64 ==.
+	C$p3main.c$381$1$64 ==.
 	XG$le_pulso$0$0 ==.
 	ret
 	.area CSEG    (CODE)
@@ -3102,84 +3176,93 @@ ___str_1:
 	.db 0x00
 Fp3main$__str_2$0$0 == .
 ___str_2:
-	.db 0x0a
-	.ascii " MENU:"
-	.db 0x0a
+	.ascii "%d "
 	.db 0x00
 Fp3main$__str_3$0$0 == .
 ___str_3:
-	.ascii "a: Aumenta RPM do motor."
-	.db 0x0a
+	.ascii " "
 	.db 0x00
 Fp3main$__str_4$0$0 == .
 ___str_4:
-	.ascii "d: Diminui RPM do motor."
+	.ascii "Fonte 12V ligada."
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_5$0$0 == .
 ___str_5:
-	.ascii "p: Liga/desliga fonte de energia placa peltier."
+	.ascii "Fonte 12V desligada."
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_6$0$0 == .
 ___str_6:
-	.ascii "r: Mede rotacao do motor."
+	.ascii "Rotacao do motor <= 5"
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_7$0$0 == .
 ___str_7:
-	.ascii "1: Mede temperatura do motor."
+	.ascii "Rotacao do motor: %3.1f"
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_8$0$0 == .
 ___str_8:
-	.ascii "2: Mede tensao aplicada a placa peltier."
+	.db 0x0a
+	.ascii " MENU:"
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_9$0$0 == .
 ___str_9:
-	.ascii "3: Testa RAM SPI."
+	.ascii "a: Aumenta RPM do motor."
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_10$0$0 == .
 ___str_10:
+	.ascii "d: Diminui RPM do motor."
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_11$0$0 == .
 ___str_11:
-	.ascii " "
+	.ascii "p: Liga/desliga fonte de energia placa peltier."
+	.db 0x0a
 	.db 0x00
 Fp3main$__str_12$0$0 == .
 ___str_12:
-	.ascii "Fonte 12V ligada."
+	.ascii "r: Mede rotacao do motor."
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_13$0$0 == .
 ___str_13:
-	.ascii "Fonte 12V desligada."
+	.ascii "1: Mede temperatura do motor."
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_14$0$0 == .
 ___str_14:
-	.ascii "Rotacao do motor: %3.1f"
+	.ascii "2: Mede tensao aplicada a placa peltier."
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_15$0$0 == .
 ___str_15:
-	.ascii "%05u "
+	.ascii "3: Testa RAM SPI."
+	.db 0x0a
 	.db 0x00
 Fp3main$__str_16$0$0 == .
 ___str_16:
-	.ascii "Erro end. %05u"
 	.db 0x0a
 	.db 0x00
 Fp3main$__str_17$0$0 == .
 ___str_17:
-	.ascii "Fim do teste. RAM SPI ok!"
-	.db 0x0a
+	.ascii "%05u "
 	.db 0x00
 Fp3main$__str_18$0$0 == .
 ___str_18:
+	.ascii "Erro end. %05u"
+	.db 0x0a
+	.db 0x00
+Fp3main$__str_19$0$0 == .
+___str_19:
+	.ascii "Fim do teste. RAM SPI ok!"
+	.db 0x0a
+	.db 0x00
+Fp3main$__str_20$0$0 == .
+___str_20:
 	.ascii "Temperatura da placa peltier: %2.1f C"
 	.db 0x0a
 	.db 0x00

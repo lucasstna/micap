@@ -61,12 +61,6 @@ void ADC_Init()
     ADC0CN    = 0x80;
 }
 
-void DAC_Init()
-{
-    SFRPAGE   = DAC0_PAGE;
-    DAC0CN    = 0x80;
-}
-
 void Voltage_Reference_Init()
 {
     SFRPAGE   = ADC0_PAGE;
@@ -144,7 +138,6 @@ void Init_Device(void)
     UART_Init();
     SPI_Init();
     ADC_Init();
-    DAC_Init();
     Voltage_Reference_Init();
     Port_IO_Init();
     Oscillator_Init();

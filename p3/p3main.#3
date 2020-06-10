@@ -37,6 +37,7 @@ unsigned int le_ADC0(unsigned char canal, unsigned char ganho);
 void le_LM35();
 int int_tc1() interrupt 3;
 float le_pulso();
+void mostra_menu();
 
 int main() {
 
@@ -50,8 +51,11 @@ int main() {
 	TR2 = 1;
 	
 	P3 = 0xff;
+	PCA0CPH0 = 6;
 
 	printf_fast_f("Iniciando firmware.\n");
+	mostra_menu();
+	
 
 	while(1){
 
@@ -62,12 +66,13 @@ int main() {
 	            le_LM35();
 	            break;
 
-            // measure peltier module voltage *TESTED*
+            // measure peltier module voltage 
 	        case 2:
+				le_ADC0(AIN0_1, G1); // ignore first reading (ADC0 channel switching related)
 	            printf_fast_f("Tensao aplicada a placa peltier: %3.1fV\n", ((float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1) / 0.1803);
 	            break;
 
-            // test RAM SPI *TESTED*
+            // test RAM SPI 
 	        case 3:
 	            test_RAM_SPI();
 	            break;
@@ -106,33 +111,28 @@ void putchar (char c ) {
 
 // simulates button pressing on P3 and pulse generation on P1_1
 void int_serial(void) __interrupt 4 {
+	float rpm =0;
     if (RI0 == 1) {
         switch (SBUF0) {
 			// show menu
 			case 'm':
-				printf_fast_f("\n MENU:\n");
-				printf_fast_f("a: Aumenta RPM do motor.\n");
-				printf_fast_f("d: Diminui RPM do motor.\n");
-				printf_fast_f("p: Liga/desliga fonte de energia placa peltier.\n");
-				printf_fast_f("r: Mede rotacao do motor.\n");
-				printf_fast_f("1: Mede temperatura do motor.\n");
-				printf_fast_f("2: Mede tensao aplicada a placa peltier.\n");
-				printf_fast_f("3: Testa RAM SPI.\n");
-				printf_fast_f("\n");
+				mostra_menu();
 
 				break;
 
             // decrease motor speed
 	        case 'd':
-	            if (PCA0CPH0 < 255)
-					PCA0CPH0++;
+	            if (PCA0CPH0 < 191)
+					PCA0CPH0 += 5;
+
+				printf("%d ", PCA0CPH0);
 
 	            break;
 
 			// increase motor speed
 	        case 'a':
-	            if (PCA0CPH0 > 0)
-					PCA0CPH0--;
+	            if (PCA0CPH0 > 5)
+					PCA0CPH0 -= 5;
 
 	            break;
 
@@ -151,7 +151,11 @@ void int_serial(void) __interrupt 4 {
 
             // measure motor rotation
 	        case 'r':
-	            printf_fast_f("Rotacao do motor: %3.1f\n",le_pulso(), 30/(le_pulso()*10));
+				rpm = 30/(le_pulso()*10);
+				if (rpm <= 5)
+					printf_fast_f("Rotacao do motor <= 5\n");
+				else
+		            printf_fast_f("Rotacao do motor: %3.1f\n", rpm);
 				break;
             
             // measure motor temperature
@@ -211,6 +215,19 @@ void int_serial(void) __interrupt 4 {
 
         RI0 = 0;
     }
+}
+
+// SHOW MENU OPTIONS
+void mostra_menu() {
+	printf_fast_f("\n MENU:\n");
+	printf_fast_f("a: Aumenta RPM do motor.\n");
+	printf_fast_f("d: Diminui RPM do motor.\n");
+	printf_fast_f("p: Liga/desliga fonte de energia placa peltier.\n");
+	printf_fast_f("r: Mede rotacao do motor.\n");
+	printf_fast_f("1: Mede temperatura do motor.\n");
+	printf_fast_f("2: Mede tensao aplicada a placa peltier.\n");
+	printf_fast_f("3: Testa RAM SPI.\n");
+	printf_fast_f("\n");
 }
 
 // KEYBOARD READING FUNCTIONS
@@ -331,7 +348,9 @@ unsigned int le_ADC0(unsigned char canal, unsigned char ganho) {
 
 // LM35 READING FUNCTION
 void le_LM35() {
-	unsigned int ladc = le_ADC0(AIN0_0, G1);
+	unsigned int ladc;
+	le_ADC0(AIN0_0, G1); // ignore first reading (ADC0 channel switching related)
+	ladc = le_ADC0(AIN0_0, G1);
 	printf_fast_f("Temperatura da placa peltier: %2.1f C\n", (ladc * 0.00059326171875 / 1) * 100);
 }
 
@@ -339,7 +358,7 @@ void le_LM35() {
 int int_tc1() interrupt 3 { // occurs every 2.62144 ms
 	TF1 = 0;
 	counter += 0.00262144;
-	if (counter > 1) IE1 = 1; // stop reading if pulse width > 1s
+	if (counter > 2) IE1 = 1; // stop reading if pulse width > 1s
 }
 
 float le_pulso() {

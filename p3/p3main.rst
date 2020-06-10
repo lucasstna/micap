@@ -16,14 +16,14 @@
                                      16 	.globl _Oscillator_Init
                                      17 	.globl _Port_IO_Init
                                      18 	.globl _Voltage_Reference_Init
-                                     19 	.globl _DAC_Init
-                                     20 	.globl _ADC_Init
-                                     21 	.globl _SPI_Init
-                                     22 	.globl _UART_Init
-                                     23 	.globl _PCA_Init
-                                     24 	.globl _Timer_Init
-                                     25 	.globl _Reset_Sources_Init
-                                     26 	.globl _printf_fast_f
+                                     19 	.globl _ADC_Init
+                                     20 	.globl _SPI_Init
+                                     21 	.globl _UART_Init
+                                     22 	.globl _PCA_Init
+                                     23 	.globl _Timer_Init
+                                     24 	.globl _Reset_Sources_Init
+                                     25 	.globl _printf_fast_f
+                                     26 	.globl _printf
                                      27 	.globl _CANTEST
                                      28 	.globl _CANCCE
                                      29 	.globl _CANDAR
@@ -410,2827 +410,2912 @@
                                     410 	.globl _delay_ms
                                     411 	.globl _putchar
                                     412 	.globl _int_serial
-                                    413 	.globl _le_tec
-                                    414 	.globl _isr_timer2
-                                    415 	.globl _le_RAM_SPI
-                                    416 	.globl _esc_RAM_SPI
-                                    417 	.globl _test_RAM_SPI
-                                    418 	.globl _le_ADC0
-                                    419 	.globl _le_LM35
-                                    420 	.globl _int_tc1
-                                    421 	.globl _le_pulso
-                                    422 ;--------------------------------------------------------
-                                    423 ; special function registers
-                                    424 ;--------------------------------------------------------
-                                    425 	.area RSEG    (ABS,DATA)
-      000000                        426 	.org 0x0000
-                           000080   427 G$P0$0$0 == 0x0080
-                           000080   428 _P0	=	0x0080
-                           000081   429 G$SP$0$0 == 0x0081
-                           000081   430 _SP	=	0x0081
-                           000082   431 G$DPL$0$0 == 0x0082
-                           000082   432 _DPL	=	0x0082
-                           000083   433 G$DPH$0$0 == 0x0083
-                           000083   434 _DPH	=	0x0083
-                           000084   435 G$SFRPAGE$0$0 == 0x0084
-                           000084   436 _SFRPAGE	=	0x0084
-                           000085   437 G$SFRNEXT$0$0 == 0x0085
-                           000085   438 _SFRNEXT	=	0x0085
-                           000086   439 G$SFRLAST$0$0 == 0x0086
-                           000086   440 _SFRLAST	=	0x0086
-                           000087   441 G$PCON$0$0 == 0x0087
-                           000087   442 _PCON	=	0x0087
-                           000088   443 G$TCON$0$0 == 0x0088
-                           000088   444 _TCON	=	0x0088
-                           000088   445 G$CPT0CN$0$0 == 0x0088
-                           000088   446 _CPT0CN	=	0x0088
-                           000088   447 G$CPT1CN$0$0 == 0x0088
-                           000088   448 _CPT1CN	=	0x0088
-                           000088   449 G$CPT2CN$0$0 == 0x0088
-                           000088   450 _CPT2CN	=	0x0088
-                           000089   451 G$TMOD$0$0 == 0x0089
-                           000089   452 _TMOD	=	0x0089
-                           000089   453 G$CPT0MD$0$0 == 0x0089
-                           000089   454 _CPT0MD	=	0x0089
-                           000089   455 G$CPT1MD$0$0 == 0x0089
-                           000089   456 _CPT1MD	=	0x0089
-                           000089   457 G$CPT2MD$0$0 == 0x0089
-                           000089   458 _CPT2MD	=	0x0089
-                           00008A   459 G$TL0$0$0 == 0x008a
-                           00008A   460 _TL0	=	0x008a
-                           00008A   461 G$OSCICN$0$0 == 0x008a
-                           00008A   462 _OSCICN	=	0x008a
-                           00008B   463 G$TL1$0$0 == 0x008b
-                           00008B   464 _TL1	=	0x008b
-                           00008B   465 G$OSCICL$0$0 == 0x008b
-                           00008B   466 _OSCICL	=	0x008b
-                           00008C   467 G$TH0$0$0 == 0x008c
-                           00008C   468 _TH0	=	0x008c
-                           00008C   469 G$OSCXCN$0$0 == 0x008c
-                           00008C   470 _OSCXCN	=	0x008c
-                           00008D   471 G$TH1$0$0 == 0x008d
-                           00008D   472 _TH1	=	0x008d
-                           00008E   473 G$CKCON$0$0 == 0x008e
-                           00008E   474 _CKCON	=	0x008e
-                           00008F   475 G$PSCTL$0$0 == 0x008f
-                           00008F   476 _PSCTL	=	0x008f
-                           000090   477 G$P1$0$0 == 0x0090
-                           000090   478 _P1	=	0x0090
-                           000091   479 G$SSTA0$0$0 == 0x0091
-                           000091   480 _SSTA0	=	0x0091
-                           000096   481 G$SFRPGCN$0$0 == 0x0096
-                           000096   482 _SFRPGCN	=	0x0096
-                           000097   483 G$CLKSEL$0$0 == 0x0097
-                           000097   484 _CLKSEL	=	0x0097
-                           000098   485 G$SCON0$0$0 == 0x0098
-                           000098   486 _SCON0	=	0x0098
-                           000098   487 G$SCON1$0$0 == 0x0098
-                           000098   488 _SCON1	=	0x0098
-                           000099   489 G$SBUF0$0$0 == 0x0099
-                           000099   490 _SBUF0	=	0x0099
-                           000099   491 G$SBUF1$0$0 == 0x0099
-                           000099   492 _SBUF1	=	0x0099
-                           00009A   493 G$SPI0CFG$0$0 == 0x009a
-                           00009A   494 _SPI0CFG	=	0x009a
-                           00009B   495 G$SPI0DAT$0$0 == 0x009b
-                           00009B   496 _SPI0DAT	=	0x009b
-                           00009C   497 G$P4MDOUT$0$0 == 0x009c
-                           00009C   498 _P4MDOUT	=	0x009c
-                           00009D   499 G$SPI0CKR$0$0 == 0x009d
-                           00009D   500 _SPI0CKR	=	0x009d
-                           00009D   501 G$P5MDOUT$0$0 == 0x009d
-                           00009D   502 _P5MDOUT	=	0x009d
-                           00009E   503 G$P6MDOUT$0$0 == 0x009e
-                           00009E   504 _P6MDOUT	=	0x009e
-                           00009F   505 G$P7MDOUT$0$0 == 0x009f
-                           00009F   506 _P7MDOUT	=	0x009f
-                           0000A0   507 G$P2$0$0 == 0x00a0
-                           0000A0   508 _P2	=	0x00a0
-                           0000A1   509 G$EMI0TC$0$0 == 0x00a1
-                           0000A1   510 _EMI0TC	=	0x00a1
-                           0000A2   511 G$EMI0CN$0$0 == 0x00a2
-                           0000A2   512 _EMI0CN	=	0x00a2
-                           0000A3   513 G$EMI0CF$0$0 == 0x00a3
-                           0000A3   514 _EMI0CF	=	0x00a3
-                           0000A4   515 G$P0MDOUT$0$0 == 0x00a4
-                           0000A4   516 _P0MDOUT	=	0x00a4
-                           0000A5   517 G$P1MDOUT$0$0 == 0x00a5
-                           0000A5   518 _P1MDOUT	=	0x00a5
-                           0000A6   519 G$P2MDOUT$0$0 == 0x00a6
-                           0000A6   520 _P2MDOUT	=	0x00a6
-                           0000A7   521 G$P3MDOUT$0$0 == 0x00a7
-                           0000A7   522 _P3MDOUT	=	0x00a7
-                           0000A8   523 G$IE$0$0 == 0x00a8
-                           0000A8   524 _IE	=	0x00a8
-                           0000A9   525 G$SADDR0$0$0 == 0x00a9
-                           0000A9   526 _SADDR0	=	0x00a9
-                           0000A9   527 G$SADDR1$0$0 == 0x00a9
-                           0000A9   528 _SADDR1	=	0x00a9
-                           0000AD   529 G$P1MDIN$0$0 == 0x00ad
-                           0000AD   530 _P1MDIN	=	0x00ad
-                           0000AE   531 G$P2MDIN$0$0 == 0x00ae
-                           0000AE   532 _P2MDIN	=	0x00ae
-                           0000AF   533 G$P3MDIN$0$0 == 0x00af
-                           0000AF   534 _P3MDIN	=	0x00af
-                           0000B0   535 G$P3$0$0 == 0x00b0
-                           0000B0   536 _P3	=	0x00b0
-                           0000B7   537 G$FLSCL$0$0 == 0x00b7
-                           0000B7   538 _FLSCL	=	0x00b7
-                           0000B7   539 G$FLACL$0$0 == 0x00b7
-                           0000B7   540 _FLACL	=	0x00b7
-                           0000B8   541 G$IP$0$0 == 0x00b8
-                           0000B8   542 _IP	=	0x00b8
-                           0000B9   543 G$SADEN0$0$0 == 0x00b9
-                           0000B9   544 _SADEN0	=	0x00b9
-                           0000BA   545 G$AMX2CF$0$0 == 0x00ba
-                           0000BA   546 _AMX2CF	=	0x00ba
-                           0000BD   547 G$AMX0PRT$0$0 == 0x00bd
-                           0000BD   548 _AMX0PRT	=	0x00bd
-                           0000BA   549 G$AMX0CF$0$0 == 0x00ba
-                           0000BA   550 _AMX0CF	=	0x00ba
-                           0000BB   551 G$AMX0SL$0$0 == 0x00bb
-                           0000BB   552 _AMX0SL	=	0x00bb
-                           0000BB   553 G$AMX2SL$0$0 == 0x00bb
-                           0000BB   554 _AMX2SL	=	0x00bb
-                           0000BC   555 G$ADC0CF$0$0 == 0x00bc
-                           0000BC   556 _ADC0CF	=	0x00bc
-                           0000BC   557 G$ADC2CF$0$0 == 0x00bc
-                           0000BC   558 _ADC2CF	=	0x00bc
-                           0000BE   559 G$ADC0L$0$0 == 0x00be
-                           0000BE   560 _ADC0L	=	0x00be
-                           0000BE   561 G$ADC2$0$0 == 0x00be
-                           0000BE   562 _ADC2	=	0x00be
-                           0000BF   563 G$ADC0H$0$0 == 0x00bf
-                           0000BF   564 _ADC0H	=	0x00bf
-                           0000C0   565 G$SMB0CN$0$0 == 0x00c0
-                           0000C0   566 _SMB0CN	=	0x00c0
-                           0000C0   567 G$CAN0STA$0$0 == 0x00c0
-                           0000C0   568 _CAN0STA	=	0x00c0
-                           0000C1   569 G$SMB0STA$0$0 == 0x00c1
-                           0000C1   570 _SMB0STA	=	0x00c1
-                           0000C2   571 G$SMB0DAT$0$0 == 0x00c2
-                           0000C2   572 _SMB0DAT	=	0x00c2
-                           0000C3   573 G$SMB0ADR$0$0 == 0x00c3
-                           0000C3   574 _SMB0ADR	=	0x00c3
-                           0000C4   575 G$ADC0GTL$0$0 == 0x00c4
-                           0000C4   576 _ADC0GTL	=	0x00c4
-                           0000C4   577 G$ADC2GT$0$0 == 0x00c4
-                           0000C4   578 _ADC2GT	=	0x00c4
-                           0000C5   579 G$ADC0GTH$0$0 == 0x00c5
-                           0000C5   580 _ADC0GTH	=	0x00c5
-                           0000C6   581 G$ADC0LTL$0$0 == 0x00c6
-                           0000C6   582 _ADC0LTL	=	0x00c6
-                           0000C6   583 G$ADC2LT$0$0 == 0x00c6
-                           0000C6   584 _ADC2LT	=	0x00c6
-                           0000C7   585 G$ADC0LTH$0$0 == 0x00c7
-                           0000C7   586 _ADC0LTH	=	0x00c7
-                           0000C8   587 G$TMR2CN$0$0 == 0x00c8
-                           0000C8   588 _TMR2CN	=	0x00c8
-                           0000C8   589 G$TMR3CN$0$0 == 0x00c8
-                           0000C8   590 _TMR3CN	=	0x00c8
-                           0000C8   591 G$TMR4CN$0$0 == 0x00c8
-                           0000C8   592 _TMR4CN	=	0x00c8
-                           0000C8   593 G$P4$0$0 == 0x00c8
-                           0000C8   594 _P4	=	0x00c8
-                           0000C9   595 G$TMR2CF$0$0 == 0x00c9
-                           0000C9   596 _TMR2CF	=	0x00c9
-                           0000C9   597 G$TMR3CF$0$0 == 0x00c9
-                           0000C9   598 _TMR3CF	=	0x00c9
-                           0000C9   599 G$TMR4CF$0$0 == 0x00c9
-                           0000C9   600 _TMR4CF	=	0x00c9
-                           0000CA   601 G$RCAP2L$0$0 == 0x00ca
-                           0000CA   602 _RCAP2L	=	0x00ca
-                           0000CA   603 G$RCAP3L$0$0 == 0x00ca
-                           0000CA   604 _RCAP3L	=	0x00ca
-                           0000CA   605 G$RCAP4L$0$0 == 0x00ca
-                           0000CA   606 _RCAP4L	=	0x00ca
-                           0000CB   607 G$RCAP2H$0$0 == 0x00cb
-                           0000CB   608 _RCAP2H	=	0x00cb
-                           0000CB   609 G$RCAP3H$0$0 == 0x00cb
-                           0000CB   610 _RCAP3H	=	0x00cb
-                           0000CB   611 G$RCAP4H$0$0 == 0x00cb
-                           0000CB   612 _RCAP4H	=	0x00cb
-                           0000CC   613 G$TMR2L$0$0 == 0x00cc
-                           0000CC   614 _TMR2L	=	0x00cc
-                           0000CC   615 G$TMR3L$0$0 == 0x00cc
-                           0000CC   616 _TMR3L	=	0x00cc
-                           0000CC   617 G$TMR4L$0$0 == 0x00cc
-                           0000CC   618 _TMR4L	=	0x00cc
-                           0000CD   619 G$TMR2H$0$0 == 0x00cd
-                           0000CD   620 _TMR2H	=	0x00cd
-                           0000CD   621 G$TMR3H$0$0 == 0x00cd
-                           0000CD   622 _TMR3H	=	0x00cd
-                           0000CD   623 G$TMR4H$0$0 == 0x00cd
-                           0000CD   624 _TMR4H	=	0x00cd
-                           0000CF   625 G$SMB0CR$0$0 == 0x00cf
-                           0000CF   626 _SMB0CR	=	0x00cf
-                           0000D0   627 G$PSW$0$0 == 0x00d0
-                           0000D0   628 _PSW	=	0x00d0
-                           0000D1   629 G$REF0CN$0$0 == 0x00d1
-                           0000D1   630 _REF0CN	=	0x00d1
-                           0000D2   631 G$DAC0L$0$0 == 0x00d2
-                           0000D2   632 _DAC0L	=	0x00d2
-                           0000D2   633 G$DAC1L$0$0 == 0x00d2
-                           0000D2   634 _DAC1L	=	0x00d2
-                           0000D3   635 G$DAC0H$0$0 == 0x00d3
-                           0000D3   636 _DAC0H	=	0x00d3
-                           0000D3   637 G$DAC1H$0$0 == 0x00d3
-                           0000D3   638 _DAC1H	=	0x00d3
-                           0000D4   639 G$DAC0CN$0$0 == 0x00d4
-                           0000D4   640 _DAC0CN	=	0x00d4
-                           0000D4   641 G$DAC1CN$0$0 == 0x00d4
-                           0000D4   642 _DAC1CN	=	0x00d4
-                           0000D6   643 G$HVA0CN$0$0 == 0x00d6
-                           0000D6   644 _HVA0CN	=	0x00d6
-                           0000D8   645 G$PCA0CN$0$0 == 0x00d8
-                           0000D8   646 _PCA0CN	=	0x00d8
-                           0000D8   647 G$CAN0DATL$0$0 == 0x00d8
-                           0000D8   648 _CAN0DATL	=	0x00d8
-                           0000D8   649 G$P5$0$0 == 0x00d8
-                           0000D8   650 _P5	=	0x00d8
-                           0000D9   651 G$PCA0MD$0$0 == 0x00d9
-                           0000D9   652 _PCA0MD	=	0x00d9
-                           0000D9   653 G$CAN0DATH$0$0 == 0x00d9
-                           0000D9   654 _CAN0DATH	=	0x00d9
-                           0000DA   655 G$PCA0CPM0$0$0 == 0x00da
-                           0000DA   656 _PCA0CPM0	=	0x00da
-                           0000DA   657 G$CAN0ADR$0$0 == 0x00da
-                           0000DA   658 _CAN0ADR	=	0x00da
-                           0000DB   659 G$PCA0CPM1$0$0 == 0x00db
-                           0000DB   660 _PCA0CPM1	=	0x00db
-                           0000DB   661 G$CAN0TST$0$0 == 0x00db
-                           0000DB   662 _CAN0TST	=	0x00db
-                           0000DC   663 G$PCA0CPM2$0$0 == 0x00dc
-                           0000DC   664 _PCA0CPM2	=	0x00dc
-                           0000DD   665 G$PCA0CPM3$0$0 == 0x00dd
-                           0000DD   666 _PCA0CPM3	=	0x00dd
-                           0000DE   667 G$PCA0CPM4$0$0 == 0x00de
-                           0000DE   668 _PCA0CPM4	=	0x00de
-                           0000DF   669 G$PCA0CPM5$0$0 == 0x00df
-                           0000DF   670 _PCA0CPM5	=	0x00df
-                           0000E0   671 G$ACC$0$0 == 0x00e0
-                           0000E0   672 _ACC	=	0x00e0
-                           0000E1   673 G$PCA0CPL5$0$0 == 0x00e1
-                           0000E1   674 _PCA0CPL5	=	0x00e1
-                           0000E1   675 G$XBR0$0$0 == 0x00e1
-                           0000E1   676 _XBR0	=	0x00e1
-                           0000E2   677 G$PCA0CPH5$0$0 == 0x00e2
-                           0000E2   678 _PCA0CPH5	=	0x00e2
-                           0000E2   679 G$XBR1$0$0 == 0x00e2
-                           0000E2   680 _XBR1	=	0x00e2
-                           0000E3   681 G$XBR2$0$0 == 0x00e3
-                           0000E3   682 _XBR2	=	0x00e3
-                           0000E4   683 G$XBR3$0$0 == 0x00e4
-                           0000E4   684 _XBR3	=	0x00e4
-                           0000E6   685 G$EIE1$0$0 == 0x00e6
-                           0000E6   686 _EIE1	=	0x00e6
-                           0000E7   687 G$EIE2$0$0 == 0x00e7
-                           0000E7   688 _EIE2	=	0x00e7
-                           0000E8   689 G$ADC0CN$0$0 == 0x00e8
-                           0000E8   690 _ADC0CN	=	0x00e8
-                           0000E8   691 G$ADC2CN$0$0 == 0x00e8
-                           0000E8   692 _ADC2CN	=	0x00e8
-                           0000E8   693 G$P6$0$0 == 0x00e8
-                           0000E8   694 _P6	=	0x00e8
-                           0000E9   695 G$PCA0CPL2$0$0 == 0x00e9
-                           0000E9   696 _PCA0CPL2	=	0x00e9
-                           0000EA   697 G$PCA0CPH2$0$0 == 0x00ea
-                           0000EA   698 _PCA0CPH2	=	0x00ea
-                           0000EB   699 G$PCA0CPL3$0$0 == 0x00eb
-                           0000EB   700 _PCA0CPL3	=	0x00eb
-                           0000EC   701 G$PCA0CPH3$0$0 == 0x00ec
-                           0000EC   702 _PCA0CPH3	=	0x00ec
-                           0000ED   703 G$PCA0CPL4$0$0 == 0x00ed
-                           0000ED   704 _PCA0CPL4	=	0x00ed
-                           0000EE   705 G$PCA0CPH4$0$0 == 0x00ee
-                           0000EE   706 _PCA0CPH4	=	0x00ee
-                           0000EF   707 G$RSTSRC$0$0 == 0x00ef
-                           0000EF   708 _RSTSRC	=	0x00ef
-                           0000F0   709 G$B$0$0 == 0x00f0
-                           0000F0   710 _B	=	0x00f0
-                           0000F6   711 G$EIP1$0$0 == 0x00f6
-                           0000F6   712 _EIP1	=	0x00f6
-                           0000F7   713 G$EIP2$0$0 == 0x00f7
-                           0000F7   714 _EIP2	=	0x00f7
-                           0000F8   715 G$SPI0CN$0$0 == 0x00f8
-                           0000F8   716 _SPI0CN	=	0x00f8
-                           0000F8   717 G$CAN0CN$0$0 == 0x00f8
-                           0000F8   718 _CAN0CN	=	0x00f8
-                           0000F8   719 G$P7$0$0 == 0x00f8
-                           0000F8   720 _P7	=	0x00f8
-                           0000F9   721 G$PCA0L$0$0 == 0x00f9
-                           0000F9   722 _PCA0L	=	0x00f9
-                           0000FA   723 G$PCA0H$0$0 == 0x00fa
-                           0000FA   724 _PCA0H	=	0x00fa
-                           0000FB   725 G$PCA0CPL0$0$0 == 0x00fb
-                           0000FB   726 _PCA0CPL0	=	0x00fb
-                           0000FC   727 G$PCA0CPH0$0$0 == 0x00fc
-                           0000FC   728 _PCA0CPH0	=	0x00fc
-                           0000FD   729 G$PCA0CPL1$0$0 == 0x00fd
-                           0000FD   730 _PCA0CPL1	=	0x00fd
-                           0000FE   731 G$PCA0CPH1$0$0 == 0x00fe
-                           0000FE   732 _PCA0CPH1	=	0x00fe
-                           0000FF   733 G$WDTCN$0$0 == 0x00ff
-                           0000FF   734 _WDTCN	=	0x00ff
-                           00FAF9   735 G$PCA0$0$0 == 0xfaf9
-                           00FAF9   736 _PCA0	=	0xfaf9
-                           00FCFB   737 G$PCA0CP0$0$0 == 0xfcfb
-                           00FCFB   738 _PCA0CP0	=	0xfcfb
-                           00FEFD   739 G$PCA0CP1$0$0 == 0xfefd
-                           00FEFD   740 _PCA0CP1	=	0xfefd
-                           00EAE9   741 G$PCA0CP2$0$0 == 0xeae9
-                           00EAE9   742 _PCA0CP2	=	0xeae9
-                           00ECEB   743 G$PCA0CP3$0$0 == 0xeceb
-                           00ECEB   744 _PCA0CP3	=	0xeceb
-                           00EEED   745 G$PCA0CP4$0$0 == 0xeeed
-                           00EEED   746 _PCA0CP4	=	0xeeed
-                           00E2E1   747 G$PCA0CP5$0$0 == 0xe2e1
-                           00E2E1   748 _PCA0CP5	=	0xe2e1
-                           00D9D8   749 G$CAN0DAT$0$0 == 0xd9d8
-                           00D9D8   750 _CAN0DAT	=	0xd9d8
-                           00D3D2   751 G$DAC0$0$0 == 0xd3d2
-                           00D3D2   752 _DAC0	=	0xd3d2
-                           00D3D2   753 G$DAC1$0$0 == 0xd3d2
-                           00D3D2   754 _DAC1	=	0xd3d2
-                           00CBCA   755 G$RCAP2$0$0 == 0xcbca
-                           00CBCA   756 _RCAP2	=	0xcbca
-                           00CBCA   757 G$RCAP3$0$0 == 0xcbca
-                           00CBCA   758 _RCAP3	=	0xcbca
-                           00CBCA   759 G$RCAP4$0$0 == 0xcbca
-                           00CBCA   760 _RCAP4	=	0xcbca
-                           00CDCC   761 G$TMR2$0$0 == 0xcdcc
-                           00CDCC   762 _TMR2	=	0xcdcc
-                           00CDCC   763 G$TMR3$0$0 == 0xcdcc
-                           00CDCC   764 _TMR3	=	0xcdcc
-                           00CDCC   765 G$TMR4$0$0 == 0xcdcc
-                           00CDCC   766 _TMR4	=	0xcdcc
-                           00C5C4   767 G$ADC0GT$0$0 == 0xc5c4
-                           00C5C4   768 _ADC0GT	=	0xc5c4
-                           00C7C6   769 G$ADC0LT$0$0 == 0xc7c6
-                           00C7C6   770 _ADC0LT	=	0xc7c6
-                           00BFBE   771 G$ADC0$0$0 == 0xbfbe
-                           00BFBE   772 _ADC0	=	0xbfbe
-                           008382   773 G$DP$0$0 == 0x8382
-                           008382   774 _DP	=	0x8382
-                                    775 ;--------------------------------------------------------
-                                    776 ; special function bits
-                                    777 ;--------------------------------------------------------
-                                    778 	.area RSEG    (ABS,DATA)
-      000000                        779 	.org 0x0000
-                           000080   780 G$P0_0$0$0 == 0x0080
-                           000080   781 _P0_0	=	0x0080
-                           000081   782 G$P0_1$0$0 == 0x0081
-                           000081   783 _P0_1	=	0x0081
-                           000082   784 G$P0_2$0$0 == 0x0082
-                           000082   785 _P0_2	=	0x0082
-                           000083   786 G$P0_3$0$0 == 0x0083
-                           000083   787 _P0_3	=	0x0083
-                           000084   788 G$P0_4$0$0 == 0x0084
-                           000084   789 _P0_4	=	0x0084
-                           000085   790 G$P0_5$0$0 == 0x0085
-                           000085   791 _P0_5	=	0x0085
-                           000086   792 G$P0_6$0$0 == 0x0086
-                           000086   793 _P0_6	=	0x0086
-                           000087   794 G$P0_7$0$0 == 0x0087
-                           000087   795 _P0_7	=	0x0087
-                           000090   796 G$P1_0$0$0 == 0x0090
-                           000090   797 _P1_0	=	0x0090
-                           000091   798 G$P1_1$0$0 == 0x0091
-                           000091   799 _P1_1	=	0x0091
-                           000092   800 G$P1_2$0$0 == 0x0092
-                           000092   801 _P1_2	=	0x0092
-                           000093   802 G$P1_3$0$0 == 0x0093
-                           000093   803 _P1_3	=	0x0093
-                           000094   804 G$P1_4$0$0 == 0x0094
-                           000094   805 _P1_4	=	0x0094
-                           000095   806 G$P1_5$0$0 == 0x0095
-                           000095   807 _P1_5	=	0x0095
-                           000096   808 G$P1_6$0$0 == 0x0096
-                           000096   809 _P1_6	=	0x0096
-                           000097   810 G$P1_7$0$0 == 0x0097
-                           000097   811 _P1_7	=	0x0097
-                           0000A0   812 G$P2_0$0$0 == 0x00a0
-                           0000A0   813 _P2_0	=	0x00a0
-                           0000A1   814 G$P2_1$0$0 == 0x00a1
-                           0000A1   815 _P2_1	=	0x00a1
-                           0000A2   816 G$P2_2$0$0 == 0x00a2
-                           0000A2   817 _P2_2	=	0x00a2
-                           0000A3   818 G$P2_3$0$0 == 0x00a3
-                           0000A3   819 _P2_3	=	0x00a3
-                           0000A4   820 G$P2_4$0$0 == 0x00a4
-                           0000A4   821 _P2_4	=	0x00a4
-                           0000A5   822 G$P2_5$0$0 == 0x00a5
-                           0000A5   823 _P2_5	=	0x00a5
-                           0000A6   824 G$P2_6$0$0 == 0x00a6
-                           0000A6   825 _P2_6	=	0x00a6
-                           0000A7   826 G$P2_7$0$0 == 0x00a7
-                           0000A7   827 _P2_7	=	0x00a7
-                           0000B0   828 G$P3_0$0$0 == 0x00b0
-                           0000B0   829 _P3_0	=	0x00b0
-                           0000B1   830 G$P3_1$0$0 == 0x00b1
-                           0000B1   831 _P3_1	=	0x00b1
-                           0000B2   832 G$P3_2$0$0 == 0x00b2
-                           0000B2   833 _P3_2	=	0x00b2
-                           0000B3   834 G$P3_3$0$0 == 0x00b3
-                           0000B3   835 _P3_3	=	0x00b3
-                           0000B4   836 G$P3_4$0$0 == 0x00b4
-                           0000B4   837 _P3_4	=	0x00b4
-                           0000B5   838 G$P3_5$0$0 == 0x00b5
-                           0000B5   839 _P3_5	=	0x00b5
-                           0000B6   840 G$P3_6$0$0 == 0x00b6
-                           0000B6   841 _P3_6	=	0x00b6
-                           0000B7   842 G$P3_7$0$0 == 0x00b7
-                           0000B7   843 _P3_7	=	0x00b7
-                           0000C8   844 G$P4_0$0$0 == 0x00c8
-                           0000C8   845 _P4_0	=	0x00c8
-                           0000C9   846 G$P4_1$0$0 == 0x00c9
-                           0000C9   847 _P4_1	=	0x00c9
-                           0000CA   848 G$P4_2$0$0 == 0x00ca
-                           0000CA   849 _P4_2	=	0x00ca
-                           0000CB   850 G$P4_3$0$0 == 0x00cb
-                           0000CB   851 _P4_3	=	0x00cb
-                           0000CC   852 G$P4_4$0$0 == 0x00cc
-                           0000CC   853 _P4_4	=	0x00cc
-                           0000CD   854 G$P4_5$0$0 == 0x00cd
-                           0000CD   855 _P4_5	=	0x00cd
-                           0000CE   856 G$P4_6$0$0 == 0x00ce
-                           0000CE   857 _P4_6	=	0x00ce
-                           0000CF   858 G$P4_7$0$0 == 0x00cf
-                           0000CF   859 _P4_7	=	0x00cf
-                           0000D8   860 G$P5_0$0$0 == 0x00d8
-                           0000D8   861 _P5_0	=	0x00d8
-                           0000D9   862 G$P5_1$0$0 == 0x00d9
-                           0000D9   863 _P5_1	=	0x00d9
-                           0000DA   864 G$P5_2$0$0 == 0x00da
-                           0000DA   865 _P5_2	=	0x00da
-                           0000DB   866 G$P5_3$0$0 == 0x00db
-                           0000DB   867 _P5_3	=	0x00db
-                           0000DC   868 G$P5_4$0$0 == 0x00dc
-                           0000DC   869 _P5_4	=	0x00dc
-                           0000DD   870 G$P5_5$0$0 == 0x00dd
-                           0000DD   871 _P5_5	=	0x00dd
-                           0000DE   872 G$P5_6$0$0 == 0x00de
-                           0000DE   873 _P5_6	=	0x00de
-                           0000DF   874 G$P5_7$0$0 == 0x00df
-                           0000DF   875 _P5_7	=	0x00df
-                           0000E8   876 G$P6_0$0$0 == 0x00e8
-                           0000E8   877 _P6_0	=	0x00e8
-                           0000E9   878 G$P6_1$0$0 == 0x00e9
-                           0000E9   879 _P6_1	=	0x00e9
-                           0000EA   880 G$P6_2$0$0 == 0x00ea
-                           0000EA   881 _P6_2	=	0x00ea
-                           0000EB   882 G$P6_3$0$0 == 0x00eb
-                           0000EB   883 _P6_3	=	0x00eb
-                           0000EC   884 G$P6_4$0$0 == 0x00ec
-                           0000EC   885 _P6_4	=	0x00ec
-                           0000ED   886 G$P6_5$0$0 == 0x00ed
-                           0000ED   887 _P6_5	=	0x00ed
-                           0000EE   888 G$P6_6$0$0 == 0x00ee
-                           0000EE   889 _P6_6	=	0x00ee
-                           0000EF   890 G$P6_7$0$0 == 0x00ef
-                           0000EF   891 _P6_7	=	0x00ef
-                           0000F8   892 G$P7_0$0$0 == 0x00f8
-                           0000F8   893 _P7_0	=	0x00f8
-                           0000F9   894 G$P7_1$0$0 == 0x00f9
-                           0000F9   895 _P7_1	=	0x00f9
-                           0000FA   896 G$P7_2$0$0 == 0x00fa
-                           0000FA   897 _P7_2	=	0x00fa
-                           0000FB   898 G$P7_3$0$0 == 0x00fb
-                           0000FB   899 _P7_3	=	0x00fb
-                           0000FC   900 G$P7_4$0$0 == 0x00fc
-                           0000FC   901 _P7_4	=	0x00fc
-                           0000FD   902 G$P7_5$0$0 == 0x00fd
-                           0000FD   903 _P7_5	=	0x00fd
-                           0000FE   904 G$P7_6$0$0 == 0x00fe
-                           0000FE   905 _P7_6	=	0x00fe
-                           0000FF   906 G$P7_7$0$0 == 0x00ff
-                           0000FF   907 _P7_7	=	0x00ff
-                           00008F   908 G$TF1$0$0 == 0x008f
-                           00008F   909 _TF1	=	0x008f
-                           00008E   910 G$TR1$0$0 == 0x008e
-                           00008E   911 _TR1	=	0x008e
-                           00008D   912 G$TF0$0$0 == 0x008d
-                           00008D   913 _TF0	=	0x008d
-                           00008C   914 G$TR0$0$0 == 0x008c
-                           00008C   915 _TR0	=	0x008c
-                           00008B   916 G$IE1$0$0 == 0x008b
-                           00008B   917 _IE1	=	0x008b
-                           00008A   918 G$IT1$0$0 == 0x008a
-                           00008A   919 _IT1	=	0x008a
-                           000089   920 G$IE0$0$0 == 0x0089
-                           000089   921 _IE0	=	0x0089
-                           000088   922 G$IT0$0$0 == 0x0088
-                           000088   923 _IT0	=	0x0088
-                           00008F   924 G$CP0EN$0$0 == 0x008f
-                           00008F   925 _CP0EN	=	0x008f
-                           00008E   926 G$CP0OUT$0$0 == 0x008e
-                           00008E   927 _CP0OUT	=	0x008e
-                           00008D   928 G$CP0RIF$0$0 == 0x008d
-                           00008D   929 _CP0RIF	=	0x008d
-                           00008C   930 G$CP0FIF$0$0 == 0x008c
-                           00008C   931 _CP0FIF	=	0x008c
-                           00008B   932 G$CP0HYP1$0$0 == 0x008b
-                           00008B   933 _CP0HYP1	=	0x008b
-                           00008A   934 G$CP0HYP0$0$0 == 0x008a
-                           00008A   935 _CP0HYP0	=	0x008a
-                           000089   936 G$CP0HYN1$0$0 == 0x0089
-                           000089   937 _CP0HYN1	=	0x0089
-                           000088   938 G$CP0HYN0$0$0 == 0x0088
-                           000088   939 _CP0HYN0	=	0x0088
-                           00008F   940 G$CP1EN$0$0 == 0x008f
-                           00008F   941 _CP1EN	=	0x008f
-                           00008E   942 G$CP1OUT$0$0 == 0x008e
-                           00008E   943 _CP1OUT	=	0x008e
-                           00008D   944 G$CP1RIF$0$0 == 0x008d
-                           00008D   945 _CP1RIF	=	0x008d
-                           00008C   946 G$CP1FIF$0$0 == 0x008c
-                           00008C   947 _CP1FIF	=	0x008c
-                           00008B   948 G$CP1HYP1$0$0 == 0x008b
-                           00008B   949 _CP1HYP1	=	0x008b
-                           00008A   950 G$CP1HYP0$0$0 == 0x008a
-                           00008A   951 _CP1HYP0	=	0x008a
-                           000089   952 G$CP1HYN1$0$0 == 0x0089
-                           000089   953 _CP1HYN1	=	0x0089
-                           000088   954 G$CP1HYN0$0$0 == 0x0088
-                           000088   955 _CP1HYN0	=	0x0088
-                           00008F   956 G$CP2EN$0$0 == 0x008f
-                           00008F   957 _CP2EN	=	0x008f
-                           00008E   958 G$CP2OUT$0$0 == 0x008e
-                           00008E   959 _CP2OUT	=	0x008e
-                           00008D   960 G$CP2RIF$0$0 == 0x008d
-                           00008D   961 _CP2RIF	=	0x008d
-                           00008C   962 G$CP2FIF$0$0 == 0x008c
-                           00008C   963 _CP2FIF	=	0x008c
-                           00008B   964 G$CP2HYP1$0$0 == 0x008b
-                           00008B   965 _CP2HYP1	=	0x008b
-                           00008A   966 G$CP2HYP0$0$0 == 0x008a
-                           00008A   967 _CP2HYP0	=	0x008a
-                           000089   968 G$CP2HYN1$0$0 == 0x0089
-                           000089   969 _CP2HYN1	=	0x0089
-                           000088   970 G$CP2HYN0$0$0 == 0x0088
-                           000088   971 _CP2HYN0	=	0x0088
-                           00009F   972 G$SM00$0$0 == 0x009f
-                           00009F   973 _SM00	=	0x009f
-                           00009E   974 G$SM10$0$0 == 0x009e
-                           00009E   975 _SM10	=	0x009e
-                           00009D   976 G$SM20$0$0 == 0x009d
-                           00009D   977 _SM20	=	0x009d
-                           00009C   978 G$REN0$0$0 == 0x009c
-                           00009C   979 _REN0	=	0x009c
-                           00009B   980 G$TB80$0$0 == 0x009b
-                           00009B   981 _TB80	=	0x009b
-                           00009A   982 G$RB80$0$0 == 0x009a
-                           00009A   983 _RB80	=	0x009a
-                           000099   984 G$TI0$0$0 == 0x0099
-                           000099   985 _TI0	=	0x0099
-                           000098   986 G$RI0$0$0 == 0x0098
-                           000098   987 _RI0	=	0x0098
-                           00009F   988 G$S1MODE$0$0 == 0x009f
-                           00009F   989 _S1MODE	=	0x009f
-                           00009D   990 G$MCE1$0$0 == 0x009d
-                           00009D   991 _MCE1	=	0x009d
-                           00009C   992 G$REN1$0$0 == 0x009c
-                           00009C   993 _REN1	=	0x009c
-                           00009B   994 G$TB81$0$0 == 0x009b
-                           00009B   995 _TB81	=	0x009b
-                           00009A   996 G$RB81$0$0 == 0x009a
-                           00009A   997 _RB81	=	0x009a
-                           000099   998 G$TI1$0$0 == 0x0099
-                           000099   999 _TI1	=	0x0099
-                           000098  1000 G$RI1$0$0 == 0x0098
-                           000098  1001 _RI1	=	0x0098
-                           0000AF  1002 G$EA$0$0 == 0x00af
-                           0000AF  1003 _EA	=	0x00af
-                           0000AD  1004 G$ET2$0$0 == 0x00ad
-                           0000AD  1005 _ET2	=	0x00ad
-                           0000AC  1006 G$ES0$0$0 == 0x00ac
-                           0000AC  1007 _ES0	=	0x00ac
-                           0000AB  1008 G$ET1$0$0 == 0x00ab
-                           0000AB  1009 _ET1	=	0x00ab
-                           0000AA  1010 G$EX1$0$0 == 0x00aa
-                           0000AA  1011 _EX1	=	0x00aa
-                           0000A9  1012 G$ET0$0$0 == 0x00a9
-                           0000A9  1013 _ET0	=	0x00a9
-                           0000A8  1014 G$EX0$0$0 == 0x00a8
-                           0000A8  1015 _EX0	=	0x00a8
-                           0000BD  1016 G$PT2$0$0 == 0x00bd
-                           0000BD  1017 _PT2	=	0x00bd
-                           0000BC  1018 G$PS0$0$0 == 0x00bc
-                           0000BC  1019 _PS0	=	0x00bc
-                           0000BB  1020 G$PT1$0$0 == 0x00bb
-                           0000BB  1021 _PT1	=	0x00bb
-                           0000BA  1022 G$PX1$0$0 == 0x00ba
-                           0000BA  1023 _PX1	=	0x00ba
-                           0000B9  1024 G$PT0$0$0 == 0x00b9
-                           0000B9  1025 _PT0	=	0x00b9
-                           0000B8  1026 G$PX0$0$0 == 0x00b8
-                           0000B8  1027 _PX0	=	0x00b8
-                           0000C7  1028 G$BUSY$0$0 == 0x00c7
-                           0000C7  1029 _BUSY	=	0x00c7
-                           0000C6  1030 G$ENSMB$0$0 == 0x00c6
-                           0000C6  1031 _ENSMB	=	0x00c6
-                           0000C5  1032 G$STA$0$0 == 0x00c5
-                           0000C5  1033 _STA	=	0x00c5
-                           0000C4  1034 G$STO$0$0 == 0x00c4
-                           0000C4  1035 _STO	=	0x00c4
-                           0000C3  1036 G$SI$0$0 == 0x00c3
-                           0000C3  1037 _SI	=	0x00c3
-                           0000C2  1038 G$AA$0$0 == 0x00c2
-                           0000C2  1039 _AA	=	0x00c2
-                           0000C1  1040 G$SMBFTE$0$0 == 0x00c1
-                           0000C1  1041 _SMBFTE	=	0x00c1
-                           0000C0  1042 G$SMBTOE$0$0 == 0x00c0
-                           0000C0  1043 _SMBTOE	=	0x00c0
-                           0000C7  1044 G$BOFF$0$0 == 0x00c7
-                           0000C7  1045 _BOFF	=	0x00c7
-                           0000C6  1046 G$EWARN$0$0 == 0x00c6
-                           0000C6  1047 _EWARN	=	0x00c6
-                           0000C5  1048 G$EPASS$0$0 == 0x00c5
-                           0000C5  1049 _EPASS	=	0x00c5
-                           0000C4  1050 G$RXOK$0$0 == 0x00c4
-                           0000C4  1051 _RXOK	=	0x00c4
-                           0000C3  1052 G$TXOK$0$0 == 0x00c3
-                           0000C3  1053 _TXOK	=	0x00c3
-                           0000C2  1054 G$LEC2$0$0 == 0x00c2
-                           0000C2  1055 _LEC2	=	0x00c2
-                           0000C1  1056 G$LEC1$0$0 == 0x00c1
-                           0000C1  1057 _LEC1	=	0x00c1
-                           0000C0  1058 G$LEC0$0$0 == 0x00c0
-                           0000C0  1059 _LEC0	=	0x00c0
-                           0000CF  1060 G$TF2$0$0 == 0x00cf
-                           0000CF  1061 _TF2	=	0x00cf
-                           0000CE  1062 G$EXF2$0$0 == 0x00ce
-                           0000CE  1063 _EXF2	=	0x00ce
-                           0000CB  1064 G$EXEN2$0$0 == 0x00cb
-                           0000CB  1065 _EXEN2	=	0x00cb
-                           0000CA  1066 G$TR2$0$0 == 0x00ca
-                           0000CA  1067 _TR2	=	0x00ca
-                           0000C9  1068 G$CT2$0$0 == 0x00c9
-                           0000C9  1069 _CT2	=	0x00c9
-                           0000C8  1070 G$CPRL2$0$0 == 0x00c8
-                           0000C8  1071 _CPRL2	=	0x00c8
-                           0000CF  1072 G$TF3$0$0 == 0x00cf
-                           0000CF  1073 _TF3	=	0x00cf
-                           0000CE  1074 G$EXF3$0$0 == 0x00ce
-                           0000CE  1075 _EXF3	=	0x00ce
-                           0000CB  1076 G$EXEN3$0$0 == 0x00cb
-                           0000CB  1077 _EXEN3	=	0x00cb
-                           0000CA  1078 G$TR3$0$0 == 0x00ca
-                           0000CA  1079 _TR3	=	0x00ca
-                           0000C9  1080 G$CT3$0$0 == 0x00c9
-                           0000C9  1081 _CT3	=	0x00c9
-                           0000C8  1082 G$CPRL3$0$0 == 0x00c8
-                           0000C8  1083 _CPRL3	=	0x00c8
-                           0000CF  1084 G$TF4$0$0 == 0x00cf
-                           0000CF  1085 _TF4	=	0x00cf
-                           0000CE  1086 G$EXF4$0$0 == 0x00ce
-                           0000CE  1087 _EXF4	=	0x00ce
-                           0000CB  1088 G$EXEN4$0$0 == 0x00cb
-                           0000CB  1089 _EXEN4	=	0x00cb
-                           0000CA  1090 G$TR4$0$0 == 0x00ca
-                           0000CA  1091 _TR4	=	0x00ca
-                           0000C9  1092 G$CT4$0$0 == 0x00c9
-                           0000C9  1093 _CT4	=	0x00c9
-                           0000C8  1094 G$CPRL4$0$0 == 0x00c8
-                           0000C8  1095 _CPRL4	=	0x00c8
-                           0000D7  1096 G$CY$0$0 == 0x00d7
-                           0000D7  1097 _CY	=	0x00d7
-                           0000D6  1098 G$AC$0$0 == 0x00d6
-                           0000D6  1099 _AC	=	0x00d6
-                           0000D5  1100 G$F0$0$0 == 0x00d5
-                           0000D5  1101 _F0	=	0x00d5
-                           0000D4  1102 G$RS1$0$0 == 0x00d4
-                           0000D4  1103 _RS1	=	0x00d4
-                           0000D3  1104 G$RS0$0$0 == 0x00d3
-                           0000D3  1105 _RS0	=	0x00d3
-                           0000D2  1106 G$OV$0$0 == 0x00d2
-                           0000D2  1107 _OV	=	0x00d2
-                           0000D1  1108 G$F1$0$0 == 0x00d1
-                           0000D1  1109 _F1	=	0x00d1
-                           0000D0  1110 G$P$0$0 == 0x00d0
-                           0000D0  1111 _P	=	0x00d0
-                           0000DF  1112 G$CF$0$0 == 0x00df
-                           0000DF  1113 _CF	=	0x00df
-                           0000DE  1114 G$CR$0$0 == 0x00de
-                           0000DE  1115 _CR	=	0x00de
-                           0000DD  1116 G$CCF5$0$0 == 0x00dd
-                           0000DD  1117 _CCF5	=	0x00dd
-                           0000DC  1118 G$CCF4$0$0 == 0x00dc
-                           0000DC  1119 _CCF4	=	0x00dc
-                           0000DB  1120 G$CCF3$0$0 == 0x00db
-                           0000DB  1121 _CCF3	=	0x00db
-                           0000DA  1122 G$CCF2$0$0 == 0x00da
-                           0000DA  1123 _CCF2	=	0x00da
-                           0000D9  1124 G$CCF1$0$0 == 0x00d9
-                           0000D9  1125 _CCF1	=	0x00d9
-                           0000D8  1126 G$CCF0$0$0 == 0x00d8
-                           0000D8  1127 _CCF0	=	0x00d8
-                           0000EF  1128 G$AD0EN$0$0 == 0x00ef
-                           0000EF  1129 _AD0EN	=	0x00ef
-                           0000EE  1130 G$AD0TM$0$0 == 0x00ee
-                           0000EE  1131 _AD0TM	=	0x00ee
-                           0000ED  1132 G$AD0INT$0$0 == 0x00ed
-                           0000ED  1133 _AD0INT	=	0x00ed
-                           0000EC  1134 G$AD0BUSY$0$0 == 0x00ec
-                           0000EC  1135 _AD0BUSY	=	0x00ec
-                           0000EB  1136 G$AD0CM1$0$0 == 0x00eb
-                           0000EB  1137 _AD0CM1	=	0x00eb
-                           0000EA  1138 G$AD0CM0$0$0 == 0x00ea
-                           0000EA  1139 _AD0CM0	=	0x00ea
-                           0000E9  1140 G$AD0WINT$0$0 == 0x00e9
-                           0000E9  1141 _AD0WINT	=	0x00e9
-                           0000E8  1142 G$AD0LJST$0$0 == 0x00e8
-                           0000E8  1143 _AD0LJST	=	0x00e8
-                           0000EF  1144 G$AD2EN$0$0 == 0x00ef
-                           0000EF  1145 _AD2EN	=	0x00ef
-                           0000EE  1146 G$AD2TM$0$0 == 0x00ee
-                           0000EE  1147 _AD2TM	=	0x00ee
-                           0000ED  1148 G$AD2INT$0$0 == 0x00ed
-                           0000ED  1149 _AD2INT	=	0x00ed
-                           0000EC  1150 G$AD2BUSY$0$0 == 0x00ec
-                           0000EC  1151 _AD2BUSY	=	0x00ec
-                           0000EB  1152 G$AD2CM2$0$0 == 0x00eb
-                           0000EB  1153 _AD2CM2	=	0x00eb
-                           0000EA  1154 G$AD2CM1$0$0 == 0x00ea
-                           0000EA  1155 _AD2CM1	=	0x00ea
-                           0000E9  1156 G$AD2CM0$0$0 == 0x00e9
-                           0000E9  1157 _AD2CM0	=	0x00e9
-                           0000E8  1158 G$AD2WINT$0$0 == 0x00e8
-                           0000E8  1159 _AD2WINT	=	0x00e8
-                           0000FF  1160 G$SPIF$0$0 == 0x00ff
-                           0000FF  1161 _SPIF	=	0x00ff
-                           0000FE  1162 G$WCOL$0$0 == 0x00fe
-                           0000FE  1163 _WCOL	=	0x00fe
-                           0000FD  1164 G$MODF$0$0 == 0x00fd
-                           0000FD  1165 _MODF	=	0x00fd
-                           0000FC  1166 G$RXOVRN$0$0 == 0x00fc
-                           0000FC  1167 _RXOVRN	=	0x00fc
-                           0000FB  1168 G$NSSMD1$0$0 == 0x00fb
-                           0000FB  1169 _NSSMD1	=	0x00fb
-                           0000FA  1170 G$NSSMD0$0$0 == 0x00fa
-                           0000FA  1171 _NSSMD0	=	0x00fa
-                           0000F9  1172 G$TXBMT$0$0 == 0x00f9
-                           0000F9  1173 _TXBMT	=	0x00f9
-                           0000F8  1174 G$SPIEN$0$0 == 0x00f8
-                           0000F8  1175 _SPIEN	=	0x00f8
-                           0000F8  1176 G$CANINIT$0$0 == 0x00f8
-                           0000F8  1177 _CANINIT	=	0x00f8
-                           0000F9  1178 G$CANIE$0$0 == 0x00f9
-                           0000F9  1179 _CANIE	=	0x00f9
-                           0000FA  1180 G$CANSIE$0$0 == 0x00fa
-                           0000FA  1181 _CANSIE	=	0x00fa
-                           0000FB  1182 G$CANEIE$0$0 == 0x00fb
-                           0000FB  1183 _CANEIE	=	0x00fb
-                           0000FC  1184 G$CANIF$0$0 == 0x00fc
-                           0000FC  1185 _CANIF	=	0x00fc
-                           0000FD  1186 G$CANDAR$0$0 == 0x00fd
-                           0000FD  1187 _CANDAR	=	0x00fd
-                           0000FE  1188 G$CANCCE$0$0 == 0x00fe
-                           0000FE  1189 _CANCCE	=	0x00fe
-                           0000FF  1190 G$CANTEST$0$0 == 0x00ff
-                           0000FF  1191 _CANTEST	=	0x00ff
-                                   1192 ;--------------------------------------------------------
-                                   1193 ; overlayable register banks
-                                   1194 ;--------------------------------------------------------
-                                   1195 	.area REG_BANK_0	(REL,OVR,DATA)
-      000000                       1196 	.ds 8
-                                   1197 ;--------------------------------------------------------
-                                   1198 ; overlayable bit register bank
-                                   1199 ;--------------------------------------------------------
-                                   1200 	.area BIT_BANK	(REL,OVR,DATA)
-      000021                       1201 bits:
-      000021                       1202 	.ds 1
-                           008000  1203 	b0 = bits[0]
-                           008100  1204 	b1 = bits[1]
-                           008200  1205 	b2 = bits[2]
-                           008300  1206 	b3 = bits[3]
-                           008400  1207 	b4 = bits[4]
-                           008500  1208 	b5 = bits[5]
-                           008600  1209 	b6 = bits[6]
-                           008700  1210 	b7 = bits[7]
-                                   1211 ;--------------------------------------------------------
-                                   1212 ; internal ram data
-                                   1213 ;--------------------------------------------------------
-                                   1214 	.area DSEG    (DATA)
-                           000000  1215 G$tecla$0$0==.
-      000008                       1216 _tecla::
-      000008                       1217 	.ds 1
-                           000001  1218 G$estado$0$0==.
-      000009                       1219 _estado::
-      000009                       1220 	.ds 1
-                           000002  1221 G$counter$0$0==.
-      00000A                       1222 _counter::
-      00000A                       1223 	.ds 4
-                                   1224 ;--------------------------------------------------------
-                                   1225 ; overlayable items in internal ram 
-                                   1226 ;--------------------------------------------------------
-                                   1227 	.area	OSEG    (OVR,DATA)
+                                    413 	.globl _mostra_menu
+                                    414 	.globl _le_tec
+                                    415 	.globl _isr_timer2
+                                    416 	.globl _le_RAM_SPI
+                                    417 	.globl _esc_RAM_SPI
+                                    418 	.globl _test_RAM_SPI
+                                    419 	.globl _le_ADC0
+                                    420 	.globl _le_LM35
+                                    421 	.globl _int_tc1
+                                    422 	.globl _le_pulso
+                                    423 ;--------------------------------------------------------
+                                    424 ; special function registers
+                                    425 ;--------------------------------------------------------
+                                    426 	.area RSEG    (ABS,DATA)
+      000000                        427 	.org 0x0000
+                           000080   428 G$P0$0$0 == 0x0080
+                           000080   429 _P0	=	0x0080
+                           000081   430 G$SP$0$0 == 0x0081
+                           000081   431 _SP	=	0x0081
+                           000082   432 G$DPL$0$0 == 0x0082
+                           000082   433 _DPL	=	0x0082
+                           000083   434 G$DPH$0$0 == 0x0083
+                           000083   435 _DPH	=	0x0083
+                           000084   436 G$SFRPAGE$0$0 == 0x0084
+                           000084   437 _SFRPAGE	=	0x0084
+                           000085   438 G$SFRNEXT$0$0 == 0x0085
+                           000085   439 _SFRNEXT	=	0x0085
+                           000086   440 G$SFRLAST$0$0 == 0x0086
+                           000086   441 _SFRLAST	=	0x0086
+                           000087   442 G$PCON$0$0 == 0x0087
+                           000087   443 _PCON	=	0x0087
+                           000088   444 G$TCON$0$0 == 0x0088
+                           000088   445 _TCON	=	0x0088
+                           000088   446 G$CPT0CN$0$0 == 0x0088
+                           000088   447 _CPT0CN	=	0x0088
+                           000088   448 G$CPT1CN$0$0 == 0x0088
+                           000088   449 _CPT1CN	=	0x0088
+                           000088   450 G$CPT2CN$0$0 == 0x0088
+                           000088   451 _CPT2CN	=	0x0088
+                           000089   452 G$TMOD$0$0 == 0x0089
+                           000089   453 _TMOD	=	0x0089
+                           000089   454 G$CPT0MD$0$0 == 0x0089
+                           000089   455 _CPT0MD	=	0x0089
+                           000089   456 G$CPT1MD$0$0 == 0x0089
+                           000089   457 _CPT1MD	=	0x0089
+                           000089   458 G$CPT2MD$0$0 == 0x0089
+                           000089   459 _CPT2MD	=	0x0089
+                           00008A   460 G$TL0$0$0 == 0x008a
+                           00008A   461 _TL0	=	0x008a
+                           00008A   462 G$OSCICN$0$0 == 0x008a
+                           00008A   463 _OSCICN	=	0x008a
+                           00008B   464 G$TL1$0$0 == 0x008b
+                           00008B   465 _TL1	=	0x008b
+                           00008B   466 G$OSCICL$0$0 == 0x008b
+                           00008B   467 _OSCICL	=	0x008b
+                           00008C   468 G$TH0$0$0 == 0x008c
+                           00008C   469 _TH0	=	0x008c
+                           00008C   470 G$OSCXCN$0$0 == 0x008c
+                           00008C   471 _OSCXCN	=	0x008c
+                           00008D   472 G$TH1$0$0 == 0x008d
+                           00008D   473 _TH1	=	0x008d
+                           00008E   474 G$CKCON$0$0 == 0x008e
+                           00008E   475 _CKCON	=	0x008e
+                           00008F   476 G$PSCTL$0$0 == 0x008f
+                           00008F   477 _PSCTL	=	0x008f
+                           000090   478 G$P1$0$0 == 0x0090
+                           000090   479 _P1	=	0x0090
+                           000091   480 G$SSTA0$0$0 == 0x0091
+                           000091   481 _SSTA0	=	0x0091
+                           000096   482 G$SFRPGCN$0$0 == 0x0096
+                           000096   483 _SFRPGCN	=	0x0096
+                           000097   484 G$CLKSEL$0$0 == 0x0097
+                           000097   485 _CLKSEL	=	0x0097
+                           000098   486 G$SCON0$0$0 == 0x0098
+                           000098   487 _SCON0	=	0x0098
+                           000098   488 G$SCON1$0$0 == 0x0098
+                           000098   489 _SCON1	=	0x0098
+                           000099   490 G$SBUF0$0$0 == 0x0099
+                           000099   491 _SBUF0	=	0x0099
+                           000099   492 G$SBUF1$0$0 == 0x0099
+                           000099   493 _SBUF1	=	0x0099
+                           00009A   494 G$SPI0CFG$0$0 == 0x009a
+                           00009A   495 _SPI0CFG	=	0x009a
+                           00009B   496 G$SPI0DAT$0$0 == 0x009b
+                           00009B   497 _SPI0DAT	=	0x009b
+                           00009C   498 G$P4MDOUT$0$0 == 0x009c
+                           00009C   499 _P4MDOUT	=	0x009c
+                           00009D   500 G$SPI0CKR$0$0 == 0x009d
+                           00009D   501 _SPI0CKR	=	0x009d
+                           00009D   502 G$P5MDOUT$0$0 == 0x009d
+                           00009D   503 _P5MDOUT	=	0x009d
+                           00009E   504 G$P6MDOUT$0$0 == 0x009e
+                           00009E   505 _P6MDOUT	=	0x009e
+                           00009F   506 G$P7MDOUT$0$0 == 0x009f
+                           00009F   507 _P7MDOUT	=	0x009f
+                           0000A0   508 G$P2$0$0 == 0x00a0
+                           0000A0   509 _P2	=	0x00a0
+                           0000A1   510 G$EMI0TC$0$0 == 0x00a1
+                           0000A1   511 _EMI0TC	=	0x00a1
+                           0000A2   512 G$EMI0CN$0$0 == 0x00a2
+                           0000A2   513 _EMI0CN	=	0x00a2
+                           0000A3   514 G$EMI0CF$0$0 == 0x00a3
+                           0000A3   515 _EMI0CF	=	0x00a3
+                           0000A4   516 G$P0MDOUT$0$0 == 0x00a4
+                           0000A4   517 _P0MDOUT	=	0x00a4
+                           0000A5   518 G$P1MDOUT$0$0 == 0x00a5
+                           0000A5   519 _P1MDOUT	=	0x00a5
+                           0000A6   520 G$P2MDOUT$0$0 == 0x00a6
+                           0000A6   521 _P2MDOUT	=	0x00a6
+                           0000A7   522 G$P3MDOUT$0$0 == 0x00a7
+                           0000A7   523 _P3MDOUT	=	0x00a7
+                           0000A8   524 G$IE$0$0 == 0x00a8
+                           0000A8   525 _IE	=	0x00a8
+                           0000A9   526 G$SADDR0$0$0 == 0x00a9
+                           0000A9   527 _SADDR0	=	0x00a9
+                           0000A9   528 G$SADDR1$0$0 == 0x00a9
+                           0000A9   529 _SADDR1	=	0x00a9
+                           0000AD   530 G$P1MDIN$0$0 == 0x00ad
+                           0000AD   531 _P1MDIN	=	0x00ad
+                           0000AE   532 G$P2MDIN$0$0 == 0x00ae
+                           0000AE   533 _P2MDIN	=	0x00ae
+                           0000AF   534 G$P3MDIN$0$0 == 0x00af
+                           0000AF   535 _P3MDIN	=	0x00af
+                           0000B0   536 G$P3$0$0 == 0x00b0
+                           0000B0   537 _P3	=	0x00b0
+                           0000B7   538 G$FLSCL$0$0 == 0x00b7
+                           0000B7   539 _FLSCL	=	0x00b7
+                           0000B7   540 G$FLACL$0$0 == 0x00b7
+                           0000B7   541 _FLACL	=	0x00b7
+                           0000B8   542 G$IP$0$0 == 0x00b8
+                           0000B8   543 _IP	=	0x00b8
+                           0000B9   544 G$SADEN0$0$0 == 0x00b9
+                           0000B9   545 _SADEN0	=	0x00b9
+                           0000BA   546 G$AMX2CF$0$0 == 0x00ba
+                           0000BA   547 _AMX2CF	=	0x00ba
+                           0000BD   548 G$AMX0PRT$0$0 == 0x00bd
+                           0000BD   549 _AMX0PRT	=	0x00bd
+                           0000BA   550 G$AMX0CF$0$0 == 0x00ba
+                           0000BA   551 _AMX0CF	=	0x00ba
+                           0000BB   552 G$AMX0SL$0$0 == 0x00bb
+                           0000BB   553 _AMX0SL	=	0x00bb
+                           0000BB   554 G$AMX2SL$0$0 == 0x00bb
+                           0000BB   555 _AMX2SL	=	0x00bb
+                           0000BC   556 G$ADC0CF$0$0 == 0x00bc
+                           0000BC   557 _ADC0CF	=	0x00bc
+                           0000BC   558 G$ADC2CF$0$0 == 0x00bc
+                           0000BC   559 _ADC2CF	=	0x00bc
+                           0000BE   560 G$ADC0L$0$0 == 0x00be
+                           0000BE   561 _ADC0L	=	0x00be
+                           0000BE   562 G$ADC2$0$0 == 0x00be
+                           0000BE   563 _ADC2	=	0x00be
+                           0000BF   564 G$ADC0H$0$0 == 0x00bf
+                           0000BF   565 _ADC0H	=	0x00bf
+                           0000C0   566 G$SMB0CN$0$0 == 0x00c0
+                           0000C0   567 _SMB0CN	=	0x00c0
+                           0000C0   568 G$CAN0STA$0$0 == 0x00c0
+                           0000C0   569 _CAN0STA	=	0x00c0
+                           0000C1   570 G$SMB0STA$0$0 == 0x00c1
+                           0000C1   571 _SMB0STA	=	0x00c1
+                           0000C2   572 G$SMB0DAT$0$0 == 0x00c2
+                           0000C2   573 _SMB0DAT	=	0x00c2
+                           0000C3   574 G$SMB0ADR$0$0 == 0x00c3
+                           0000C3   575 _SMB0ADR	=	0x00c3
+                           0000C4   576 G$ADC0GTL$0$0 == 0x00c4
+                           0000C4   577 _ADC0GTL	=	0x00c4
+                           0000C4   578 G$ADC2GT$0$0 == 0x00c4
+                           0000C4   579 _ADC2GT	=	0x00c4
+                           0000C5   580 G$ADC0GTH$0$0 == 0x00c5
+                           0000C5   581 _ADC0GTH	=	0x00c5
+                           0000C6   582 G$ADC0LTL$0$0 == 0x00c6
+                           0000C6   583 _ADC0LTL	=	0x00c6
+                           0000C6   584 G$ADC2LT$0$0 == 0x00c6
+                           0000C6   585 _ADC2LT	=	0x00c6
+                           0000C7   586 G$ADC0LTH$0$0 == 0x00c7
+                           0000C7   587 _ADC0LTH	=	0x00c7
+                           0000C8   588 G$TMR2CN$0$0 == 0x00c8
+                           0000C8   589 _TMR2CN	=	0x00c8
+                           0000C8   590 G$TMR3CN$0$0 == 0x00c8
+                           0000C8   591 _TMR3CN	=	0x00c8
+                           0000C8   592 G$TMR4CN$0$0 == 0x00c8
+                           0000C8   593 _TMR4CN	=	0x00c8
+                           0000C8   594 G$P4$0$0 == 0x00c8
+                           0000C8   595 _P4	=	0x00c8
+                           0000C9   596 G$TMR2CF$0$0 == 0x00c9
+                           0000C9   597 _TMR2CF	=	0x00c9
+                           0000C9   598 G$TMR3CF$0$0 == 0x00c9
+                           0000C9   599 _TMR3CF	=	0x00c9
+                           0000C9   600 G$TMR4CF$0$0 == 0x00c9
+                           0000C9   601 _TMR4CF	=	0x00c9
+                           0000CA   602 G$RCAP2L$0$0 == 0x00ca
+                           0000CA   603 _RCAP2L	=	0x00ca
+                           0000CA   604 G$RCAP3L$0$0 == 0x00ca
+                           0000CA   605 _RCAP3L	=	0x00ca
+                           0000CA   606 G$RCAP4L$0$0 == 0x00ca
+                           0000CA   607 _RCAP4L	=	0x00ca
+                           0000CB   608 G$RCAP2H$0$0 == 0x00cb
+                           0000CB   609 _RCAP2H	=	0x00cb
+                           0000CB   610 G$RCAP3H$0$0 == 0x00cb
+                           0000CB   611 _RCAP3H	=	0x00cb
+                           0000CB   612 G$RCAP4H$0$0 == 0x00cb
+                           0000CB   613 _RCAP4H	=	0x00cb
+                           0000CC   614 G$TMR2L$0$0 == 0x00cc
+                           0000CC   615 _TMR2L	=	0x00cc
+                           0000CC   616 G$TMR3L$0$0 == 0x00cc
+                           0000CC   617 _TMR3L	=	0x00cc
+                           0000CC   618 G$TMR4L$0$0 == 0x00cc
+                           0000CC   619 _TMR4L	=	0x00cc
+                           0000CD   620 G$TMR2H$0$0 == 0x00cd
+                           0000CD   621 _TMR2H	=	0x00cd
+                           0000CD   622 G$TMR3H$0$0 == 0x00cd
+                           0000CD   623 _TMR3H	=	0x00cd
+                           0000CD   624 G$TMR4H$0$0 == 0x00cd
+                           0000CD   625 _TMR4H	=	0x00cd
+                           0000CF   626 G$SMB0CR$0$0 == 0x00cf
+                           0000CF   627 _SMB0CR	=	0x00cf
+                           0000D0   628 G$PSW$0$0 == 0x00d0
+                           0000D0   629 _PSW	=	0x00d0
+                           0000D1   630 G$REF0CN$0$0 == 0x00d1
+                           0000D1   631 _REF0CN	=	0x00d1
+                           0000D2   632 G$DAC0L$0$0 == 0x00d2
+                           0000D2   633 _DAC0L	=	0x00d2
+                           0000D2   634 G$DAC1L$0$0 == 0x00d2
+                           0000D2   635 _DAC1L	=	0x00d2
+                           0000D3   636 G$DAC0H$0$0 == 0x00d3
+                           0000D3   637 _DAC0H	=	0x00d3
+                           0000D3   638 G$DAC1H$0$0 == 0x00d3
+                           0000D3   639 _DAC1H	=	0x00d3
+                           0000D4   640 G$DAC0CN$0$0 == 0x00d4
+                           0000D4   641 _DAC0CN	=	0x00d4
+                           0000D4   642 G$DAC1CN$0$0 == 0x00d4
+                           0000D4   643 _DAC1CN	=	0x00d4
+                           0000D6   644 G$HVA0CN$0$0 == 0x00d6
+                           0000D6   645 _HVA0CN	=	0x00d6
+                           0000D8   646 G$PCA0CN$0$0 == 0x00d8
+                           0000D8   647 _PCA0CN	=	0x00d8
+                           0000D8   648 G$CAN0DATL$0$0 == 0x00d8
+                           0000D8   649 _CAN0DATL	=	0x00d8
+                           0000D8   650 G$P5$0$0 == 0x00d8
+                           0000D8   651 _P5	=	0x00d8
+                           0000D9   652 G$PCA0MD$0$0 == 0x00d9
+                           0000D9   653 _PCA0MD	=	0x00d9
+                           0000D9   654 G$CAN0DATH$0$0 == 0x00d9
+                           0000D9   655 _CAN0DATH	=	0x00d9
+                           0000DA   656 G$PCA0CPM0$0$0 == 0x00da
+                           0000DA   657 _PCA0CPM0	=	0x00da
+                           0000DA   658 G$CAN0ADR$0$0 == 0x00da
+                           0000DA   659 _CAN0ADR	=	0x00da
+                           0000DB   660 G$PCA0CPM1$0$0 == 0x00db
+                           0000DB   661 _PCA0CPM1	=	0x00db
+                           0000DB   662 G$CAN0TST$0$0 == 0x00db
+                           0000DB   663 _CAN0TST	=	0x00db
+                           0000DC   664 G$PCA0CPM2$0$0 == 0x00dc
+                           0000DC   665 _PCA0CPM2	=	0x00dc
+                           0000DD   666 G$PCA0CPM3$0$0 == 0x00dd
+                           0000DD   667 _PCA0CPM3	=	0x00dd
+                           0000DE   668 G$PCA0CPM4$0$0 == 0x00de
+                           0000DE   669 _PCA0CPM4	=	0x00de
+                           0000DF   670 G$PCA0CPM5$0$0 == 0x00df
+                           0000DF   671 _PCA0CPM5	=	0x00df
+                           0000E0   672 G$ACC$0$0 == 0x00e0
+                           0000E0   673 _ACC	=	0x00e0
+                           0000E1   674 G$PCA0CPL5$0$0 == 0x00e1
+                           0000E1   675 _PCA0CPL5	=	0x00e1
+                           0000E1   676 G$XBR0$0$0 == 0x00e1
+                           0000E1   677 _XBR0	=	0x00e1
+                           0000E2   678 G$PCA0CPH5$0$0 == 0x00e2
+                           0000E2   679 _PCA0CPH5	=	0x00e2
+                           0000E2   680 G$XBR1$0$0 == 0x00e2
+                           0000E2   681 _XBR1	=	0x00e2
+                           0000E3   682 G$XBR2$0$0 == 0x00e3
+                           0000E3   683 _XBR2	=	0x00e3
+                           0000E4   684 G$XBR3$0$0 == 0x00e4
+                           0000E4   685 _XBR3	=	0x00e4
+                           0000E6   686 G$EIE1$0$0 == 0x00e6
+                           0000E6   687 _EIE1	=	0x00e6
+                           0000E7   688 G$EIE2$0$0 == 0x00e7
+                           0000E7   689 _EIE2	=	0x00e7
+                           0000E8   690 G$ADC0CN$0$0 == 0x00e8
+                           0000E8   691 _ADC0CN	=	0x00e8
+                           0000E8   692 G$ADC2CN$0$0 == 0x00e8
+                           0000E8   693 _ADC2CN	=	0x00e8
+                           0000E8   694 G$P6$0$0 == 0x00e8
+                           0000E8   695 _P6	=	0x00e8
+                           0000E9   696 G$PCA0CPL2$0$0 == 0x00e9
+                           0000E9   697 _PCA0CPL2	=	0x00e9
+                           0000EA   698 G$PCA0CPH2$0$0 == 0x00ea
+                           0000EA   699 _PCA0CPH2	=	0x00ea
+                           0000EB   700 G$PCA0CPL3$0$0 == 0x00eb
+                           0000EB   701 _PCA0CPL3	=	0x00eb
+                           0000EC   702 G$PCA0CPH3$0$0 == 0x00ec
+                           0000EC   703 _PCA0CPH3	=	0x00ec
+                           0000ED   704 G$PCA0CPL4$0$0 == 0x00ed
+                           0000ED   705 _PCA0CPL4	=	0x00ed
+                           0000EE   706 G$PCA0CPH4$0$0 == 0x00ee
+                           0000EE   707 _PCA0CPH4	=	0x00ee
+                           0000EF   708 G$RSTSRC$0$0 == 0x00ef
+                           0000EF   709 _RSTSRC	=	0x00ef
+                           0000F0   710 G$B$0$0 == 0x00f0
+                           0000F0   711 _B	=	0x00f0
+                           0000F6   712 G$EIP1$0$0 == 0x00f6
+                           0000F6   713 _EIP1	=	0x00f6
+                           0000F7   714 G$EIP2$0$0 == 0x00f7
+                           0000F7   715 _EIP2	=	0x00f7
+                           0000F8   716 G$SPI0CN$0$0 == 0x00f8
+                           0000F8   717 _SPI0CN	=	0x00f8
+                           0000F8   718 G$CAN0CN$0$0 == 0x00f8
+                           0000F8   719 _CAN0CN	=	0x00f8
+                           0000F8   720 G$P7$0$0 == 0x00f8
+                           0000F8   721 _P7	=	0x00f8
+                           0000F9   722 G$PCA0L$0$0 == 0x00f9
+                           0000F9   723 _PCA0L	=	0x00f9
+                           0000FA   724 G$PCA0H$0$0 == 0x00fa
+                           0000FA   725 _PCA0H	=	0x00fa
+                           0000FB   726 G$PCA0CPL0$0$0 == 0x00fb
+                           0000FB   727 _PCA0CPL0	=	0x00fb
+                           0000FC   728 G$PCA0CPH0$0$0 == 0x00fc
+                           0000FC   729 _PCA0CPH0	=	0x00fc
+                           0000FD   730 G$PCA0CPL1$0$0 == 0x00fd
+                           0000FD   731 _PCA0CPL1	=	0x00fd
+                           0000FE   732 G$PCA0CPH1$0$0 == 0x00fe
+                           0000FE   733 _PCA0CPH1	=	0x00fe
+                           0000FF   734 G$WDTCN$0$0 == 0x00ff
+                           0000FF   735 _WDTCN	=	0x00ff
+                           00FAF9   736 G$PCA0$0$0 == 0xfaf9
+                           00FAF9   737 _PCA0	=	0xfaf9
+                           00FCFB   738 G$PCA0CP0$0$0 == 0xfcfb
+                           00FCFB   739 _PCA0CP0	=	0xfcfb
+                           00FEFD   740 G$PCA0CP1$0$0 == 0xfefd
+                           00FEFD   741 _PCA0CP1	=	0xfefd
+                           00EAE9   742 G$PCA0CP2$0$0 == 0xeae9
+                           00EAE9   743 _PCA0CP2	=	0xeae9
+                           00ECEB   744 G$PCA0CP3$0$0 == 0xeceb
+                           00ECEB   745 _PCA0CP3	=	0xeceb
+                           00EEED   746 G$PCA0CP4$0$0 == 0xeeed
+                           00EEED   747 _PCA0CP4	=	0xeeed
+                           00E2E1   748 G$PCA0CP5$0$0 == 0xe2e1
+                           00E2E1   749 _PCA0CP5	=	0xe2e1
+                           00D9D8   750 G$CAN0DAT$0$0 == 0xd9d8
+                           00D9D8   751 _CAN0DAT	=	0xd9d8
+                           00D3D2   752 G$DAC0$0$0 == 0xd3d2
+                           00D3D2   753 _DAC0	=	0xd3d2
+                           00D3D2   754 G$DAC1$0$0 == 0xd3d2
+                           00D3D2   755 _DAC1	=	0xd3d2
+                           00CBCA   756 G$RCAP2$0$0 == 0xcbca
+                           00CBCA   757 _RCAP2	=	0xcbca
+                           00CBCA   758 G$RCAP3$0$0 == 0xcbca
+                           00CBCA   759 _RCAP3	=	0xcbca
+                           00CBCA   760 G$RCAP4$0$0 == 0xcbca
+                           00CBCA   761 _RCAP4	=	0xcbca
+                           00CDCC   762 G$TMR2$0$0 == 0xcdcc
+                           00CDCC   763 _TMR2	=	0xcdcc
+                           00CDCC   764 G$TMR3$0$0 == 0xcdcc
+                           00CDCC   765 _TMR3	=	0xcdcc
+                           00CDCC   766 G$TMR4$0$0 == 0xcdcc
+                           00CDCC   767 _TMR4	=	0xcdcc
+                           00C5C4   768 G$ADC0GT$0$0 == 0xc5c4
+                           00C5C4   769 _ADC0GT	=	0xc5c4
+                           00C7C6   770 G$ADC0LT$0$0 == 0xc7c6
+                           00C7C6   771 _ADC0LT	=	0xc7c6
+                           00BFBE   772 G$ADC0$0$0 == 0xbfbe
+                           00BFBE   773 _ADC0	=	0xbfbe
+                           008382   774 G$DP$0$0 == 0x8382
+                           008382   775 _DP	=	0x8382
+                                    776 ;--------------------------------------------------------
+                                    777 ; special function bits
+                                    778 ;--------------------------------------------------------
+                                    779 	.area RSEG    (ABS,DATA)
+      000000                        780 	.org 0x0000
+                           000080   781 G$P0_0$0$0 == 0x0080
+                           000080   782 _P0_0	=	0x0080
+                           000081   783 G$P0_1$0$0 == 0x0081
+                           000081   784 _P0_1	=	0x0081
+                           000082   785 G$P0_2$0$0 == 0x0082
+                           000082   786 _P0_2	=	0x0082
+                           000083   787 G$P0_3$0$0 == 0x0083
+                           000083   788 _P0_3	=	0x0083
+                           000084   789 G$P0_4$0$0 == 0x0084
+                           000084   790 _P0_4	=	0x0084
+                           000085   791 G$P0_5$0$0 == 0x0085
+                           000085   792 _P0_5	=	0x0085
+                           000086   793 G$P0_6$0$0 == 0x0086
+                           000086   794 _P0_6	=	0x0086
+                           000087   795 G$P0_7$0$0 == 0x0087
+                           000087   796 _P0_7	=	0x0087
+                           000090   797 G$P1_0$0$0 == 0x0090
+                           000090   798 _P1_0	=	0x0090
+                           000091   799 G$P1_1$0$0 == 0x0091
+                           000091   800 _P1_1	=	0x0091
+                           000092   801 G$P1_2$0$0 == 0x0092
+                           000092   802 _P1_2	=	0x0092
+                           000093   803 G$P1_3$0$0 == 0x0093
+                           000093   804 _P1_3	=	0x0093
+                           000094   805 G$P1_4$0$0 == 0x0094
+                           000094   806 _P1_4	=	0x0094
+                           000095   807 G$P1_5$0$0 == 0x0095
+                           000095   808 _P1_5	=	0x0095
+                           000096   809 G$P1_6$0$0 == 0x0096
+                           000096   810 _P1_6	=	0x0096
+                           000097   811 G$P1_7$0$0 == 0x0097
+                           000097   812 _P1_7	=	0x0097
+                           0000A0   813 G$P2_0$0$0 == 0x00a0
+                           0000A0   814 _P2_0	=	0x00a0
+                           0000A1   815 G$P2_1$0$0 == 0x00a1
+                           0000A1   816 _P2_1	=	0x00a1
+                           0000A2   817 G$P2_2$0$0 == 0x00a2
+                           0000A2   818 _P2_2	=	0x00a2
+                           0000A3   819 G$P2_3$0$0 == 0x00a3
+                           0000A3   820 _P2_3	=	0x00a3
+                           0000A4   821 G$P2_4$0$0 == 0x00a4
+                           0000A4   822 _P2_4	=	0x00a4
+                           0000A5   823 G$P2_5$0$0 == 0x00a5
+                           0000A5   824 _P2_5	=	0x00a5
+                           0000A6   825 G$P2_6$0$0 == 0x00a6
+                           0000A6   826 _P2_6	=	0x00a6
+                           0000A7   827 G$P2_7$0$0 == 0x00a7
+                           0000A7   828 _P2_7	=	0x00a7
+                           0000B0   829 G$P3_0$0$0 == 0x00b0
+                           0000B0   830 _P3_0	=	0x00b0
+                           0000B1   831 G$P3_1$0$0 == 0x00b1
+                           0000B1   832 _P3_1	=	0x00b1
+                           0000B2   833 G$P3_2$0$0 == 0x00b2
+                           0000B2   834 _P3_2	=	0x00b2
+                           0000B3   835 G$P3_3$0$0 == 0x00b3
+                           0000B3   836 _P3_3	=	0x00b3
+                           0000B4   837 G$P3_4$0$0 == 0x00b4
+                           0000B4   838 _P3_4	=	0x00b4
+                           0000B5   839 G$P3_5$0$0 == 0x00b5
+                           0000B5   840 _P3_5	=	0x00b5
+                           0000B6   841 G$P3_6$0$0 == 0x00b6
+                           0000B6   842 _P3_6	=	0x00b6
+                           0000B7   843 G$P3_7$0$0 == 0x00b7
+                           0000B7   844 _P3_7	=	0x00b7
+                           0000C8   845 G$P4_0$0$0 == 0x00c8
+                           0000C8   846 _P4_0	=	0x00c8
+                           0000C9   847 G$P4_1$0$0 == 0x00c9
+                           0000C9   848 _P4_1	=	0x00c9
+                           0000CA   849 G$P4_2$0$0 == 0x00ca
+                           0000CA   850 _P4_2	=	0x00ca
+                           0000CB   851 G$P4_3$0$0 == 0x00cb
+                           0000CB   852 _P4_3	=	0x00cb
+                           0000CC   853 G$P4_4$0$0 == 0x00cc
+                           0000CC   854 _P4_4	=	0x00cc
+                           0000CD   855 G$P4_5$0$0 == 0x00cd
+                           0000CD   856 _P4_5	=	0x00cd
+                           0000CE   857 G$P4_6$0$0 == 0x00ce
+                           0000CE   858 _P4_6	=	0x00ce
+                           0000CF   859 G$P4_7$0$0 == 0x00cf
+                           0000CF   860 _P4_7	=	0x00cf
+                           0000D8   861 G$P5_0$0$0 == 0x00d8
+                           0000D8   862 _P5_0	=	0x00d8
+                           0000D9   863 G$P5_1$0$0 == 0x00d9
+                           0000D9   864 _P5_1	=	0x00d9
+                           0000DA   865 G$P5_2$0$0 == 0x00da
+                           0000DA   866 _P5_2	=	0x00da
+                           0000DB   867 G$P5_3$0$0 == 0x00db
+                           0000DB   868 _P5_3	=	0x00db
+                           0000DC   869 G$P5_4$0$0 == 0x00dc
+                           0000DC   870 _P5_4	=	0x00dc
+                           0000DD   871 G$P5_5$0$0 == 0x00dd
+                           0000DD   872 _P5_5	=	0x00dd
+                           0000DE   873 G$P5_6$0$0 == 0x00de
+                           0000DE   874 _P5_6	=	0x00de
+                           0000DF   875 G$P5_7$0$0 == 0x00df
+                           0000DF   876 _P5_7	=	0x00df
+                           0000E8   877 G$P6_0$0$0 == 0x00e8
+                           0000E8   878 _P6_0	=	0x00e8
+                           0000E9   879 G$P6_1$0$0 == 0x00e9
+                           0000E9   880 _P6_1	=	0x00e9
+                           0000EA   881 G$P6_2$0$0 == 0x00ea
+                           0000EA   882 _P6_2	=	0x00ea
+                           0000EB   883 G$P6_3$0$0 == 0x00eb
+                           0000EB   884 _P6_3	=	0x00eb
+                           0000EC   885 G$P6_4$0$0 == 0x00ec
+                           0000EC   886 _P6_4	=	0x00ec
+                           0000ED   887 G$P6_5$0$0 == 0x00ed
+                           0000ED   888 _P6_5	=	0x00ed
+                           0000EE   889 G$P6_6$0$0 == 0x00ee
+                           0000EE   890 _P6_6	=	0x00ee
+                           0000EF   891 G$P6_7$0$0 == 0x00ef
+                           0000EF   892 _P6_7	=	0x00ef
+                           0000F8   893 G$P7_0$0$0 == 0x00f8
+                           0000F8   894 _P7_0	=	0x00f8
+                           0000F9   895 G$P7_1$0$0 == 0x00f9
+                           0000F9   896 _P7_1	=	0x00f9
+                           0000FA   897 G$P7_2$0$0 == 0x00fa
+                           0000FA   898 _P7_2	=	0x00fa
+                           0000FB   899 G$P7_3$0$0 == 0x00fb
+                           0000FB   900 _P7_3	=	0x00fb
+                           0000FC   901 G$P7_4$0$0 == 0x00fc
+                           0000FC   902 _P7_4	=	0x00fc
+                           0000FD   903 G$P7_5$0$0 == 0x00fd
+                           0000FD   904 _P7_5	=	0x00fd
+                           0000FE   905 G$P7_6$0$0 == 0x00fe
+                           0000FE   906 _P7_6	=	0x00fe
+                           0000FF   907 G$P7_7$0$0 == 0x00ff
+                           0000FF   908 _P7_7	=	0x00ff
+                           00008F   909 G$TF1$0$0 == 0x008f
+                           00008F   910 _TF1	=	0x008f
+                           00008E   911 G$TR1$0$0 == 0x008e
+                           00008E   912 _TR1	=	0x008e
+                           00008D   913 G$TF0$0$0 == 0x008d
+                           00008D   914 _TF0	=	0x008d
+                           00008C   915 G$TR0$0$0 == 0x008c
+                           00008C   916 _TR0	=	0x008c
+                           00008B   917 G$IE1$0$0 == 0x008b
+                           00008B   918 _IE1	=	0x008b
+                           00008A   919 G$IT1$0$0 == 0x008a
+                           00008A   920 _IT1	=	0x008a
+                           000089   921 G$IE0$0$0 == 0x0089
+                           000089   922 _IE0	=	0x0089
+                           000088   923 G$IT0$0$0 == 0x0088
+                           000088   924 _IT0	=	0x0088
+                           00008F   925 G$CP0EN$0$0 == 0x008f
+                           00008F   926 _CP0EN	=	0x008f
+                           00008E   927 G$CP0OUT$0$0 == 0x008e
+                           00008E   928 _CP0OUT	=	0x008e
+                           00008D   929 G$CP0RIF$0$0 == 0x008d
+                           00008D   930 _CP0RIF	=	0x008d
+                           00008C   931 G$CP0FIF$0$0 == 0x008c
+                           00008C   932 _CP0FIF	=	0x008c
+                           00008B   933 G$CP0HYP1$0$0 == 0x008b
+                           00008B   934 _CP0HYP1	=	0x008b
+                           00008A   935 G$CP0HYP0$0$0 == 0x008a
+                           00008A   936 _CP0HYP0	=	0x008a
+                           000089   937 G$CP0HYN1$0$0 == 0x0089
+                           000089   938 _CP0HYN1	=	0x0089
+                           000088   939 G$CP0HYN0$0$0 == 0x0088
+                           000088   940 _CP0HYN0	=	0x0088
+                           00008F   941 G$CP1EN$0$0 == 0x008f
+                           00008F   942 _CP1EN	=	0x008f
+                           00008E   943 G$CP1OUT$0$0 == 0x008e
+                           00008E   944 _CP1OUT	=	0x008e
+                           00008D   945 G$CP1RIF$0$0 == 0x008d
+                           00008D   946 _CP1RIF	=	0x008d
+                           00008C   947 G$CP1FIF$0$0 == 0x008c
+                           00008C   948 _CP1FIF	=	0x008c
+                           00008B   949 G$CP1HYP1$0$0 == 0x008b
+                           00008B   950 _CP1HYP1	=	0x008b
+                           00008A   951 G$CP1HYP0$0$0 == 0x008a
+                           00008A   952 _CP1HYP0	=	0x008a
+                           000089   953 G$CP1HYN1$0$0 == 0x0089
+                           000089   954 _CP1HYN1	=	0x0089
+                           000088   955 G$CP1HYN0$0$0 == 0x0088
+                           000088   956 _CP1HYN0	=	0x0088
+                           00008F   957 G$CP2EN$0$0 == 0x008f
+                           00008F   958 _CP2EN	=	0x008f
+                           00008E   959 G$CP2OUT$0$0 == 0x008e
+                           00008E   960 _CP2OUT	=	0x008e
+                           00008D   961 G$CP2RIF$0$0 == 0x008d
+                           00008D   962 _CP2RIF	=	0x008d
+                           00008C   963 G$CP2FIF$0$0 == 0x008c
+                           00008C   964 _CP2FIF	=	0x008c
+                           00008B   965 G$CP2HYP1$0$0 == 0x008b
+                           00008B   966 _CP2HYP1	=	0x008b
+                           00008A   967 G$CP2HYP0$0$0 == 0x008a
+                           00008A   968 _CP2HYP0	=	0x008a
+                           000089   969 G$CP2HYN1$0$0 == 0x0089
+                           000089   970 _CP2HYN1	=	0x0089
+                           000088   971 G$CP2HYN0$0$0 == 0x0088
+                           000088   972 _CP2HYN0	=	0x0088
+                           00009F   973 G$SM00$0$0 == 0x009f
+                           00009F   974 _SM00	=	0x009f
+                           00009E   975 G$SM10$0$0 == 0x009e
+                           00009E   976 _SM10	=	0x009e
+                           00009D   977 G$SM20$0$0 == 0x009d
+                           00009D   978 _SM20	=	0x009d
+                           00009C   979 G$REN0$0$0 == 0x009c
+                           00009C   980 _REN0	=	0x009c
+                           00009B   981 G$TB80$0$0 == 0x009b
+                           00009B   982 _TB80	=	0x009b
+                           00009A   983 G$RB80$0$0 == 0x009a
+                           00009A   984 _RB80	=	0x009a
+                           000099   985 G$TI0$0$0 == 0x0099
+                           000099   986 _TI0	=	0x0099
+                           000098   987 G$RI0$0$0 == 0x0098
+                           000098   988 _RI0	=	0x0098
+                           00009F   989 G$S1MODE$0$0 == 0x009f
+                           00009F   990 _S1MODE	=	0x009f
+                           00009D   991 G$MCE1$0$0 == 0x009d
+                           00009D   992 _MCE1	=	0x009d
+                           00009C   993 G$REN1$0$0 == 0x009c
+                           00009C   994 _REN1	=	0x009c
+                           00009B   995 G$TB81$0$0 == 0x009b
+                           00009B   996 _TB81	=	0x009b
+                           00009A   997 G$RB81$0$0 == 0x009a
+                           00009A   998 _RB81	=	0x009a
+                           000099   999 G$TI1$0$0 == 0x0099
+                           000099  1000 _TI1	=	0x0099
+                           000098  1001 G$RI1$0$0 == 0x0098
+                           000098  1002 _RI1	=	0x0098
+                           0000AF  1003 G$EA$0$0 == 0x00af
+                           0000AF  1004 _EA	=	0x00af
+                           0000AD  1005 G$ET2$0$0 == 0x00ad
+                           0000AD  1006 _ET2	=	0x00ad
+                           0000AC  1007 G$ES0$0$0 == 0x00ac
+                           0000AC  1008 _ES0	=	0x00ac
+                           0000AB  1009 G$ET1$0$0 == 0x00ab
+                           0000AB  1010 _ET1	=	0x00ab
+                           0000AA  1011 G$EX1$0$0 == 0x00aa
+                           0000AA  1012 _EX1	=	0x00aa
+                           0000A9  1013 G$ET0$0$0 == 0x00a9
+                           0000A9  1014 _ET0	=	0x00a9
+                           0000A8  1015 G$EX0$0$0 == 0x00a8
+                           0000A8  1016 _EX0	=	0x00a8
+                           0000BD  1017 G$PT2$0$0 == 0x00bd
+                           0000BD  1018 _PT2	=	0x00bd
+                           0000BC  1019 G$PS0$0$0 == 0x00bc
+                           0000BC  1020 _PS0	=	0x00bc
+                           0000BB  1021 G$PT1$0$0 == 0x00bb
+                           0000BB  1022 _PT1	=	0x00bb
+                           0000BA  1023 G$PX1$0$0 == 0x00ba
+                           0000BA  1024 _PX1	=	0x00ba
+                           0000B9  1025 G$PT0$0$0 == 0x00b9
+                           0000B9  1026 _PT0	=	0x00b9
+                           0000B8  1027 G$PX0$0$0 == 0x00b8
+                           0000B8  1028 _PX0	=	0x00b8
+                           0000C7  1029 G$BUSY$0$0 == 0x00c7
+                           0000C7  1030 _BUSY	=	0x00c7
+                           0000C6  1031 G$ENSMB$0$0 == 0x00c6
+                           0000C6  1032 _ENSMB	=	0x00c6
+                           0000C5  1033 G$STA$0$0 == 0x00c5
+                           0000C5  1034 _STA	=	0x00c5
+                           0000C4  1035 G$STO$0$0 == 0x00c4
+                           0000C4  1036 _STO	=	0x00c4
+                           0000C3  1037 G$SI$0$0 == 0x00c3
+                           0000C3  1038 _SI	=	0x00c3
+                           0000C2  1039 G$AA$0$0 == 0x00c2
+                           0000C2  1040 _AA	=	0x00c2
+                           0000C1  1041 G$SMBFTE$0$0 == 0x00c1
+                           0000C1  1042 _SMBFTE	=	0x00c1
+                           0000C0  1043 G$SMBTOE$0$0 == 0x00c0
+                           0000C0  1044 _SMBTOE	=	0x00c0
+                           0000C7  1045 G$BOFF$0$0 == 0x00c7
+                           0000C7  1046 _BOFF	=	0x00c7
+                           0000C6  1047 G$EWARN$0$0 == 0x00c6
+                           0000C6  1048 _EWARN	=	0x00c6
+                           0000C5  1049 G$EPASS$0$0 == 0x00c5
+                           0000C5  1050 _EPASS	=	0x00c5
+                           0000C4  1051 G$RXOK$0$0 == 0x00c4
+                           0000C4  1052 _RXOK	=	0x00c4
+                           0000C3  1053 G$TXOK$0$0 == 0x00c3
+                           0000C3  1054 _TXOK	=	0x00c3
+                           0000C2  1055 G$LEC2$0$0 == 0x00c2
+                           0000C2  1056 _LEC2	=	0x00c2
+                           0000C1  1057 G$LEC1$0$0 == 0x00c1
+                           0000C1  1058 _LEC1	=	0x00c1
+                           0000C0  1059 G$LEC0$0$0 == 0x00c0
+                           0000C0  1060 _LEC0	=	0x00c0
+                           0000CF  1061 G$TF2$0$0 == 0x00cf
+                           0000CF  1062 _TF2	=	0x00cf
+                           0000CE  1063 G$EXF2$0$0 == 0x00ce
+                           0000CE  1064 _EXF2	=	0x00ce
+                           0000CB  1065 G$EXEN2$0$0 == 0x00cb
+                           0000CB  1066 _EXEN2	=	0x00cb
+                           0000CA  1067 G$TR2$0$0 == 0x00ca
+                           0000CA  1068 _TR2	=	0x00ca
+                           0000C9  1069 G$CT2$0$0 == 0x00c9
+                           0000C9  1070 _CT2	=	0x00c9
+                           0000C8  1071 G$CPRL2$0$0 == 0x00c8
+                           0000C8  1072 _CPRL2	=	0x00c8
+                           0000CF  1073 G$TF3$0$0 == 0x00cf
+                           0000CF  1074 _TF3	=	0x00cf
+                           0000CE  1075 G$EXF3$0$0 == 0x00ce
+                           0000CE  1076 _EXF3	=	0x00ce
+                           0000CB  1077 G$EXEN3$0$0 == 0x00cb
+                           0000CB  1078 _EXEN3	=	0x00cb
+                           0000CA  1079 G$TR3$0$0 == 0x00ca
+                           0000CA  1080 _TR3	=	0x00ca
+                           0000C9  1081 G$CT3$0$0 == 0x00c9
+                           0000C9  1082 _CT3	=	0x00c9
+                           0000C8  1083 G$CPRL3$0$0 == 0x00c8
+                           0000C8  1084 _CPRL3	=	0x00c8
+                           0000CF  1085 G$TF4$0$0 == 0x00cf
+                           0000CF  1086 _TF4	=	0x00cf
+                           0000CE  1087 G$EXF4$0$0 == 0x00ce
+                           0000CE  1088 _EXF4	=	0x00ce
+                           0000CB  1089 G$EXEN4$0$0 == 0x00cb
+                           0000CB  1090 _EXEN4	=	0x00cb
+                           0000CA  1091 G$TR4$0$0 == 0x00ca
+                           0000CA  1092 _TR4	=	0x00ca
+                           0000C9  1093 G$CT4$0$0 == 0x00c9
+                           0000C9  1094 _CT4	=	0x00c9
+                           0000C8  1095 G$CPRL4$0$0 == 0x00c8
+                           0000C8  1096 _CPRL4	=	0x00c8
+                           0000D7  1097 G$CY$0$0 == 0x00d7
+                           0000D7  1098 _CY	=	0x00d7
+                           0000D6  1099 G$AC$0$0 == 0x00d6
+                           0000D6  1100 _AC	=	0x00d6
+                           0000D5  1101 G$F0$0$0 == 0x00d5
+                           0000D5  1102 _F0	=	0x00d5
+                           0000D4  1103 G$RS1$0$0 == 0x00d4
+                           0000D4  1104 _RS1	=	0x00d4
+                           0000D3  1105 G$RS0$0$0 == 0x00d3
+                           0000D3  1106 _RS0	=	0x00d3
+                           0000D2  1107 G$OV$0$0 == 0x00d2
+                           0000D2  1108 _OV	=	0x00d2
+                           0000D1  1109 G$F1$0$0 == 0x00d1
+                           0000D1  1110 _F1	=	0x00d1
+                           0000D0  1111 G$P$0$0 == 0x00d0
+                           0000D0  1112 _P	=	0x00d0
+                           0000DF  1113 G$CF$0$0 == 0x00df
+                           0000DF  1114 _CF	=	0x00df
+                           0000DE  1115 G$CR$0$0 == 0x00de
+                           0000DE  1116 _CR	=	0x00de
+                           0000DD  1117 G$CCF5$0$0 == 0x00dd
+                           0000DD  1118 _CCF5	=	0x00dd
+                           0000DC  1119 G$CCF4$0$0 == 0x00dc
+                           0000DC  1120 _CCF4	=	0x00dc
+                           0000DB  1121 G$CCF3$0$0 == 0x00db
+                           0000DB  1122 _CCF3	=	0x00db
+                           0000DA  1123 G$CCF2$0$0 == 0x00da
+                           0000DA  1124 _CCF2	=	0x00da
+                           0000D9  1125 G$CCF1$0$0 == 0x00d9
+                           0000D9  1126 _CCF1	=	0x00d9
+                           0000D8  1127 G$CCF0$0$0 == 0x00d8
+                           0000D8  1128 _CCF0	=	0x00d8
+                           0000EF  1129 G$AD0EN$0$0 == 0x00ef
+                           0000EF  1130 _AD0EN	=	0x00ef
+                           0000EE  1131 G$AD0TM$0$0 == 0x00ee
+                           0000EE  1132 _AD0TM	=	0x00ee
+                           0000ED  1133 G$AD0INT$0$0 == 0x00ed
+                           0000ED  1134 _AD0INT	=	0x00ed
+                           0000EC  1135 G$AD0BUSY$0$0 == 0x00ec
+                           0000EC  1136 _AD0BUSY	=	0x00ec
+                           0000EB  1137 G$AD0CM1$0$0 == 0x00eb
+                           0000EB  1138 _AD0CM1	=	0x00eb
+                           0000EA  1139 G$AD0CM0$0$0 == 0x00ea
+                           0000EA  1140 _AD0CM0	=	0x00ea
+                           0000E9  1141 G$AD0WINT$0$0 == 0x00e9
+                           0000E9  1142 _AD0WINT	=	0x00e9
+                           0000E8  1143 G$AD0LJST$0$0 == 0x00e8
+                           0000E8  1144 _AD0LJST	=	0x00e8
+                           0000EF  1145 G$AD2EN$0$0 == 0x00ef
+                           0000EF  1146 _AD2EN	=	0x00ef
+                           0000EE  1147 G$AD2TM$0$0 == 0x00ee
+                           0000EE  1148 _AD2TM	=	0x00ee
+                           0000ED  1149 G$AD2INT$0$0 == 0x00ed
+                           0000ED  1150 _AD2INT	=	0x00ed
+                           0000EC  1151 G$AD2BUSY$0$0 == 0x00ec
+                           0000EC  1152 _AD2BUSY	=	0x00ec
+                           0000EB  1153 G$AD2CM2$0$0 == 0x00eb
+                           0000EB  1154 _AD2CM2	=	0x00eb
+                           0000EA  1155 G$AD2CM1$0$0 == 0x00ea
+                           0000EA  1156 _AD2CM1	=	0x00ea
+                           0000E9  1157 G$AD2CM0$0$0 == 0x00e9
+                           0000E9  1158 _AD2CM0	=	0x00e9
+                           0000E8  1159 G$AD2WINT$0$0 == 0x00e8
+                           0000E8  1160 _AD2WINT	=	0x00e8
+                           0000FF  1161 G$SPIF$0$0 == 0x00ff
+                           0000FF  1162 _SPIF	=	0x00ff
+                           0000FE  1163 G$WCOL$0$0 == 0x00fe
+                           0000FE  1164 _WCOL	=	0x00fe
+                           0000FD  1165 G$MODF$0$0 == 0x00fd
+                           0000FD  1166 _MODF	=	0x00fd
+                           0000FC  1167 G$RXOVRN$0$0 == 0x00fc
+                           0000FC  1168 _RXOVRN	=	0x00fc
+                           0000FB  1169 G$NSSMD1$0$0 == 0x00fb
+                           0000FB  1170 _NSSMD1	=	0x00fb
+                           0000FA  1171 G$NSSMD0$0$0 == 0x00fa
+                           0000FA  1172 _NSSMD0	=	0x00fa
+                           0000F9  1173 G$TXBMT$0$0 == 0x00f9
+                           0000F9  1174 _TXBMT	=	0x00f9
+                           0000F8  1175 G$SPIEN$0$0 == 0x00f8
+                           0000F8  1176 _SPIEN	=	0x00f8
+                           0000F8  1177 G$CANINIT$0$0 == 0x00f8
+                           0000F8  1178 _CANINIT	=	0x00f8
+                           0000F9  1179 G$CANIE$0$0 == 0x00f9
+                           0000F9  1180 _CANIE	=	0x00f9
+                           0000FA  1181 G$CANSIE$0$0 == 0x00fa
+                           0000FA  1182 _CANSIE	=	0x00fa
+                           0000FB  1183 G$CANEIE$0$0 == 0x00fb
+                           0000FB  1184 _CANEIE	=	0x00fb
+                           0000FC  1185 G$CANIF$0$0 == 0x00fc
+                           0000FC  1186 _CANIF	=	0x00fc
+                           0000FD  1187 G$CANDAR$0$0 == 0x00fd
+                           0000FD  1188 _CANDAR	=	0x00fd
+                           0000FE  1189 G$CANCCE$0$0 == 0x00fe
+                           0000FE  1190 _CANCCE	=	0x00fe
+                           0000FF  1191 G$CANTEST$0$0 == 0x00ff
+                           0000FF  1192 _CANTEST	=	0x00ff
+                                   1193 ;--------------------------------------------------------
+                                   1194 ; overlayable register banks
+                                   1195 ;--------------------------------------------------------
+                                   1196 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                       1197 	.ds 8
+                                   1198 ;--------------------------------------------------------
+                                   1199 ; overlayable bit register bank
+                                   1200 ;--------------------------------------------------------
+                                   1201 	.area BIT_BANK	(REL,OVR,DATA)
+      000023                       1202 bits:
+      000023                       1203 	.ds 1
+                           008000  1204 	b0 = bits[0]
+                           008100  1205 	b1 = bits[1]
+                           008200  1206 	b2 = bits[2]
+                           008300  1207 	b3 = bits[3]
+                           008400  1208 	b4 = bits[4]
+                           008500  1209 	b5 = bits[5]
+                           008600  1210 	b6 = bits[6]
+                           008700  1211 	b7 = bits[7]
+                                   1212 ;--------------------------------------------------------
+                                   1213 ; internal ram data
+                                   1214 ;--------------------------------------------------------
+                                   1215 	.area DSEG    (DATA)
+                           000000  1216 G$tecla$0$0==.
+      000008                       1217 _tecla::
+      000008                       1218 	.ds 1
+                           000001  1219 G$estado$0$0==.
+      000009                       1220 _estado::
+      000009                       1221 	.ds 1
+                           000002  1222 G$counter$0$0==.
+      00000A                       1223 _counter::
+      00000A                       1224 	.ds 4
+                                   1225 ;--------------------------------------------------------
+                                   1226 ; overlayable items in internal ram 
+                                   1227 ;--------------------------------------------------------
                                    1228 	.area	OSEG    (OVR,DATA)
                                    1229 	.area	OSEG    (OVR,DATA)
                                    1230 	.area	OSEG    (OVR,DATA)
                                    1231 	.area	OSEG    (OVR,DATA)
-                           000000  1232 Lp3main.esc_RAM_SPI$dado$1$55==.
-      000015                       1233 _esc_RAM_SPI_PARM_2:
-      000015                       1234 	.ds 1
-                                   1235 	.area	OSEG    (OVR,DATA)
-                           000000  1236 Lp3main.le_ADC0$ganho$1$60==.
-      000015                       1237 _le_ADC0_PARM_2:
-      000015                       1238 	.ds 1
-                                   1239 ;--------------------------------------------------------
-                                   1240 ; Stack segment in internal ram 
-                                   1241 ;--------------------------------------------------------
-                                   1242 	.area	SSEG
-      000022                       1243 __start__stack:
-      000022                       1244 	.ds	1
-                                   1245 
-                                   1246 ;--------------------------------------------------------
-                                   1247 ; indirectly addressable internal ram data
-                                   1248 ;--------------------------------------------------------
-                                   1249 	.area ISEG    (DATA)
-                                   1250 ;--------------------------------------------------------
-                                   1251 ; absolute internal ram data
-                                   1252 ;--------------------------------------------------------
-                                   1253 	.area IABS    (ABS,DATA)
+                                   1232 	.area	OSEG    (OVR,DATA)
+                           000000  1233 Lp3main.esc_RAM_SPI$dado$1$55==.
+      000016                       1234 _esc_RAM_SPI_PARM_2:
+      000016                       1235 	.ds 1
+                                   1236 	.area	OSEG    (OVR,DATA)
+                           000000  1237 Lp3main.le_ADC0$ganho$1$60==.
+      000016                       1238 _le_ADC0_PARM_2:
+      000016                       1239 	.ds 1
+                                   1240 ;--------------------------------------------------------
+                                   1241 ; Stack segment in internal ram 
+                                   1242 ;--------------------------------------------------------
+                                   1243 	.area	SSEG
+      000044                       1244 __start__stack:
+      000044                       1245 	.ds	1
+                                   1246 
+                                   1247 ;--------------------------------------------------------
+                                   1248 ; indirectly addressable internal ram data
+                                   1249 ;--------------------------------------------------------
+                                   1250 	.area ISEG    (DATA)
+                                   1251 ;--------------------------------------------------------
+                                   1252 ; absolute internal ram data
+                                   1253 ;--------------------------------------------------------
                                    1254 	.area IABS    (ABS,DATA)
-                                   1255 ;--------------------------------------------------------
-                                   1256 ; bit data
-                                   1257 ;--------------------------------------------------------
-                                   1258 	.area BSEG    (BIT)
-                                   1259 ;--------------------------------------------------------
-                                   1260 ; paged external ram data
-                                   1261 ;--------------------------------------------------------
-                                   1262 	.area PSEG    (PAG,XDATA)
+                                   1255 	.area IABS    (ABS,DATA)
+                                   1256 ;--------------------------------------------------------
+                                   1257 ; bit data
+                                   1258 ;--------------------------------------------------------
+                                   1259 	.area BSEG    (BIT)
+                           000000  1260 Lp3main.int_serial$sloc0$1$0==.
+      000000                       1261 _int_serial_sloc0_1_0:
+      000000                       1262 	.ds 1
                                    1263 ;--------------------------------------------------------
-                                   1264 ; external ram data
+                                   1264 ; paged external ram data
                                    1265 ;--------------------------------------------------------
-                                   1266 	.area XSEG    (XDATA)
+                                   1266 	.area PSEG    (PAG,XDATA)
                                    1267 ;--------------------------------------------------------
-                                   1268 ; absolute external ram data
+                                   1268 ; external ram data
                                    1269 ;--------------------------------------------------------
-                                   1270 	.area XABS    (ABS,XDATA)
+                                   1270 	.area XSEG    (XDATA)
                                    1271 ;--------------------------------------------------------
-                                   1272 ; external initialized ram data
+                                   1272 ; absolute external ram data
                                    1273 ;--------------------------------------------------------
-                                   1274 	.area XISEG   (XDATA)
-                                   1275 	.area HOME    (CODE)
-                                   1276 	.area GSINIT0 (CODE)
-                                   1277 	.area GSINIT1 (CODE)
-                                   1278 	.area GSINIT2 (CODE)
-                                   1279 	.area GSINIT3 (CODE)
-                                   1280 	.area GSINIT4 (CODE)
-                                   1281 	.area GSINIT5 (CODE)
-                                   1282 	.area GSINIT  (CODE)
-                                   1283 	.area GSFINAL (CODE)
-                                   1284 	.area CSEG    (CODE)
-                                   1285 ;--------------------------------------------------------
-                                   1286 ; interrupt vector 
-                                   1287 ;--------------------------------------------------------
-                                   1288 	.area HOME    (CODE)
-      000000                       1289 __interrupt_vect:
-      000000 02 00 31         [24] 1290 	ljmp	__sdcc_gsinit_startup
-      000003 32               [24] 1291 	reti
-      000004                       1292 	.ds	7
-      00000B 32               [24] 1293 	reti
-      00000C                       1294 	.ds	7
-      000013 32               [24] 1295 	reti
-      000014                       1296 	.ds	7
-      00001B 02 06 CD         [24] 1297 	ljmp	_int_tc1
-      00001E                       1298 	.ds	5
-      000023 02 02 51         [24] 1299 	ljmp	_int_serial
-      000026                       1300 	.ds	5
-      00002B 02 04 B4         [24] 1301 	ljmp	_isr_timer2
-                                   1302 ;--------------------------------------------------------
-                                   1303 ; global & static initialisations
-                                   1304 ;--------------------------------------------------------
-                                   1305 	.area HOME    (CODE)
-                                   1306 	.area GSINIT  (CODE)
-                                   1307 	.area GSFINAL (CODE)
-                                   1308 	.area GSINIT  (CODE)
-                                   1309 	.globl __sdcc_gsinit_startup
-                                   1310 	.globl __sdcc_program_startup
-                                   1311 	.globl __start__stack
-                                   1312 	.globl __mcs51_genXINIT
-                                   1313 	.globl __mcs51_genXRAMCLEAR
-                                   1314 	.globl __mcs51_genRAMCLEAR
-                           000000  1315 	C$p3main.c$22$1$64 ==.
-                                   1316 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:22: unsigned char estado = 0;  
-      00008A 75 09 00         [24] 1317 	mov	_estado,#0x00
-                           000003  1318 	C$p3main.c$25$1$64 ==.
-                                   1319 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:25: volatile float counter = 0;
-      00008D E4               [12] 1320 	clr	a
-      00008E F5 0A            [12] 1321 	mov	_counter,a
-      000090 F5 0B            [12] 1322 	mov	(_counter + 1),a
-      000092 F5 0C            [12] 1323 	mov	(_counter + 2),a
-      000094 F5 0D            [12] 1324 	mov	(_counter + 3),a
-                                   1325 	.area GSFINAL (CODE)
-      000096 02 00 2E         [24] 1326 	ljmp	__sdcc_program_startup
-                                   1327 ;--------------------------------------------------------
-                                   1328 ; Home
-                                   1329 ;--------------------------------------------------------
-                                   1330 	.area HOME    (CODE)
-                                   1331 	.area HOME    (CODE)
-      00002E                       1332 __sdcc_program_startup:
-      00002E 02 01 63         [24] 1333 	ljmp	_main
-                                   1334 ;	return from main will return to caller
-                                   1335 ;--------------------------------------------------------
-                                   1336 ; code
-                                   1337 ;--------------------------------------------------------
-                                   1338 	.area CSEG    (CODE)
-                                   1339 ;------------------------------------------------------------
-                                   1340 ;Allocation info for local variables in function 'Reset_Sources_Init'
-                                   1341 ;------------------------------------------------------------
-                           000000  1342 	G$Reset_Sources_Init$0$0 ==.
-                           000000  1343 	C$config.c$10$0$0 ==.
-                                   1344 ;	Z:\9semestre\micap\micap-master\p3\/config.c:10: void Reset_Sources_Init()
-                                   1345 ;	-----------------------------------------
-                                   1346 ;	 function Reset_Sources_Init
-                                   1347 ;	-----------------------------------------
-      000099                       1348 _Reset_Sources_Init:
-                           000007  1349 	ar7 = 0x07
-                           000006  1350 	ar6 = 0x06
-                           000005  1351 	ar5 = 0x05
-                           000004  1352 	ar4 = 0x04
-                           000003  1353 	ar3 = 0x03
-                           000002  1354 	ar2 = 0x02
-                           000001  1355 	ar1 = 0x01
-                           000000  1356 	ar0 = 0x00
-                           000000  1357 	C$config.c$12$1$14 ==.
-                                   1358 ;	Z:\9semestre\micap\micap-master\p3\/config.c:12: WDTCN     = 0xDE;
-      000099 75 FF DE         [24] 1359 	mov	_WDTCN,#0xde
-                           000003  1360 	C$config.c$13$1$14 ==.
-                                   1361 ;	Z:\9semestre\micap\micap-master\p3\/config.c:13: WDTCN     = 0xAD;
-      00009C 75 FF AD         [24] 1362 	mov	_WDTCN,#0xad
-                           000006  1363 	C$config.c$14$1$14 ==.
-                           000006  1364 	XG$Reset_Sources_Init$0$0 ==.
-      00009F 22               [24] 1365 	ret
-                                   1366 ;------------------------------------------------------------
-                                   1367 ;Allocation info for local variables in function 'Timer_Init'
-                                   1368 ;------------------------------------------------------------
-                           000007  1369 	G$Timer_Init$0$0 ==.
-                           000007  1370 	C$config.c$16$1$14 ==.
-                                   1371 ;	Z:\9semestre\micap\micap-master\p3\/config.c:16: void Timer_Init()
-                                   1372 ;	-----------------------------------------
-                                   1373 ;	 function Timer_Init
-                                   1374 ;	-----------------------------------------
-      0000A0                       1375 _Timer_Init:
-                           000007  1376 	C$config.c$18$1$15 ==.
-                                   1377 ;	Z:\9semestre\micap\micap-master\p3\/config.c:18: SFRPAGE   = TIMER01_PAGE;
-      0000A0 75 84 00         [24] 1378 	mov	_SFRPAGE,#0x00
-                           00000A  1379 	C$config.c$19$1$15 ==.
-                                   1380 ;	Z:\9semestre\micap\micap-master\p3\/config.c:19: TCON      = 0x05;
-      0000A3 75 88 05         [24] 1381 	mov	_TCON,#0x05
-                           00000D  1382 	C$config.c$20$1$15 ==.
-                                   1383 ;	Z:\9semestre\micap\micap-master\p3\/config.c:20: TMOD      = 0x91;
-      0000A6 75 89 91         [24] 1384 	mov	_TMOD,#0x91
-                           000010  1385 	C$config.c$21$1$15 ==.
-                                   1386 ;	Z:\9semestre\micap\micap-master\p3\/config.c:21: CKCON     = 0x18;
-      0000A9 75 8E 18         [24] 1387 	mov	_CKCON,#0x18
-                           000013  1388 	C$config.c$22$1$15 ==.
-                                   1389 ;	Z:\9semestre\micap\micap-master\p3\/config.c:22: SFRPAGE   = TMR2_PAGE;
-      0000AC 75 84 00         [24] 1390 	mov	_SFRPAGE,#0x00
-                           000016  1391 	C$config.c$23$1$15 ==.
-                                   1392 ;	Z:\9semestre\micap\micap-master\p3\/config.c:23: TMR2CN    = 0x04;
-      0000AF 75 C8 04         [24] 1393 	mov	_TMR2CN,#0x04
-                           000019  1394 	C$config.c$24$1$15 ==.
-                                   1395 ;	Z:\9semestre\micap\micap-master\p3\/config.c:24: TMR2CF    = 0x08;
-      0000B2 75 C9 08         [24] 1396 	mov	_TMR2CF,#0x08
-                           00001C  1397 	C$config.c$25$1$15 ==.
-                                   1398 ;	Z:\9semestre\micap\micap-master\p3\/config.c:25: RCAP2L    = 0xDC;
-      0000B5 75 CA DC         [24] 1399 	mov	_RCAP2L,#0xdc
-                           00001F  1400 	C$config.c$26$1$15 ==.
-                                   1401 ;	Z:\9semestre\micap\micap-master\p3\/config.c:26: RCAP2H    = 0x0B;
-      0000B8 75 CB 0B         [24] 1402 	mov	_RCAP2H,#0x0b
-                           000022  1403 	C$config.c$27$1$15 ==.
-                                   1404 ;	Z:\9semestre\micap\micap-master\p3\/config.c:27: TMR2L     = 0xDC;
-      0000BB 75 CC DC         [24] 1405 	mov	_TMR2L,#0xdc
-                           000025  1406 	C$config.c$28$1$15 ==.
-                                   1407 ;	Z:\9semestre\micap\micap-master\p3\/config.c:28: TMR2H     = 0x0B;
-      0000BE 75 CD 0B         [24] 1408 	mov	_TMR2H,#0x0b
-                           000028  1409 	C$config.c$29$1$15 ==.
-                                   1410 ;	Z:\9semestre\micap\micap-master\p3\/config.c:29: SFRPAGE   = TMR3_PAGE;
-      0000C1 75 84 01         [24] 1411 	mov	_SFRPAGE,#0x01
-                           00002B  1412 	C$config.c$30$1$15 ==.
-                                   1413 ;	Z:\9semestre\micap\micap-master\p3\/config.c:30: TMR3CN    = 0x04;
-      0000C4 75 C8 04         [24] 1414 	mov	_TMR3CN,#0x04
-                           00002E  1415 	C$config.c$31$1$15 ==.
-                                   1416 ;	Z:\9semestre\micap\micap-master\p3\/config.c:31: TMR3CF    = 0x08;
-      0000C7 75 C9 08         [24] 1417 	mov	_TMR3CF,#0x08
-                           000031  1418 	C$config.c$32$1$15 ==.
-                                   1419 ;	Z:\9semestre\micap\micap-master\p3\/config.c:32: RCAP3L    = 0x5D;
-      0000CA 75 CA 5D         [24] 1420 	mov	_RCAP3L,#0x5d
-                           000034  1421 	C$config.c$33$1$15 ==.
-                                   1422 ;	Z:\9semestre\micap\micap-master\p3\/config.c:33: RCAP3H    = 0xFF;
-      0000CD 75 CB FF         [24] 1423 	mov	_RCAP3H,#0xff
-                           000037  1424 	C$config.c$34$1$15 ==.
-                           000037  1425 	XG$Timer_Init$0$0 ==.
-      0000D0 22               [24] 1426 	ret
-                                   1427 ;------------------------------------------------------------
-                                   1428 ;Allocation info for local variables in function 'PCA_Init'
-                                   1429 ;------------------------------------------------------------
-                           000038  1430 	G$PCA_Init$0$0 ==.
-                           000038  1431 	C$config.c$36$1$15 ==.
-                                   1432 ;	Z:\9semestre\micap\micap-master\p3\/config.c:36: void PCA_Init()
-                                   1433 ;	-----------------------------------------
-                                   1434 ;	 function PCA_Init
-                                   1435 ;	-----------------------------------------
-      0000D1                       1436 _PCA_Init:
-                           000038  1437 	C$config.c$38$1$16 ==.
-                                   1438 ;	Z:\9semestre\micap\micap-master\p3\/config.c:38: SFRPAGE   = PCA0_PAGE;
-      0000D1 75 84 00         [24] 1439 	mov	_SFRPAGE,#0x00
-                           00003B  1440 	C$config.c$39$1$16 ==.
-                                   1441 ;	Z:\9semestre\micap\micap-master\p3\/config.c:39: PCA0CN    = 0x40;
-      0000D4 75 D8 40         [24] 1442 	mov	_PCA0CN,#0x40
-                           00003E  1443 	C$config.c$40$1$16 ==.
-                                   1444 ;	Z:\9semestre\micap\micap-master\p3\/config.c:40: PCA0CPM0  = 0x42;
-      0000D7 75 DA 42         [24] 1445 	mov	_PCA0CPM0,#0x42
-                           000041  1446 	C$config.c$41$1$16 ==.
-                           000041  1447 	XG$PCA_Init$0$0 ==.
-      0000DA 22               [24] 1448 	ret
-                                   1449 ;------------------------------------------------------------
-                                   1450 ;Allocation info for local variables in function 'UART_Init'
-                                   1451 ;------------------------------------------------------------
-                           000042  1452 	G$UART_Init$0$0 ==.
-                           000042  1453 	C$config.c$43$1$16 ==.
-                                   1454 ;	Z:\9semestre\micap\micap-master\p3\/config.c:43: void UART_Init()
-                                   1455 ;	-----------------------------------------
-                                   1456 ;	 function UART_Init
-                                   1457 ;	-----------------------------------------
-      0000DB                       1458 _UART_Init:
-                           000042  1459 	C$config.c$45$1$17 ==.
-                                   1460 ;	Z:\9semestre\micap\micap-master\p3\/config.c:45: SFRPAGE   = UART0_PAGE;
-      0000DB 75 84 00         [24] 1461 	mov	_SFRPAGE,#0x00
-                           000045  1462 	C$config.c$46$1$17 ==.
-                                   1463 ;	Z:\9semestre\micap\micap-master\p3\/config.c:46: SCON0     = 0x50;
-      0000DE 75 98 50         [24] 1464 	mov	_SCON0,#0x50
-                           000048  1465 	C$config.c$47$1$17 ==.
-                                   1466 ;	Z:\9semestre\micap\micap-master\p3\/config.c:47: SSTA0     = 0x0A;
-      0000E1 75 91 0A         [24] 1467 	mov	_SSTA0,#0x0a
-                           00004B  1468 	C$config.c$48$1$17 ==.
-                           00004B  1469 	XG$UART_Init$0$0 ==.
-      0000E4 22               [24] 1470 	ret
-                                   1471 ;------------------------------------------------------------
-                                   1472 ;Allocation info for local variables in function 'SPI_Init'
-                                   1473 ;------------------------------------------------------------
-                           00004C  1474 	G$SPI_Init$0$0 ==.
-                           00004C  1475 	C$config.c$50$1$17 ==.
-                                   1476 ;	Z:\9semestre\micap\micap-master\p3\/config.c:50: void SPI_Init()
-                                   1477 ;	-----------------------------------------
-                                   1478 ;	 function SPI_Init
-                                   1479 ;	-----------------------------------------
-      0000E5                       1480 _SPI_Init:
-                           00004C  1481 	C$config.c$52$1$18 ==.
-                                   1482 ;	Z:\9semestre\micap\micap-master\p3\/config.c:52: SFRPAGE   = SPI0_PAGE;
-      0000E5 75 84 00         [24] 1483 	mov	_SFRPAGE,#0x00
-                           00004F  1484 	C$config.c$53$1$18 ==.
-                                   1485 ;	Z:\9semestre\micap\micap-master\p3\/config.c:53: SPI0CFG   = 0x40;
-      0000E8 75 9A 40         [24] 1486 	mov	_SPI0CFG,#0x40
-                           000052  1487 	C$config.c$54$1$18 ==.
-                                   1488 ;	Z:\9semestre\micap\micap-master\p3\/config.c:54: SPI0CN    = 0x01;
-      0000EB 75 F8 01         [24] 1489 	mov	_SPI0CN,#0x01
-                           000055  1490 	C$config.c$55$1$18 ==.
-                                   1491 ;	Z:\9semestre\micap\micap-master\p3\/config.c:55: SPI0CKR   = 0x7C;
-      0000EE 75 9D 7C         [24] 1492 	mov	_SPI0CKR,#0x7c
-                           000058  1493 	C$config.c$56$1$18 ==.
-                           000058  1494 	XG$SPI_Init$0$0 ==.
-      0000F1 22               [24] 1495 	ret
-                                   1496 ;------------------------------------------------------------
-                                   1497 ;Allocation info for local variables in function 'ADC_Init'
-                                   1498 ;------------------------------------------------------------
-                           000059  1499 	G$ADC_Init$0$0 ==.
-                           000059  1500 	C$config.c$58$1$18 ==.
-                                   1501 ;	Z:\9semestre\micap\micap-master\p3\/config.c:58: void ADC_Init()
-                                   1502 ;	-----------------------------------------
-                                   1503 ;	 function ADC_Init
-                                   1504 ;	-----------------------------------------
-      0000F2                       1505 _ADC_Init:
-                           000059  1506 	C$config.c$60$1$19 ==.
-                                   1507 ;	Z:\9semestre\micap\micap-master\p3\/config.c:60: SFRPAGE   = ADC0_PAGE;
-      0000F2 75 84 00         [24] 1508 	mov	_SFRPAGE,#0x00
-                           00005C  1509 	C$config.c$61$1$19 ==.
-                                   1510 ;	Z:\9semestre\micap\micap-master\p3\/config.c:61: ADC0CN    = 0x80;
-      0000F5 75 E8 80         [24] 1511 	mov	_ADC0CN,#0x80
-                           00005F  1512 	C$config.c$62$1$19 ==.
-                           00005F  1513 	XG$ADC_Init$0$0 ==.
-      0000F8 22               [24] 1514 	ret
-                                   1515 ;------------------------------------------------------------
-                                   1516 ;Allocation info for local variables in function 'DAC_Init'
-                                   1517 ;------------------------------------------------------------
-                           000060  1518 	G$DAC_Init$0$0 ==.
-                           000060  1519 	C$config.c$64$1$19 ==.
-                                   1520 ;	Z:\9semestre\micap\micap-master\p3\/config.c:64: void DAC_Init()
-                                   1521 ;	-----------------------------------------
-                                   1522 ;	 function DAC_Init
-                                   1523 ;	-----------------------------------------
-      0000F9                       1524 _DAC_Init:
-                           000060  1525 	C$config.c$66$1$20 ==.
-                                   1526 ;	Z:\9semestre\micap\micap-master\p3\/config.c:66: SFRPAGE   = DAC0_PAGE;
-      0000F9 75 84 00         [24] 1527 	mov	_SFRPAGE,#0x00
-                           000063  1528 	C$config.c$67$1$20 ==.
-                                   1529 ;	Z:\9semestre\micap\micap-master\p3\/config.c:67: DAC0CN    = 0x80;
-      0000FC 75 D4 80         [24] 1530 	mov	_DAC0CN,#0x80
-                           000066  1531 	C$config.c$68$1$20 ==.
-                           000066  1532 	XG$DAC_Init$0$0 ==.
-      0000FF 22               [24] 1533 	ret
-                                   1534 ;------------------------------------------------------------
-                                   1535 ;Allocation info for local variables in function 'Voltage_Reference_Init'
-                                   1536 ;------------------------------------------------------------
-                           000067  1537 	G$Voltage_Reference_Init$0$0 ==.
-                           000067  1538 	C$config.c$70$1$20 ==.
-                                   1539 ;	Z:\9semestre\micap\micap-master\p3\/config.c:70: void Voltage_Reference_Init()
-                                   1540 ;	-----------------------------------------
-                                   1541 ;	 function Voltage_Reference_Init
-                                   1542 ;	-----------------------------------------
-      000100                       1543 _Voltage_Reference_Init:
-                           000067  1544 	C$config.c$72$1$21 ==.
-                                   1545 ;	Z:\9semestre\micap\micap-master\p3\/config.c:72: SFRPAGE   = ADC0_PAGE;
-      000100 75 84 00         [24] 1546 	mov	_SFRPAGE,#0x00
-                           00006A  1547 	C$config.c$73$1$21 ==.
-                                   1548 ;	Z:\9semestre\micap\micap-master\p3\/config.c:73: REF0CN    = 0x03;
-      000103 75 D1 03         [24] 1549 	mov	_REF0CN,#0x03
-                           00006D  1550 	C$config.c$74$1$21 ==.
-                           00006D  1551 	XG$Voltage_Reference_Init$0$0 ==.
-      000106 22               [24] 1552 	ret
-                                   1553 ;------------------------------------------------------------
-                                   1554 ;Allocation info for local variables in function 'Port_IO_Init'
-                                   1555 ;------------------------------------------------------------
-                           00006E  1556 	G$Port_IO_Init$0$0 ==.
-                           00006E  1557 	C$config.c$76$1$21 ==.
-                                   1558 ;	Z:\9semestre\micap\micap-master\p3\/config.c:76: void Port_IO_Init()
-                                   1559 ;	-----------------------------------------
-                                   1560 ;	 function Port_IO_Init
-                                   1561 ;	-----------------------------------------
-      000107                       1562 _Port_IO_Init:
-                           00006E  1563 	C$config.c$114$1$22 ==.
-                                   1564 ;	Z:\9semestre\micap\micap-master\p3\/config.c:114: SFRPAGE   = CONFIG_PAGE;
-      000107 75 84 0F         [24] 1565 	mov	_SFRPAGE,#0x0f
-                           000071  1566 	C$config.c$115$1$22 ==.
-                                   1567 ;	Z:\9semestre\micap\micap-master\p3\/config.c:115: P0MDOUT   = 0xB5;
-      00010A 75 A4 B5         [24] 1568 	mov	_P0MDOUT,#0xb5
-                           000074  1569 	C$config.c$116$1$22 ==.
-                                   1570 ;	Z:\9semestre\micap\micap-master\p3\/config.c:116: XBR0      = 0x0E;
-      00010D 75 E1 0E         [24] 1571 	mov	_XBR0,#0x0e
-                           000077  1572 	C$config.c$117$1$22 ==.
-                                   1573 ;	Z:\9semestre\micap\micap-master\p3\/config.c:117: XBR1      = 0x10;
-      000110 75 E2 10         [24] 1574 	mov	_XBR1,#0x10
-                           00007A  1575 	C$config.c$118$1$22 ==.
-                                   1576 ;	Z:\9semestre\micap\micap-master\p3\/config.c:118: XBR2      = 0x40;
-      000113 75 E3 40         [24] 1577 	mov	_XBR2,#0x40
-                           00007D  1578 	C$config.c$119$1$22 ==.
-                           00007D  1579 	XG$Port_IO_Init$0$0 ==.
-      000116 22               [24] 1580 	ret
-                                   1581 ;------------------------------------------------------------
-                                   1582 ;Allocation info for local variables in function 'Oscillator_Init'
-                                   1583 ;------------------------------------------------------------
-                                   1584 ;i                         Allocated to registers r6 r7 
-                                   1585 ;------------------------------------------------------------
-                           00007E  1586 	G$Oscillator_Init$0$0 ==.
-                           00007E  1587 	C$config.c$121$1$22 ==.
-                                   1588 ;	Z:\9semestre\micap\micap-master\p3\/config.c:121: void Oscillator_Init()
-                                   1589 ;	-----------------------------------------
-                                   1590 ;	 function Oscillator_Init
-                                   1591 ;	-----------------------------------------
-      000117                       1592 _Oscillator_Init:
-                           00007E  1593 	C$config.c$124$1$23 ==.
-                                   1594 ;	Z:\9semestre\micap\micap-master\p3\/config.c:124: SFRPAGE   = CONFIG_PAGE;
-      000117 75 84 0F         [24] 1595 	mov	_SFRPAGE,#0x0f
-                           000081  1596 	C$config.c$125$1$23 ==.
-                                   1597 ;	Z:\9semestre\micap\micap-master\p3\/config.c:125: OSCXCN    = 0x67;
-      00011A 75 8C 67         [24] 1598 	mov	_OSCXCN,#0x67
-                           000084  1599 	C$config.c$126$1$23 ==.
-                                   1600 ;	Z:\9semestre\micap\micap-master\p3\/config.c:126: for (i = 0; i < 3000; i++);  // Wait 1ms for initialization
-      00011D 7E B8            [12] 1601 	mov	r6,#0xb8
-      00011F 7F 0B            [12] 1602 	mov	r7,#0x0b
-      000121                       1603 00107$:
-      000121 EE               [12] 1604 	mov	a,r6
-      000122 24 FF            [12] 1605 	add	a,#0xff
-      000124 FC               [12] 1606 	mov	r4,a
-      000125 EF               [12] 1607 	mov	a,r7
-      000126 34 FF            [12] 1608 	addc	a,#0xff
-      000128 FD               [12] 1609 	mov	r5,a
-      000129 8C 06            [24] 1610 	mov	ar6,r4
-      00012B 8D 07            [24] 1611 	mov	ar7,r5
-      00012D EC               [12] 1612 	mov	a,r4
-      00012E 4D               [12] 1613 	orl	a,r5
-      00012F 70 F0            [24] 1614 	jnz	00107$
-                           000098  1615 	C$config.c$127$1$23 ==.
-                                   1616 ;	Z:\9semestre\micap\micap-master\p3\/config.c:127: while ((OSCXCN & 0x80) == 0);
-      000131                       1617 00102$:
-      000131 E5 8C            [12] 1618 	mov	a,_OSCXCN
-      000133 30 E7 FB         [24] 1619 	jnb	acc.7,00102$
-                           00009D  1620 	C$config.c$128$1$23 ==.
-                                   1621 ;	Z:\9semestre\micap\micap-master\p3\/config.c:128: CLKSEL    = 0x01;
-      000136 75 97 01         [24] 1622 	mov	_CLKSEL,#0x01
-                           0000A0  1623 	C$config.c$129$1$23 ==.
-                           0000A0  1624 	XG$Oscillator_Init$0$0 ==.
-      000139 22               [24] 1625 	ret
-                                   1626 ;------------------------------------------------------------
-                                   1627 ;Allocation info for local variables in function 'Interrupts_Init'
-                                   1628 ;------------------------------------------------------------
-                           0000A1  1629 	G$Interrupts_Init$0$0 ==.
-                           0000A1  1630 	C$config.c$131$1$23 ==.
-                                   1631 ;	Z:\9semestre\micap\micap-master\p3\/config.c:131: void Interrupts_Init()
-                                   1632 ;	-----------------------------------------
-                                   1633 ;	 function Interrupts_Init
-                                   1634 ;	-----------------------------------------
-      00013A                       1635 _Interrupts_Init:
-                           0000A1  1636 	C$config.c$133$1$24 ==.
-                                   1637 ;	Z:\9semestre\micap\micap-master\p3\/config.c:133: IE        = 0xB8;
-      00013A 75 A8 B8         [24] 1638 	mov	_IE,#0xb8
-                           0000A4  1639 	C$config.c$134$1$24 ==.
-                                   1640 ;	Z:\9semestre\micap\micap-master\p3\/config.c:134: IP        = 0xE8;
-      00013D 75 B8 E8         [24] 1641 	mov	_IP,#0xe8
-                           0000A7  1642 	C$config.c$135$1$24 ==.
-                           0000A7  1643 	XG$Interrupts_Init$0$0 ==.
-      000140 22               [24] 1644 	ret
-                                   1645 ;------------------------------------------------------------
-                                   1646 ;Allocation info for local variables in function 'Init_Device'
-                                   1647 ;------------------------------------------------------------
-                           0000A8  1648 	G$Init_Device$0$0 ==.
-                           0000A8  1649 	C$config.c$139$1$24 ==.
-                                   1650 ;	Z:\9semestre\micap\micap-master\p3\/config.c:139: void Init_Device(void)
-                                   1651 ;	-----------------------------------------
-                                   1652 ;	 function Init_Device
-                                   1653 ;	-----------------------------------------
-      000141                       1654 _Init_Device:
-                           0000A8  1655 	C$config.c$141$1$26 ==.
-                                   1656 ;	Z:\9semestre\micap\micap-master\p3\/config.c:141: Reset_Sources_Init();
-      000141 12 00 99         [24] 1657 	lcall	_Reset_Sources_Init
-                           0000AB  1658 	C$config.c$142$1$26 ==.
-                                   1659 ;	Z:\9semestre\micap\micap-master\p3\/config.c:142: Timer_Init();
-      000144 12 00 A0         [24] 1660 	lcall	_Timer_Init
-                           0000AE  1661 	C$config.c$143$1$26 ==.
-                                   1662 ;	Z:\9semestre\micap\micap-master\p3\/config.c:143: PCA_Init();
-      000147 12 00 D1         [24] 1663 	lcall	_PCA_Init
-                           0000B1  1664 	C$config.c$144$1$26 ==.
-                                   1665 ;	Z:\9semestre\micap\micap-master\p3\/config.c:144: UART_Init();
-      00014A 12 00 DB         [24] 1666 	lcall	_UART_Init
-                           0000B4  1667 	C$config.c$145$1$26 ==.
-                                   1668 ;	Z:\9semestre\micap\micap-master\p3\/config.c:145: SPI_Init();
-      00014D 12 00 E5         [24] 1669 	lcall	_SPI_Init
-                           0000B7  1670 	C$config.c$146$1$26 ==.
-                                   1671 ;	Z:\9semestre\micap\micap-master\p3\/config.c:146: ADC_Init();
-      000150 12 00 F2         [24] 1672 	lcall	_ADC_Init
-                           0000BA  1673 	C$config.c$147$1$26 ==.
-                                   1674 ;	Z:\9semestre\micap\micap-master\p3\/config.c:147: DAC_Init();
-      000153 12 00 F9         [24] 1675 	lcall	_DAC_Init
-                           0000BD  1676 	C$config.c$148$1$26 ==.
-                                   1677 ;	Z:\9semestre\micap\micap-master\p3\/config.c:148: Voltage_Reference_Init();
-      000156 12 01 00         [24] 1678 	lcall	_Voltage_Reference_Init
-                           0000C0  1679 	C$config.c$149$1$26 ==.
-                                   1680 ;	Z:\9semestre\micap\micap-master\p3\/config.c:149: Port_IO_Init();
-      000159 12 01 07         [24] 1681 	lcall	_Port_IO_Init
-                           0000C3  1682 	C$config.c$150$1$26 ==.
-                                   1683 ;	Z:\9semestre\micap\micap-master\p3\/config.c:150: Oscillator_Init();
-      00015C 12 01 17         [24] 1684 	lcall	_Oscillator_Init
-                           0000C6  1685 	C$config.c$151$1$26 ==.
-                                   1686 ;	Z:\9semestre\micap\micap-master\p3\/config.c:151: Interrupts_Init();
-      00015F 12 01 3A         [24] 1687 	lcall	_Interrupts_Init
-                           0000C9  1688 	C$config.c$152$1$26 ==.
-                           0000C9  1689 	XG$Init_Device$0$0 ==.
-      000162 22               [24] 1690 	ret
-                                   1691 ;------------------------------------------------------------
-                                   1692 ;Allocation info for local variables in function 'main'
-                                   1693 ;------------------------------------------------------------
-                           0000CA  1694 	G$main$0$0 ==.
-                           0000CA  1695 	C$p3main.c$41$1$26 ==.
-                                   1696 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:41: int main() {
-                                   1697 ;	-----------------------------------------
-                                   1698 ;	 function main
-                                   1699 ;	-----------------------------------------
-      000163                       1700 _main:
-                           0000CA  1701 	C$p3main.c$43$1$34 ==.
-                                   1702 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:43: Init_Device();
-      000163 12 01 41         [24] 1703 	lcall	_Init_Device
-                           0000CD  1704 	C$p3main.c$44$1$34 ==.
-                                   1705 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:44: SFRPAGE = LEGACY_PAGE;
-      000166 75 84 00         [24] 1706 	mov	_SFRPAGE,#0x00
-                           0000D0  1707 	C$p3main.c$46$1$34 ==.
-                                   1708 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:46: TMR2H = 0x0B;
-      000169 75 CD 0B         [24] 1709 	mov	_TMR2H,#0x0b
-                           0000D3  1710 	C$p3main.c$47$1$34 ==.
-                                   1711 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:47: TMR2L = 0xDC;
-      00016C 75 CC DC         [24] 1712 	mov	_TMR2L,#0xdc
-                           0000D6  1713 	C$p3main.c$48$1$34 ==.
-                                   1714 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:48: RCAP2H = 0x0B; 
-      00016F 75 CB 0B         [24] 1715 	mov	_RCAP2H,#0x0b
-                           0000D9  1716 	C$p3main.c$49$1$34 ==.
-                                   1717 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:49: RCAP2L = 0xDC;
-      000172 75 CA DC         [24] 1718 	mov	_RCAP2L,#0xdc
-                           0000DC  1719 	C$p3main.c$50$1$34 ==.
-                                   1720 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:50: TR2 = 1;
-      000175 D2 CA            [12] 1721 	setb	_TR2
-                           0000DE  1722 	C$p3main.c$52$1$34 ==.
-                                   1723 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:52: P3 = 0xff;
-      000177 75 B0 FF         [24] 1724 	mov	_P3,#0xff
-                           0000E1  1725 	C$p3main.c$54$1$34 ==.
-                                   1726 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:54: printf_fast_f("Iniciando firmware.\n");
-      00017A 74 43            [12] 1727 	mov	a,#___str_0
-      00017C C0 E0            [24] 1728 	push	acc
-      00017E 74 10            [12] 1729 	mov	a,#(___str_0 >> 8)
-      000180 C0 E0            [24] 1730 	push	acc
-      000182 12 07 F1         [24] 1731 	lcall	_printf_fast_f
-      000185 15 81            [12] 1732 	dec	sp
-      000187 15 81            [12] 1733 	dec	sp
-                           0000F0  1734 	C$p3main.c$56$1$34 ==.
-                                   1735 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:56: while(1){
-      000189                       1736 00107$:
-                           0000F0  1737 	C$p3main.c$58$2$35 ==.
-                                   1738 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:58: switch(tecla) {
-      000189 74 01            [12] 1739 	mov	a,#0x01
-      00018B B5 08 02         [24] 1740 	cjne	a,_tecla,00123$
-      00018E 80 11            [24] 1741 	sjmp	00101$
-      000190                       1742 00123$:
-      000190 74 02            [12] 1743 	mov	a,#0x02
-      000192 B5 08 02         [24] 1744 	cjne	a,_tecla,00124$
-      000195 80 0F            [24] 1745 	sjmp	00102$
-      000197                       1746 00124$:
-      000197 74 03            [12] 1747 	mov	a,#0x03
-      000199 B5 08 03         [24] 1748 	cjne	a,_tecla,00125$
-      00019C 02 02 1C         [24] 1749 	ljmp	00103$
-      00019F                       1750 00125$:
-                           000106  1751 	C$p3main.c$61$3$36 ==.
-                                   1752 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:61: case 1:
-      00019F 80 E8            [24] 1753 	sjmp	00107$
-      0001A1                       1754 00101$:
-                           000108  1755 	C$p3main.c$62$3$36 ==.
-                                   1756 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:62: le_LM35();
-      0001A1 12 06 60         [24] 1757 	lcall	_le_LM35
-                           00010B  1758 	C$p3main.c$63$3$36 ==.
-                                   1759 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:63: break;
-                           00010B  1760 	C$p3main.c$66$3$36 ==.
-                                   1761 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:66: case 2:
-      0001A4 80 E3            [24] 1762 	sjmp	00107$
-      0001A6                       1763 00102$:
-                           00010D  1764 	C$p3main.c$67$3$36 ==.
-                                   1765 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:67: printf_fast_f("Tensao aplicada a placa peltier: %3.1fV\n", ((float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1) / 0.1803);
-      0001A6 75 15 00         [24] 1766 	mov	_le_ADC0_PARM_2,#0x00
-      0001A9 75 82 01         [24] 1767 	mov	dpl,#0x01
-      0001AC 12 06 3D         [24] 1768 	lcall	_le_ADC0
-      0001AF 12 0E D8         [24] 1769 	lcall	___uint2fs
-      0001B2 AC 82            [24] 1770 	mov	r4,dpl
-      0001B4 AD 83            [24] 1771 	mov	r5,dph
-      0001B6 AE F0            [24] 1772 	mov	r6,b
-      0001B8 FF               [12] 1773 	mov	r7,a
-      0001B9 C0 04            [24] 1774 	push	ar4
-      0001BB C0 05            [24] 1775 	push	ar5
-      0001BD C0 06            [24] 1776 	push	ar6
-      0001BF C0 07            [24] 1777 	push	ar7
-      0001C1 90 85 1F         [24] 1778 	mov	dptr,#0x851f
-      0001C4 75 F0 1B         [24] 1779 	mov	b,#0x1b
-      0001C7 74 3A            [12] 1780 	mov	a,#0x3a
-      0001C9 12 0C 72         [24] 1781 	lcall	___fsmul
-      0001CC AC 82            [24] 1782 	mov	r4,dpl
-      0001CE AD 83            [24] 1783 	mov	r5,dph
-      0001D0 AE F0            [24] 1784 	mov	r6,b
-      0001D2 FF               [12] 1785 	mov	r7,a
-      0001D3 E5 81            [12] 1786 	mov	a,sp
-      0001D5 24 FC            [12] 1787 	add	a,#0xfc
-      0001D7 F5 81            [12] 1788 	mov	sp,a
-      0001D9 74 90            [12] 1789 	mov	a,#0x90
-      0001DB C0 E0            [24] 1790 	push	acc
-      0001DD 74 A0            [12] 1791 	mov	a,#0xa0
-      0001DF C0 E0            [24] 1792 	push	acc
-      0001E1 74 38            [12] 1793 	mov	a,#0x38
-      0001E3 C0 E0            [24] 1794 	push	acc
-      0001E5 74 3E            [12] 1795 	mov	a,#0x3e
-      0001E7 C0 E0            [24] 1796 	push	acc
-      0001E9 8C 82            [24] 1797 	mov	dpl,r4
-      0001EB 8D 83            [24] 1798 	mov	dph,r5
-      0001ED 8E F0            [24] 1799 	mov	b,r6
-      0001EF EF               [12] 1800 	mov	a,r7
-      0001F0 12 0F 4D         [24] 1801 	lcall	___fsdiv
-      0001F3 AC 82            [24] 1802 	mov	r4,dpl
-      0001F5 AD 83            [24] 1803 	mov	r5,dph
-      0001F7 AE F0            [24] 1804 	mov	r6,b
-      0001F9 FF               [12] 1805 	mov	r7,a
-      0001FA E5 81            [12] 1806 	mov	a,sp
-      0001FC 24 FC            [12] 1807 	add	a,#0xfc
-      0001FE F5 81            [12] 1808 	mov	sp,a
-      000200 C0 04            [24] 1809 	push	ar4
-      000202 C0 05            [24] 1810 	push	ar5
-      000204 C0 06            [24] 1811 	push	ar6
-      000206 C0 07            [24] 1812 	push	ar7
-      000208 74 58            [12] 1813 	mov	a,#___str_1
-      00020A C0 E0            [24] 1814 	push	acc
-      00020C 74 10            [12] 1815 	mov	a,#(___str_1 >> 8)
-      00020E C0 E0            [24] 1816 	push	acc
-      000210 12 07 F1         [24] 1817 	lcall	_printf_fast_f
-      000213 E5 81            [12] 1818 	mov	a,sp
-      000215 24 FA            [12] 1819 	add	a,#0xfa
-      000217 F5 81            [12] 1820 	mov	sp,a
-                           000180  1821 	C$p3main.c$68$3$36 ==.
-                                   1822 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:68: break;
-      000219 02 01 89         [24] 1823 	ljmp	00107$
-                           000183  1824 	C$p3main.c$71$3$36 ==.
-                                   1825 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:71: case 3:
-      00021C                       1826 00103$:
-                           000183  1827 	C$p3main.c$72$3$36 ==.
-                                   1828 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:72: test_RAM_SPI();
-      00021C 12 05 65         [24] 1829 	lcall	_test_RAM_SPI
-                           000186  1830 	C$p3main.c$73$3$36 ==.
-                                   1831 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:73: break;
-      00021F 02 01 89         [24] 1832 	ljmp	00107$
-                           000189  1833 	C$p3main.c$80$1$34 ==.
-                                   1834 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:80: return 0;
-                           000189  1835 	C$p3main.c$81$1$34 ==.
-                           000189  1836 	XG$main$0$0 ==.
-      000222 22               [24] 1837 	ret
-                                   1838 ;------------------------------------------------------------
-                                   1839 ;Allocation info for local variables in function 'delay_ms'
-                                   1840 ;------------------------------------------------------------
-                                   1841 ;t                         Allocated to registers r6 r7 
-                                   1842 ;------------------------------------------------------------
-                           00018A  1843 	G$delay_ms$0$0 ==.
-                           00018A  1844 	C$p3main.c$83$1$34 ==.
-                                   1845 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:83: void delay_ms(unsigned int t) __reentrant
-                                   1846 ;	-----------------------------------------
-                                   1847 ;	 function delay_ms
-                                   1848 ;	-----------------------------------------
-      000223                       1849 _delay_ms:
-      000223 AE 82            [24] 1850 	mov	r6,dpl
-      000225 AF 83            [24] 1851 	mov	r7,dph
-                           00018E  1852 	C$p3main.c$85$1$38 ==.
-                                   1853 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:85: TMOD |= 0x01;
-      000227 43 89 01         [24] 1854 	orl	_TMOD,#0x01
-                           000191  1855 	C$p3main.c$86$1$38 ==.
-                                   1856 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:86: TMOD &= ~0x02; 
-      00022A 53 89 FD         [24] 1857 	anl	_TMOD,#0xfd
-                           000194  1858 	C$p3main.c$87$1$38 ==.
-                                   1859 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:87: while(t>0)
-      00022D                       1860 00104$:
-      00022D EE               [12] 1861 	mov	a,r6
-      00022E 4F               [12] 1862 	orl	a,r7
-      00022F 60 16            [24] 1863 	jz	00107$
-                           000198  1864 	C$p3main.c$89$2$39 ==.
-                                   1865 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:89: TR0 = 0;
-      000231 C2 8C            [12] 1866 	clr	_TR0
-                           00019A  1867 	C$p3main.c$90$2$39 ==.
-                                   1868 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:90: TF0 = 0;
-      000233 C2 8D            [12] 1869 	clr	_TF0
-                           00019C  1870 	C$p3main.c$91$2$39 ==.
-                                   1871 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:91: TH0 = 0x9E; 
-      000235 75 8C 9E         [24] 1872 	mov	_TH0,#0x9e
-                           00019F  1873 	C$p3main.c$92$2$39 ==.
-                                   1874 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:92: TL0 = 0x58;
-      000238 75 8A 58         [24] 1875 	mov	_TL0,#0x58
-                           0001A2  1876 	C$p3main.c$93$2$39 ==.
-                                   1877 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:93: TR0 = 1;
-      00023B D2 8C            [12] 1878 	setb	_TR0
-                           0001A4  1879 	C$p3main.c$94$2$39 ==.
-                                   1880 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:94: while(TF0 != 1);
-      00023D                       1881 00101$:
-      00023D 30 8D FD         [24] 1882 	jnb	_TF0,00101$
-                           0001A7  1883 	C$p3main.c$95$2$39 ==.
-                                   1884 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:95: t--;
-      000240 1E               [12] 1885 	dec	r6
-      000241 BE FF 01         [24] 1886 	cjne	r6,#0xff,00124$
-      000244 1F               [12] 1887 	dec	r7
-      000245                       1888 00124$:
-      000245 80 E6            [24] 1889 	sjmp	00104$
-      000247                       1890 00107$:
-                           0001AE  1891 	C$p3main.c$97$1$38 ==.
-                           0001AE  1892 	XG$delay_ms$0$0 ==.
-      000247 22               [24] 1893 	ret
-                                   1894 ;------------------------------------------------------------
-                                   1895 ;Allocation info for local variables in function 'putchar'
-                                   1896 ;------------------------------------------------------------
-                                   1897 ;c                         Allocated to registers 
-                                   1898 ;------------------------------------------------------------
-                           0001AF  1899 	G$putchar$0$0 ==.
-                           0001AF  1900 	C$p3main.c$100$1$38 ==.
-                                   1901 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:100: void putchar (char c ) {
-                                   1902 ;	-----------------------------------------
-                                   1903 ;	 function putchar
-                                   1904 ;	-----------------------------------------
-      000248                       1905 _putchar:
-      000248 85 82 99         [24] 1906 	mov	_SBUF0,dpl
-                           0001B2  1907 	C$p3main.c$102$1$41 ==.
-                                   1908 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:102: while (TI0 == 0); 
-      00024B                       1909 00101$:
-                           0001B2  1910 	C$p3main.c$103$1$41 ==.
-                                   1911 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:103: TI0 = 0;
-      00024B 10 99 02         [24] 1912 	jbc	_TI0,00112$
-      00024E 80 FB            [24] 1913 	sjmp	00101$
-      000250                       1914 00112$:
-                           0001B7  1915 	C$p3main.c$104$1$41 ==.
-                           0001B7  1916 	XG$putchar$0$0 ==.
-      000250 22               [24] 1917 	ret
-                                   1918 ;------------------------------------------------------------
-                                   1919 ;Allocation info for local variables in function 'int_serial'
-                                   1920 ;------------------------------------------------------------
-                           0001B8  1921 	G$int_serial$0$0 ==.
-                           0001B8  1922 	C$p3main.c$108$1$41 ==.
-                                   1923 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:108: void int_serial(void) __interrupt 4 {
-                                   1924 ;	-----------------------------------------
-                                   1925 ;	 function int_serial
-                                   1926 ;	-----------------------------------------
-      000251                       1927 _int_serial:
-      000251 C0 21            [24] 1928 	push	bits
-      000253 C0 E0            [24] 1929 	push	acc
-      000255 C0 F0            [24] 1930 	push	b
-      000257 C0 82            [24] 1931 	push	dpl
-      000259 C0 83            [24] 1932 	push	dph
-      00025B C0 07            [24] 1933 	push	(0+7)
-      00025D C0 06            [24] 1934 	push	(0+6)
-      00025F C0 05            [24] 1935 	push	(0+5)
-      000261 C0 04            [24] 1936 	push	(0+4)
-      000263 C0 03            [24] 1937 	push	(0+3)
-      000265 C0 02            [24] 1938 	push	(0+2)
-      000267 C0 01            [24] 1939 	push	(0+1)
-      000269 C0 00            [24] 1940 	push	(0+0)
-      00026B C0 D0            [24] 1941 	push	psw
-      00026D 75 D0 00         [24] 1942 	mov	psw,#0x00
-                           0001D7  1943 	C$p3main.c$109$1$43 ==.
-                                   1944 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:109: if (RI0 == 1) {
-      000270 20 98 03         [24] 1945 	jb	_RI0,00158$
-      000273 02 04 70         [24] 1946 	ljmp	00120$
-      000276                       1947 00158$:
-                           0001DD  1948 	C$p3main.c$110$2$44 ==.
-                                   1949 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:110: switch (SBUF0) {
-      000276 AF 99            [24] 1950 	mov	r7,_SBUF0
-      000278 BF 31 03         [24] 1951 	cjne	r7,#0x31,00159$
-      00027B 02 03 EC         [24] 1952 	ljmp	00113$
-      00027E                       1953 00159$:
-      00027E BF 32 03         [24] 1954 	cjne	r7,#0x32,00160$
-      000281 02 04 18         [24] 1955 	ljmp	00114$
-      000284                       1956 00160$:
-      000284 BF 33 03         [24] 1957 	cjne	r7,#0x33,00161$
-      000287 02 04 44         [24] 1958 	ljmp	00115$
-      00028A                       1959 00161$:
-      00028A BF 61 03         [24] 1960 	cjne	r7,#0x61,00162$
-      00028D 02 03 42         [24] 1961 	ljmp	00105$
-      000290                       1962 00162$:
-      000290 BF 64 03         [24] 1963 	cjne	r7,#0x64,00163$
-      000293 02 03 34         [24] 1964 	ljmp	00102$
-      000296                       1965 00163$:
-      000296 BF 6D 02         [24] 1966 	cjne	r7,#0x6d,00164$
-      000299 80 0F            [24] 1967 	sjmp	00101$
-      00029B                       1968 00164$:
-      00029B BF 70 03         [24] 1969 	cjne	r7,#0x70,00165$
-      00029E 02 03 4E         [24] 1970 	ljmp	00108$
-      0002A1                       1971 00165$:
-      0002A1 BF 72 03         [24] 1972 	cjne	r7,#0x72,00166$
-      0002A4 02 03 86         [24] 1973 	ljmp	00112$
-      0002A7                       1974 00166$:
-      0002A7 02 04 6E         [24] 1975 	ljmp	00117$
-                           000211  1976 	C$p3main.c$112$3$45 ==.
-                                   1977 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:112: case 'm':
-      0002AA                       1978 00101$:
-                           000211  1979 	C$p3main.c$113$3$45 ==.
-                                   1980 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:113: printf_fast_f("\n MENU:\n");
-      0002AA 74 81            [12] 1981 	mov	a,#___str_2
-      0002AC C0 E0            [24] 1982 	push	acc
-      0002AE 74 10            [12] 1983 	mov	a,#(___str_2 >> 8)
-      0002B0 C0 E0            [24] 1984 	push	acc
-      0002B2 12 07 F1         [24] 1985 	lcall	_printf_fast_f
-      0002B5 15 81            [12] 1986 	dec	sp
-      0002B7 15 81            [12] 1987 	dec	sp
-                           000220  1988 	C$p3main.c$114$3$45 ==.
-                                   1989 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:114: printf_fast_f("a: Aumenta RPM do motor.\n");
-      0002B9 74 8A            [12] 1990 	mov	a,#___str_3
-      0002BB C0 E0            [24] 1991 	push	acc
-      0002BD 74 10            [12] 1992 	mov	a,#(___str_3 >> 8)
-      0002BF C0 E0            [24] 1993 	push	acc
-      0002C1 12 07 F1         [24] 1994 	lcall	_printf_fast_f
-      0002C4 15 81            [12] 1995 	dec	sp
-      0002C6 15 81            [12] 1996 	dec	sp
-                           00022F  1997 	C$p3main.c$115$3$45 ==.
-                                   1998 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:115: printf_fast_f("d: Diminui RPM do motor.\n");
-      0002C8 74 A4            [12] 1999 	mov	a,#___str_4
-      0002CA C0 E0            [24] 2000 	push	acc
-      0002CC 74 10            [12] 2001 	mov	a,#(___str_4 >> 8)
-      0002CE C0 E0            [24] 2002 	push	acc
-      0002D0 12 07 F1         [24] 2003 	lcall	_printf_fast_f
-      0002D3 15 81            [12] 2004 	dec	sp
-      0002D5 15 81            [12] 2005 	dec	sp
-                           00023E  2006 	C$p3main.c$116$3$45 ==.
-                                   2007 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:116: printf_fast_f("p: Liga/desliga fonte de energia placa peltier.\n");
-      0002D7 74 BE            [12] 2008 	mov	a,#___str_5
-      0002D9 C0 E0            [24] 2009 	push	acc
-      0002DB 74 10            [12] 2010 	mov	a,#(___str_5 >> 8)
-      0002DD C0 E0            [24] 2011 	push	acc
-      0002DF 12 07 F1         [24] 2012 	lcall	_printf_fast_f
-      0002E2 15 81            [12] 2013 	dec	sp
-      0002E4 15 81            [12] 2014 	dec	sp
-                           00024D  2015 	C$p3main.c$117$3$45 ==.
-                                   2016 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:117: printf_fast_f("r: Mede rotacao do motor.\n");
-      0002E6 74 EF            [12] 2017 	mov	a,#___str_6
-      0002E8 C0 E0            [24] 2018 	push	acc
-      0002EA 74 10            [12] 2019 	mov	a,#(___str_6 >> 8)
-      0002EC C0 E0            [24] 2020 	push	acc
-      0002EE 12 07 F1         [24] 2021 	lcall	_printf_fast_f
-      0002F1 15 81            [12] 2022 	dec	sp
-      0002F3 15 81            [12] 2023 	dec	sp
-                           00025C  2024 	C$p3main.c$118$3$45 ==.
-                                   2025 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:118: printf_fast_f("1: Mede temperatura do motor.\n");
-      0002F5 74 0A            [12] 2026 	mov	a,#___str_7
-      0002F7 C0 E0            [24] 2027 	push	acc
-      0002F9 74 11            [12] 2028 	mov	a,#(___str_7 >> 8)
-      0002FB C0 E0            [24] 2029 	push	acc
-      0002FD 12 07 F1         [24] 2030 	lcall	_printf_fast_f
-      000300 15 81            [12] 2031 	dec	sp
-      000302 15 81            [12] 2032 	dec	sp
-                           00026B  2033 	C$p3main.c$119$3$45 ==.
-                                   2034 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:119: printf_fast_f("2: Mede tensao aplicada a placa peltier.\n");
-      000304 74 29            [12] 2035 	mov	a,#___str_8
-      000306 C0 E0            [24] 2036 	push	acc
-      000308 74 11            [12] 2037 	mov	a,#(___str_8 >> 8)
-      00030A C0 E0            [24] 2038 	push	acc
-      00030C 12 07 F1         [24] 2039 	lcall	_printf_fast_f
-      00030F 15 81            [12] 2040 	dec	sp
-      000311 15 81            [12] 2041 	dec	sp
-                           00027A  2042 	C$p3main.c$120$3$45 ==.
-                                   2043 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:120: printf_fast_f("3: Testa RAM SPI.\n");
-      000313 74 53            [12] 2044 	mov	a,#___str_9
-      000315 C0 E0            [24] 2045 	push	acc
-      000317 74 11            [12] 2046 	mov	a,#(___str_9 >> 8)
-      000319 C0 E0            [24] 2047 	push	acc
-      00031B 12 07 F1         [24] 2048 	lcall	_printf_fast_f
-      00031E 15 81            [12] 2049 	dec	sp
-      000320 15 81            [12] 2050 	dec	sp
-                           000289  2051 	C$p3main.c$121$3$45 ==.
-                                   2052 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:121: printf_fast_f("\n");
-      000322 74 66            [12] 2053 	mov	a,#___str_10
-      000324 C0 E0            [24] 2054 	push	acc
-      000326 74 11            [12] 2055 	mov	a,#(___str_10 >> 8)
-      000328 C0 E0            [24] 2056 	push	acc
-      00032A 12 07 F1         [24] 2057 	lcall	_printf_fast_f
-      00032D 15 81            [12] 2058 	dec	sp
-      00032F 15 81            [12] 2059 	dec	sp
-                           000298  2060 	C$p3main.c$123$3$45 ==.
-                                   2061 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:123: break;
-      000331 02 04 6E         [24] 2062 	ljmp	00117$
-                           00029B  2063 	C$p3main.c$126$3$45 ==.
-                                   2064 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:126: case 'd':
-      000334                       2065 00102$:
-                           00029B  2066 	C$p3main.c$127$3$45 ==.
-                                   2067 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:127: if (PCA0CPH0 < 255)
-      000334 74 01            [12] 2068 	mov	a,#0x100 - 0xff
-      000336 25 FC            [12] 2069 	add	a,_PCA0CPH0
-      000338 50 03            [24] 2070 	jnc	00167$
-      00033A 02 04 6E         [24] 2071 	ljmp	00117$
-      00033D                       2072 00167$:
-                           0002A4  2073 	C$p3main.c$128$3$45 ==.
-                                   2074 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:128: PCA0CPH0++;
-      00033D 05 FC            [12] 2075 	inc	_PCA0CPH0
-                           0002A6  2076 	C$p3main.c$130$3$45 ==.
-                                   2077 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:130: break;
-      00033F 02 04 6E         [24] 2078 	ljmp	00117$
-                           0002A9  2079 	C$p3main.c$133$3$45 ==.
-                                   2080 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:133: case 'a':
-      000342                       2081 00105$:
-                           0002A9  2082 	C$p3main.c$134$3$45 ==.
-                                   2083 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:134: if (PCA0CPH0 > 0)
-      000342 E5 FC            [12] 2084 	mov	a,_PCA0CPH0
-      000344 70 03            [24] 2085 	jnz	00168$
-      000346 02 04 6E         [24] 2086 	ljmp	00117$
-      000349                       2087 00168$:
-                           0002B0  2088 	C$p3main.c$135$3$45 ==.
-                                   2089 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:135: PCA0CPH0--;
-      000349 15 FC            [12] 2090 	dec	_PCA0CPH0
-                           0002B2  2091 	C$p3main.c$137$3$45 ==.
-                                   2092 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:137: break;
-      00034B 02 04 6E         [24] 2093 	ljmp	00117$
-                           0002B5  2094 	C$p3main.c$140$3$45 ==.
-                                   2095 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:140: case 'p':
-      00034E                       2096 00108$:
-                           0002B5  2097 	C$p3main.c$141$3$45 ==.
-                                   2098 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:141: P0_7 = !P0_7;
-      00034E B2 87            [12] 2099 	cpl	_P0_7
-                           0002B7  2100 	C$p3main.c$143$3$45 ==.
-                                   2101 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:143: printf_fast_f(" ");
-      000350 74 68            [12] 2102 	mov	a,#___str_11
-      000352 C0 E0            [24] 2103 	push	acc
-      000354 74 11            [12] 2104 	mov	a,#(___str_11 >> 8)
-      000356 C0 E0            [24] 2105 	push	acc
-      000358 12 07 F1         [24] 2106 	lcall	_printf_fast_f
-      00035B 15 81            [12] 2107 	dec	sp
-      00035D 15 81            [12] 2108 	dec	sp
-                           0002C6  2109 	C$p3main.c$145$3$45 ==.
-                                   2110 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:145: if (P0_7)
-      00035F 30 87 12         [24] 2111 	jnb	_P0_7,00110$
-                           0002C9  2112 	C$p3main.c$146$3$45 ==.
-                                   2113 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:146: printf_fast_f("Fonte 12V ligada.\n");
-      000362 74 6A            [12] 2114 	mov	a,#___str_12
-      000364 C0 E0            [24] 2115 	push	acc
-      000366 74 11            [12] 2116 	mov	a,#(___str_12 >> 8)
-      000368 C0 E0            [24] 2117 	push	acc
-      00036A 12 07 F1         [24] 2118 	lcall	_printf_fast_f
-      00036D 15 81            [12] 2119 	dec	sp
-      00036F 15 81            [12] 2120 	dec	sp
-      000371 02 04 6E         [24] 2121 	ljmp	00117$
-      000374                       2122 00110$:
-                           0002DB  2123 	C$p3main.c$148$3$45 ==.
-                                   2124 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:148: printf_fast_f("Fonte 12V desligada.\n");
-      000374 74 7D            [12] 2125 	mov	a,#___str_13
-      000376 C0 E0            [24] 2126 	push	acc
-      000378 74 11            [12] 2127 	mov	a,#(___str_13 >> 8)
-      00037A C0 E0            [24] 2128 	push	acc
-      00037C 12 07 F1         [24] 2129 	lcall	_printf_fast_f
-      00037F 15 81            [12] 2130 	dec	sp
-      000381 15 81            [12] 2131 	dec	sp
-                           0002EA  2132 	C$p3main.c$150$3$45 ==.
-                                   2133 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:150: break;
-      000383 02 04 6E         [24] 2134 	ljmp	00117$
-                           0002ED  2135 	C$p3main.c$153$3$45 ==.
-                                   2136 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:153: case 'r':
-      000386                       2137 00112$:
-                           0002ED  2138 	C$p3main.c$154$3$45 ==.
-                                   2139 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:154: printf_fast_f("Rotacao do motor: %3.1f\n", 30/(le_pulso()*10));
-      000386 12 07 62         [24] 2140 	lcall	_le_pulso
-      000389 AC 82            [24] 2141 	mov	r4,dpl
-      00038B AD 83            [24] 2142 	mov	r5,dph
-      00038D AE F0            [24] 2143 	mov	r6,b
-      00038F FF               [12] 2144 	mov	r7,a
-      000390 C0 04            [24] 2145 	push	ar4
-      000392 C0 05            [24] 2146 	push	ar5
-      000394 C0 06            [24] 2147 	push	ar6
-      000396 C0 07            [24] 2148 	push	ar7
-      000398 90 00 00         [24] 2149 	mov	dptr,#0x0000
-      00039B 75 F0 20         [24] 2150 	mov	b,#0x20
-      00039E 74 41            [12] 2151 	mov	a,#0x41
-      0003A0 12 0C 72         [24] 2152 	lcall	___fsmul
-      0003A3 AC 82            [24] 2153 	mov	r4,dpl
-      0003A5 AD 83            [24] 2154 	mov	r5,dph
-      0003A7 AE F0            [24] 2155 	mov	r6,b
-      0003A9 FF               [12] 2156 	mov	r7,a
-      0003AA E5 81            [12] 2157 	mov	a,sp
-      0003AC 24 FC            [12] 2158 	add	a,#0xfc
-      0003AE F5 81            [12] 2159 	mov	sp,a
-      0003B0 C0 04            [24] 2160 	push	ar4
-      0003B2 C0 05            [24] 2161 	push	ar5
-      0003B4 C0 06            [24] 2162 	push	ar6
-      0003B6 C0 07            [24] 2163 	push	ar7
-      0003B8 90 00 00         [24] 2164 	mov	dptr,#0x0000
-      0003BB 75 F0 F0         [24] 2165 	mov	b,#0xf0
-      0003BE 74 41            [12] 2166 	mov	a,#0x41
-      0003C0 12 0F 4D         [24] 2167 	lcall	___fsdiv
-      0003C3 AC 82            [24] 2168 	mov	r4,dpl
-      0003C5 AD 83            [24] 2169 	mov	r5,dph
-      0003C7 AE F0            [24] 2170 	mov	r6,b
-      0003C9 FF               [12] 2171 	mov	r7,a
-      0003CA E5 81            [12] 2172 	mov	a,sp
-      0003CC 24 FC            [12] 2173 	add	a,#0xfc
-      0003CE F5 81            [12] 2174 	mov	sp,a
-      0003D0 C0 04            [24] 2175 	push	ar4
-      0003D2 C0 05            [24] 2176 	push	ar5
-      0003D4 C0 06            [24] 2177 	push	ar6
-      0003D6 C0 07            [24] 2178 	push	ar7
-      0003D8 74 93            [12] 2179 	mov	a,#___str_14
-      0003DA C0 E0            [24] 2180 	push	acc
-      0003DC 74 11            [12] 2181 	mov	a,#(___str_14 >> 8)
-      0003DE C0 E0            [24] 2182 	push	acc
-      0003E0 12 07 F1         [24] 2183 	lcall	_printf_fast_f
-      0003E3 E5 81            [12] 2184 	mov	a,sp
-      0003E5 24 FA            [12] 2185 	add	a,#0xfa
-      0003E7 F5 81            [12] 2186 	mov	sp,a
-                           000350  2187 	C$p3main.c$155$3$45 ==.
-                                   2188 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:155: break;
-      0003E9 02 04 6E         [24] 2189 	ljmp	00117$
-                           000353  2190 	C$p3main.c$158$3$45 ==.
-                                   2191 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:158: case '1':
-      0003EC                       2192 00113$:
-                           000353  2193 	C$p3main.c$159$3$45 ==.
-                                   2194 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:159: P3_1 = 0;
-      0003EC C2 B1            [12] 2195 	clr	_P3_1
-                           000355  2196 	C$p3main.c$160$3$45 ==.
-                                   2197 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:160: delay_ms(5);
-      0003EE 90 00 05         [24] 2198 	mov	dptr,#0x0005
-      0003F1 12 02 23         [24] 2199 	lcall	_delay_ms
-                           00035B  2200 	C$p3main.c$161$3$45 ==.
-                                   2201 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:161: P3_1 = 1;
-      0003F4 D2 B1            [12] 2202 	setb	_P3_1
-                           00035D  2203 	C$p3main.c$162$3$45 ==.
-                                   2204 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:162: delay_ms(5);
-      0003F6 90 00 05         [24] 2205 	mov	dptr,#0x0005
-      0003F9 12 02 23         [24] 2206 	lcall	_delay_ms
-                           000363  2207 	C$p3main.c$163$3$45 ==.
-                                   2208 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:163: P3_1 = 0;
-      0003FC C2 B1            [12] 2209 	clr	_P3_1
-                           000365  2210 	C$p3main.c$165$3$45 ==.
-                                   2211 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:165: delay_ms(150); 
-      0003FE 90 00 96         [24] 2212 	mov	dptr,#0x0096
-      000401 12 02 23         [24] 2213 	lcall	_delay_ms
-                           00036B  2214 	C$p3main.c$167$3$45 ==.
-                                   2215 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:167: P3_1 = 1;
-      000404 D2 B1            [12] 2216 	setb	_P3_1
-                           00036D  2217 	C$p3main.c$168$3$45 ==.
-                                   2218 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:168: delay_ms(5);
-      000406 90 00 05         [24] 2219 	mov	dptr,#0x0005
-      000409 12 02 23         [24] 2220 	lcall	_delay_ms
-                           000373  2221 	C$p3main.c$169$3$45 ==.
-                                   2222 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:169: P3_1 = 0;
-      00040C C2 B1            [12] 2223 	clr	_P3_1
-                           000375  2224 	C$p3main.c$170$3$45 ==.
-                                   2225 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:170: delay_ms(5);
-      00040E 90 00 05         [24] 2226 	mov	dptr,#0x0005
-      000411 12 02 23         [24] 2227 	lcall	_delay_ms
-                           00037B  2228 	C$p3main.c$171$3$45 ==.
-                                   2229 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:171: P3_1 = 1;
-      000414 D2 B1            [12] 2230 	setb	_P3_1
-                           00037D  2231 	C$p3main.c$172$3$45 ==.
-                                   2232 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:172: break;
-                           00037D  2233 	C$p3main.c$175$3$45 ==.
-                                   2234 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:175: case '2':
-      000416 80 56            [24] 2235 	sjmp	00117$
-      000418                       2236 00114$:
-                           00037F  2237 	C$p3main.c$176$3$45 ==.
-                                   2238 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:176: P3_2 = 0;
-      000418 C2 B2            [12] 2239 	clr	_P3_2
-                           000381  2240 	C$p3main.c$177$3$45 ==.
-                                   2241 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:177: delay_ms(5);
-      00041A 90 00 05         [24] 2242 	mov	dptr,#0x0005
-      00041D 12 02 23         [24] 2243 	lcall	_delay_ms
-                           000387  2244 	C$p3main.c$178$3$45 ==.
-                                   2245 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:178: P3_2 = 1;
-      000420 D2 B2            [12] 2246 	setb	_P3_2
-                           000389  2247 	C$p3main.c$179$3$45 ==.
-                                   2248 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:179: delay_ms(5);
-      000422 90 00 05         [24] 2249 	mov	dptr,#0x0005
-      000425 12 02 23         [24] 2250 	lcall	_delay_ms
-                           00038F  2251 	C$p3main.c$180$3$45 ==.
-                                   2252 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:180: P3_2 = 0;
-      000428 C2 B2            [12] 2253 	clr	_P3_2
-                           000391  2254 	C$p3main.c$182$3$45 ==.
-                                   2255 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:182: delay_ms(150); 
-      00042A 90 00 96         [24] 2256 	mov	dptr,#0x0096
-      00042D 12 02 23         [24] 2257 	lcall	_delay_ms
-                           000397  2258 	C$p3main.c$184$3$45 ==.
-                                   2259 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:184: P3_2 = 1;
-      000430 D2 B2            [12] 2260 	setb	_P3_2
-                           000399  2261 	C$p3main.c$185$3$45 ==.
-                                   2262 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:185: delay_ms(5);
-      000432 90 00 05         [24] 2263 	mov	dptr,#0x0005
-      000435 12 02 23         [24] 2264 	lcall	_delay_ms
-                           00039F  2265 	C$p3main.c$186$3$45 ==.
-                                   2266 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:186: P3_2 = 0;
-      000438 C2 B2            [12] 2267 	clr	_P3_2
-                           0003A1  2268 	C$p3main.c$187$3$45 ==.
-                                   2269 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:187: delay_ms(5);
-      00043A 90 00 05         [24] 2270 	mov	dptr,#0x0005
-      00043D 12 02 23         [24] 2271 	lcall	_delay_ms
-                           0003A7  2272 	C$p3main.c$188$3$45 ==.
-                                   2273 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:188: P3_2 = 1;
-      000440 D2 B2            [12] 2274 	setb	_P3_2
-                           0003A9  2275 	C$p3main.c$189$3$45 ==.
-                                   2276 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:189: break;
-                           0003A9  2277 	C$p3main.c$192$3$45 ==.
-                                   2278 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:192: case '3':
-      000442 80 2A            [24] 2279 	sjmp	00117$
-      000444                       2280 00115$:
-                           0003AB  2281 	C$p3main.c$193$3$45 ==.
-                                   2282 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:193: P3_3 = 0;
-      000444 C2 B3            [12] 2283 	clr	_P3_3
-                           0003AD  2284 	C$p3main.c$194$3$45 ==.
-                                   2285 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:194: delay_ms(5);
-      000446 90 00 05         [24] 2286 	mov	dptr,#0x0005
-      000449 12 02 23         [24] 2287 	lcall	_delay_ms
-                           0003B3  2288 	C$p3main.c$195$3$45 ==.
-                                   2289 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:195: P3_3 = 1;
-      00044C D2 B3            [12] 2290 	setb	_P3_3
-                           0003B5  2291 	C$p3main.c$196$3$45 ==.
-                                   2292 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:196: delay_ms(5);
-      00044E 90 00 05         [24] 2293 	mov	dptr,#0x0005
-      000451 12 02 23         [24] 2294 	lcall	_delay_ms
-                           0003BB  2295 	C$p3main.c$197$3$45 ==.
-                                   2296 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:197: P3_3 = 0;
-      000454 C2 B3            [12] 2297 	clr	_P3_3
-                           0003BD  2298 	C$p3main.c$199$3$45 ==.
-                                   2299 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:199: delay_ms(150); 
-      000456 90 00 96         [24] 2300 	mov	dptr,#0x0096
-      000459 12 02 23         [24] 2301 	lcall	_delay_ms
-                           0003C3  2302 	C$p3main.c$201$3$45 ==.
-                                   2303 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:201: P3_3 = 1;
-      00045C D2 B3            [12] 2304 	setb	_P3_3
-                           0003C5  2305 	C$p3main.c$202$3$45 ==.
-                                   2306 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:202: delay_ms(5);
-      00045E 90 00 05         [24] 2307 	mov	dptr,#0x0005
-      000461 12 02 23         [24] 2308 	lcall	_delay_ms
-                           0003CB  2309 	C$p3main.c$203$3$45 ==.
-                                   2310 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:203: P3_3 = 0;
-      000464 C2 B3            [12] 2311 	clr	_P3_3
-                           0003CD  2312 	C$p3main.c$204$3$45 ==.
-                                   2313 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:204: delay_ms(5);
-      000466 90 00 05         [24] 2314 	mov	dptr,#0x0005
-      000469 12 02 23         [24] 2315 	lcall	_delay_ms
-                           0003D3  2316 	C$p3main.c$205$3$45 ==.
-                                   2317 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:205: P3_3 = 1;
-      00046C D2 B3            [12] 2318 	setb	_P3_3
-                           0003D5  2319 	C$p3main.c$210$2$44 ==.
-                                   2320 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:210: }
-      00046E                       2321 00117$:
-                           0003D5  2322 	C$p3main.c$212$2$44 ==.
-                                   2323 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:212: RI0 = 0;
-      00046E C2 98            [12] 2324 	clr	_RI0
-      000470                       2325 00120$:
-      000470 D0 D0            [24] 2326 	pop	psw
-      000472 D0 00            [24] 2327 	pop	(0+0)
-      000474 D0 01            [24] 2328 	pop	(0+1)
-      000476 D0 02            [24] 2329 	pop	(0+2)
-      000478 D0 03            [24] 2330 	pop	(0+3)
-      00047A D0 04            [24] 2331 	pop	(0+4)
-      00047C D0 05            [24] 2332 	pop	(0+5)
-      00047E D0 06            [24] 2333 	pop	(0+6)
-      000480 D0 07            [24] 2334 	pop	(0+7)
-      000482 D0 83            [24] 2335 	pop	dph
-      000484 D0 82            [24] 2336 	pop	dpl
-      000486 D0 F0            [24] 2337 	pop	b
-      000488 D0 E0            [24] 2338 	pop	acc
-      00048A D0 21            [24] 2339 	pop	bits
-                           0003F3  2340 	C$p3main.c$214$1$43 ==.
-                           0003F3  2341 	XG$int_serial$0$0 ==.
-      00048C 32               [24] 2342 	reti
-                                   2343 ;------------------------------------------------------------
-                                   2344 ;Allocation info for local variables in function 'le_tec'
-                                   2345 ;------------------------------------------------------------
-                                   2346 ;vp                        Allocated to registers r7 
-                                   2347 ;i                         Allocated to registers r6 
-                                   2348 ;m                         Allocated to registers 
-                                   2349 ;------------------------------------------------------------
-                           0003F4  2350 	G$le_tec$0$0 ==.
-                           0003F4  2351 	C$p3main.c$217$1$43 ==.
-                                   2352 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:217: unsigned char le_tec(void) {
-                                   2353 ;	-----------------------------------------
-                                   2354 ;	 function le_tec
-                                   2355 ;	-----------------------------------------
-      00048D                       2356 _le_tec:
-                           0003F4  2357 	C$p3main.c$219$1$47 ==.
-                                   2358 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:219: if(P3 != 0xff)
-      00048D 74 FF            [12] 2359 	mov	a,#0xff
-      00048F B5 B0 02         [24] 2360 	cjne	a,_P3,00123$
-      000492 80 06            [24] 2361 	sjmp	00102$
-      000494                       2362 00123$:
-                           0003FB  2363 	C$p3main.c$221$2$48 ==.
-                                   2364 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:221: vp = ~P3;
-      000494 E5 B0            [12] 2365 	mov	a,_P3
-      000496 F4               [12] 2366 	cpl	a
-      000497 FF               [12] 2367 	mov	r7,a
-                           0003FF  2368 	C$p3main.c$222$1$47 ==.
-                                   2369 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:222: m = 0;
-      000498 80 05            [24] 2370 	sjmp	00113$
-      00049A                       2371 00102$:
-                           000401  2372 	C$p3main.c$226$1$47 ==.
-                                   2373 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:226: return 21;
-      00049A 75 82 15         [24] 2374 	mov	dpl,#0x15
-                           000404  2375 	C$p3main.c$228$1$47 ==.
-                                   2376 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:228: while((vp & 0x01)==0 && i<8)
-      00049D 80 14            [24] 2377 	sjmp	00108$
-      00049F                       2378 00113$:
-      00049F 7E 00            [12] 2379 	mov	r6,#0x00
-      0004A1                       2380 00105$:
-      0004A1 EF               [12] 2381 	mov	a,r7
-      0004A2 20 E0 0C         [24] 2382 	jb	acc.0,00107$
-      0004A5 BE 08 00         [24] 2383 	cjne	r6,#0x08,00125$
-      0004A8                       2384 00125$:
-      0004A8 50 07            [24] 2385 	jnc	00107$
-                           000411  2386 	C$p3main.c$230$2$49 ==.
-                                   2387 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:230: vp = vp >> 1;
-      0004AA EF               [12] 2388 	mov	a,r7
-      0004AB C3               [12] 2389 	clr	c
-      0004AC 13               [12] 2390 	rrc	a
-      0004AD FF               [12] 2391 	mov	r7,a
-                           000415  2392 	C$p3main.c$231$2$49 ==.
-                                   2393 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:231: i++;
-      0004AE 0E               [12] 2394 	inc	r6
-      0004AF 80 F0            [24] 2395 	sjmp	00105$
-      0004B1                       2396 00107$:
-                           000418  2397 	C$p3main.c$234$1$47 ==.
-                                   2398 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:234: return(i+m*8);
-      0004B1 8E 82            [24] 2399 	mov	dpl,r6
-      0004B3                       2400 00108$:
-                           00041A  2401 	C$p3main.c$235$1$47 ==.
-                           00041A  2402 	XG$le_tec$0$0 ==.
-      0004B3 22               [24] 2403 	ret
-                                   2404 ;------------------------------------------------------------
-                                   2405 ;Allocation info for local variables in function 'isr_timer2'
-                                   2406 ;------------------------------------------------------------
-                           00041B  2407 	G$isr_timer2$0$0 ==.
-                           00041B  2408 	C$p3main.c$237$1$47 ==.
-                                   2409 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:237: void isr_timer2() __interrupt 5
-                                   2410 ;	-----------------------------------------
-                                   2411 ;	 function isr_timer2
-                                   2412 ;	-----------------------------------------
-      0004B4                       2413 _isr_timer2:
-      0004B4 C0 21            [24] 2414 	push	bits
-      0004B6 C0 E0            [24] 2415 	push	acc
-      0004B8 C0 F0            [24] 2416 	push	b
-      0004BA C0 82            [24] 2417 	push	dpl
-      0004BC C0 83            [24] 2418 	push	dph
-      0004BE C0 07            [24] 2419 	push	(0+7)
-      0004C0 C0 06            [24] 2420 	push	(0+6)
-      0004C2 C0 05            [24] 2421 	push	(0+5)
-      0004C4 C0 04            [24] 2422 	push	(0+4)
-      0004C6 C0 03            [24] 2423 	push	(0+3)
-      0004C8 C0 02            [24] 2424 	push	(0+2)
-      0004CA C0 01            [24] 2425 	push	(0+1)
-      0004CC C0 00            [24] 2426 	push	(0+0)
-      0004CE C0 D0            [24] 2427 	push	psw
-      0004D0 75 D0 00         [24] 2428 	mov	psw,#0x00
-                           00043A  2429 	C$p3main.c$241$1$50 ==.
-                                   2430 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:241: TF2 = 0; // zera overflow
-      0004D3 C2 CF            [12] 2431 	clr	_TF2
-                           00043C  2432 	C$p3main.c$243$1$50 ==.
-                                   2433 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:243: if(P3 == 0xff)
-      0004D5 74 FF            [12] 2434 	mov	a,#0xff
-      0004D7 B5 B0 03         [24] 2435 	cjne	a,_P3,00102$
-                           000441  2436 	C$p3main.c$244$1$50 ==.
-                                   2437 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:244: estado = 0;
-      0004DA 75 09 00         [24] 2438 	mov	_estado,#0x00
-      0004DD                       2439 00102$:
-                           000444  2440 	C$p3main.c$245$1$50 ==.
-                                   2441 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:245: if(estado == 0)
-      0004DD E5 09            [12] 2442 	mov	a,_estado
-      0004DF 70 06            [24] 2443 	jnz	00104$
-                           000448  2444 	C$p3main.c$247$2$51 ==.
-                                   2445 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:247: tecla = le_tec();
-      0004E1 12 04 8D         [24] 2446 	lcall	_le_tec
-      0004E4 85 82 08         [24] 2447 	mov	_tecla,dpl
-      0004E7                       2448 00104$:
-                           00044E  2449 	C$p3main.c$249$1$50 ==.
-                                   2450 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:249: if(tecla != 21 && estado == 0)
-      0004E7 74 15            [12] 2451 	mov	a,#0x15
-      0004E9 B5 08 02         [24] 2452 	cjne	a,_tecla,00125$
-      0004EC 80 07            [24] 2453 	sjmp	00108$
-      0004EE                       2454 00125$:
-      0004EE E5 09            [12] 2455 	mov	a,_estado
-      0004F0 70 03            [24] 2456 	jnz	00108$
-                           000459  2457 	C$p3main.c$251$2$52 ==.
-                                   2458 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:251: estado = 1;
-      0004F2 75 09 01         [24] 2459 	mov	_estado,#0x01
-      0004F5                       2460 00108$:
-      0004F5 D0 D0            [24] 2461 	pop	psw
-      0004F7 D0 00            [24] 2462 	pop	(0+0)
-      0004F9 D0 01            [24] 2463 	pop	(0+1)
-      0004FB D0 02            [24] 2464 	pop	(0+2)
-      0004FD D0 03            [24] 2465 	pop	(0+3)
-      0004FF D0 04            [24] 2466 	pop	(0+4)
-      000501 D0 05            [24] 2467 	pop	(0+5)
-      000503 D0 06            [24] 2468 	pop	(0+6)
-      000505 D0 07            [24] 2469 	pop	(0+7)
-      000507 D0 83            [24] 2470 	pop	dph
-      000509 D0 82            [24] 2471 	pop	dpl
-      00050B D0 F0            [24] 2472 	pop	b
-      00050D D0 E0            [24] 2473 	pop	acc
-      00050F D0 21            [24] 2474 	pop	bits
-                           000478  2475 	C$p3main.c$254$1$50 ==.
-                           000478  2476 	XG$isr_timer2$0$0 ==.
-      000511 32               [24] 2477 	reti
-                                   2478 ;------------------------------------------------------------
-                                   2479 ;Allocation info for local variables in function 'le_RAM_SPI'
-                                   2480 ;------------------------------------------------------------
-                                   2481 ;end                       Allocated to registers r6 r7 
-                                   2482 ;end_L                     Allocated to registers r5 
-                                   2483 ;end_H                     Allocated to registers r7 
-                                   2484 ;------------------------------------------------------------
-                           000479  2485 	G$le_RAM_SPI$0$0 ==.
-                           000479  2486 	C$p3main.c$257$1$50 ==.
-                                   2487 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:257: unsigned char le_RAM_SPI(unsigned int end) {
-                                   2488 ;	-----------------------------------------
-                                   2489 ;	 function le_RAM_SPI
-                                   2490 ;	-----------------------------------------
-      000512                       2491 _le_RAM_SPI:
-      000512 AE 82            [24] 2492 	mov	r6,dpl
-      000514 AF 83            [24] 2493 	mov	r7,dph
-                           00047D  2494 	C$p3main.c$259$1$54 ==.
-                                   2495 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:259: end_L = end;
-      000516 8E 05            [24] 2496 	mov	ar5,r6
-                           00047F  2497 	C$p3main.c$260$1$54 ==.
-                                   2498 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:260: end_H = end >> 8;
-                           00047F  2499 	C$p3main.c$261$1$54 ==.
-                                   2500 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:261: CS = 0;
-      000518 C2 A3            [12] 2501 	clr	_P2_3
-                           000481  2502 	C$p3main.c$263$1$54 ==.
-                                   2503 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:263: SPI0DAT = 0x03; //codigo da leitura
-      00051A 75 9B 03         [24] 2504 	mov	_SPI0DAT,#0x03
-                           000484  2505 	C$p3main.c$264$1$54 ==.
-                                   2506 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:264: while(!TXBMT);
-      00051D                       2507 00101$:
-      00051D 30 F9 FD         [24] 2508 	jnb	_TXBMT,00101$
-                           000487  2509 	C$p3main.c$265$1$54 ==.
-                                   2510 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:265: SPI0DAT = end_H;
-      000520 8F 9B            [24] 2511 	mov	_SPI0DAT,r7
-                           000489  2512 	C$p3main.c$266$1$54 ==.
-                                   2513 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:266: while(!TXBMT);
-      000522                       2514 00104$:
-      000522 30 F9 FD         [24] 2515 	jnb	_TXBMT,00104$
-                           00048C  2516 	C$p3main.c$267$1$54 ==.
-                                   2517 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:267: SPI0DAT = end_L;
-      000525 8D 9B            [24] 2518 	mov	_SPI0DAT,r5
-                           00048E  2519 	C$p3main.c$268$1$54 ==.
-                                   2520 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:268: while(!TXBMT);
-      000527                       2521 00107$:
-      000527 30 F9 FD         [24] 2522 	jnb	_TXBMT,00107$
-                           000491  2523 	C$p3main.c$269$1$54 ==.
-                                   2524 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:269: SPI0DAT = 0x00;
-      00052A 75 9B 00         [24] 2525 	mov	_SPI0DAT,#0x00
-                           000494  2526 	C$p3main.c$270$1$54 ==.
-                                   2527 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:270: while(!TXBMT);
-      00052D                       2528 00110$:
-      00052D 30 F9 FD         [24] 2529 	jnb	_TXBMT,00110$
-                           000497  2530 	C$p3main.c$271$1$54 ==.
-                                   2531 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:271: SPIF = 0;
-      000530 C2 FF            [12] 2532 	clr	_SPIF
-                           000499  2533 	C$p3main.c$272$1$54 ==.
-                                   2534 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:272: while(!SPIF); // espera o t�rmino do deslocamento do �ltimo valor
-      000532                       2535 00113$:
-                           000499  2536 	C$p3main.c$273$1$54 ==.
-                                   2537 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:273: SPIF = 0;
-      000532 10 FF 02         [24] 2538 	jbc	_SPIF,00152$
-      000535 80 FB            [24] 2539 	sjmp	00113$
-      000537                       2540 00152$:
-                           00049E  2541 	C$p3main.c$274$1$54 ==.
-                                   2542 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:274: CS = 1;
-      000537 D2 A3            [12] 2543 	setb	_P2_3
-                           0004A0  2544 	C$p3main.c$276$1$54 ==.
-                                   2545 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:276: return (SPI0DAT);   
-      000539 85 9B 82         [24] 2546 	mov	dpl,_SPI0DAT
-                           0004A3  2547 	C$p3main.c$277$1$54 ==.
-                           0004A3  2548 	XG$le_RAM_SPI$0$0 ==.
-      00053C 22               [24] 2549 	ret
+                                   1274 	.area XABS    (ABS,XDATA)
+                                   1275 ;--------------------------------------------------------
+                                   1276 ; external initialized ram data
+                                   1277 ;--------------------------------------------------------
+                                   1278 	.area XISEG   (XDATA)
+                                   1279 	.area HOME    (CODE)
+                                   1280 	.area GSINIT0 (CODE)
+                                   1281 	.area GSINIT1 (CODE)
+                                   1282 	.area GSINIT2 (CODE)
+                                   1283 	.area GSINIT3 (CODE)
+                                   1284 	.area GSINIT4 (CODE)
+                                   1285 	.area GSINIT5 (CODE)
+                                   1286 	.area GSINIT  (CODE)
+                                   1287 	.area GSFINAL (CODE)
+                                   1288 	.area CSEG    (CODE)
+                                   1289 ;--------------------------------------------------------
+                                   1290 ; interrupt vector 
+                                   1291 ;--------------------------------------------------------
+                                   1292 	.area HOME    (CODE)
+      000000                       1293 __interrupt_vect:
+      000000 02 00 31         [24] 1294 	ljmp	__sdcc_gsinit_startup
+      000003 32               [24] 1295 	reti
+      000004                       1296 	.ds	7
+      00000B 32               [24] 1297 	reti
+      00000C                       1298 	.ds	7
+      000013 32               [24] 1299 	reti
+      000014                       1300 	.ds	7
+      00001B 02 07 44         [24] 1301 	ljmp	_int_tc1
+      00001E                       1302 	.ds	5
+      000023 02 02 53         [24] 1303 	ljmp	_int_serial
+      000026                       1304 	.ds	5
+      00002B 02 05 22         [24] 1305 	ljmp	_isr_timer2
+                                   1306 ;--------------------------------------------------------
+                                   1307 ; global & static initialisations
+                                   1308 ;--------------------------------------------------------
+                                   1309 	.area HOME    (CODE)
+                                   1310 	.area GSINIT  (CODE)
+                                   1311 	.area GSFINAL (CODE)
+                                   1312 	.area GSINIT  (CODE)
+                                   1313 	.globl __sdcc_gsinit_startup
+                                   1314 	.globl __sdcc_program_startup
+                                   1315 	.globl __start__stack
+                                   1316 	.globl __mcs51_genXINIT
+                                   1317 	.globl __mcs51_genXRAMCLEAR
+                                   1318 	.globl __mcs51_genRAMCLEAR
+                           000000  1319 	C$p3main.c$22$1$64 ==.
+                                   1320 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:22: unsigned char estado = 0;  
+      00008A 75 09 00         [24] 1321 	mov	_estado,#0x00
+                           000003  1322 	C$p3main.c$25$1$64 ==.
+                                   1323 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:25: volatile float counter = 0;
+      00008D E4               [12] 1324 	clr	a
+      00008E F5 0A            [12] 1325 	mov	_counter,a
+      000090 F5 0B            [12] 1326 	mov	(_counter + 1),a
+      000092 F5 0C            [12] 1327 	mov	(_counter + 2),a
+      000094 F5 0D            [12] 1328 	mov	(_counter + 3),a
+                                   1329 	.area GSFINAL (CODE)
+      000096 02 00 2E         [24] 1330 	ljmp	__sdcc_program_startup
+                                   1331 ;--------------------------------------------------------
+                                   1332 ; Home
+                                   1333 ;--------------------------------------------------------
+                                   1334 	.area HOME    (CODE)
+                                   1335 	.area HOME    (CODE)
+      00002E                       1336 __sdcc_program_startup:
+      00002E 02 01 59         [24] 1337 	ljmp	_main
+                                   1338 ;	return from main will return to caller
+                                   1339 ;--------------------------------------------------------
+                                   1340 ; code
+                                   1341 ;--------------------------------------------------------
+                                   1342 	.area CSEG    (CODE)
+                                   1343 ;------------------------------------------------------------
+                                   1344 ;Allocation info for local variables in function 'Reset_Sources_Init'
+                                   1345 ;------------------------------------------------------------
+                           000000  1346 	G$Reset_Sources_Init$0$0 ==.
+                           000000  1347 	C$config.c$10$0$0 ==.
+                                   1348 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:10: void Reset_Sources_Init()
+                                   1349 ;	-----------------------------------------
+                                   1350 ;	 function Reset_Sources_Init
+                                   1351 ;	-----------------------------------------
+      000099                       1352 _Reset_Sources_Init:
+                           000007  1353 	ar7 = 0x07
+                           000006  1354 	ar6 = 0x06
+                           000005  1355 	ar5 = 0x05
+                           000004  1356 	ar4 = 0x04
+                           000003  1357 	ar3 = 0x03
+                           000002  1358 	ar2 = 0x02
+                           000001  1359 	ar1 = 0x01
+                           000000  1360 	ar0 = 0x00
+                           000000  1361 	C$config.c$12$1$14 ==.
+                                   1362 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:12: WDTCN     = 0xDE;
+      000099 75 FF DE         [24] 1363 	mov	_WDTCN,#0xde
+                           000003  1364 	C$config.c$13$1$14 ==.
+                                   1365 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:13: WDTCN     = 0xAD;
+      00009C 75 FF AD         [24] 1366 	mov	_WDTCN,#0xad
+                           000006  1367 	C$config.c$14$1$14 ==.
+                           000006  1368 	XG$Reset_Sources_Init$0$0 ==.
+      00009F 22               [24] 1369 	ret
+                                   1370 ;------------------------------------------------------------
+                                   1371 ;Allocation info for local variables in function 'Timer_Init'
+                                   1372 ;------------------------------------------------------------
+                           000007  1373 	G$Timer_Init$0$0 ==.
+                           000007  1374 	C$config.c$16$1$14 ==.
+                                   1375 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:16: void Timer_Init()
+                                   1376 ;	-----------------------------------------
+                                   1377 ;	 function Timer_Init
+                                   1378 ;	-----------------------------------------
+      0000A0                       1379 _Timer_Init:
+                           000007  1380 	C$config.c$18$1$15 ==.
+                                   1381 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:18: SFRPAGE   = TIMER01_PAGE;
+      0000A0 75 84 00         [24] 1382 	mov	_SFRPAGE,#0x00
+                           00000A  1383 	C$config.c$19$1$15 ==.
+                                   1384 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:19: TCON      = 0x05;
+      0000A3 75 88 05         [24] 1385 	mov	_TCON,#0x05
+                           00000D  1386 	C$config.c$20$1$15 ==.
+                                   1387 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:20: TMOD      = 0x91;
+      0000A6 75 89 91         [24] 1388 	mov	_TMOD,#0x91
+                           000010  1389 	C$config.c$21$1$15 ==.
+                                   1390 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:21: CKCON     = 0x18;
+      0000A9 75 8E 18         [24] 1391 	mov	_CKCON,#0x18
+                           000013  1392 	C$config.c$22$1$15 ==.
+                                   1393 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:22: SFRPAGE   = TMR2_PAGE;
+      0000AC 75 84 00         [24] 1394 	mov	_SFRPAGE,#0x00
+                           000016  1395 	C$config.c$23$1$15 ==.
+                                   1396 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:23: TMR2CN    = 0x04;
+      0000AF 75 C8 04         [24] 1397 	mov	_TMR2CN,#0x04
+                           000019  1398 	C$config.c$24$1$15 ==.
+                                   1399 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:24: TMR2CF    = 0x08;
+      0000B2 75 C9 08         [24] 1400 	mov	_TMR2CF,#0x08
+                           00001C  1401 	C$config.c$25$1$15 ==.
+                                   1402 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:25: RCAP2L    = 0xDC;
+      0000B5 75 CA DC         [24] 1403 	mov	_RCAP2L,#0xdc
+                           00001F  1404 	C$config.c$26$1$15 ==.
+                                   1405 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:26: RCAP2H    = 0x0B;
+      0000B8 75 CB 0B         [24] 1406 	mov	_RCAP2H,#0x0b
+                           000022  1407 	C$config.c$27$1$15 ==.
+                                   1408 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:27: TMR2L     = 0xDC;
+      0000BB 75 CC DC         [24] 1409 	mov	_TMR2L,#0xdc
+                           000025  1410 	C$config.c$28$1$15 ==.
+                                   1411 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:28: TMR2H     = 0x0B;
+      0000BE 75 CD 0B         [24] 1412 	mov	_TMR2H,#0x0b
+                           000028  1413 	C$config.c$29$1$15 ==.
+                                   1414 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:29: SFRPAGE   = TMR3_PAGE;
+      0000C1 75 84 01         [24] 1415 	mov	_SFRPAGE,#0x01
+                           00002B  1416 	C$config.c$30$1$15 ==.
+                                   1417 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:30: TMR3CN    = 0x04;
+      0000C4 75 C8 04         [24] 1418 	mov	_TMR3CN,#0x04
+                           00002E  1419 	C$config.c$31$1$15 ==.
+                                   1420 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:31: TMR3CF    = 0x08;
+      0000C7 75 C9 08         [24] 1421 	mov	_TMR3CF,#0x08
+                           000031  1422 	C$config.c$32$1$15 ==.
+                                   1423 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:32: RCAP3L    = 0x5D;
+      0000CA 75 CA 5D         [24] 1424 	mov	_RCAP3L,#0x5d
+                           000034  1425 	C$config.c$33$1$15 ==.
+                                   1426 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:33: RCAP3H    = 0xFF;
+      0000CD 75 CB FF         [24] 1427 	mov	_RCAP3H,#0xff
+                           000037  1428 	C$config.c$34$1$15 ==.
+                           000037  1429 	XG$Timer_Init$0$0 ==.
+      0000D0 22               [24] 1430 	ret
+                                   1431 ;------------------------------------------------------------
+                                   1432 ;Allocation info for local variables in function 'PCA_Init'
+                                   1433 ;------------------------------------------------------------
+                           000038  1434 	G$PCA_Init$0$0 ==.
+                           000038  1435 	C$config.c$36$1$15 ==.
+                                   1436 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:36: void PCA_Init()
+                                   1437 ;	-----------------------------------------
+                                   1438 ;	 function PCA_Init
+                                   1439 ;	-----------------------------------------
+      0000D1                       1440 _PCA_Init:
+                           000038  1441 	C$config.c$38$1$16 ==.
+                                   1442 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:38: SFRPAGE   = PCA0_PAGE;
+      0000D1 75 84 00         [24] 1443 	mov	_SFRPAGE,#0x00
+                           00003B  1444 	C$config.c$39$1$16 ==.
+                                   1445 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:39: PCA0CN    = 0x40;
+      0000D4 75 D8 40         [24] 1446 	mov	_PCA0CN,#0x40
+                           00003E  1447 	C$config.c$40$1$16 ==.
+                                   1448 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:40: PCA0CPM0  = 0x42;
+      0000D7 75 DA 42         [24] 1449 	mov	_PCA0CPM0,#0x42
+                           000041  1450 	C$config.c$41$1$16 ==.
+                           000041  1451 	XG$PCA_Init$0$0 ==.
+      0000DA 22               [24] 1452 	ret
+                                   1453 ;------------------------------------------------------------
+                                   1454 ;Allocation info for local variables in function 'UART_Init'
+                                   1455 ;------------------------------------------------------------
+                           000042  1456 	G$UART_Init$0$0 ==.
+                           000042  1457 	C$config.c$43$1$16 ==.
+                                   1458 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:43: void UART_Init()
+                                   1459 ;	-----------------------------------------
+                                   1460 ;	 function UART_Init
+                                   1461 ;	-----------------------------------------
+      0000DB                       1462 _UART_Init:
+                           000042  1463 	C$config.c$45$1$17 ==.
+                                   1464 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:45: SFRPAGE   = UART0_PAGE;
+      0000DB 75 84 00         [24] 1465 	mov	_SFRPAGE,#0x00
+                           000045  1466 	C$config.c$46$1$17 ==.
+                                   1467 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:46: SCON0     = 0x50;
+      0000DE 75 98 50         [24] 1468 	mov	_SCON0,#0x50
+                           000048  1469 	C$config.c$47$1$17 ==.
+                                   1470 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:47: SSTA0     = 0x0A;
+      0000E1 75 91 0A         [24] 1471 	mov	_SSTA0,#0x0a
+                           00004B  1472 	C$config.c$48$1$17 ==.
+                           00004B  1473 	XG$UART_Init$0$0 ==.
+      0000E4 22               [24] 1474 	ret
+                                   1475 ;------------------------------------------------------------
+                                   1476 ;Allocation info for local variables in function 'SPI_Init'
+                                   1477 ;------------------------------------------------------------
+                           00004C  1478 	G$SPI_Init$0$0 ==.
+                           00004C  1479 	C$config.c$50$1$17 ==.
+                                   1480 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:50: void SPI_Init()
+                                   1481 ;	-----------------------------------------
+                                   1482 ;	 function SPI_Init
+                                   1483 ;	-----------------------------------------
+      0000E5                       1484 _SPI_Init:
+                           00004C  1485 	C$config.c$52$1$18 ==.
+                                   1486 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:52: SFRPAGE   = SPI0_PAGE;
+      0000E5 75 84 00         [24] 1487 	mov	_SFRPAGE,#0x00
+                           00004F  1488 	C$config.c$53$1$18 ==.
+                                   1489 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:53: SPI0CFG   = 0x40;
+      0000E8 75 9A 40         [24] 1490 	mov	_SPI0CFG,#0x40
+                           000052  1491 	C$config.c$54$1$18 ==.
+                                   1492 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:54: SPI0CN    = 0x01;
+      0000EB 75 F8 01         [24] 1493 	mov	_SPI0CN,#0x01
+                           000055  1494 	C$config.c$55$1$18 ==.
+                                   1495 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:55: SPI0CKR   = 0x7C;
+      0000EE 75 9D 7C         [24] 1496 	mov	_SPI0CKR,#0x7c
+                           000058  1497 	C$config.c$56$1$18 ==.
+                           000058  1498 	XG$SPI_Init$0$0 ==.
+      0000F1 22               [24] 1499 	ret
+                                   1500 ;------------------------------------------------------------
+                                   1501 ;Allocation info for local variables in function 'ADC_Init'
+                                   1502 ;------------------------------------------------------------
+                           000059  1503 	G$ADC_Init$0$0 ==.
+                           000059  1504 	C$config.c$58$1$18 ==.
+                                   1505 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:58: void ADC_Init()
+                                   1506 ;	-----------------------------------------
+                                   1507 ;	 function ADC_Init
+                                   1508 ;	-----------------------------------------
+      0000F2                       1509 _ADC_Init:
+                           000059  1510 	C$config.c$60$1$19 ==.
+                                   1511 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:60: SFRPAGE   = ADC0_PAGE;
+      0000F2 75 84 00         [24] 1512 	mov	_SFRPAGE,#0x00
+                           00005C  1513 	C$config.c$61$1$19 ==.
+                                   1514 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:61: ADC0CN    = 0x80;
+      0000F5 75 E8 80         [24] 1515 	mov	_ADC0CN,#0x80
+                           00005F  1516 	C$config.c$62$1$19 ==.
+                           00005F  1517 	XG$ADC_Init$0$0 ==.
+      0000F8 22               [24] 1518 	ret
+                                   1519 ;------------------------------------------------------------
+                                   1520 ;Allocation info for local variables in function 'Voltage_Reference_Init'
+                                   1521 ;------------------------------------------------------------
+                           000060  1522 	G$Voltage_Reference_Init$0$0 ==.
+                           000060  1523 	C$config.c$64$1$19 ==.
+                                   1524 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:64: void Voltage_Reference_Init()
+                                   1525 ;	-----------------------------------------
+                                   1526 ;	 function Voltage_Reference_Init
+                                   1527 ;	-----------------------------------------
+      0000F9                       1528 _Voltage_Reference_Init:
+                           000060  1529 	C$config.c$66$1$20 ==.
+                                   1530 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:66: SFRPAGE   = ADC0_PAGE;
+      0000F9 75 84 00         [24] 1531 	mov	_SFRPAGE,#0x00
+                           000063  1532 	C$config.c$67$1$20 ==.
+                                   1533 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:67: REF0CN    = 0x03;
+      0000FC 75 D1 03         [24] 1534 	mov	_REF0CN,#0x03
+                           000066  1535 	C$config.c$68$1$20 ==.
+                           000066  1536 	XG$Voltage_Reference_Init$0$0 ==.
+      0000FF 22               [24] 1537 	ret
+                                   1538 ;------------------------------------------------------------
+                                   1539 ;Allocation info for local variables in function 'Port_IO_Init'
+                                   1540 ;------------------------------------------------------------
+                           000067  1541 	G$Port_IO_Init$0$0 ==.
+                           000067  1542 	C$config.c$70$1$20 ==.
+                                   1543 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:70: void Port_IO_Init()
+                                   1544 ;	-----------------------------------------
+                                   1545 ;	 function Port_IO_Init
+                                   1546 ;	-----------------------------------------
+      000100                       1547 _Port_IO_Init:
+                           000067  1548 	C$config.c$108$1$21 ==.
+                                   1549 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:108: SFRPAGE   = CONFIG_PAGE;
+      000100 75 84 0F         [24] 1550 	mov	_SFRPAGE,#0x0f
+                           00006A  1551 	C$config.c$109$1$21 ==.
+                                   1552 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:109: P0MDOUT   = 0xB5;
+      000103 75 A4 B5         [24] 1553 	mov	_P0MDOUT,#0xb5
+                           00006D  1554 	C$config.c$110$1$21 ==.
+                                   1555 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:110: XBR0      = 0x0E;
+      000106 75 E1 0E         [24] 1556 	mov	_XBR0,#0x0e
+                           000070  1557 	C$config.c$111$1$21 ==.
+                                   1558 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:111: XBR1      = 0x10;
+      000109 75 E2 10         [24] 1559 	mov	_XBR1,#0x10
+                           000073  1560 	C$config.c$112$1$21 ==.
+                                   1561 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:112: XBR2      = 0x40;
+      00010C 75 E3 40         [24] 1562 	mov	_XBR2,#0x40
+                           000076  1563 	C$config.c$113$1$21 ==.
+                           000076  1564 	XG$Port_IO_Init$0$0 ==.
+      00010F 22               [24] 1565 	ret
+                                   1566 ;------------------------------------------------------------
+                                   1567 ;Allocation info for local variables in function 'Oscillator_Init'
+                                   1568 ;------------------------------------------------------------
+                                   1569 ;i                         Allocated to registers r6 r7 
+                                   1570 ;------------------------------------------------------------
+                           000077  1571 	G$Oscillator_Init$0$0 ==.
+                           000077  1572 	C$config.c$115$1$21 ==.
+                                   1573 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:115: void Oscillator_Init()
+                                   1574 ;	-----------------------------------------
+                                   1575 ;	 function Oscillator_Init
+                                   1576 ;	-----------------------------------------
+      000110                       1577 _Oscillator_Init:
+                           000077  1578 	C$config.c$118$1$22 ==.
+                                   1579 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:118: SFRPAGE   = CONFIG_PAGE;
+      000110 75 84 0F         [24] 1580 	mov	_SFRPAGE,#0x0f
+                           00007A  1581 	C$config.c$119$1$22 ==.
+                                   1582 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:119: OSCXCN    = 0x67;
+      000113 75 8C 67         [24] 1583 	mov	_OSCXCN,#0x67
+                           00007D  1584 	C$config.c$120$1$22 ==.
+                                   1585 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:120: for (i = 0; i < 3000; i++);  // Wait 1ms for initialization
+      000116 7E B8            [12] 1586 	mov	r6,#0xb8
+      000118 7F 0B            [12] 1587 	mov	r7,#0x0b
+      00011A                       1588 00107$:
+      00011A EE               [12] 1589 	mov	a,r6
+      00011B 24 FF            [12] 1590 	add	a,#0xff
+      00011D FC               [12] 1591 	mov	r4,a
+      00011E EF               [12] 1592 	mov	a,r7
+      00011F 34 FF            [12] 1593 	addc	a,#0xff
+      000121 FD               [12] 1594 	mov	r5,a
+      000122 8C 06            [24] 1595 	mov	ar6,r4
+      000124 8D 07            [24] 1596 	mov	ar7,r5
+      000126 EC               [12] 1597 	mov	a,r4
+      000127 4D               [12] 1598 	orl	a,r5
+      000128 70 F0            [24] 1599 	jnz	00107$
+                           000091  1600 	C$config.c$121$1$22 ==.
+                                   1601 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:121: while ((OSCXCN & 0x80) == 0);
+      00012A                       1602 00102$:
+      00012A E5 8C            [12] 1603 	mov	a,_OSCXCN
+      00012C 30 E7 FB         [24] 1604 	jnb	acc.7,00102$
+                           000096  1605 	C$config.c$122$1$22 ==.
+                                   1606 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:122: CLKSEL    = 0x01;
+      00012F 75 97 01         [24] 1607 	mov	_CLKSEL,#0x01
+                           000099  1608 	C$config.c$123$1$22 ==.
+                           000099  1609 	XG$Oscillator_Init$0$0 ==.
+      000132 22               [24] 1610 	ret
+                                   1611 ;------------------------------------------------------------
+                                   1612 ;Allocation info for local variables in function 'Interrupts_Init'
+                                   1613 ;------------------------------------------------------------
+                           00009A  1614 	G$Interrupts_Init$0$0 ==.
+                           00009A  1615 	C$config.c$125$1$22 ==.
+                                   1616 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:125: void Interrupts_Init()
+                                   1617 ;	-----------------------------------------
+                                   1618 ;	 function Interrupts_Init
+                                   1619 ;	-----------------------------------------
+      000133                       1620 _Interrupts_Init:
+                           00009A  1621 	C$config.c$127$1$23 ==.
+                                   1622 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:127: IE        = 0xB8;
+      000133 75 A8 B8         [24] 1623 	mov	_IE,#0xb8
+                           00009D  1624 	C$config.c$128$1$23 ==.
+                                   1625 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:128: IP        = 0xE8;
+      000136 75 B8 E8         [24] 1626 	mov	_IP,#0xe8
+                           0000A0  1627 	C$config.c$129$1$23 ==.
+                           0000A0  1628 	XG$Interrupts_Init$0$0 ==.
+      000139 22               [24] 1629 	ret
+                                   1630 ;------------------------------------------------------------
+                                   1631 ;Allocation info for local variables in function 'Init_Device'
+                                   1632 ;------------------------------------------------------------
+                           0000A1  1633 	G$Init_Device$0$0 ==.
+                           0000A1  1634 	C$config.c$133$1$23 ==.
+                                   1635 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:133: void Init_Device(void)
+                                   1636 ;	-----------------------------------------
+                                   1637 ;	 function Init_Device
+                                   1638 ;	-----------------------------------------
+      00013A                       1639 _Init_Device:
+                           0000A1  1640 	C$config.c$135$1$25 ==.
+                                   1641 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:135: Reset_Sources_Init();
+      00013A 12 00 99         [24] 1642 	lcall	_Reset_Sources_Init
+                           0000A4  1643 	C$config.c$136$1$25 ==.
+                                   1644 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:136: Timer_Init();
+      00013D 12 00 A0         [24] 1645 	lcall	_Timer_Init
+                           0000A7  1646 	C$config.c$137$1$25 ==.
+                                   1647 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:137: PCA_Init();
+      000140 12 00 D1         [24] 1648 	lcall	_PCA_Init
+                           0000AA  1649 	C$config.c$138$1$25 ==.
+                                   1650 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:138: UART_Init();
+      000143 12 00 DB         [24] 1651 	lcall	_UART_Init
+                           0000AD  1652 	C$config.c$139$1$25 ==.
+                                   1653 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:139: SPI_Init();
+      000146 12 00 E5         [24] 1654 	lcall	_SPI_Init
+                           0000B0  1655 	C$config.c$140$1$25 ==.
+                                   1656 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:140: ADC_Init();
+      000149 12 00 F2         [24] 1657 	lcall	_ADC_Init
+                           0000B3  1658 	C$config.c$141$1$25 ==.
+                                   1659 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:141: Voltage_Reference_Init();
+      00014C 12 00 F9         [24] 1660 	lcall	_Voltage_Reference_Init
+                           0000B6  1661 	C$config.c$142$1$25 ==.
+                                   1662 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:142: Port_IO_Init();
+      00014F 12 01 00         [24] 1663 	lcall	_Port_IO_Init
+                           0000B9  1664 	C$config.c$143$1$25 ==.
+                                   1665 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:143: Oscillator_Init();
+      000152 12 01 10         [24] 1666 	lcall	_Oscillator_Init
+                           0000BC  1667 	C$config.c$144$1$25 ==.
+                                   1668 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\/config.c:144: Interrupts_Init();
+      000155 12 01 33         [24] 1669 	lcall	_Interrupts_Init
+                           0000BF  1670 	C$config.c$145$1$25 ==.
+                           0000BF  1671 	XG$Init_Device$0$0 ==.
+      000158 22               [24] 1672 	ret
+                                   1673 ;------------------------------------------------------------
+                                   1674 ;Allocation info for local variables in function 'main'
+                                   1675 ;------------------------------------------------------------
+                           0000C0  1676 	G$main$0$0 ==.
+                           0000C0  1677 	C$p3main.c$42$1$25 ==.
+                                   1678 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:42: int main() {
+                                   1679 ;	-----------------------------------------
+                                   1680 ;	 function main
+                                   1681 ;	-----------------------------------------
+      000159                       1682 _main:
+                           0000C0  1683 	C$p3main.c$44$1$33 ==.
+                                   1684 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:44: Init_Device();
+      000159 12 01 3A         [24] 1685 	lcall	_Init_Device
+                           0000C3  1686 	C$p3main.c$45$1$33 ==.
+                                   1687 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:45: SFRPAGE = LEGACY_PAGE;
+      00015C 75 84 00         [24] 1688 	mov	_SFRPAGE,#0x00
+                           0000C6  1689 	C$p3main.c$47$1$33 ==.
+                                   1690 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:47: TMR2H = 0x0B;
+      00015F 75 CD 0B         [24] 1691 	mov	_TMR2H,#0x0b
+                           0000C9  1692 	C$p3main.c$48$1$33 ==.
+                                   1693 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:48: TMR2L = 0xDC;
+      000162 75 CC DC         [24] 1694 	mov	_TMR2L,#0xdc
+                           0000CC  1695 	C$p3main.c$49$1$33 ==.
+                                   1696 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:49: RCAP2H = 0x0B; 
+      000165 75 CB 0B         [24] 1697 	mov	_RCAP2H,#0x0b
+                           0000CF  1698 	C$p3main.c$50$1$33 ==.
+                                   1699 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:50: RCAP2L = 0xDC;
+      000168 75 CA DC         [24] 1700 	mov	_RCAP2L,#0xdc
+                           0000D2  1701 	C$p3main.c$51$1$33 ==.
+                                   1702 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:51: TR2 = 1;
+      00016B D2 CA            [12] 1703 	setb	_TR2
+                           0000D4  1704 	C$p3main.c$53$1$33 ==.
+                                   1705 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:53: P3 = 0xff;
+      00016D 75 B0 FF         [24] 1706 	mov	_P3,#0xff
+                           0000D7  1707 	C$p3main.c$56$1$33 ==.
+                                   1708 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:56: printf_fast_f("Iniciando firmware.\n");
+      000170 74 D7            [12] 1709 	mov	a,#___str_0
+      000172 C0 E0            [24] 1710 	push	acc
+      000174 74 16            [12] 1711 	mov	a,#(___str_0 >> 8)
+      000176 C0 E0            [24] 1712 	push	acc
+      000178 12 08 66         [24] 1713 	lcall	_printf_fast_f
+      00017B 15 81            [12] 1714 	dec	sp
+      00017D 15 81            [12] 1715 	dec	sp
+                           0000E6  1716 	C$p3main.c$57$1$33 ==.
+                                   1717 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:57: mostra_menu();
+      00017F 12 04 73         [24] 1718 	lcall	_mostra_menu
+                           0000E9  1719 	C$p3main.c$60$1$33 ==.
+                                   1720 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:60: while(1){
+      000182                       1721 00107$:
+                           0000E9  1722 	C$p3main.c$62$2$34 ==.
+                                   1723 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:62: switch(tecla) {
+      000182 74 01            [12] 1724 	mov	a,#0x01
+      000184 B5 08 02         [24] 1725 	cjne	a,_tecla,00123$
+      000187 80 11            [24] 1726 	sjmp	00101$
+      000189                       1727 00123$:
+      000189 74 02            [12] 1728 	mov	a,#0x02
+      00018B B5 08 02         [24] 1729 	cjne	a,_tecla,00124$
+      00018E 80 0F            [24] 1730 	sjmp	00102$
+      000190                       1731 00124$:
+      000190 74 03            [12] 1732 	mov	a,#0x03
+      000192 B5 08 03         [24] 1733 	cjne	a,_tecla,00125$
+      000195 02 02 1E         [24] 1734 	ljmp	00103$
+      000198                       1735 00125$:
+                           0000FF  1736 	C$p3main.c$65$3$35 ==.
+                                   1737 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:65: case 1:
+      000198 80 E8            [24] 1738 	sjmp	00107$
+      00019A                       1739 00101$:
+                           000101  1740 	C$p3main.c$66$3$35 ==.
+                                   1741 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:66: le_LM35();
+      00019A 12 06 CE         [24] 1742 	lcall	_le_LM35
+                           000104  1743 	C$p3main.c$67$3$35 ==.
+                                   1744 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:67: break;
+                           000104  1745 	C$p3main.c$70$3$35 ==.
+                                   1746 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:70: case 2:
+      00019D 80 E3            [24] 1747 	sjmp	00107$
+      00019F                       1748 00102$:
+                           000106  1749 	C$p3main.c$71$3$35 ==.
+                                   1750 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:71: le_ADC0(AIN0_1, G1); // ignore first reading (ADC0 channel switching related)
+      00019F 75 16 00         [24] 1751 	mov	_le_ADC0_PARM_2,#0x00
+      0001A2 75 82 01         [24] 1752 	mov	dpl,#0x01
+      0001A5 12 06 AB         [24] 1753 	lcall	_le_ADC0
+                           00010F  1754 	C$p3main.c$72$3$35 ==.
+                                   1755 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:72: printf_fast_f("Tensao aplicada a placa peltier: %3.1fV\n", ((float)le_ADC0(AIN0_1, G1) * 0.00059326171875 / 1) / 0.1803);
+      0001A8 75 16 00         [24] 1756 	mov	_le_ADC0_PARM_2,#0x00
+      0001AB 75 82 01         [24] 1757 	mov	dpl,#0x01
+      0001AE 12 06 AB         [24] 1758 	lcall	_le_ADC0
+      0001B1 12 0F 4D         [24] 1759 	lcall	___uint2fs
+      0001B4 AC 82            [24] 1760 	mov	r4,dpl
+      0001B6 AD 83            [24] 1761 	mov	r5,dph
+      0001B8 AE F0            [24] 1762 	mov	r6,b
+      0001BA FF               [12] 1763 	mov	r7,a
+      0001BB C0 04            [24] 1764 	push	ar4
+      0001BD C0 05            [24] 1765 	push	ar5
+      0001BF C0 06            [24] 1766 	push	ar6
+      0001C1 C0 07            [24] 1767 	push	ar7
+      0001C3 90 85 1F         [24] 1768 	mov	dptr,#0x851f
+      0001C6 75 F0 1B         [24] 1769 	mov	b,#0x1b
+      0001C9 74 3A            [12] 1770 	mov	a,#0x3a
+      0001CB 12 0C E7         [24] 1771 	lcall	___fsmul
+      0001CE AC 82            [24] 1772 	mov	r4,dpl
+      0001D0 AD 83            [24] 1773 	mov	r5,dph
+      0001D2 AE F0            [24] 1774 	mov	r6,b
+      0001D4 FF               [12] 1775 	mov	r7,a
+      0001D5 E5 81            [12] 1776 	mov	a,sp
+      0001D7 24 FC            [12] 1777 	add	a,#0xfc
+      0001D9 F5 81            [12] 1778 	mov	sp,a
+      0001DB 74 90            [12] 1779 	mov	a,#0x90
+      0001DD C0 E0            [24] 1780 	push	acc
+      0001DF 74 A0            [12] 1781 	mov	a,#0xa0
+      0001E1 C0 E0            [24] 1782 	push	acc
+      0001E3 74 38            [12] 1783 	mov	a,#0x38
+      0001E5 C0 E0            [24] 1784 	push	acc
+      0001E7 74 3E            [12] 1785 	mov	a,#0x3e
+      0001E9 C0 E0            [24] 1786 	push	acc
+      0001EB 8C 82            [24] 1787 	mov	dpl,r4
+      0001ED 8D 83            [24] 1788 	mov	dph,r5
+      0001EF 8E F0            [24] 1789 	mov	b,r6
+      0001F1 EF               [12] 1790 	mov	a,r7
+      0001F2 12 15 E1         [24] 1791 	lcall	___fsdiv
+      0001F5 AC 82            [24] 1792 	mov	r4,dpl
+      0001F7 AD 83            [24] 1793 	mov	r5,dph
+      0001F9 AE F0            [24] 1794 	mov	r6,b
+      0001FB FF               [12] 1795 	mov	r7,a
+      0001FC E5 81            [12] 1796 	mov	a,sp
+      0001FE 24 FC            [12] 1797 	add	a,#0xfc
+      000200 F5 81            [12] 1798 	mov	sp,a
+      000202 C0 04            [24] 1799 	push	ar4
+      000204 C0 05            [24] 1800 	push	ar5
+      000206 C0 06            [24] 1801 	push	ar6
+      000208 C0 07            [24] 1802 	push	ar7
+      00020A 74 EC            [12] 1803 	mov	a,#___str_1
+      00020C C0 E0            [24] 1804 	push	acc
+      00020E 74 16            [12] 1805 	mov	a,#(___str_1 >> 8)
+      000210 C0 E0            [24] 1806 	push	acc
+      000212 12 08 66         [24] 1807 	lcall	_printf_fast_f
+      000215 E5 81            [12] 1808 	mov	a,sp
+      000217 24 FA            [12] 1809 	add	a,#0xfa
+      000219 F5 81            [12] 1810 	mov	sp,a
+                           000182  1811 	C$p3main.c$73$3$35 ==.
+                                   1812 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:73: break;
+      00021B 02 01 82         [24] 1813 	ljmp	00107$
+                           000185  1814 	C$p3main.c$76$3$35 ==.
+                                   1815 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:76: case 3:
+      00021E                       1816 00103$:
+                           000185  1817 	C$p3main.c$77$3$35 ==.
+                                   1818 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:77: test_RAM_SPI();
+      00021E 12 05 D3         [24] 1819 	lcall	_test_RAM_SPI
+                           000188  1820 	C$p3main.c$78$3$35 ==.
+                                   1821 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:78: break;
+      000221 02 01 82         [24] 1822 	ljmp	00107$
+                           00018B  1823 	C$p3main.c$85$1$33 ==.
+                                   1824 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:85: return 0;
+                           00018B  1825 	C$p3main.c$86$1$33 ==.
+                           00018B  1826 	XG$main$0$0 ==.
+      000224 22               [24] 1827 	ret
+                                   1828 ;------------------------------------------------------------
+                                   1829 ;Allocation info for local variables in function 'delay_ms'
+                                   1830 ;------------------------------------------------------------
+                                   1831 ;t                         Allocated to registers r6 r7 
+                                   1832 ;------------------------------------------------------------
+                           00018C  1833 	G$delay_ms$0$0 ==.
+                           00018C  1834 	C$p3main.c$88$1$33 ==.
+                                   1835 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:88: void delay_ms(unsigned int t) __reentrant
+                                   1836 ;	-----------------------------------------
+                                   1837 ;	 function delay_ms
+                                   1838 ;	-----------------------------------------
+      000225                       1839 _delay_ms:
+      000225 AE 82            [24] 1840 	mov	r6,dpl
+      000227 AF 83            [24] 1841 	mov	r7,dph
+                           000190  1842 	C$p3main.c$90$1$37 ==.
+                                   1843 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:90: TMOD |= 0x01;
+      000229 43 89 01         [24] 1844 	orl	_TMOD,#0x01
+                           000193  1845 	C$p3main.c$91$1$37 ==.
+                                   1846 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:91: TMOD &= ~0x02; 
+      00022C 53 89 FD         [24] 1847 	anl	_TMOD,#0xfd
+                           000196  1848 	C$p3main.c$92$1$37 ==.
+                                   1849 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:92: while(t>0)
+      00022F                       1850 00104$:
+      00022F EE               [12] 1851 	mov	a,r6
+      000230 4F               [12] 1852 	orl	a,r7
+      000231 60 16            [24] 1853 	jz	00107$
+                           00019A  1854 	C$p3main.c$94$2$38 ==.
+                                   1855 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:94: TR0 = 0;
+      000233 C2 8C            [12] 1856 	clr	_TR0
+                           00019C  1857 	C$p3main.c$95$2$38 ==.
+                                   1858 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:95: TF0 = 0;
+      000235 C2 8D            [12] 1859 	clr	_TF0
+                           00019E  1860 	C$p3main.c$96$2$38 ==.
+                                   1861 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:96: TH0 = 0x9E; 
+      000237 75 8C 9E         [24] 1862 	mov	_TH0,#0x9e
+                           0001A1  1863 	C$p3main.c$97$2$38 ==.
+                                   1864 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:97: TL0 = 0x58;
+      00023A 75 8A 58         [24] 1865 	mov	_TL0,#0x58
+                           0001A4  1866 	C$p3main.c$98$2$38 ==.
+                                   1867 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:98: TR0 = 1;
+      00023D D2 8C            [12] 1868 	setb	_TR0
+                           0001A6  1869 	C$p3main.c$99$2$38 ==.
+                                   1870 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:99: while(TF0 != 1);
+      00023F                       1871 00101$:
+      00023F 30 8D FD         [24] 1872 	jnb	_TF0,00101$
+                           0001A9  1873 	C$p3main.c$100$2$38 ==.
+                                   1874 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:100: t--;
+      000242 1E               [12] 1875 	dec	r6
+      000243 BE FF 01         [24] 1876 	cjne	r6,#0xff,00124$
+      000246 1F               [12] 1877 	dec	r7
+      000247                       1878 00124$:
+      000247 80 E6            [24] 1879 	sjmp	00104$
+      000249                       1880 00107$:
+                           0001B0  1881 	C$p3main.c$102$1$37 ==.
+                           0001B0  1882 	XG$delay_ms$0$0 ==.
+      000249 22               [24] 1883 	ret
+                                   1884 ;------------------------------------------------------------
+                                   1885 ;Allocation info for local variables in function 'putchar'
+                                   1886 ;------------------------------------------------------------
+                                   1887 ;c                         Allocated to registers 
+                                   1888 ;------------------------------------------------------------
+                           0001B1  1889 	G$putchar$0$0 ==.
+                           0001B1  1890 	C$p3main.c$105$1$37 ==.
+                                   1891 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:105: void putchar (char c ) {
+                                   1892 ;	-----------------------------------------
+                                   1893 ;	 function putchar
+                                   1894 ;	-----------------------------------------
+      00024A                       1895 _putchar:
+      00024A 85 82 99         [24] 1896 	mov	_SBUF0,dpl
+                           0001B4  1897 	C$p3main.c$107$1$40 ==.
+                                   1898 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:107: while (TI0 == 0); 
+      00024D                       1899 00101$:
+                           0001B4  1900 	C$p3main.c$108$1$40 ==.
+                                   1901 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:108: TI0 = 0;
+      00024D 10 99 02         [24] 1902 	jbc	_TI0,00112$
+      000250 80 FB            [24] 1903 	sjmp	00101$
+      000252                       1904 00112$:
+                           0001B9  1905 	C$p3main.c$109$1$40 ==.
+                           0001B9  1906 	XG$putchar$0$0 ==.
+      000252 22               [24] 1907 	ret
+                                   1908 ;------------------------------------------------------------
+                                   1909 ;Allocation info for local variables in function 'int_serial'
+                                   1910 ;------------------------------------------------------------
+                                   1911 ;rpm                       Allocated to registers r4 r5 r6 r7 
+                                   1912 ;------------------------------------------------------------
+                           0001BA  1913 	G$int_serial$0$0 ==.
+                           0001BA  1914 	C$p3main.c$113$1$40 ==.
+                                   1915 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:113: void int_serial(void) __interrupt 4 {
+                                   1916 ;	-----------------------------------------
+                                   1917 ;	 function int_serial
+                                   1918 ;	-----------------------------------------
+      000253                       1919 _int_serial:
+      000253 C0 23            [24] 1920 	push	bits
+      000255 C0 E0            [24] 1921 	push	acc
+      000257 C0 F0            [24] 1922 	push	b
+      000259 C0 82            [24] 1923 	push	dpl
+      00025B C0 83            [24] 1924 	push	dph
+      00025D C0 07            [24] 1925 	push	(0+7)
+      00025F C0 06            [24] 1926 	push	(0+6)
+      000261 C0 05            [24] 1927 	push	(0+5)
+      000263 C0 04            [24] 1928 	push	(0+4)
+      000265 C0 03            [24] 1929 	push	(0+3)
+      000267 C0 02            [24] 1930 	push	(0+2)
+      000269 C0 01            [24] 1931 	push	(0+1)
+      00026B C0 00            [24] 1932 	push	(0+0)
+      00026D C0 D0            [24] 1933 	push	psw
+      00026F 75 D0 00         [24] 1934 	mov	psw,#0x00
+                           0001D9  1935 	C$p3main.c$115$1$42 ==.
+                                   1936 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:115: if (RI0 == 1) {
+      000272 20 98 03         [24] 1937 	jb	_RI0,00164$
+      000275 02 04 56         [24] 1938 	ljmp	00123$
+      000278                       1939 00164$:
+                           0001DF  1940 	C$p3main.c$116$2$43 ==.
+                                   1941 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:116: switch (SBUF0) {
+      000278 AF 99            [24] 1942 	mov	r7,_SBUF0
+      00027A BF 31 03         [24] 1943 	cjne	r7,#0x31,00165$
+      00027D 02 03 D2         [24] 1944 	ljmp	00116$
+      000280                       1945 00165$:
+      000280 BF 32 03         [24] 1946 	cjne	r7,#0x32,00166$
+      000283 02 03 FE         [24] 1947 	ljmp	00117$
+      000286                       1948 00166$:
+      000286 BF 33 03         [24] 1949 	cjne	r7,#0x33,00167$
+      000289 02 04 2A         [24] 1950 	ljmp	00118$
+      00028C                       1951 00167$:
+      00028C BF 61 02         [24] 1952 	cjne	r7,#0x61,00168$
+      00028F 80 4A            [24] 1953 	sjmp	00105$
+      000291                       1954 00168$:
+      000291 BF 64 02         [24] 1955 	cjne	r7,#0x64,00169$
+      000294 80 19            [24] 1956 	sjmp	00102$
+      000296                       1957 00169$:
+      000296 BF 6D 02         [24] 1958 	cjne	r7,#0x6d,00170$
+      000299 80 0E            [24] 1959 	sjmp	00101$
+      00029B                       1960 00170$:
+      00029B BF 70 02         [24] 1961 	cjne	r7,#0x70,00171$
+      00029E 80 4D            [24] 1962 	sjmp	00108$
+      0002A0                       1963 00171$:
+      0002A0 BF 72 03         [24] 1964 	cjne	r7,#0x72,00172$
+      0002A3 02 03 25         [24] 1965 	ljmp	00112$
+      0002A6                       1966 00172$:
+      0002A6 02 04 54         [24] 1967 	ljmp	00120$
+                           000210  1968 	C$p3main.c$118$3$44 ==.
+                                   1969 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:118: case 'm':
+      0002A9                       1970 00101$:
+                           000210  1971 	C$p3main.c$119$3$44 ==.
+                                   1972 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:119: mostra_menu();
+      0002A9 12 04 73         [24] 1973 	lcall	_mostra_menu
+                           000213  1974 	C$p3main.c$121$3$44 ==.
+                                   1975 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:121: break;
+      0002AC 02 04 54         [24] 1976 	ljmp	00120$
+                           000216  1977 	C$p3main.c$124$3$44 ==.
+                                   1978 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:124: case 'd':
+      0002AF                       1979 00102$:
+                           000216  1980 	C$p3main.c$125$3$44 ==.
+                                   1981 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:125: if (PCA0CPH0 < 191)
+      0002AF 74 41            [12] 1982 	mov	a,#0x100 - 0xbf
+      0002B1 25 FC            [12] 1983 	add	a,_PCA0CPH0
+      0002B3 40 06            [24] 1984 	jc	00104$
+                           00021C  1985 	C$p3main.c$126$3$44 ==.
+                                   1986 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:126: PCA0CPH0 += 5;
+      0002B5 74 05            [12] 1987 	mov	a,#0x05
+      0002B7 25 FC            [12] 1988 	add	a,_PCA0CPH0
+      0002B9 F5 FC            [12] 1989 	mov	_PCA0CPH0,a
+      0002BB                       1990 00104$:
+                           000222  1991 	C$p3main.c$128$3$44 ==.
+                                   1992 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:128: printf("%d ", PCA0CPH0);
+      0002BB AE FC            [24] 1993 	mov	r6,_PCA0CPH0
+      0002BD 7F 00            [12] 1994 	mov	r7,#0x00
+      0002BF C0 06            [24] 1995 	push	ar6
+      0002C1 C0 07            [24] 1996 	push	ar7
+      0002C3 74 15            [12] 1997 	mov	a,#___str_2
+      0002C5 C0 E0            [24] 1998 	push	acc
+      0002C7 74 17            [12] 1999 	mov	a,#(___str_2 >> 8)
+      0002C9 C0 E0            [24] 2000 	push	acc
+      0002CB 74 80            [12] 2001 	mov	a,#0x80
+      0002CD C0 E0            [24] 2002 	push	acc
+      0002CF 12 0F CC         [24] 2003 	lcall	_printf
+      0002D2 E5 81            [12] 2004 	mov	a,sp
+      0002D4 24 FB            [12] 2005 	add	a,#0xfb
+      0002D6 F5 81            [12] 2006 	mov	sp,a
+                           00023F  2007 	C$p3main.c$130$3$44 ==.
+                                   2008 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:130: break;
+      0002D8 02 04 54         [24] 2009 	ljmp	00120$
+                           000242  2010 	C$p3main.c$133$3$44 ==.
+                                   2011 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:133: case 'a':
+      0002DB                       2012 00105$:
+                           000242  2013 	C$p3main.c$134$3$44 ==.
+                                   2014 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:134: if (PCA0CPH0 > 5)
+      0002DB E5 FC            [12] 2015 	mov	a,_PCA0CPH0
+      0002DD 24 FA            [12] 2016 	add	a,#0xff - 0x05
+      0002DF 40 03            [24] 2017 	jc	00174$
+      0002E1 02 04 54         [24] 2018 	ljmp	00120$
+      0002E4                       2019 00174$:
+                           00024B  2020 	C$p3main.c$135$3$44 ==.
+                                   2021 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:135: PCA0CPH0 -= 5;
+      0002E4 E5 FC            [12] 2022 	mov	a,_PCA0CPH0
+      0002E6 24 FB            [12] 2023 	add	a,#0xfb
+      0002E8 F5 FC            [12] 2024 	mov	_PCA0CPH0,a
+                           000251  2025 	C$p3main.c$137$3$44 ==.
+                                   2026 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:137: break;
+      0002EA 02 04 54         [24] 2027 	ljmp	00120$
+                           000254  2028 	C$p3main.c$140$3$44 ==.
+                                   2029 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:140: case 'p':
+      0002ED                       2030 00108$:
+                           000254  2031 	C$p3main.c$141$3$44 ==.
+                                   2032 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:141: P0_7 = !P0_7;
+      0002ED B2 87            [12] 2033 	cpl	_P0_7
+                           000256  2034 	C$p3main.c$143$3$44 ==.
+                                   2035 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:143: printf_fast_f(" ");
+      0002EF 74 19            [12] 2036 	mov	a,#___str_3
+      0002F1 C0 E0            [24] 2037 	push	acc
+      0002F3 74 17            [12] 2038 	mov	a,#(___str_3 >> 8)
+      0002F5 C0 E0            [24] 2039 	push	acc
+      0002F7 12 08 66         [24] 2040 	lcall	_printf_fast_f
+      0002FA 15 81            [12] 2041 	dec	sp
+      0002FC 15 81            [12] 2042 	dec	sp
+                           000265  2043 	C$p3main.c$145$3$44 ==.
+                                   2044 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:145: if (P0_7)
+      0002FE 30 87 12         [24] 2045 	jnb	_P0_7,00110$
+                           000268  2046 	C$p3main.c$146$3$44 ==.
+                                   2047 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:146: printf_fast_f("Fonte 12V ligada.\n");
+      000301 74 1B            [12] 2048 	mov	a,#___str_4
+      000303 C0 E0            [24] 2049 	push	acc
+      000305 74 17            [12] 2050 	mov	a,#(___str_4 >> 8)
+      000307 C0 E0            [24] 2051 	push	acc
+      000309 12 08 66         [24] 2052 	lcall	_printf_fast_f
+      00030C 15 81            [12] 2053 	dec	sp
+      00030E 15 81            [12] 2054 	dec	sp
+      000310 02 04 54         [24] 2055 	ljmp	00120$
+      000313                       2056 00110$:
+                           00027A  2057 	C$p3main.c$148$3$44 ==.
+                                   2058 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:148: printf_fast_f("Fonte 12V desligada.\n");
+      000313 74 2E            [12] 2059 	mov	a,#___str_5
+      000315 C0 E0            [24] 2060 	push	acc
+      000317 74 17            [12] 2061 	mov	a,#(___str_5 >> 8)
+      000319 C0 E0            [24] 2062 	push	acc
+      00031B 12 08 66         [24] 2063 	lcall	_printf_fast_f
+      00031E 15 81            [12] 2064 	dec	sp
+      000320 15 81            [12] 2065 	dec	sp
+                           000289  2066 	C$p3main.c$150$3$44 ==.
+                                   2067 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:150: break;
+      000322 02 04 54         [24] 2068 	ljmp	00120$
+                           00028C  2069 	C$p3main.c$153$3$44 ==.
+                                   2070 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:153: case 'r':
+      000325                       2071 00112$:
+                           00028C  2072 	C$p3main.c$154$3$44 ==.
+                                   2073 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:154: rpm = 30/(le_pulso()*10);
+      000325 12 07 D7         [24] 2074 	lcall	_le_pulso
+      000328 AC 82            [24] 2075 	mov	r4,dpl
+      00032A AD 83            [24] 2076 	mov	r5,dph
+      00032C AE F0            [24] 2077 	mov	r6,b
+      00032E FF               [12] 2078 	mov	r7,a
+      00032F C0 04            [24] 2079 	push	ar4
+      000331 C0 05            [24] 2080 	push	ar5
+      000333 C0 06            [24] 2081 	push	ar6
+      000335 C0 07            [24] 2082 	push	ar7
+      000337 90 00 00         [24] 2083 	mov	dptr,#0x0000
+      00033A 75 F0 20         [24] 2084 	mov	b,#0x20
+      00033D 74 41            [12] 2085 	mov	a,#0x41
+      00033F 12 0C E7         [24] 2086 	lcall	___fsmul
+      000342 AC 82            [24] 2087 	mov	r4,dpl
+      000344 AD 83            [24] 2088 	mov	r5,dph
+      000346 AE F0            [24] 2089 	mov	r6,b
+      000348 FF               [12] 2090 	mov	r7,a
+      000349 E5 81            [12] 2091 	mov	a,sp
+      00034B 24 FC            [12] 2092 	add	a,#0xfc
+      00034D F5 81            [12] 2093 	mov	sp,a
+      00034F C0 04            [24] 2094 	push	ar4
+      000351 C0 05            [24] 2095 	push	ar5
+      000353 C0 06            [24] 2096 	push	ar6
+      000355 C0 07            [24] 2097 	push	ar7
+      000357 90 00 00         [24] 2098 	mov	dptr,#0x0000
+      00035A 75 F0 F0         [24] 2099 	mov	b,#0xf0
+      00035D 74 41            [12] 2100 	mov	a,#0x41
+      00035F 12 15 E1         [24] 2101 	lcall	___fsdiv
+      000362 AC 82            [24] 2102 	mov	r4,dpl
+      000364 AD 83            [24] 2103 	mov	r5,dph
+      000366 AE F0            [24] 2104 	mov	r6,b
+      000368 FF               [12] 2105 	mov	r7,a
+      000369 E5 81            [12] 2106 	mov	a,sp
+      00036B 24 FC            [12] 2107 	add	a,#0xfc
+      00036D F5 81            [12] 2108 	mov	sp,a
+                           0002D6  2109 	C$p3main.c$155$1$42 ==.
+                                   2110 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:155: if (rpm <= 5)
+      00036F C0 07            [24] 2111 	push	ar7
+      000371 C0 06            [24] 2112 	push	ar6
+      000373 C0 05            [24] 2113 	push	ar5
+      000375 C0 04            [24] 2114 	push	ar4
+      000377 E4               [12] 2115 	clr	a
+      000378 C0 E0            [24] 2116 	push	acc
+      00037A C0 E0            [24] 2117 	push	acc
+      00037C 74 A0            [12] 2118 	mov	a,#0xa0
+      00037E C0 E0            [24] 2119 	push	acc
+      000380 74 40            [12] 2120 	mov	a,#0x40
+      000382 C0 E0            [24] 2121 	push	acc
+      000384 8C 82            [24] 2122 	mov	dpl,r4
+      000386 8D 83            [24] 2123 	mov	dph,r5
+      000388 8E F0            [24] 2124 	mov	b,r6
+      00038A EF               [12] 2125 	mov	a,r7
+      00038B 12 0E 2E         [24] 2126 	lcall	___fsgt
+      00038E E5 81            [12] 2127 	mov	a,sp
+      000390 24 FC            [12] 2128 	add	a,#0xfc
+      000392 F5 81            [12] 2129 	mov	sp,a
+      000394 D0 04            [24] 2130 	pop	ar4
+      000396 D0 05            [24] 2131 	pop	ar5
+      000398 D0 06            [24] 2132 	pop	ar6
+      00039A D0 07            [24] 2133 	pop	ar7
+      00039C E5 82            [12] 2134 	mov	a,dpl
+      00039E 24 FF            [12] 2135 	add	a,#0xff
+      0003A0 92 00            [24] 2136 	mov	_int_serial_sloc0_1_0,c
+      0003A2 40 12            [24] 2137 	jc	00114$
+                           00030B  2138 	C$p3main.c$156$3$44 ==.
+                                   2139 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:156: printf_fast_f("Rotacao do motor <= 5\n");
+      0003A4 74 44            [12] 2140 	mov	a,#___str_6
+      0003A6 C0 E0            [24] 2141 	push	acc
+      0003A8 74 17            [12] 2142 	mov	a,#(___str_6 >> 8)
+      0003AA C0 E0            [24] 2143 	push	acc
+      0003AC 12 08 66         [24] 2144 	lcall	_printf_fast_f
+      0003AF 15 81            [12] 2145 	dec	sp
+      0003B1 15 81            [12] 2146 	dec	sp
+      0003B3 02 04 54         [24] 2147 	ljmp	00120$
+      0003B6                       2148 00114$:
+                           00031D  2149 	C$p3main.c$158$3$44 ==.
+                                   2150 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:158: printf_fast_f("Rotacao do motor: %3.1f\n", rpm);
+      0003B6 C0 04            [24] 2151 	push	ar4
+      0003B8 C0 05            [24] 2152 	push	ar5
+      0003BA C0 06            [24] 2153 	push	ar6
+      0003BC C0 07            [24] 2154 	push	ar7
+      0003BE 74 5B            [12] 2155 	mov	a,#___str_7
+      0003C0 C0 E0            [24] 2156 	push	acc
+      0003C2 74 17            [12] 2157 	mov	a,#(___str_7 >> 8)
+      0003C4 C0 E0            [24] 2158 	push	acc
+      0003C6 12 08 66         [24] 2159 	lcall	_printf_fast_f
+      0003C9 E5 81            [12] 2160 	mov	a,sp
+      0003CB 24 FA            [12] 2161 	add	a,#0xfa
+      0003CD F5 81            [12] 2162 	mov	sp,a
+                           000336  2163 	C$p3main.c$159$3$44 ==.
+                                   2164 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:159: break;
+      0003CF 02 04 54         [24] 2165 	ljmp	00120$
+                           000339  2166 	C$p3main.c$162$3$44 ==.
+                                   2167 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:162: case '1':
+      0003D2                       2168 00116$:
+                           000339  2169 	C$p3main.c$163$3$44 ==.
+                                   2170 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:163: P3_1 = 0;
+      0003D2 C2 B1            [12] 2171 	clr	_P3_1
+                           00033B  2172 	C$p3main.c$164$3$44 ==.
+                                   2173 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:164: delay_ms(5);
+      0003D4 90 00 05         [24] 2174 	mov	dptr,#0x0005
+      0003D7 12 02 25         [24] 2175 	lcall	_delay_ms
+                           000341  2176 	C$p3main.c$165$3$44 ==.
+                                   2177 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:165: P3_1 = 1;
+      0003DA D2 B1            [12] 2178 	setb	_P3_1
+                           000343  2179 	C$p3main.c$166$3$44 ==.
+                                   2180 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:166: delay_ms(5);
+      0003DC 90 00 05         [24] 2181 	mov	dptr,#0x0005
+      0003DF 12 02 25         [24] 2182 	lcall	_delay_ms
+                           000349  2183 	C$p3main.c$167$3$44 ==.
+                                   2184 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:167: P3_1 = 0;
+      0003E2 C2 B1            [12] 2185 	clr	_P3_1
+                           00034B  2186 	C$p3main.c$169$3$44 ==.
+                                   2187 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:169: delay_ms(150); 
+      0003E4 90 00 96         [24] 2188 	mov	dptr,#0x0096
+      0003E7 12 02 25         [24] 2189 	lcall	_delay_ms
+                           000351  2190 	C$p3main.c$171$3$44 ==.
+                                   2191 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:171: P3_1 = 1;
+      0003EA D2 B1            [12] 2192 	setb	_P3_1
+                           000353  2193 	C$p3main.c$172$3$44 ==.
+                                   2194 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:172: delay_ms(5);
+      0003EC 90 00 05         [24] 2195 	mov	dptr,#0x0005
+      0003EF 12 02 25         [24] 2196 	lcall	_delay_ms
+                           000359  2197 	C$p3main.c$173$3$44 ==.
+                                   2198 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:173: P3_1 = 0;
+      0003F2 C2 B1            [12] 2199 	clr	_P3_1
+                           00035B  2200 	C$p3main.c$174$3$44 ==.
+                                   2201 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:174: delay_ms(5);
+      0003F4 90 00 05         [24] 2202 	mov	dptr,#0x0005
+      0003F7 12 02 25         [24] 2203 	lcall	_delay_ms
+                           000361  2204 	C$p3main.c$175$3$44 ==.
+                                   2205 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:175: P3_1 = 1;
+      0003FA D2 B1            [12] 2206 	setb	_P3_1
+                           000363  2207 	C$p3main.c$176$3$44 ==.
+                                   2208 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:176: break;
+                           000363  2209 	C$p3main.c$179$3$44 ==.
+                                   2210 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:179: case '2':
+      0003FC 80 56            [24] 2211 	sjmp	00120$
+      0003FE                       2212 00117$:
+                           000365  2213 	C$p3main.c$180$3$44 ==.
+                                   2214 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:180: P3_2 = 0;
+      0003FE C2 B2            [12] 2215 	clr	_P3_2
+                           000367  2216 	C$p3main.c$181$3$44 ==.
+                                   2217 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:181: delay_ms(5);
+      000400 90 00 05         [24] 2218 	mov	dptr,#0x0005
+      000403 12 02 25         [24] 2219 	lcall	_delay_ms
+                           00036D  2220 	C$p3main.c$182$3$44 ==.
+                                   2221 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:182: P3_2 = 1;
+      000406 D2 B2            [12] 2222 	setb	_P3_2
+                           00036F  2223 	C$p3main.c$183$3$44 ==.
+                                   2224 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:183: delay_ms(5);
+      000408 90 00 05         [24] 2225 	mov	dptr,#0x0005
+      00040B 12 02 25         [24] 2226 	lcall	_delay_ms
+                           000375  2227 	C$p3main.c$184$3$44 ==.
+                                   2228 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:184: P3_2 = 0;
+      00040E C2 B2            [12] 2229 	clr	_P3_2
+                           000377  2230 	C$p3main.c$186$3$44 ==.
+                                   2231 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:186: delay_ms(150); 
+      000410 90 00 96         [24] 2232 	mov	dptr,#0x0096
+      000413 12 02 25         [24] 2233 	lcall	_delay_ms
+                           00037D  2234 	C$p3main.c$188$3$44 ==.
+                                   2235 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:188: P3_2 = 1;
+      000416 D2 B2            [12] 2236 	setb	_P3_2
+                           00037F  2237 	C$p3main.c$189$3$44 ==.
+                                   2238 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:189: delay_ms(5);
+      000418 90 00 05         [24] 2239 	mov	dptr,#0x0005
+      00041B 12 02 25         [24] 2240 	lcall	_delay_ms
+                           000385  2241 	C$p3main.c$190$3$44 ==.
+                                   2242 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:190: P3_2 = 0;
+      00041E C2 B2            [12] 2243 	clr	_P3_2
+                           000387  2244 	C$p3main.c$191$3$44 ==.
+                                   2245 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:191: delay_ms(5);
+      000420 90 00 05         [24] 2246 	mov	dptr,#0x0005
+      000423 12 02 25         [24] 2247 	lcall	_delay_ms
+                           00038D  2248 	C$p3main.c$192$3$44 ==.
+                                   2249 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:192: P3_2 = 1;
+      000426 D2 B2            [12] 2250 	setb	_P3_2
+                           00038F  2251 	C$p3main.c$193$3$44 ==.
+                                   2252 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:193: break;
+                           00038F  2253 	C$p3main.c$196$3$44 ==.
+                                   2254 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:196: case '3':
+      000428 80 2A            [24] 2255 	sjmp	00120$
+      00042A                       2256 00118$:
+                           000391  2257 	C$p3main.c$197$3$44 ==.
+                                   2258 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:197: P3_3 = 0;
+      00042A C2 B3            [12] 2259 	clr	_P3_3
+                           000393  2260 	C$p3main.c$198$3$44 ==.
+                                   2261 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:198: delay_ms(5);
+      00042C 90 00 05         [24] 2262 	mov	dptr,#0x0005
+      00042F 12 02 25         [24] 2263 	lcall	_delay_ms
+                           000399  2264 	C$p3main.c$199$3$44 ==.
+                                   2265 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:199: P3_3 = 1;
+      000432 D2 B3            [12] 2266 	setb	_P3_3
+                           00039B  2267 	C$p3main.c$200$3$44 ==.
+                                   2268 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:200: delay_ms(5);
+      000434 90 00 05         [24] 2269 	mov	dptr,#0x0005
+      000437 12 02 25         [24] 2270 	lcall	_delay_ms
+                           0003A1  2271 	C$p3main.c$201$3$44 ==.
+                                   2272 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:201: P3_3 = 0;
+      00043A C2 B3            [12] 2273 	clr	_P3_3
+                           0003A3  2274 	C$p3main.c$203$3$44 ==.
+                                   2275 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:203: delay_ms(150); 
+      00043C 90 00 96         [24] 2276 	mov	dptr,#0x0096
+      00043F 12 02 25         [24] 2277 	lcall	_delay_ms
+                           0003A9  2278 	C$p3main.c$205$3$44 ==.
+                                   2279 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:205: P3_3 = 1;
+      000442 D2 B3            [12] 2280 	setb	_P3_3
+                           0003AB  2281 	C$p3main.c$206$3$44 ==.
+                                   2282 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:206: delay_ms(5);
+      000444 90 00 05         [24] 2283 	mov	dptr,#0x0005
+      000447 12 02 25         [24] 2284 	lcall	_delay_ms
+                           0003B1  2285 	C$p3main.c$207$3$44 ==.
+                                   2286 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:207: P3_3 = 0;
+      00044A C2 B3            [12] 2287 	clr	_P3_3
+                           0003B3  2288 	C$p3main.c$208$3$44 ==.
+                                   2289 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:208: delay_ms(5);
+      00044C 90 00 05         [24] 2290 	mov	dptr,#0x0005
+      00044F 12 02 25         [24] 2291 	lcall	_delay_ms
+                           0003B9  2292 	C$p3main.c$209$3$44 ==.
+                                   2293 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:209: P3_3 = 1;
+      000452 D2 B3            [12] 2294 	setb	_P3_3
+                           0003BB  2295 	C$p3main.c$214$2$43 ==.
+                                   2296 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:214: }
+      000454                       2297 00120$:
+                           0003BB  2298 	C$p3main.c$216$2$43 ==.
+                                   2299 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:216: RI0 = 0;
+      000454 C2 98            [12] 2300 	clr	_RI0
+      000456                       2301 00123$:
+      000456 D0 D0            [24] 2302 	pop	psw
+      000458 D0 00            [24] 2303 	pop	(0+0)
+      00045A D0 01            [24] 2304 	pop	(0+1)
+      00045C D0 02            [24] 2305 	pop	(0+2)
+      00045E D0 03            [24] 2306 	pop	(0+3)
+      000460 D0 04            [24] 2307 	pop	(0+4)
+      000462 D0 05            [24] 2308 	pop	(0+5)
+      000464 D0 06            [24] 2309 	pop	(0+6)
+      000466 D0 07            [24] 2310 	pop	(0+7)
+      000468 D0 83            [24] 2311 	pop	dph
+      00046A D0 82            [24] 2312 	pop	dpl
+      00046C D0 F0            [24] 2313 	pop	b
+      00046E D0 E0            [24] 2314 	pop	acc
+      000470 D0 23            [24] 2315 	pop	bits
+                           0003D9  2316 	C$p3main.c$218$1$42 ==.
+                           0003D9  2317 	XG$int_serial$0$0 ==.
+      000472 32               [24] 2318 	reti
+                                   2319 ;------------------------------------------------------------
+                                   2320 ;Allocation info for local variables in function 'mostra_menu'
+                                   2321 ;------------------------------------------------------------
+                           0003DA  2322 	G$mostra_menu$0$0 ==.
+                           0003DA  2323 	C$p3main.c$221$1$42 ==.
+                                   2324 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:221: void mostra_menu() {
+                                   2325 ;	-----------------------------------------
+                                   2326 ;	 function mostra_menu
+                                   2327 ;	-----------------------------------------
+      000473                       2328 _mostra_menu:
+                           0003DA  2329 	C$p3main.c$222$1$45 ==.
+                                   2330 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:222: printf_fast_f("\n MENU:\n");
+      000473 74 74            [12] 2331 	mov	a,#___str_8
+      000475 C0 E0            [24] 2332 	push	acc
+      000477 74 17            [12] 2333 	mov	a,#(___str_8 >> 8)
+      000479 C0 E0            [24] 2334 	push	acc
+      00047B 12 08 66         [24] 2335 	lcall	_printf_fast_f
+      00047E 15 81            [12] 2336 	dec	sp
+      000480 15 81            [12] 2337 	dec	sp
+                           0003E9  2338 	C$p3main.c$223$1$45 ==.
+                                   2339 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:223: printf_fast_f("a: Aumenta RPM do motor.\n");
+      000482 74 7D            [12] 2340 	mov	a,#___str_9
+      000484 C0 E0            [24] 2341 	push	acc
+      000486 74 17            [12] 2342 	mov	a,#(___str_9 >> 8)
+      000488 C0 E0            [24] 2343 	push	acc
+      00048A 12 08 66         [24] 2344 	lcall	_printf_fast_f
+      00048D 15 81            [12] 2345 	dec	sp
+      00048F 15 81            [12] 2346 	dec	sp
+                           0003F8  2347 	C$p3main.c$224$1$45 ==.
+                                   2348 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:224: printf_fast_f("d: Diminui RPM do motor.\n");
+      000491 74 97            [12] 2349 	mov	a,#___str_10
+      000493 C0 E0            [24] 2350 	push	acc
+      000495 74 17            [12] 2351 	mov	a,#(___str_10 >> 8)
+      000497 C0 E0            [24] 2352 	push	acc
+      000499 12 08 66         [24] 2353 	lcall	_printf_fast_f
+      00049C 15 81            [12] 2354 	dec	sp
+      00049E 15 81            [12] 2355 	dec	sp
+                           000407  2356 	C$p3main.c$225$1$45 ==.
+                                   2357 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:225: printf_fast_f("p: Liga/desliga fonte de energia placa peltier.\n");
+      0004A0 74 B1            [12] 2358 	mov	a,#___str_11
+      0004A2 C0 E0            [24] 2359 	push	acc
+      0004A4 74 17            [12] 2360 	mov	a,#(___str_11 >> 8)
+      0004A6 C0 E0            [24] 2361 	push	acc
+      0004A8 12 08 66         [24] 2362 	lcall	_printf_fast_f
+      0004AB 15 81            [12] 2363 	dec	sp
+      0004AD 15 81            [12] 2364 	dec	sp
+                           000416  2365 	C$p3main.c$226$1$45 ==.
+                                   2366 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:226: printf_fast_f("r: Mede rotacao do motor.\n");
+      0004AF 74 E2            [12] 2367 	mov	a,#___str_12
+      0004B1 C0 E0            [24] 2368 	push	acc
+      0004B3 74 17            [12] 2369 	mov	a,#(___str_12 >> 8)
+      0004B5 C0 E0            [24] 2370 	push	acc
+      0004B7 12 08 66         [24] 2371 	lcall	_printf_fast_f
+      0004BA 15 81            [12] 2372 	dec	sp
+      0004BC 15 81            [12] 2373 	dec	sp
+                           000425  2374 	C$p3main.c$227$1$45 ==.
+                                   2375 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:227: printf_fast_f("1: Mede temperatura do motor.\n");
+      0004BE 74 FD            [12] 2376 	mov	a,#___str_13
+      0004C0 C0 E0            [24] 2377 	push	acc
+      0004C2 74 17            [12] 2378 	mov	a,#(___str_13 >> 8)
+      0004C4 C0 E0            [24] 2379 	push	acc
+      0004C6 12 08 66         [24] 2380 	lcall	_printf_fast_f
+      0004C9 15 81            [12] 2381 	dec	sp
+      0004CB 15 81            [12] 2382 	dec	sp
+                           000434  2383 	C$p3main.c$228$1$45 ==.
+                                   2384 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:228: printf_fast_f("2: Mede tensao aplicada a placa peltier.\n");
+      0004CD 74 1C            [12] 2385 	mov	a,#___str_14
+      0004CF C0 E0            [24] 2386 	push	acc
+      0004D1 74 18            [12] 2387 	mov	a,#(___str_14 >> 8)
+      0004D3 C0 E0            [24] 2388 	push	acc
+      0004D5 12 08 66         [24] 2389 	lcall	_printf_fast_f
+      0004D8 15 81            [12] 2390 	dec	sp
+      0004DA 15 81            [12] 2391 	dec	sp
+                           000443  2392 	C$p3main.c$229$1$45 ==.
+                                   2393 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:229: printf_fast_f("3: Testa RAM SPI.\n");
+      0004DC 74 46            [12] 2394 	mov	a,#___str_15
+      0004DE C0 E0            [24] 2395 	push	acc
+      0004E0 74 18            [12] 2396 	mov	a,#(___str_15 >> 8)
+      0004E2 C0 E0            [24] 2397 	push	acc
+      0004E4 12 08 66         [24] 2398 	lcall	_printf_fast_f
+      0004E7 15 81            [12] 2399 	dec	sp
+      0004E9 15 81            [12] 2400 	dec	sp
+                           000452  2401 	C$p3main.c$230$1$45 ==.
+                                   2402 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:230: printf_fast_f("\n");
+      0004EB 74 59            [12] 2403 	mov	a,#___str_16
+      0004ED C0 E0            [24] 2404 	push	acc
+      0004EF 74 18            [12] 2405 	mov	a,#(___str_16 >> 8)
+      0004F1 C0 E0            [24] 2406 	push	acc
+      0004F3 12 08 66         [24] 2407 	lcall	_printf_fast_f
+      0004F6 15 81            [12] 2408 	dec	sp
+      0004F8 15 81            [12] 2409 	dec	sp
+                           000461  2410 	C$p3main.c$231$1$45 ==.
+                           000461  2411 	XG$mostra_menu$0$0 ==.
+      0004FA 22               [24] 2412 	ret
+                                   2413 ;------------------------------------------------------------
+                                   2414 ;Allocation info for local variables in function 'le_tec'
+                                   2415 ;------------------------------------------------------------
+                                   2416 ;vp                        Allocated to registers r7 
+                                   2417 ;i                         Allocated to registers r6 
+                                   2418 ;m                         Allocated to registers 
+                                   2419 ;------------------------------------------------------------
+                           000462  2420 	G$le_tec$0$0 ==.
+                           000462  2421 	C$p3main.c$234$1$45 ==.
+                                   2422 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:234: unsigned char le_tec(void) {
+                                   2423 ;	-----------------------------------------
+                                   2424 ;	 function le_tec
+                                   2425 ;	-----------------------------------------
+      0004FB                       2426 _le_tec:
+                           000462  2427 	C$p3main.c$236$1$47 ==.
+                                   2428 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:236: if(P3 != 0xff)
+      0004FB 74 FF            [12] 2429 	mov	a,#0xff
+      0004FD B5 B0 02         [24] 2430 	cjne	a,_P3,00123$
+      000500 80 06            [24] 2431 	sjmp	00102$
+      000502                       2432 00123$:
+                           000469  2433 	C$p3main.c$238$2$48 ==.
+                                   2434 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:238: vp = ~P3;
+      000502 E5 B0            [12] 2435 	mov	a,_P3
+      000504 F4               [12] 2436 	cpl	a
+      000505 FF               [12] 2437 	mov	r7,a
+                           00046D  2438 	C$p3main.c$239$1$47 ==.
+                                   2439 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:239: m = 0;
+      000506 80 05            [24] 2440 	sjmp	00113$
+      000508                       2441 00102$:
+                           00046F  2442 	C$p3main.c$243$1$47 ==.
+                                   2443 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:243: return 21;
+      000508 75 82 15         [24] 2444 	mov	dpl,#0x15
+                           000472  2445 	C$p3main.c$245$1$47 ==.
+                                   2446 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:245: while((vp & 0x01)==0 && i<8)
+      00050B 80 14            [24] 2447 	sjmp	00108$
+      00050D                       2448 00113$:
+      00050D 7E 00            [12] 2449 	mov	r6,#0x00
+      00050F                       2450 00105$:
+      00050F EF               [12] 2451 	mov	a,r7
+      000510 20 E0 0C         [24] 2452 	jb	acc.0,00107$
+      000513 BE 08 00         [24] 2453 	cjne	r6,#0x08,00125$
+      000516                       2454 00125$:
+      000516 50 07            [24] 2455 	jnc	00107$
+                           00047F  2456 	C$p3main.c$247$2$49 ==.
+                                   2457 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:247: vp = vp >> 1;
+      000518 EF               [12] 2458 	mov	a,r7
+      000519 C3               [12] 2459 	clr	c
+      00051A 13               [12] 2460 	rrc	a
+      00051B FF               [12] 2461 	mov	r7,a
+                           000483  2462 	C$p3main.c$248$2$49 ==.
+                                   2463 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:248: i++;
+      00051C 0E               [12] 2464 	inc	r6
+      00051D 80 F0            [24] 2465 	sjmp	00105$
+      00051F                       2466 00107$:
+                           000486  2467 	C$p3main.c$251$1$47 ==.
+                                   2468 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:251: return(i+m*8);
+      00051F 8E 82            [24] 2469 	mov	dpl,r6
+      000521                       2470 00108$:
+                           000488  2471 	C$p3main.c$252$1$47 ==.
+                           000488  2472 	XG$le_tec$0$0 ==.
+      000521 22               [24] 2473 	ret
+                                   2474 ;------------------------------------------------------------
+                                   2475 ;Allocation info for local variables in function 'isr_timer2'
+                                   2476 ;------------------------------------------------------------
+                           000489  2477 	G$isr_timer2$0$0 ==.
+                           000489  2478 	C$p3main.c$254$1$47 ==.
+                                   2479 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:254: void isr_timer2() __interrupt 5
+                                   2480 ;	-----------------------------------------
+                                   2481 ;	 function isr_timer2
+                                   2482 ;	-----------------------------------------
+      000522                       2483 _isr_timer2:
+      000522 C0 23            [24] 2484 	push	bits
+      000524 C0 E0            [24] 2485 	push	acc
+      000526 C0 F0            [24] 2486 	push	b
+      000528 C0 82            [24] 2487 	push	dpl
+      00052A C0 83            [24] 2488 	push	dph
+      00052C C0 07            [24] 2489 	push	(0+7)
+      00052E C0 06            [24] 2490 	push	(0+6)
+      000530 C0 05            [24] 2491 	push	(0+5)
+      000532 C0 04            [24] 2492 	push	(0+4)
+      000534 C0 03            [24] 2493 	push	(0+3)
+      000536 C0 02            [24] 2494 	push	(0+2)
+      000538 C0 01            [24] 2495 	push	(0+1)
+      00053A C0 00            [24] 2496 	push	(0+0)
+      00053C C0 D0            [24] 2497 	push	psw
+      00053E 75 D0 00         [24] 2498 	mov	psw,#0x00
+                           0004A8  2499 	C$p3main.c$258$1$50 ==.
+                                   2500 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:258: TF2 = 0; // zera overflow
+      000541 C2 CF            [12] 2501 	clr	_TF2
+                           0004AA  2502 	C$p3main.c$260$1$50 ==.
+                                   2503 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:260: if(P3 == 0xff)
+      000543 74 FF            [12] 2504 	mov	a,#0xff
+      000545 B5 B0 03         [24] 2505 	cjne	a,_P3,00102$
+                           0004AF  2506 	C$p3main.c$261$1$50 ==.
+                                   2507 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:261: estado = 0;
+      000548 75 09 00         [24] 2508 	mov	_estado,#0x00
+      00054B                       2509 00102$:
+                           0004B2  2510 	C$p3main.c$262$1$50 ==.
+                                   2511 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:262: if(estado == 0)
+      00054B E5 09            [12] 2512 	mov	a,_estado
+      00054D 70 06            [24] 2513 	jnz	00104$
+                           0004B6  2514 	C$p3main.c$264$2$51 ==.
+                                   2515 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:264: tecla = le_tec();
+      00054F 12 04 FB         [24] 2516 	lcall	_le_tec
+      000552 85 82 08         [24] 2517 	mov	_tecla,dpl
+      000555                       2518 00104$:
+                           0004BC  2519 	C$p3main.c$266$1$50 ==.
+                                   2520 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:266: if(tecla != 21 && estado == 0)
+      000555 74 15            [12] 2521 	mov	a,#0x15
+      000557 B5 08 02         [24] 2522 	cjne	a,_tecla,00125$
+      00055A 80 07            [24] 2523 	sjmp	00108$
+      00055C                       2524 00125$:
+      00055C E5 09            [12] 2525 	mov	a,_estado
+      00055E 70 03            [24] 2526 	jnz	00108$
+                           0004C7  2527 	C$p3main.c$268$2$52 ==.
+                                   2528 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:268: estado = 1;
+      000560 75 09 01         [24] 2529 	mov	_estado,#0x01
+      000563                       2530 00108$:
+      000563 D0 D0            [24] 2531 	pop	psw
+      000565 D0 00            [24] 2532 	pop	(0+0)
+      000567 D0 01            [24] 2533 	pop	(0+1)
+      000569 D0 02            [24] 2534 	pop	(0+2)
+      00056B D0 03            [24] 2535 	pop	(0+3)
+      00056D D0 04            [24] 2536 	pop	(0+4)
+      00056F D0 05            [24] 2537 	pop	(0+5)
+      000571 D0 06            [24] 2538 	pop	(0+6)
+      000573 D0 07            [24] 2539 	pop	(0+7)
+      000575 D0 83            [24] 2540 	pop	dph
+      000577 D0 82            [24] 2541 	pop	dpl
+      000579 D0 F0            [24] 2542 	pop	b
+      00057B D0 E0            [24] 2543 	pop	acc
+      00057D D0 23            [24] 2544 	pop	bits
+                           0004E6  2545 	C$p3main.c$271$1$50 ==.
+                           0004E6  2546 	XG$isr_timer2$0$0 ==.
+      00057F 32               [24] 2547 	reti
+                                   2548 ;------------------------------------------------------------
+                                   2549 ;Allocation info for local variables in function 'le_RAM_SPI'
                                    2550 ;------------------------------------------------------------
-                                   2551 ;Allocation info for local variables in function 'esc_RAM_SPI'
-                                   2552 ;------------------------------------------------------------
-                                   2553 ;dado                      Allocated with name '_esc_RAM_SPI_PARM_2'
-                                   2554 ;end                       Allocated to registers r6 r7 
-                                   2555 ;end_L                     Allocated to registers r5 
-                                   2556 ;end_H                     Allocated to registers r7 
-                                   2557 ;------------------------------------------------------------
-                           0004A4  2558 	G$esc_RAM_SPI$0$0 ==.
-                           0004A4  2559 	C$p3main.c$279$1$54 ==.
-                                   2560 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:279: void esc_RAM_SPI(unsigned int end, unsigned char dado) {
-                                   2561 ;	-----------------------------------------
-                                   2562 ;	 function esc_RAM_SPI
-                                   2563 ;	-----------------------------------------
-      00053D                       2564 _esc_RAM_SPI:
-      00053D AE 82            [24] 2565 	mov	r6,dpl
-      00053F AF 83            [24] 2566 	mov	r7,dph
-                           0004A8  2567 	C$p3main.c$281$1$56 ==.
-                                   2568 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:281: end_L = end;
-      000541 8E 05            [24] 2569 	mov	ar5,r6
-                           0004AA  2570 	C$p3main.c$282$1$56 ==.
-                                   2571 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:282: end_H = end >> 8;
-                           0004AA  2572 	C$p3main.c$283$1$56 ==.
-                                   2573 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:283: CS = 0;    
-      000543 C2 A3            [12] 2574 	clr	_P2_3
-                           0004AC  2575 	C$p3main.c$285$1$56 ==.
-                                   2576 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:285: SPI0DAT = 0x02; //codigo da escrita
-      000545 75 9B 02         [24] 2577 	mov	_SPI0DAT,#0x02
-                           0004AF  2578 	C$p3main.c$286$1$56 ==.
-                                   2579 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:286: while(!TXBMT);
-      000548                       2580 00101$:
-      000548 30 F9 FD         [24] 2581 	jnb	_TXBMT,00101$
-                           0004B2  2582 	C$p3main.c$287$1$56 ==.
-                                   2583 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:287: SPI0DAT = end_H;
-      00054B 8F 9B            [24] 2584 	mov	_SPI0DAT,r7
-                           0004B4  2585 	C$p3main.c$288$1$56 ==.
-                                   2586 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:288: while(!TXBMT);
-      00054D                       2587 00104$:
-      00054D 30 F9 FD         [24] 2588 	jnb	_TXBMT,00104$
-                           0004B7  2589 	C$p3main.c$289$1$56 ==.
-                                   2590 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:289: SPI0DAT = end_L;
-      000550 8D 9B            [24] 2591 	mov	_SPI0DAT,r5
-                           0004B9  2592 	C$p3main.c$290$1$56 ==.
-                                   2593 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:290: while(!TXBMT);
-      000552                       2594 00107$:
-      000552 30 F9 FD         [24] 2595 	jnb	_TXBMT,00107$
-                           0004BC  2596 	C$p3main.c$291$1$56 ==.
-                                   2597 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:291: SPI0DAT = dado;
-      000555 85 15 9B         [24] 2598 	mov	_SPI0DAT,_esc_RAM_SPI_PARM_2
-                           0004BF  2599 	C$p3main.c$292$1$56 ==.
-                                   2600 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:292: while(!TXBMT);
-      000558                       2601 00110$:
-      000558 30 F9 FD         [24] 2602 	jnb	_TXBMT,00110$
-                           0004C2  2603 	C$p3main.c$293$1$56 ==.
-                                   2604 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:293: SPIF = 0;
-      00055B C2 FF            [12] 2605 	clr	_SPIF
-                           0004C4  2606 	C$p3main.c$294$1$56 ==.
-                                   2607 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:294: while(!SPIF); // espera o t�rmino do deslocamento do �ltimo valor
-      00055D                       2608 00113$:
-                           0004C4  2609 	C$p3main.c$295$1$56 ==.
-                                   2610 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:295: SPIF = 0;
-      00055D 10 FF 02         [24] 2611 	jbc	_SPIF,00152$
-      000560 80 FB            [24] 2612 	sjmp	00113$
-      000562                       2613 00152$:
-                           0004C9  2614 	C$p3main.c$296$1$56 ==.
-                                   2615 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:296: CS = 1;
-      000562 D2 A3            [12] 2616 	setb	_P2_3
-                           0004CB  2617 	C$p3main.c$297$1$56 ==.
-                           0004CB  2618 	XG$esc_RAM_SPI$0$0 ==.
-      000564 22               [24] 2619 	ret
+                                   2551 ;end                       Allocated to registers r6 r7 
+                                   2552 ;end_L                     Allocated to registers r5 
+                                   2553 ;end_H                     Allocated to registers r7 
+                                   2554 ;------------------------------------------------------------
+                           0004E7  2555 	G$le_RAM_SPI$0$0 ==.
+                           0004E7  2556 	C$p3main.c$274$1$50 ==.
+                                   2557 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:274: unsigned char le_RAM_SPI(unsigned int end) {
+                                   2558 ;	-----------------------------------------
+                                   2559 ;	 function le_RAM_SPI
+                                   2560 ;	-----------------------------------------
+      000580                       2561 _le_RAM_SPI:
+      000580 AE 82            [24] 2562 	mov	r6,dpl
+      000582 AF 83            [24] 2563 	mov	r7,dph
+                           0004EB  2564 	C$p3main.c$276$1$54 ==.
+                                   2565 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:276: end_L = end;
+      000584 8E 05            [24] 2566 	mov	ar5,r6
+                           0004ED  2567 	C$p3main.c$277$1$54 ==.
+                                   2568 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:277: end_H = end >> 8;
+                           0004ED  2569 	C$p3main.c$278$1$54 ==.
+                                   2570 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:278: CS = 0;
+      000586 C2 A3            [12] 2571 	clr	_P2_3
+                           0004EF  2572 	C$p3main.c$280$1$54 ==.
+                                   2573 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:280: SPI0DAT = 0x03; //codigo da leitura
+      000588 75 9B 03         [24] 2574 	mov	_SPI0DAT,#0x03
+                           0004F2  2575 	C$p3main.c$281$1$54 ==.
+                                   2576 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:281: while(!TXBMT);
+      00058B                       2577 00101$:
+      00058B 30 F9 FD         [24] 2578 	jnb	_TXBMT,00101$
+                           0004F5  2579 	C$p3main.c$282$1$54 ==.
+                                   2580 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:282: SPI0DAT = end_H;
+      00058E 8F 9B            [24] 2581 	mov	_SPI0DAT,r7
+                           0004F7  2582 	C$p3main.c$283$1$54 ==.
+                                   2583 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:283: while(!TXBMT);
+      000590                       2584 00104$:
+      000590 30 F9 FD         [24] 2585 	jnb	_TXBMT,00104$
+                           0004FA  2586 	C$p3main.c$284$1$54 ==.
+                                   2587 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:284: SPI0DAT = end_L;
+      000593 8D 9B            [24] 2588 	mov	_SPI0DAT,r5
+                           0004FC  2589 	C$p3main.c$285$1$54 ==.
+                                   2590 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:285: while(!TXBMT);
+      000595                       2591 00107$:
+      000595 30 F9 FD         [24] 2592 	jnb	_TXBMT,00107$
+                           0004FF  2593 	C$p3main.c$286$1$54 ==.
+                                   2594 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:286: SPI0DAT = 0x00;
+      000598 75 9B 00         [24] 2595 	mov	_SPI0DAT,#0x00
+                           000502  2596 	C$p3main.c$287$1$54 ==.
+                                   2597 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:287: while(!TXBMT);
+      00059B                       2598 00110$:
+      00059B 30 F9 FD         [24] 2599 	jnb	_TXBMT,00110$
+                           000505  2600 	C$p3main.c$288$1$54 ==.
+                                   2601 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:288: SPIF = 0;
+      00059E C2 FF            [12] 2602 	clr	_SPIF
+                           000507  2603 	C$p3main.c$289$1$54 ==.
+                                   2604 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:289: while(!SPIF); // espera o t�rmino do deslocamento do �ltimo valor
+      0005A0                       2605 00113$:
+                           000507  2606 	C$p3main.c$290$1$54 ==.
+                                   2607 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:290: SPIF = 0;
+      0005A0 10 FF 02         [24] 2608 	jbc	_SPIF,00152$
+      0005A3 80 FB            [24] 2609 	sjmp	00113$
+      0005A5                       2610 00152$:
+                           00050C  2611 	C$p3main.c$291$1$54 ==.
+                                   2612 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:291: CS = 1;
+      0005A5 D2 A3            [12] 2613 	setb	_P2_3
+                           00050E  2614 	C$p3main.c$293$1$54 ==.
+                                   2615 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:293: return (SPI0DAT);   
+      0005A7 85 9B 82         [24] 2616 	mov	dpl,_SPI0DAT
+                           000511  2617 	C$p3main.c$294$1$54 ==.
+                           000511  2618 	XG$le_RAM_SPI$0$0 ==.
+      0005AA 22               [24] 2619 	ret
                                    2620 ;------------------------------------------------------------
-                                   2621 ;Allocation info for local variables in function 'test_RAM_SPI'
+                                   2621 ;Allocation info for local variables in function 'esc_RAM_SPI'
                                    2622 ;------------------------------------------------------------
-                                   2623 ;end                       Allocated to registers r4 r5 
-                                   2624 ;error                     Allocated to registers r6 r7 
-                                   2625 ;------------------------------------------------------------
-                           0004CC  2626 	G$test_RAM_SPI$0$0 ==.
-                           0004CC  2627 	C$p3main.c$299$1$56 ==.
-                                   2628 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:299: void test_RAM_SPI() {
-                                   2629 ;	-----------------------------------------
-                                   2630 ;	 function test_RAM_SPI
+                                   2623 ;dado                      Allocated with name '_esc_RAM_SPI_PARM_2'
+                                   2624 ;end                       Allocated to registers r6 r7 
+                                   2625 ;end_L                     Allocated to registers r5 
+                                   2626 ;end_H                     Allocated to registers r7 
+                                   2627 ;------------------------------------------------------------
+                           000512  2628 	G$esc_RAM_SPI$0$0 ==.
+                           000512  2629 	C$p3main.c$296$1$54 ==.
+                                   2630 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:296: void esc_RAM_SPI(unsigned int end, unsigned char dado) {
                                    2631 ;	-----------------------------------------
-      000565                       2632 _test_RAM_SPI:
-                           0004CC  2633 	C$p3main.c$300$1$56 ==.
-                                   2634 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:300: unsigned int end, error = 0;
-      000565 7E 00            [12] 2635 	mov	r6,#0x00
-      000567 7F 00            [12] 2636 	mov	r7,#0x00
-                           0004D0  2637 	C$p3main.c$302$2$58 ==.
-                                   2638 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:302: for (end = 0; end < 8192; end++) {
-      000569 7C 00            [12] 2639 	mov	r4,#0x00
-      00056B 7D 00            [12] 2640 	mov	r5,#0x00
-      00056D                       2641 00109$:
-                           0004D4  2642 	C$p3main.c$303$1$57 ==.
-                                   2643 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:303: if (end % 100 == 0)
-      00056D 75 15 64         [24] 2644 	mov	__moduint_PARM_2,#0x64
-      000570 75 16 00         [24] 2645 	mov	(__moduint_PARM_2 + 1),#0x00
-      000573 8C 82            [24] 2646 	mov	dpl,r4
-      000575 8D 83            [24] 2647 	mov	dph,r5
-      000577 C0 07            [24] 2648 	push	ar7
-      000579 C0 06            [24] 2649 	push	ar6
-      00057B C0 05            [24] 2650 	push	ar5
-      00057D C0 04            [24] 2651 	push	ar4
-      00057F 12 0D E9         [24] 2652 	lcall	__moduint
-      000582 E5 82            [12] 2653 	mov	a,dpl
-      000584 85 83 F0         [24] 2654 	mov	b,dph
-      000587 D0 04            [24] 2655 	pop	ar4
-      000589 D0 05            [24] 2656 	pop	ar5
-      00058B D0 06            [24] 2657 	pop	ar6
-      00058D D0 07            [24] 2658 	pop	ar7
-      00058F 45 F0            [12] 2659 	orl	a,b
-      000591 70 25            [24] 2660 	jnz	00102$
-                           0004FA  2661 	C$p3main.c$304$2$58 ==.
-                                   2662 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:304: printf_fast_f("%05u ", end);
-      000593 C0 07            [24] 2663 	push	ar7
-      000595 C0 06            [24] 2664 	push	ar6
-      000597 C0 05            [24] 2665 	push	ar5
-      000599 C0 04            [24] 2666 	push	ar4
-      00059B C0 04            [24] 2667 	push	ar4
-      00059D C0 05            [24] 2668 	push	ar5
-      00059F 74 AC            [12] 2669 	mov	a,#___str_15
-      0005A1 C0 E0            [24] 2670 	push	acc
-      0005A3 74 11            [12] 2671 	mov	a,#(___str_15 >> 8)
-      0005A5 C0 E0            [24] 2672 	push	acc
-      0005A7 12 07 F1         [24] 2673 	lcall	_printf_fast_f
-      0005AA E5 81            [12] 2674 	mov	a,sp
-      0005AC 24 FC            [12] 2675 	add	a,#0xfc
-      0005AE F5 81            [12] 2676 	mov	sp,a
-      0005B0 D0 04            [24] 2677 	pop	ar4
-      0005B2 D0 05            [24] 2678 	pop	ar5
-      0005B4 D0 06            [24] 2679 	pop	ar6
-      0005B6 D0 07            [24] 2680 	pop	ar7
-      0005B8                       2681 00102$:
-                           00051F  2682 	C$p3main.c$305$2$58 ==.
-                                   2683 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:305: esc_RAM_SPI(end, 123);
-      0005B8 75 15 7B         [24] 2684 	mov	_esc_RAM_SPI_PARM_2,#0x7b
-      0005BB 8C 82            [24] 2685 	mov	dpl,r4
-      0005BD 8D 83            [24] 2686 	mov	dph,r5
-      0005BF C0 07            [24] 2687 	push	ar7
-      0005C1 C0 06            [24] 2688 	push	ar6
-      0005C3 C0 05            [24] 2689 	push	ar5
-      0005C5 C0 04            [24] 2690 	push	ar4
-      0005C7 12 05 3D         [24] 2691 	lcall	_esc_RAM_SPI
-      0005CA D0 04            [24] 2692 	pop	ar4
-      0005CC D0 05            [24] 2693 	pop	ar5
-                           000535  2694 	C$p3main.c$306$2$58 ==.
-                                   2695 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:306: if (le_RAM_SPI(end) != 123) {
-      0005CE 8C 82            [24] 2696 	mov	dpl,r4
-      0005D0 8D 83            [24] 2697 	mov	dph,r5
-      0005D2 C0 05            [24] 2698 	push	ar5
-      0005D4 C0 04            [24] 2699 	push	ar4
-      0005D6 12 05 12         [24] 2700 	lcall	_le_RAM_SPI
-      0005D9 AB 82            [24] 2701 	mov	r3,dpl
-      0005DB D0 04            [24] 2702 	pop	ar4
-      0005DD D0 05            [24] 2703 	pop	ar5
-      0005DF D0 06            [24] 2704 	pop	ar6
-      0005E1 D0 07            [24] 2705 	pop	ar7
-      0005E3 BB 7B 02         [24] 2706 	cjne	r3,#0x7b,00126$
-      0005E6 80 06            [24] 2707 	sjmp	00110$
-      0005E8                       2708 00126$:
-                           00054F  2709 	C$p3main.c$307$3$59 ==.
-                                   2710 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:307: error = 1;
-      0005E8 7E 01            [12] 2711 	mov	r6,#0x01
-      0005EA 7F 00            [12] 2712 	mov	r7,#0x00
-                           000553  2713 	C$p3main.c$308$3$59 ==.
-                                   2714 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:308: break;
-      0005EC 80 0D            [24] 2715 	sjmp	00105$
-      0005EE                       2716 00110$:
-                           000555  2717 	C$p3main.c$302$1$57 ==.
-                                   2718 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:302: for (end = 0; end < 8192; end++) {
-      0005EE 0C               [12] 2719 	inc	r4
-      0005EF BC 00 01         [24] 2720 	cjne	r4,#0x00,00127$
-      0005F2 0D               [12] 2721 	inc	r5
-      0005F3                       2722 00127$:
-      0005F3 74 E0            [12] 2723 	mov	a,#0x100 - 0x20
-      0005F5 2D               [12] 2724 	add	a,r5
-      0005F6 40 03            [24] 2725 	jc	00128$
-      0005F8 02 05 6D         [24] 2726 	ljmp	00109$
-      0005FB                       2727 00128$:
-      0005FB                       2728 00105$:
-                           000562  2729 	C$p3main.c$312$1$57 ==.
-                                   2730 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:312: printf_fast_f("\n");
-      0005FB C0 07            [24] 2731 	push	ar7
-      0005FD C0 06            [24] 2732 	push	ar6
-      0005FF 74 66            [12] 2733 	mov	a,#___str_10
-      000601 C0 E0            [24] 2734 	push	acc
-      000603 74 11            [12] 2735 	mov	a,#(___str_10 >> 8)
-      000605 C0 E0            [24] 2736 	push	acc
-      000607 12 07 F1         [24] 2737 	lcall	_printf_fast_f
-      00060A 15 81            [12] 2738 	dec	sp
-      00060C 15 81            [12] 2739 	dec	sp
-      00060E D0 06            [24] 2740 	pop	ar6
-      000610 D0 07            [24] 2741 	pop	ar7
-                           000579  2742 	C$p3main.c$314$1$57 ==.
-                                   2743 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:314: if(error)
-      000612 EE               [12] 2744 	mov	a,r6
-      000613 4F               [12] 2745 	orl	a,r7
-      000614 60 17            [24] 2746 	jz	00107$
-                           00057D  2747 	C$p3main.c$315$1$57 ==.
-                                   2748 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:315: printf_fast_f("Erro end. %05u\n", error);
-      000616 C0 06            [24] 2749 	push	ar6
-      000618 C0 07            [24] 2750 	push	ar7
-      00061A 74 B2            [12] 2751 	mov	a,#___str_16
-      00061C C0 E0            [24] 2752 	push	acc
-      00061E 74 11            [12] 2753 	mov	a,#(___str_16 >> 8)
-      000620 C0 E0            [24] 2754 	push	acc
-      000622 12 07 F1         [24] 2755 	lcall	_printf_fast_f
-      000625 E5 81            [12] 2756 	mov	a,sp
-      000627 24 FC            [12] 2757 	add	a,#0xfc
-      000629 F5 81            [12] 2758 	mov	sp,a
-      00062B 80 0F            [24] 2759 	sjmp	00111$
-      00062D                       2760 00107$:
-                           000594  2761 	C$p3main.c$317$1$57 ==.
-                                   2762 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:317: printf_fast_f("Fim do teste. RAM SPI ok!\n");		
-      00062D 74 C2            [12] 2763 	mov	a,#___str_17
-      00062F C0 E0            [24] 2764 	push	acc
-      000631 74 11            [12] 2765 	mov	a,#(___str_17 >> 8)
-      000633 C0 E0            [24] 2766 	push	acc
-      000635 12 07 F1         [24] 2767 	lcall	_printf_fast_f
-      000638 15 81            [12] 2768 	dec	sp
-      00063A 15 81            [12] 2769 	dec	sp
-      00063C                       2770 00111$:
-                           0005A3  2771 	C$p3main.c$318$1$57 ==.
-                           0005A3  2772 	XG$test_RAM_SPI$0$0 ==.
-      00063C 22               [24] 2773 	ret
-                                   2774 ;------------------------------------------------------------
-                                   2775 ;Allocation info for local variables in function 'le_ADC0'
-                                   2776 ;------------------------------------------------------------
-                                   2777 ;ganho                     Allocated with name '_le_ADC0_PARM_2'
-                                   2778 ;canal                     Allocated to registers r7 
-                                   2779 ;------------------------------------------------------------
-                           0005A4  2780 	G$le_ADC0$0$0 ==.
-                           0005A4  2781 	C$p3main.c$321$1$57 ==.
-                                   2782 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:321: unsigned int le_ADC0(unsigned char canal, unsigned char ganho) {
-                                   2783 ;	-----------------------------------------
-                                   2784 ;	 function le_ADC0
-                                   2785 ;	-----------------------------------------
-      00063D                       2786 _le_ADC0:
-      00063D AF 82            [24] 2787 	mov	r7,dpl
-                           0005A6  2788 	C$p3main.c$322$1$61 ==.
-                                   2789 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:322: ADC0CF = (ADC0CF & 0xf8) | ganho;
-      00063F 74 F8            [12] 2790 	mov	a,#0xf8
-      000641 55 BC            [12] 2791 	anl	a,_ADC0CF
-      000643 45 15            [12] 2792 	orl	a,_le_ADC0_PARM_2
-      000645 F5 BC            [12] 2793 	mov	_ADC0CF,a
-                           0005AE  2794 	C$p3main.c$323$1$61 ==.
-                                   2795 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:323: AMX0SL = canal;
-      000647 8F BB            [24] 2796 	mov	_AMX0SL,r7
-                           0005B0  2797 	C$p3main.c$324$1$61 ==.
-                                   2798 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:324: AD0BUSY = 1; // fire up AD conversion
-      000649 D2 EC            [12] 2799 	setb	_AD0BUSY
-                           0005B2  2800 	C$p3main.c$325$1$61 ==.
-                                   2801 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:325: NOP();
-      00064B 00               [12] 2802 	NOP	
-                           0005B3  2803 	C$p3main.c$326$1$61 ==.
-                                   2804 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:326: while(AD0BUSY); // wait untill conversion is finished
-      00064C                       2805 00101$:
-      00064C 20 EC FD         [24] 2806 	jb	_AD0BUSY,00101$
-                           0005B6  2807 	C$p3main.c$328$1$61 ==.
-                                   2808 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:328: return (ADC0H << 8 | ADC0L);
-      00064F AF BF            [24] 2809 	mov	r7,_ADC0H
-      000651 7E 00            [12] 2810 	mov	r6,#0x00
-      000653 AC BE            [24] 2811 	mov	r4,_ADC0L
-      000655 7D 00            [12] 2812 	mov	r5,#0x00
-      000657 EC               [12] 2813 	mov	a,r4
-      000658 4E               [12] 2814 	orl	a,r6
-      000659 F5 82            [12] 2815 	mov	dpl,a
-      00065B ED               [12] 2816 	mov	a,r5
-      00065C 4F               [12] 2817 	orl	a,r7
-      00065D F5 83            [12] 2818 	mov	dph,a
-                           0005C6  2819 	C$p3main.c$330$1$61 ==.
-                           0005C6  2820 	XG$le_ADC0$0$0 ==.
-      00065F 22               [24] 2821 	ret
-                                   2822 ;------------------------------------------------------------
-                                   2823 ;Allocation info for local variables in function 'le_LM35'
-                                   2824 ;------------------------------------------------------------
-                                   2825 ;ladc                      Allocated to registers 
-                                   2826 ;------------------------------------------------------------
-                           0005C7  2827 	G$le_LM35$0$0 ==.
-                           0005C7  2828 	C$p3main.c$333$1$61 ==.
-                                   2829 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:333: void le_LM35() {
-                                   2830 ;	-----------------------------------------
-                                   2831 ;	 function le_LM35
-                                   2832 ;	-----------------------------------------
-      000660                       2833 _le_LM35:
-                           0005C7  2834 	C$p3main.c$334$1$62 ==.
-                                   2835 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:334: unsigned int ladc = le_ADC0(AIN0_0, G1);
-      000660 75 15 00         [24] 2836 	mov	_le_ADC0_PARM_2,#0x00
-      000663 75 82 00         [24] 2837 	mov	dpl,#0x00
-      000666 12 06 3D         [24] 2838 	lcall	_le_ADC0
-                           0005D0  2839 	C$p3main.c$335$1$62 ==.
-                                   2840 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:335: printf_fast_f("Temperatura da placa peltier: %2.1f C\n", (ladc * 0.00059326171875 / 1) * 100);
-      000669 12 0E D8         [24] 2841 	lcall	___uint2fs
-      00066C AC 82            [24] 2842 	mov	r4,dpl
-      00066E AD 83            [24] 2843 	mov	r5,dph
-      000670 AE F0            [24] 2844 	mov	r6,b
-      000672 FF               [12] 2845 	mov	r7,a
-      000673 C0 04            [24] 2846 	push	ar4
-      000675 C0 05            [24] 2847 	push	ar5
-      000677 C0 06            [24] 2848 	push	ar6
-      000679 C0 07            [24] 2849 	push	ar7
-      00067B 90 85 1F         [24] 2850 	mov	dptr,#0x851f
-      00067E 75 F0 1B         [24] 2851 	mov	b,#0x1b
-      000681 74 3A            [12] 2852 	mov	a,#0x3a
-      000683 12 0C 72         [24] 2853 	lcall	___fsmul
-      000686 AC 82            [24] 2854 	mov	r4,dpl
-      000688 AD 83            [24] 2855 	mov	r5,dph
-      00068A AE F0            [24] 2856 	mov	r6,b
-      00068C FF               [12] 2857 	mov	r7,a
-      00068D E5 81            [12] 2858 	mov	a,sp
-      00068F 24 FC            [12] 2859 	add	a,#0xfc
-      000691 F5 81            [12] 2860 	mov	sp,a
-      000693 C0 04            [24] 2861 	push	ar4
-      000695 C0 05            [24] 2862 	push	ar5
-      000697 C0 06            [24] 2863 	push	ar6
-      000699 C0 07            [24] 2864 	push	ar7
-      00069B 90 00 00         [24] 2865 	mov	dptr,#0x0000
-      00069E 75 F0 C8         [24] 2866 	mov	b,#0xc8
-      0006A1 74 42            [12] 2867 	mov	a,#0x42
-      0006A3 12 0C 72         [24] 2868 	lcall	___fsmul
-      0006A6 AC 82            [24] 2869 	mov	r4,dpl
-      0006A8 AD 83            [24] 2870 	mov	r5,dph
-      0006AA AE F0            [24] 2871 	mov	r6,b
-      0006AC FF               [12] 2872 	mov	r7,a
-      0006AD E5 81            [12] 2873 	mov	a,sp
-      0006AF 24 FC            [12] 2874 	add	a,#0xfc
-      0006B1 F5 81            [12] 2875 	mov	sp,a
-      0006B3 C0 04            [24] 2876 	push	ar4
-      0006B5 C0 05            [24] 2877 	push	ar5
-      0006B7 C0 06            [24] 2878 	push	ar6
-      0006B9 C0 07            [24] 2879 	push	ar7
-      0006BB 74 DD            [12] 2880 	mov	a,#___str_18
-      0006BD C0 E0            [24] 2881 	push	acc
-      0006BF 74 11            [12] 2882 	mov	a,#(___str_18 >> 8)
-      0006C1 C0 E0            [24] 2883 	push	acc
-      0006C3 12 07 F1         [24] 2884 	lcall	_printf_fast_f
-      0006C6 E5 81            [12] 2885 	mov	a,sp
-      0006C8 24 FA            [12] 2886 	add	a,#0xfa
-      0006CA F5 81            [12] 2887 	mov	sp,a
-                           000633  2888 	C$p3main.c$336$1$62 ==.
-                           000633  2889 	XG$le_LM35$0$0 ==.
-      0006CC 22               [24] 2890 	ret
-                                   2891 ;------------------------------------------------------------
-                                   2892 ;Allocation info for local variables in function 'int_tc1'
-                                   2893 ;------------------------------------------------------------
-                           000634  2894 	G$int_tc1$0$0 ==.
-                           000634  2895 	C$p3main.c$339$1$62 ==.
-                                   2896 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:339: int int_tc1() interrupt 3 { // occurs every 2.62144 ms
-                                   2897 ;	-----------------------------------------
-                                   2898 ;	 function int_tc1
-                                   2899 ;	-----------------------------------------
-      0006CD                       2900 _int_tc1:
-      0006CD C0 21            [24] 2901 	push	bits
-      0006CF C0 E0            [24] 2902 	push	acc
-      0006D1 C0 F0            [24] 2903 	push	b
-      0006D3 C0 82            [24] 2904 	push	dpl
-      0006D5 C0 83            [24] 2905 	push	dph
-      0006D7 C0 07            [24] 2906 	push	(0+7)
-      0006D9 C0 06            [24] 2907 	push	(0+6)
-      0006DB C0 05            [24] 2908 	push	(0+5)
-      0006DD C0 04            [24] 2909 	push	(0+4)
-      0006DF C0 03            [24] 2910 	push	(0+3)
-      0006E1 C0 02            [24] 2911 	push	(0+2)
-      0006E3 C0 01            [24] 2912 	push	(0+1)
-      0006E5 C0 00            [24] 2913 	push	(0+0)
-      0006E7 C0 D0            [24] 2914 	push	psw
-      0006E9 75 D0 00         [24] 2915 	mov	psw,#0x00
-                           000653  2916 	C$p3main.c$340$1$63 ==.
-                                   2917 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:340: TF1 = 0;
-      0006EC C2 8F            [12] 2918 	clr	_TF1
-                           000655  2919 	C$p3main.c$341$1$63 ==.
-                                   2920 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:341: counter += 0.00262144;
-      0006EE 74 77            [12] 2921 	mov	a,#0x77
-      0006F0 C0 E0            [24] 2922 	push	acc
-      0006F2 74 CC            [12] 2923 	mov	a,#0xcc
-      0006F4 C0 E0            [24] 2924 	push	acc
-      0006F6 74 2B            [12] 2925 	mov	a,#0x2b
-      0006F8 C0 E0            [24] 2926 	push	acc
-      0006FA 74 3B            [12] 2927 	mov	a,#0x3b
-      0006FC C0 E0            [24] 2928 	push	acc
-      0006FE 85 0A 82         [24] 2929 	mov	dpl,_counter
-      000701 85 0B 83         [24] 2930 	mov	dph,(_counter + 1)
-      000704 85 0C F0         [24] 2931 	mov	b,(_counter + 2)
-      000707 E5 0D            [12] 2932 	mov	a,(_counter + 3)
-      000709 12 0E 36         [24] 2933 	lcall	___fsadd
-      00070C 85 82 0A         [24] 2934 	mov	_counter,dpl
-      00070F 85 83 0B         [24] 2935 	mov	(_counter + 1),dph
-      000712 85 F0 0C         [24] 2936 	mov	(_counter + 2),b
-      000715 F5 0D            [12] 2937 	mov	(_counter + 3),a
-      000717 E5 81            [12] 2938 	mov	a,sp
-      000719 24 FC            [12] 2939 	add	a,#0xfc
-      00071B F5 81            [12] 2940 	mov	sp,a
-                           000684  2941 	C$p3main.c$342$1$63 ==.
-                                   2942 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:342: if (counter > 1) IE1 = 1; // stop reading if pulse width > 1s
-      00071D E4               [12] 2943 	clr	a
-      00071E C0 E0            [24] 2944 	push	acc
-      000720 C0 E0            [24] 2945 	push	acc
-      000722 74 80            [12] 2946 	mov	a,#0x80
-      000724 C0 E0            [24] 2947 	push	acc
-      000726 74 3F            [12] 2948 	mov	a,#0x3f
-      000728 C0 E0            [24] 2949 	push	acc
-      00072A 85 0A 82         [24] 2950 	mov	dpl,_counter
-      00072D 85 0B 83         [24] 2951 	mov	dph,(_counter + 1)
-      000730 85 0C F0         [24] 2952 	mov	b,(_counter + 2)
-      000733 E5 0D            [12] 2953 	mov	a,(_counter + 3)
-      000735 12 0D B9         [24] 2954 	lcall	___fsgt
-      000738 AF 82            [24] 2955 	mov	r7,dpl
-      00073A E5 81            [12] 2956 	mov	a,sp
-      00073C 24 FC            [12] 2957 	add	a,#0xfc
-      00073E F5 81            [12] 2958 	mov	sp,a
-      000740 EF               [12] 2959 	mov	a,r7
-      000741 60 02            [24] 2960 	jz	00103$
-      000743 D2 8B            [12] 2961 	setb	_IE1
-      000745                       2962 00103$:
-      000745 D0 D0            [24] 2963 	pop	psw
-      000747 D0 00            [24] 2964 	pop	(0+0)
-      000749 D0 01            [24] 2965 	pop	(0+1)
-      00074B D0 02            [24] 2966 	pop	(0+2)
-      00074D D0 03            [24] 2967 	pop	(0+3)
-      00074F D0 04            [24] 2968 	pop	(0+4)
-      000751 D0 05            [24] 2969 	pop	(0+5)
-      000753 D0 06            [24] 2970 	pop	(0+6)
-      000755 D0 07            [24] 2971 	pop	(0+7)
-      000757 D0 83            [24] 2972 	pop	dph
-      000759 D0 82            [24] 2973 	pop	dpl
-      00075B D0 F0            [24] 2974 	pop	b
-      00075D D0 E0            [24] 2975 	pop	acc
-      00075F D0 21            [24] 2976 	pop	bits
-                           0006C8  2977 	C$p3main.c$343$1$63 ==.
-                           0006C8  2978 	XG$int_tc1$0$0 ==.
-      000761 32               [24] 2979 	reti
-                                   2980 ;------------------------------------------------------------
-                                   2981 ;Allocation info for local variables in function 'le_pulso'
-                                   2982 ;------------------------------------------------------------
-                                   2983 ;t                         Allocated to registers 
-                                   2984 ;------------------------------------------------------------
-                           0006C9  2985 	G$le_pulso$0$0 ==.
-                           0006C9  2986 	C$p3main.c$345$1$63 ==.
-                                   2987 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:345: float le_pulso() {
-                                   2988 ;	-----------------------------------------
-                                   2989 ;	 function le_pulso
-                                   2990 ;	-----------------------------------------
-      000762                       2991 _le_pulso:
-                           0006C9  2992 	C$p3main.c$348$1$64 ==.
-                                   2993 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:348: while (P0_6);
-      000762                       2994 00101$:
-      000762 20 86 FD         [24] 2995 	jb	_P0_6,00101$
-                           0006CC  2996 	C$p3main.c$350$1$64 ==.
-                                   2997 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:350: counter = 0;
-      000765 E4               [12] 2998 	clr	a
-      000766 F5 0A            [12] 2999 	mov	_counter,a
-      000768 F5 0B            [12] 3000 	mov	(_counter + 1),a
-      00076A F5 0C            [12] 3001 	mov	(_counter + 2),a
-      00076C F5 0D            [12] 3002 	mov	(_counter + 3),a
-                           0006D5  3003 	C$p3main.c$351$1$64 ==.
-                                   3004 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:351: IE1 = 0; // turn off external interrupt 1 flag
-      00076E C2 8B            [12] 3005 	clr	_IE1
-                           0006D7  3006 	C$p3main.c$352$1$64 ==.
-                                   3007 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:352: TR1 = 1; // turn TC1 on, counting while INT1 pin is 1
-      000770 D2 8E            [12] 3008 	setb	_TR1
-                           0006D9  3009 	C$p3main.c$353$1$64 ==.
-                                   3010 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:353: while(!IE1); // wait for 1->0 trasition to start counting 
-      000772                       3011 00104$:
-      000772 30 8B FD         [24] 3012 	jnb	_IE1,00104$
-                           0006DC  3013 	C$p3main.c$354$1$64 ==.
-                                   3014 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:354: TR1 = 0; // turn TC1 on
-      000775 C2 8E            [12] 3015 	clr	_TR1
-                           0006DE  3016 	C$p3main.c$355$1$64 ==.
-                                   3017 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:355: TF1 = 0; // turn off TC1 overflow flag
-      000777 C2 8F            [12] 3018 	clr	_TF1
-                           0006E0  3019 	C$p3main.c$356$1$64 ==.
-                                   3020 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:356: t = (unsigned int)TH1 * 256 + (unsigned int)TL1; // concatenates two 8 bit registers	
-      000779 AF 8D            [24] 3021 	mov	r7,_TH1
-      00077B 7E 00            [12] 3022 	mov	r6,#0x00
-      00077D AC 8B            [24] 3023 	mov	r4,_TL1
-      00077F 7D 00            [12] 3024 	mov	r5,#0x00
-      000781 EC               [12] 3025 	mov	a,r4
-      000782 2E               [12] 3026 	add	a,r6
-      000783 F5 82            [12] 3027 	mov	dpl,a
-      000785 ED               [12] 3028 	mov	a,r5
-      000786 3F               [12] 3029 	addc	a,r7
-      000787 F5 83            [12] 3030 	mov	dph,a
-                           0006F0  3031 	C$p3main.c$357$1$64 ==.
-                                   3032 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:357: TL1 = 0;
-                                   3033 ;	1-genFromRTrack replaced	mov	_TL1,#0x00
-      000789 8E 8B            [24] 3034 	mov	_TL1,r6
-                           0006F2  3035 	C$p3main.c$358$1$64 ==.
-                                   3036 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:358: TH1 = 0;
-                                   3037 ;	1-genFromRTrack replaced	mov	_TH1,#0x00
-      00078B 8E 8D            [24] 3038 	mov	_TH1,r6
-                           0006F4  3039 	C$p3main.c$359$1$64 ==.
-                                   3040 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:359: counter += (float)t / CLOCK; 
-      00078D 12 0E D8         [24] 3041 	lcall	___uint2fs
-      000790 AC 82            [24] 3042 	mov	r4,dpl
-      000792 AD 83            [24] 3043 	mov	r5,dph
-      000794 AE F0            [24] 3044 	mov	r6,b
-      000796 FF               [12] 3045 	mov	r7,a
-      000797 74 20            [12] 3046 	mov	a,#0x20
-      000799 C0 E0            [24] 3047 	push	acc
-      00079B 74 BC            [12] 3048 	mov	a,#0xbc
-      00079D C0 E0            [24] 3049 	push	acc
-      00079F 74 BE            [12] 3050 	mov	a,#0xbe
-      0007A1 C0 E0            [24] 3051 	push	acc
-      0007A3 74 4B            [12] 3052 	mov	a,#0x4b
-      0007A5 C0 E0            [24] 3053 	push	acc
-      0007A7 8C 82            [24] 3054 	mov	dpl,r4
-      0007A9 8D 83            [24] 3055 	mov	dph,r5
-      0007AB 8E F0            [24] 3056 	mov	b,r6
-      0007AD EF               [12] 3057 	mov	a,r7
-      0007AE 12 0F 4D         [24] 3058 	lcall	___fsdiv
-      0007B1 AC 82            [24] 3059 	mov	r4,dpl
-      0007B3 AD 83            [24] 3060 	mov	r5,dph
-      0007B5 AE F0            [24] 3061 	mov	r6,b
-      0007B7 FF               [12] 3062 	mov	r7,a
-      0007B8 E5 81            [12] 3063 	mov	a,sp
-      0007BA 24 FC            [12] 3064 	add	a,#0xfc
-      0007BC F5 81            [12] 3065 	mov	sp,a
-      0007BE C0 04            [24] 3066 	push	ar4
-      0007C0 C0 05            [24] 3067 	push	ar5
-      0007C2 C0 06            [24] 3068 	push	ar6
-      0007C4 C0 07            [24] 3069 	push	ar7
-      0007C6 85 0A 82         [24] 3070 	mov	dpl,_counter
-      0007C9 85 0B 83         [24] 3071 	mov	dph,(_counter + 1)
-      0007CC 85 0C F0         [24] 3072 	mov	b,(_counter + 2)
-      0007CF E5 0D            [12] 3073 	mov	a,(_counter + 3)
-      0007D1 12 0E 36         [24] 3074 	lcall	___fsadd
-      0007D4 85 82 0A         [24] 3075 	mov	_counter,dpl
-      0007D7 85 83 0B         [24] 3076 	mov	(_counter + 1),dph
-      0007DA 85 F0 0C         [24] 3077 	mov	(_counter + 2),b
-      0007DD F5 0D            [12] 3078 	mov	(_counter + 3),a
-      0007DF E5 81            [12] 3079 	mov	a,sp
-      0007E1 24 FC            [12] 3080 	add	a,#0xfc
-      0007E3 F5 81            [12] 3081 	mov	sp,a
-                           00074C  3082 	C$p3main.c$361$1$64 ==.
-                                   3083 ;	Z:\9semestre\micap\micap-master\p3\p3main.c:361: return counter;
-      0007E5 85 0A 82         [24] 3084 	mov	dpl,_counter
-      0007E8 85 0B 83         [24] 3085 	mov	dph,(_counter + 1)
-      0007EB 85 0C F0         [24] 3086 	mov	b,(_counter + 2)
-      0007EE E5 0D            [12] 3087 	mov	a,(_counter + 3)
-                           000757  3088 	C$p3main.c$362$1$64 ==.
-                           000757  3089 	XG$le_pulso$0$0 ==.
-      0007F0 22               [24] 3090 	ret
-                                   3091 	.area CSEG    (CODE)
-                                   3092 	.area CONST   (CODE)
-                           000000  3093 Fp3main$__str_0$0$0 == .
-      001043                       3094 ___str_0:
-      001043 49 6E 69 63 69 61 6E  3095 	.ascii "Iniciando firmware."
+                                   2632 ;	 function esc_RAM_SPI
+                                   2633 ;	-----------------------------------------
+      0005AB                       2634 _esc_RAM_SPI:
+      0005AB AE 82            [24] 2635 	mov	r6,dpl
+      0005AD AF 83            [24] 2636 	mov	r7,dph
+                           000516  2637 	C$p3main.c$298$1$56 ==.
+                                   2638 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:298: end_L = end;
+      0005AF 8E 05            [24] 2639 	mov	ar5,r6
+                           000518  2640 	C$p3main.c$299$1$56 ==.
+                                   2641 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:299: end_H = end >> 8;
+                           000518  2642 	C$p3main.c$300$1$56 ==.
+                                   2643 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:300: CS = 0;    
+      0005B1 C2 A3            [12] 2644 	clr	_P2_3
+                           00051A  2645 	C$p3main.c$302$1$56 ==.
+                                   2646 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:302: SPI0DAT = 0x02; //codigo da escrita
+      0005B3 75 9B 02         [24] 2647 	mov	_SPI0DAT,#0x02
+                           00051D  2648 	C$p3main.c$303$1$56 ==.
+                                   2649 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:303: while(!TXBMT);
+      0005B6                       2650 00101$:
+      0005B6 30 F9 FD         [24] 2651 	jnb	_TXBMT,00101$
+                           000520  2652 	C$p3main.c$304$1$56 ==.
+                                   2653 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:304: SPI0DAT = end_H;
+      0005B9 8F 9B            [24] 2654 	mov	_SPI0DAT,r7
+                           000522  2655 	C$p3main.c$305$1$56 ==.
+                                   2656 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:305: while(!TXBMT);
+      0005BB                       2657 00104$:
+      0005BB 30 F9 FD         [24] 2658 	jnb	_TXBMT,00104$
+                           000525  2659 	C$p3main.c$306$1$56 ==.
+                                   2660 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:306: SPI0DAT = end_L;
+      0005BE 8D 9B            [24] 2661 	mov	_SPI0DAT,r5
+                           000527  2662 	C$p3main.c$307$1$56 ==.
+                                   2663 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:307: while(!TXBMT);
+      0005C0                       2664 00107$:
+      0005C0 30 F9 FD         [24] 2665 	jnb	_TXBMT,00107$
+                           00052A  2666 	C$p3main.c$308$1$56 ==.
+                                   2667 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:308: SPI0DAT = dado;
+      0005C3 85 16 9B         [24] 2668 	mov	_SPI0DAT,_esc_RAM_SPI_PARM_2
+                           00052D  2669 	C$p3main.c$309$1$56 ==.
+                                   2670 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:309: while(!TXBMT);
+      0005C6                       2671 00110$:
+      0005C6 30 F9 FD         [24] 2672 	jnb	_TXBMT,00110$
+                           000530  2673 	C$p3main.c$310$1$56 ==.
+                                   2674 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:310: SPIF = 0;
+      0005C9 C2 FF            [12] 2675 	clr	_SPIF
+                           000532  2676 	C$p3main.c$311$1$56 ==.
+                                   2677 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:311: while(!SPIF); // espera o t�rmino do deslocamento do �ltimo valor
+      0005CB                       2678 00113$:
+                           000532  2679 	C$p3main.c$312$1$56 ==.
+                                   2680 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:312: SPIF = 0;
+      0005CB 10 FF 02         [24] 2681 	jbc	_SPIF,00152$
+      0005CE 80 FB            [24] 2682 	sjmp	00113$
+      0005D0                       2683 00152$:
+                           000537  2684 	C$p3main.c$313$1$56 ==.
+                                   2685 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:313: CS = 1;
+      0005D0 D2 A3            [12] 2686 	setb	_P2_3
+                           000539  2687 	C$p3main.c$314$1$56 ==.
+                           000539  2688 	XG$esc_RAM_SPI$0$0 ==.
+      0005D2 22               [24] 2689 	ret
+                                   2690 ;------------------------------------------------------------
+                                   2691 ;Allocation info for local variables in function 'test_RAM_SPI'
+                                   2692 ;------------------------------------------------------------
+                                   2693 ;end                       Allocated to registers r4 r5 
+                                   2694 ;error                     Allocated to registers r6 r7 
+                                   2695 ;------------------------------------------------------------
+                           00053A  2696 	G$test_RAM_SPI$0$0 ==.
+                           00053A  2697 	C$p3main.c$316$1$56 ==.
+                                   2698 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:316: void test_RAM_SPI() {
+                                   2699 ;	-----------------------------------------
+                                   2700 ;	 function test_RAM_SPI
+                                   2701 ;	-----------------------------------------
+      0005D3                       2702 _test_RAM_SPI:
+                           00053A  2703 	C$p3main.c$317$1$56 ==.
+                                   2704 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:317: unsigned int end, error = 0;
+      0005D3 7E 00            [12] 2705 	mov	r6,#0x00
+      0005D5 7F 00            [12] 2706 	mov	r7,#0x00
+                           00053E  2707 	C$p3main.c$319$2$58 ==.
+                                   2708 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:319: for (end = 0; end < 8192; end++) {
+      0005D7 7C 00            [12] 2709 	mov	r4,#0x00
+      0005D9 7D 00            [12] 2710 	mov	r5,#0x00
+      0005DB                       2711 00109$:
+                           000542  2712 	C$p3main.c$320$1$57 ==.
+                                   2713 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:320: if (end % 100 == 0)
+      0005DB 75 16 64         [24] 2714 	mov	__moduint_PARM_2,#0x64
+      0005DE 75 17 00         [24] 2715 	mov	(__moduint_PARM_2 + 1),#0x00
+      0005E1 8C 82            [24] 2716 	mov	dpl,r4
+      0005E3 8D 83            [24] 2717 	mov	dph,r5
+      0005E5 C0 07            [24] 2718 	push	ar7
+      0005E7 C0 06            [24] 2719 	push	ar6
+      0005E9 C0 05            [24] 2720 	push	ar5
+      0005EB C0 04            [24] 2721 	push	ar4
+      0005ED 12 0E 5E         [24] 2722 	lcall	__moduint
+      0005F0 E5 82            [12] 2723 	mov	a,dpl
+      0005F2 85 83 F0         [24] 2724 	mov	b,dph
+      0005F5 D0 04            [24] 2725 	pop	ar4
+      0005F7 D0 05            [24] 2726 	pop	ar5
+      0005F9 D0 06            [24] 2727 	pop	ar6
+      0005FB D0 07            [24] 2728 	pop	ar7
+      0005FD 45 F0            [12] 2729 	orl	a,b
+      0005FF 70 25            [24] 2730 	jnz	00102$
+                           000568  2731 	C$p3main.c$321$2$58 ==.
+                                   2732 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:321: printf_fast_f("%05u ", end);
+      000601 C0 07            [24] 2733 	push	ar7
+      000603 C0 06            [24] 2734 	push	ar6
+      000605 C0 05            [24] 2735 	push	ar5
+      000607 C0 04            [24] 2736 	push	ar4
+      000609 C0 04            [24] 2737 	push	ar4
+      00060B C0 05            [24] 2738 	push	ar5
+      00060D 74 5B            [12] 2739 	mov	a,#___str_17
+      00060F C0 E0            [24] 2740 	push	acc
+      000611 74 18            [12] 2741 	mov	a,#(___str_17 >> 8)
+      000613 C0 E0            [24] 2742 	push	acc
+      000615 12 08 66         [24] 2743 	lcall	_printf_fast_f
+      000618 E5 81            [12] 2744 	mov	a,sp
+      00061A 24 FC            [12] 2745 	add	a,#0xfc
+      00061C F5 81            [12] 2746 	mov	sp,a
+      00061E D0 04            [24] 2747 	pop	ar4
+      000620 D0 05            [24] 2748 	pop	ar5
+      000622 D0 06            [24] 2749 	pop	ar6
+      000624 D0 07            [24] 2750 	pop	ar7
+      000626                       2751 00102$:
+                           00058D  2752 	C$p3main.c$322$2$58 ==.
+                                   2753 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:322: esc_RAM_SPI(end, 123);
+      000626 75 16 7B         [24] 2754 	mov	_esc_RAM_SPI_PARM_2,#0x7b
+      000629 8C 82            [24] 2755 	mov	dpl,r4
+      00062B 8D 83            [24] 2756 	mov	dph,r5
+      00062D C0 07            [24] 2757 	push	ar7
+      00062F C0 06            [24] 2758 	push	ar6
+      000631 C0 05            [24] 2759 	push	ar5
+      000633 C0 04            [24] 2760 	push	ar4
+      000635 12 05 AB         [24] 2761 	lcall	_esc_RAM_SPI
+      000638 D0 04            [24] 2762 	pop	ar4
+      00063A D0 05            [24] 2763 	pop	ar5
+                           0005A3  2764 	C$p3main.c$323$2$58 ==.
+                                   2765 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:323: if (le_RAM_SPI(end) != 123) {
+      00063C 8C 82            [24] 2766 	mov	dpl,r4
+      00063E 8D 83            [24] 2767 	mov	dph,r5
+      000640 C0 05            [24] 2768 	push	ar5
+      000642 C0 04            [24] 2769 	push	ar4
+      000644 12 05 80         [24] 2770 	lcall	_le_RAM_SPI
+      000647 AB 82            [24] 2771 	mov	r3,dpl
+      000649 D0 04            [24] 2772 	pop	ar4
+      00064B D0 05            [24] 2773 	pop	ar5
+      00064D D0 06            [24] 2774 	pop	ar6
+      00064F D0 07            [24] 2775 	pop	ar7
+      000651 BB 7B 02         [24] 2776 	cjne	r3,#0x7b,00126$
+      000654 80 06            [24] 2777 	sjmp	00110$
+      000656                       2778 00126$:
+                           0005BD  2779 	C$p3main.c$324$3$59 ==.
+                                   2780 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:324: error = 1;
+      000656 7E 01            [12] 2781 	mov	r6,#0x01
+      000658 7F 00            [12] 2782 	mov	r7,#0x00
+                           0005C1  2783 	C$p3main.c$325$3$59 ==.
+                                   2784 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:325: break;
+      00065A 80 0D            [24] 2785 	sjmp	00105$
+      00065C                       2786 00110$:
+                           0005C3  2787 	C$p3main.c$319$1$57 ==.
+                                   2788 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:319: for (end = 0; end < 8192; end++) {
+      00065C 0C               [12] 2789 	inc	r4
+      00065D BC 00 01         [24] 2790 	cjne	r4,#0x00,00127$
+      000660 0D               [12] 2791 	inc	r5
+      000661                       2792 00127$:
+      000661 74 E0            [12] 2793 	mov	a,#0x100 - 0x20
+      000663 2D               [12] 2794 	add	a,r5
+      000664 40 03            [24] 2795 	jc	00128$
+      000666 02 05 DB         [24] 2796 	ljmp	00109$
+      000669                       2797 00128$:
+      000669                       2798 00105$:
+                           0005D0  2799 	C$p3main.c$329$1$57 ==.
+                                   2800 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:329: printf_fast_f("\n");
+      000669 C0 07            [24] 2801 	push	ar7
+      00066B C0 06            [24] 2802 	push	ar6
+      00066D 74 59            [12] 2803 	mov	a,#___str_16
+      00066F C0 E0            [24] 2804 	push	acc
+      000671 74 18            [12] 2805 	mov	a,#(___str_16 >> 8)
+      000673 C0 E0            [24] 2806 	push	acc
+      000675 12 08 66         [24] 2807 	lcall	_printf_fast_f
+      000678 15 81            [12] 2808 	dec	sp
+      00067A 15 81            [12] 2809 	dec	sp
+      00067C D0 06            [24] 2810 	pop	ar6
+      00067E D0 07            [24] 2811 	pop	ar7
+                           0005E7  2812 	C$p3main.c$331$1$57 ==.
+                                   2813 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:331: if(error)
+      000680 EE               [12] 2814 	mov	a,r6
+      000681 4F               [12] 2815 	orl	a,r7
+      000682 60 17            [24] 2816 	jz	00107$
+                           0005EB  2817 	C$p3main.c$332$1$57 ==.
+                                   2818 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:332: printf_fast_f("Erro end. %05u\n", error);
+      000684 C0 06            [24] 2819 	push	ar6
+      000686 C0 07            [24] 2820 	push	ar7
+      000688 74 61            [12] 2821 	mov	a,#___str_18
+      00068A C0 E0            [24] 2822 	push	acc
+      00068C 74 18            [12] 2823 	mov	a,#(___str_18 >> 8)
+      00068E C0 E0            [24] 2824 	push	acc
+      000690 12 08 66         [24] 2825 	lcall	_printf_fast_f
+      000693 E5 81            [12] 2826 	mov	a,sp
+      000695 24 FC            [12] 2827 	add	a,#0xfc
+      000697 F5 81            [12] 2828 	mov	sp,a
+      000699 80 0F            [24] 2829 	sjmp	00111$
+      00069B                       2830 00107$:
+                           000602  2831 	C$p3main.c$334$1$57 ==.
+                                   2832 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:334: printf_fast_f("Fim do teste. RAM SPI ok!\n");		
+      00069B 74 71            [12] 2833 	mov	a,#___str_19
+      00069D C0 E0            [24] 2834 	push	acc
+      00069F 74 18            [12] 2835 	mov	a,#(___str_19 >> 8)
+      0006A1 C0 E0            [24] 2836 	push	acc
+      0006A3 12 08 66         [24] 2837 	lcall	_printf_fast_f
+      0006A6 15 81            [12] 2838 	dec	sp
+      0006A8 15 81            [12] 2839 	dec	sp
+      0006AA                       2840 00111$:
+                           000611  2841 	C$p3main.c$335$1$57 ==.
+                           000611  2842 	XG$test_RAM_SPI$0$0 ==.
+      0006AA 22               [24] 2843 	ret
+                                   2844 ;------------------------------------------------------------
+                                   2845 ;Allocation info for local variables in function 'le_ADC0'
+                                   2846 ;------------------------------------------------------------
+                                   2847 ;ganho                     Allocated with name '_le_ADC0_PARM_2'
+                                   2848 ;canal                     Allocated to registers r7 
+                                   2849 ;------------------------------------------------------------
+                           000612  2850 	G$le_ADC0$0$0 ==.
+                           000612  2851 	C$p3main.c$338$1$57 ==.
+                                   2852 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:338: unsigned int le_ADC0(unsigned char canal, unsigned char ganho) {
+                                   2853 ;	-----------------------------------------
+                                   2854 ;	 function le_ADC0
+                                   2855 ;	-----------------------------------------
+      0006AB                       2856 _le_ADC0:
+      0006AB AF 82            [24] 2857 	mov	r7,dpl
+                           000614  2858 	C$p3main.c$339$1$61 ==.
+                                   2859 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:339: ADC0CF = (ADC0CF & 0xf8) | ganho;
+      0006AD 74 F8            [12] 2860 	mov	a,#0xf8
+      0006AF 55 BC            [12] 2861 	anl	a,_ADC0CF
+      0006B1 45 16            [12] 2862 	orl	a,_le_ADC0_PARM_2
+      0006B3 F5 BC            [12] 2863 	mov	_ADC0CF,a
+                           00061C  2864 	C$p3main.c$340$1$61 ==.
+                                   2865 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:340: AMX0SL = canal;
+      0006B5 8F BB            [24] 2866 	mov	_AMX0SL,r7
+                           00061E  2867 	C$p3main.c$341$1$61 ==.
+                                   2868 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:341: AD0BUSY = 1; // fire up AD conversion
+      0006B7 D2 EC            [12] 2869 	setb	_AD0BUSY
+                           000620  2870 	C$p3main.c$342$1$61 ==.
+                                   2871 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:342: NOP();
+      0006B9 00               [12] 2872 	NOP	
+                           000621  2873 	C$p3main.c$343$1$61 ==.
+                                   2874 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:343: while(AD0BUSY); // wait untill conversion is finished
+      0006BA                       2875 00101$:
+      0006BA 20 EC FD         [24] 2876 	jb	_AD0BUSY,00101$
+                           000624  2877 	C$p3main.c$345$1$61 ==.
+                                   2878 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:345: return (ADC0H << 8 | ADC0L);
+      0006BD AF BF            [24] 2879 	mov	r7,_ADC0H
+      0006BF 7E 00            [12] 2880 	mov	r6,#0x00
+      0006C1 AC BE            [24] 2881 	mov	r4,_ADC0L
+      0006C3 7D 00            [12] 2882 	mov	r5,#0x00
+      0006C5 EC               [12] 2883 	mov	a,r4
+      0006C6 4E               [12] 2884 	orl	a,r6
+      0006C7 F5 82            [12] 2885 	mov	dpl,a
+      0006C9 ED               [12] 2886 	mov	a,r5
+      0006CA 4F               [12] 2887 	orl	a,r7
+      0006CB F5 83            [12] 2888 	mov	dph,a
+                           000634  2889 	C$p3main.c$347$1$61 ==.
+                           000634  2890 	XG$le_ADC0$0$0 ==.
+      0006CD 22               [24] 2891 	ret
+                                   2892 ;------------------------------------------------------------
+                                   2893 ;Allocation info for local variables in function 'le_LM35'
+                                   2894 ;------------------------------------------------------------
+                                   2895 ;ladc                      Allocated to registers 
+                                   2896 ;------------------------------------------------------------
+                           000635  2897 	G$le_LM35$0$0 ==.
+                           000635  2898 	C$p3main.c$350$1$61 ==.
+                                   2899 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:350: void le_LM35() {
+                                   2900 ;	-----------------------------------------
+                                   2901 ;	 function le_LM35
+                                   2902 ;	-----------------------------------------
+      0006CE                       2903 _le_LM35:
+                           000635  2904 	C$p3main.c$352$1$62 ==.
+                                   2905 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:352: le_ADC0(AIN0_0, G1); // ignore first reading (ADC0 channel switching related)
+      0006CE 75 16 00         [24] 2906 	mov	_le_ADC0_PARM_2,#0x00
+      0006D1 75 82 00         [24] 2907 	mov	dpl,#0x00
+      0006D4 12 06 AB         [24] 2908 	lcall	_le_ADC0
+                           00063E  2909 	C$p3main.c$353$1$62 ==.
+                                   2910 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:353: ladc = le_ADC0(AIN0_0, G1);
+      0006D7 75 16 00         [24] 2911 	mov	_le_ADC0_PARM_2,#0x00
+      0006DA 75 82 00         [24] 2912 	mov	dpl,#0x00
+      0006DD 12 06 AB         [24] 2913 	lcall	_le_ADC0
+                           000647  2914 	C$p3main.c$354$1$62 ==.
+                                   2915 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:354: printf_fast_f("Temperatura da placa peltier: %2.1f C\n", (ladc * 0.00059326171875 / 1) * 100);
+      0006E0 12 0F 4D         [24] 2916 	lcall	___uint2fs
+      0006E3 AC 82            [24] 2917 	mov	r4,dpl
+      0006E5 AD 83            [24] 2918 	mov	r5,dph
+      0006E7 AE F0            [24] 2919 	mov	r6,b
+      0006E9 FF               [12] 2920 	mov	r7,a
+      0006EA C0 04            [24] 2921 	push	ar4
+      0006EC C0 05            [24] 2922 	push	ar5
+      0006EE C0 06            [24] 2923 	push	ar6
+      0006F0 C0 07            [24] 2924 	push	ar7
+      0006F2 90 85 1F         [24] 2925 	mov	dptr,#0x851f
+      0006F5 75 F0 1B         [24] 2926 	mov	b,#0x1b
+      0006F8 74 3A            [12] 2927 	mov	a,#0x3a
+      0006FA 12 0C E7         [24] 2928 	lcall	___fsmul
+      0006FD AC 82            [24] 2929 	mov	r4,dpl
+      0006FF AD 83            [24] 2930 	mov	r5,dph
+      000701 AE F0            [24] 2931 	mov	r6,b
+      000703 FF               [12] 2932 	mov	r7,a
+      000704 E5 81            [12] 2933 	mov	a,sp
+      000706 24 FC            [12] 2934 	add	a,#0xfc
+      000708 F5 81            [12] 2935 	mov	sp,a
+      00070A C0 04            [24] 2936 	push	ar4
+      00070C C0 05            [24] 2937 	push	ar5
+      00070E C0 06            [24] 2938 	push	ar6
+      000710 C0 07            [24] 2939 	push	ar7
+      000712 90 00 00         [24] 2940 	mov	dptr,#0x0000
+      000715 75 F0 C8         [24] 2941 	mov	b,#0xc8
+      000718 74 42            [12] 2942 	mov	a,#0x42
+      00071A 12 0C E7         [24] 2943 	lcall	___fsmul
+      00071D AC 82            [24] 2944 	mov	r4,dpl
+      00071F AD 83            [24] 2945 	mov	r5,dph
+      000721 AE F0            [24] 2946 	mov	r6,b
+      000723 FF               [12] 2947 	mov	r7,a
+      000724 E5 81            [12] 2948 	mov	a,sp
+      000726 24 FC            [12] 2949 	add	a,#0xfc
+      000728 F5 81            [12] 2950 	mov	sp,a
+      00072A C0 04            [24] 2951 	push	ar4
+      00072C C0 05            [24] 2952 	push	ar5
+      00072E C0 06            [24] 2953 	push	ar6
+      000730 C0 07            [24] 2954 	push	ar7
+      000732 74 8C            [12] 2955 	mov	a,#___str_20
+      000734 C0 E0            [24] 2956 	push	acc
+      000736 74 18            [12] 2957 	mov	a,#(___str_20 >> 8)
+      000738 C0 E0            [24] 2958 	push	acc
+      00073A 12 08 66         [24] 2959 	lcall	_printf_fast_f
+      00073D E5 81            [12] 2960 	mov	a,sp
+      00073F 24 FA            [12] 2961 	add	a,#0xfa
+      000741 F5 81            [12] 2962 	mov	sp,a
+                           0006AA  2963 	C$p3main.c$355$1$62 ==.
+                           0006AA  2964 	XG$le_LM35$0$0 ==.
+      000743 22               [24] 2965 	ret
+                                   2966 ;------------------------------------------------------------
+                                   2967 ;Allocation info for local variables in function 'int_tc1'
+                                   2968 ;------------------------------------------------------------
+                           0006AB  2969 	G$int_tc1$0$0 ==.
+                           0006AB  2970 	C$p3main.c$358$1$62 ==.
+                                   2971 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:358: int int_tc1() interrupt 3 { // occurs every 2.62144 ms
+                                   2972 ;	-----------------------------------------
+                                   2973 ;	 function int_tc1
+                                   2974 ;	-----------------------------------------
+      000744                       2975 _int_tc1:
+      000744 C0 23            [24] 2976 	push	bits
+      000746 C0 E0            [24] 2977 	push	acc
+      000748 C0 F0            [24] 2978 	push	b
+      00074A C0 82            [24] 2979 	push	dpl
+      00074C C0 83            [24] 2980 	push	dph
+      00074E C0 07            [24] 2981 	push	(0+7)
+      000750 C0 06            [24] 2982 	push	(0+6)
+      000752 C0 05            [24] 2983 	push	(0+5)
+      000754 C0 04            [24] 2984 	push	(0+4)
+      000756 C0 03            [24] 2985 	push	(0+3)
+      000758 C0 02            [24] 2986 	push	(0+2)
+      00075A C0 01            [24] 2987 	push	(0+1)
+      00075C C0 00            [24] 2988 	push	(0+0)
+      00075E C0 D0            [24] 2989 	push	psw
+      000760 75 D0 00         [24] 2990 	mov	psw,#0x00
+                           0006CA  2991 	C$p3main.c$359$1$63 ==.
+                                   2992 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:359: TF1 = 0;
+      000763 C2 8F            [12] 2993 	clr	_TF1
+                           0006CC  2994 	C$p3main.c$360$1$63 ==.
+                                   2995 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:360: counter += 0.00262144;
+      000765 74 77            [12] 2996 	mov	a,#0x77
+      000767 C0 E0            [24] 2997 	push	acc
+      000769 74 CC            [12] 2998 	mov	a,#0xcc
+      00076B C0 E0            [24] 2999 	push	acc
+      00076D 74 2B            [12] 3000 	mov	a,#0x2b
+      00076F C0 E0            [24] 3001 	push	acc
+      000771 74 3B            [12] 3002 	mov	a,#0x3b
+      000773 C0 E0            [24] 3003 	push	acc
+      000775 85 0A 82         [24] 3004 	mov	dpl,_counter
+      000778 85 0B 83         [24] 3005 	mov	dph,(_counter + 1)
+      00077B 85 0C F0         [24] 3006 	mov	b,(_counter + 2)
+      00077E E5 0D            [12] 3007 	mov	a,(_counter + 3)
+      000780 12 0E AB         [24] 3008 	lcall	___fsadd
+      000783 85 82 0A         [24] 3009 	mov	_counter,dpl
+      000786 85 83 0B         [24] 3010 	mov	(_counter + 1),dph
+      000789 85 F0 0C         [24] 3011 	mov	(_counter + 2),b
+      00078C F5 0D            [12] 3012 	mov	(_counter + 3),a
+      00078E E5 81            [12] 3013 	mov	a,sp
+      000790 24 FC            [12] 3014 	add	a,#0xfc
+      000792 F5 81            [12] 3015 	mov	sp,a
+                           0006FB  3016 	C$p3main.c$361$1$63 ==.
+                                   3017 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:361: if (counter > 2) IE1 = 1; // stop reading if pulse width > 2s
+      000794 E4               [12] 3018 	clr	a
+      000795 C0 E0            [24] 3019 	push	acc
+      000797 C0 E0            [24] 3020 	push	acc
+      000799 C0 E0            [24] 3021 	push	acc
+      00079B 74 40            [12] 3022 	mov	a,#0x40
+      00079D C0 E0            [24] 3023 	push	acc
+      00079F 85 0A 82         [24] 3024 	mov	dpl,_counter
+      0007A2 85 0B 83         [24] 3025 	mov	dph,(_counter + 1)
+      0007A5 85 0C F0         [24] 3026 	mov	b,(_counter + 2)
+      0007A8 E5 0D            [12] 3027 	mov	a,(_counter + 3)
+      0007AA 12 0E 2E         [24] 3028 	lcall	___fsgt
+      0007AD AF 82            [24] 3029 	mov	r7,dpl
+      0007AF E5 81            [12] 3030 	mov	a,sp
+      0007B1 24 FC            [12] 3031 	add	a,#0xfc
+      0007B3 F5 81            [12] 3032 	mov	sp,a
+      0007B5 EF               [12] 3033 	mov	a,r7
+      0007B6 60 02            [24] 3034 	jz	00103$
+      0007B8 D2 8B            [12] 3035 	setb	_IE1
+      0007BA                       3036 00103$:
+      0007BA D0 D0            [24] 3037 	pop	psw
+      0007BC D0 00            [24] 3038 	pop	(0+0)
+      0007BE D0 01            [24] 3039 	pop	(0+1)
+      0007C0 D0 02            [24] 3040 	pop	(0+2)
+      0007C2 D0 03            [24] 3041 	pop	(0+3)
+      0007C4 D0 04            [24] 3042 	pop	(0+4)
+      0007C6 D0 05            [24] 3043 	pop	(0+5)
+      0007C8 D0 06            [24] 3044 	pop	(0+6)
+      0007CA D0 07            [24] 3045 	pop	(0+7)
+      0007CC D0 83            [24] 3046 	pop	dph
+      0007CE D0 82            [24] 3047 	pop	dpl
+      0007D0 D0 F0            [24] 3048 	pop	b
+      0007D2 D0 E0            [24] 3049 	pop	acc
+      0007D4 D0 23            [24] 3050 	pop	bits
+                           00073D  3051 	C$p3main.c$362$1$63 ==.
+                           00073D  3052 	XG$int_tc1$0$0 ==.
+      0007D6 32               [24] 3053 	reti
+                                   3054 ;------------------------------------------------------------
+                                   3055 ;Allocation info for local variables in function 'le_pulso'
+                                   3056 ;------------------------------------------------------------
+                                   3057 ;t                         Allocated to registers 
+                                   3058 ;------------------------------------------------------------
+                           00073E  3059 	G$le_pulso$0$0 ==.
+                           00073E  3060 	C$p3main.c$364$1$63 ==.
+                                   3061 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:364: float le_pulso() {
+                                   3062 ;	-----------------------------------------
+                                   3063 ;	 function le_pulso
+                                   3064 ;	-----------------------------------------
+      0007D7                       3065 _le_pulso:
+                           00073E  3066 	C$p3main.c$367$1$64 ==.
+                                   3067 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:367: while (P0_6);
+      0007D7                       3068 00101$:
+      0007D7 20 86 FD         [24] 3069 	jb	_P0_6,00101$
+                           000741  3070 	C$p3main.c$369$1$64 ==.
+                                   3071 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:369: counter = 0;
+      0007DA E4               [12] 3072 	clr	a
+      0007DB F5 0A            [12] 3073 	mov	_counter,a
+      0007DD F5 0B            [12] 3074 	mov	(_counter + 1),a
+      0007DF F5 0C            [12] 3075 	mov	(_counter + 2),a
+      0007E1 F5 0D            [12] 3076 	mov	(_counter + 3),a
+                           00074A  3077 	C$p3main.c$370$1$64 ==.
+                                   3078 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:370: IE1 = 0; // turn off external interrupt 1 flag
+      0007E3 C2 8B            [12] 3079 	clr	_IE1
+                           00074C  3080 	C$p3main.c$371$1$64 ==.
+                                   3081 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:371: TR1 = 1; // turn TC1 on, counting while INT1 pin is 1
+      0007E5 D2 8E            [12] 3082 	setb	_TR1
+                           00074E  3083 	C$p3main.c$372$1$64 ==.
+                                   3084 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:372: while(!IE1); // wait for 1->0 trasition to start counting 
+      0007E7                       3085 00104$:
+      0007E7 30 8B FD         [24] 3086 	jnb	_IE1,00104$
+                           000751  3087 	C$p3main.c$373$1$64 ==.
+                                   3088 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:373: TR1 = 0; // turn TC1 on
+      0007EA C2 8E            [12] 3089 	clr	_TR1
+                           000753  3090 	C$p3main.c$374$1$64 ==.
+                                   3091 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:374: TF1 = 0; // turn off TC1 overflow flag
+      0007EC C2 8F            [12] 3092 	clr	_TF1
+                           000755  3093 	C$p3main.c$375$1$64 ==.
+                                   3094 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:375: t = (unsigned int)TH1 * 256 + (unsigned int)TL1; // concatenates two 8 bit registers	
+      0007EE AF 8D            [24] 3095 	mov	r7,_TH1
+      0007F0 7E 00            [12] 3096 	mov	r6,#0x00
+      0007F2 AC 8B            [24] 3097 	mov	r4,_TL1
+      0007F4 7D 00            [12] 3098 	mov	r5,#0x00
+      0007F6 EC               [12] 3099 	mov	a,r4
+      0007F7 2E               [12] 3100 	add	a,r6
+      0007F8 F5 82            [12] 3101 	mov	dpl,a
+      0007FA ED               [12] 3102 	mov	a,r5
+      0007FB 3F               [12] 3103 	addc	a,r7
+      0007FC F5 83            [12] 3104 	mov	dph,a
+                           000765  3105 	C$p3main.c$376$1$64 ==.
+                                   3106 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:376: TL1 = 0;
+                                   3107 ;	1-genFromRTrack replaced	mov	_TL1,#0x00
+      0007FE 8E 8B            [24] 3108 	mov	_TL1,r6
+                           000767  3109 	C$p3main.c$377$1$64 ==.
+                                   3110 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:377: TH1 = 0;
+                                   3111 ;	1-genFromRTrack replaced	mov	_TH1,#0x00
+      000800 8E 8D            [24] 3112 	mov	_TH1,r6
+                           000769  3113 	C$p3main.c$378$1$64 ==.
+                                   3114 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:378: counter += (float)t / CLOCK; 
+      000802 12 0F 4D         [24] 3115 	lcall	___uint2fs
+      000805 AC 82            [24] 3116 	mov	r4,dpl
+      000807 AD 83            [24] 3117 	mov	r5,dph
+      000809 AE F0            [24] 3118 	mov	r6,b
+      00080B FF               [12] 3119 	mov	r7,a
+      00080C 74 20            [12] 3120 	mov	a,#0x20
+      00080E C0 E0            [24] 3121 	push	acc
+      000810 74 BC            [12] 3122 	mov	a,#0xbc
+      000812 C0 E0            [24] 3123 	push	acc
+      000814 74 BE            [12] 3124 	mov	a,#0xbe
+      000816 C0 E0            [24] 3125 	push	acc
+      000818 74 4B            [12] 3126 	mov	a,#0x4b
+      00081A C0 E0            [24] 3127 	push	acc
+      00081C 8C 82            [24] 3128 	mov	dpl,r4
+      00081E 8D 83            [24] 3129 	mov	dph,r5
+      000820 8E F0            [24] 3130 	mov	b,r6
+      000822 EF               [12] 3131 	mov	a,r7
+      000823 12 15 E1         [24] 3132 	lcall	___fsdiv
+      000826 AC 82            [24] 3133 	mov	r4,dpl
+      000828 AD 83            [24] 3134 	mov	r5,dph
+      00082A AE F0            [24] 3135 	mov	r6,b
+      00082C FF               [12] 3136 	mov	r7,a
+      00082D E5 81            [12] 3137 	mov	a,sp
+      00082F 24 FC            [12] 3138 	add	a,#0xfc
+      000831 F5 81            [12] 3139 	mov	sp,a
+      000833 C0 04            [24] 3140 	push	ar4
+      000835 C0 05            [24] 3141 	push	ar5
+      000837 C0 06            [24] 3142 	push	ar6
+      000839 C0 07            [24] 3143 	push	ar7
+      00083B 85 0A 82         [24] 3144 	mov	dpl,_counter
+      00083E 85 0B 83         [24] 3145 	mov	dph,(_counter + 1)
+      000841 85 0C F0         [24] 3146 	mov	b,(_counter + 2)
+      000844 E5 0D            [12] 3147 	mov	a,(_counter + 3)
+      000846 12 0E AB         [24] 3148 	lcall	___fsadd
+      000849 85 82 0A         [24] 3149 	mov	_counter,dpl
+      00084C 85 83 0B         [24] 3150 	mov	(_counter + 1),dph
+      00084F 85 F0 0C         [24] 3151 	mov	(_counter + 2),b
+      000852 F5 0D            [12] 3152 	mov	(_counter + 3),a
+      000854 E5 81            [12] 3153 	mov	a,sp
+      000856 24 FC            [12] 3154 	add	a,#0xfc
+      000858 F5 81            [12] 3155 	mov	sp,a
+                           0007C1  3156 	C$p3main.c$380$1$64 ==.
+                                   3157 ;	Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.c:380: return counter;
+      00085A 85 0A 82         [24] 3158 	mov	dpl,_counter
+      00085D 85 0B 83         [24] 3159 	mov	dph,(_counter + 1)
+      000860 85 0C F0         [24] 3160 	mov	b,(_counter + 2)
+      000863 E5 0D            [12] 3161 	mov	a,(_counter + 3)
+                           0007CC  3162 	C$p3main.c$381$1$64 ==.
+                           0007CC  3163 	XG$le_pulso$0$0 ==.
+      000865 22               [24] 3164 	ret
+                                   3165 	.area CSEG    (CODE)
+                                   3166 	.area CONST   (CODE)
+                           000000  3167 Fp3main$__str_0$0$0 == .
+      0016D7                       3168 ___str_0:
+      0016D7 49 6E 69 63 69 61 6E  3169 	.ascii "Iniciando firmware."
              64 6F 20 66 69 72 6D
              77 61 72 65 2E
-      001056 0A                    3096 	.db 0x0a
-      001057 00                    3097 	.db 0x00
-                           000015  3098 Fp3main$__str_1$0$0 == .
-      001058                       3099 ___str_1:
-      001058 54 65 6E 73 61 6F 20  3100 	.ascii "Tensao aplicada a placa peltier: %3.1fV"
+      0016EA 0A                    3170 	.db 0x0a
+      0016EB 00                    3171 	.db 0x00
+                           000015  3172 Fp3main$__str_1$0$0 == .
+      0016EC                       3173 ___str_1:
+      0016EC 54 65 6E 73 61 6F 20  3174 	.ascii "Tensao aplicada a placa peltier: %3.1fV"
              61 70 6C 69 63 61 64
              61 20 61 20 70 6C 61
              63 61 20 70 65 6C 74
              69 65 72 3A 20 25 33
              2E 31 66 56
-      00107F 0A                    3101 	.db 0x0a
-      001080 00                    3102 	.db 0x00
-                           00003E  3103 Fp3main$__str_2$0$0 == .
-      001081                       3104 ___str_2:
-      001081 0A                    3105 	.db 0x0a
-      001082 20 4D 45 4E 55 3A     3106 	.ascii " MENU:"
-      001088 0A                    3107 	.db 0x0a
-      001089 00                    3108 	.db 0x00
-                           000047  3109 Fp3main$__str_3$0$0 == .
-      00108A                       3110 ___str_3:
-      00108A 61 3A 20 41 75 6D 65  3111 	.ascii "a: Aumenta RPM do motor."
+      001713 0A                    3175 	.db 0x0a
+      001714 00                    3176 	.db 0x00
+                           00003E  3177 Fp3main$__str_2$0$0 == .
+      001715                       3178 ___str_2:
+      001715 25 64 20              3179 	.ascii "%d "
+      001718 00                    3180 	.db 0x00
+                           000042  3181 Fp3main$__str_3$0$0 == .
+      001719                       3182 ___str_3:
+      001719 20                    3183 	.ascii " "
+      00171A 00                    3184 	.db 0x00
+                           000044  3185 Fp3main$__str_4$0$0 == .
+      00171B                       3186 ___str_4:
+      00171B 46 6F 6E 74 65 20 31  3187 	.ascii "Fonte 12V ligada."
+             32 56 20 6C 69 67 61
+             64 61 2E
+      00172C 0A                    3188 	.db 0x0a
+      00172D 00                    3189 	.db 0x00
+                           000057  3190 Fp3main$__str_5$0$0 == .
+      00172E                       3191 ___str_5:
+      00172E 46 6F 6E 74 65 20 31  3192 	.ascii "Fonte 12V desligada."
+             32 56 20 64 65 73 6C
+             69 67 61 64 61 2E
+      001742 0A                    3193 	.db 0x0a
+      001743 00                    3194 	.db 0x00
+                           00006D  3195 Fp3main$__str_6$0$0 == .
+      001744                       3196 ___str_6:
+      001744 52 6F 74 61 63 61 6F  3197 	.ascii "Rotacao do motor <= 5"
+             20 64 6F 20 6D 6F 74
+             6F 72 20 3C 3D 20 35
+      001759 0A                    3198 	.db 0x0a
+      00175A 00                    3199 	.db 0x00
+                           000084  3200 Fp3main$__str_7$0$0 == .
+      00175B                       3201 ___str_7:
+      00175B 52 6F 74 61 63 61 6F  3202 	.ascii "Rotacao do motor: %3.1f"
+             20 64 6F 20 6D 6F 74
+             6F 72 3A 20 25 33 2E
+             31 66
+      001772 0A                    3203 	.db 0x0a
+      001773 00                    3204 	.db 0x00
+                           00009D  3205 Fp3main$__str_8$0$0 == .
+      001774                       3206 ___str_8:
+      001774 0A                    3207 	.db 0x0a
+      001775 20 4D 45 4E 55 3A     3208 	.ascii " MENU:"
+      00177B 0A                    3209 	.db 0x0a
+      00177C 00                    3210 	.db 0x00
+                           0000A6  3211 Fp3main$__str_9$0$0 == .
+      00177D                       3212 ___str_9:
+      00177D 61 3A 20 41 75 6D 65  3213 	.ascii "a: Aumenta RPM do motor."
              6E 74 61 20 52 50 4D
              20 64 6F 20 6D 6F 74
              6F 72 2E
-      0010A2 0A                    3112 	.db 0x0a
-      0010A3 00                    3113 	.db 0x00
-                           000061  3114 Fp3main$__str_4$0$0 == .
-      0010A4                       3115 ___str_4:
-      0010A4 64 3A 20 44 69 6D 69  3116 	.ascii "d: Diminui RPM do motor."
+      001795 0A                    3214 	.db 0x0a
+      001796 00                    3215 	.db 0x00
+                           0000C0  3216 Fp3main$__str_10$0$0 == .
+      001797                       3217 ___str_10:
+      001797 64 3A 20 44 69 6D 69  3218 	.ascii "d: Diminui RPM do motor."
              6E 75 69 20 52 50 4D
              20 64 6F 20 6D 6F 74
              6F 72 2E
-      0010BC 0A                    3117 	.db 0x0a
-      0010BD 00                    3118 	.db 0x00
-                           00007B  3119 Fp3main$__str_5$0$0 == .
-      0010BE                       3120 ___str_5:
-      0010BE 70 3A 20 4C 69 67 61  3121 	.ascii "p: Liga/desliga fonte de energia placa peltier."
+      0017AF 0A                    3219 	.db 0x0a
+      0017B0 00                    3220 	.db 0x00
+                           0000DA  3221 Fp3main$__str_11$0$0 == .
+      0017B1                       3222 ___str_11:
+      0017B1 70 3A 20 4C 69 67 61  3223 	.ascii "p: Liga/desliga fonte de energia placa peltier."
              2F 64 65 73 6C 69 67
              61 20 66 6F 6E 74 65
              20 64 65 20 65 6E 65
              72 67 69 61 20 70 6C
              61 63 61 20 70 65 6C
              74 69 65 72 2E
-      0010ED 0A                    3122 	.db 0x0a
-      0010EE 00                    3123 	.db 0x00
-                           0000AC  3124 Fp3main$__str_6$0$0 == .
-      0010EF                       3125 ___str_6:
-      0010EF 72 3A 20 4D 65 64 65  3126 	.ascii "r: Mede rotacao do motor."
+      0017E0 0A                    3224 	.db 0x0a
+      0017E1 00                    3225 	.db 0x00
+                           00010B  3226 Fp3main$__str_12$0$0 == .
+      0017E2                       3227 ___str_12:
+      0017E2 72 3A 20 4D 65 64 65  3228 	.ascii "r: Mede rotacao do motor."
              20 72 6F 74 61 63 61
              6F 20 64 6F 20 6D 6F
              74 6F 72 2E
-      001108 0A                    3127 	.db 0x0a
-      001109 00                    3128 	.db 0x00
-                           0000C7  3129 Fp3main$__str_7$0$0 == .
-      00110A                       3130 ___str_7:
-      00110A 31 3A 20 4D 65 64 65  3131 	.ascii "1: Mede temperatura do motor."
+      0017FB 0A                    3229 	.db 0x0a
+      0017FC 00                    3230 	.db 0x00
+                           000126  3231 Fp3main$__str_13$0$0 == .
+      0017FD                       3232 ___str_13:
+      0017FD 31 3A 20 4D 65 64 65  3233 	.ascii "1: Mede temperatura do motor."
              20 74 65 6D 70 65 72
              61 74 75 72 61 20 64
              6F 20 6D 6F 74 6F 72
              2E
-      001127 0A                    3132 	.db 0x0a
-      001128 00                    3133 	.db 0x00
-                           0000E6  3134 Fp3main$__str_8$0$0 == .
-      001129                       3135 ___str_8:
-      001129 32 3A 20 4D 65 64 65  3136 	.ascii "2: Mede tensao aplicada a placa peltier."
+      00181A 0A                    3234 	.db 0x0a
+      00181B 00                    3235 	.db 0x00
+                           000145  3236 Fp3main$__str_14$0$0 == .
+      00181C                       3237 ___str_14:
+      00181C 32 3A 20 4D 65 64 65  3238 	.ascii "2: Mede tensao aplicada a placa peltier."
              20 74 65 6E 73 61 6F
              20 61 70 6C 69 63 61
              64 61 20 61 20 70 6C
              61 63 61 20 70 65 6C
              74 69 65 72 2E
-      001151 0A                    3137 	.db 0x0a
-      001152 00                    3138 	.db 0x00
-                           000110  3139 Fp3main$__str_9$0$0 == .
-      001153                       3140 ___str_9:
-      001153 33 3A 20 54 65 73 74  3141 	.ascii "3: Testa RAM SPI."
+      001844 0A                    3239 	.db 0x0a
+      001845 00                    3240 	.db 0x00
+                           00016F  3241 Fp3main$__str_15$0$0 == .
+      001846                       3242 ___str_15:
+      001846 33 3A 20 54 65 73 74  3243 	.ascii "3: Testa RAM SPI."
              61 20 52 41 4D 20 53
              50 49 2E
-      001164 0A                    3142 	.db 0x0a
-      001165 00                    3143 	.db 0x00
-                           000123  3144 Fp3main$__str_10$0$0 == .
-      001166                       3145 ___str_10:
-      001166 0A                    3146 	.db 0x0a
-      001167 00                    3147 	.db 0x00
-                           000125  3148 Fp3main$__str_11$0$0 == .
-      001168                       3149 ___str_11:
-      001168 20                    3150 	.ascii " "
-      001169 00                    3151 	.db 0x00
-                           000127  3152 Fp3main$__str_12$0$0 == .
-      00116A                       3153 ___str_12:
-      00116A 46 6F 6E 74 65 20 31  3154 	.ascii "Fonte 12V ligada."
-             32 56 20 6C 69 67 61
-             64 61 2E
-      00117B 0A                    3155 	.db 0x0a
-      00117C 00                    3156 	.db 0x00
-                           00013A  3157 Fp3main$__str_13$0$0 == .
-      00117D                       3158 ___str_13:
-      00117D 46 6F 6E 74 65 20 31  3159 	.ascii "Fonte 12V desligada."
-             32 56 20 64 65 73 6C
-             69 67 61 64 61 2E
-      001191 0A                    3160 	.db 0x0a
-      001192 00                    3161 	.db 0x00
-                           000150  3162 Fp3main$__str_14$0$0 == .
-      001193                       3163 ___str_14:
-      001193 52 6F 74 61 63 61 6F  3164 	.ascii "Rotacao do motor: %3.1f"
-             20 64 6F 20 6D 6F 74
-             6F 72 3A 20 25 33 2E
-             31 66
-      0011AA 0A                    3165 	.db 0x0a
-      0011AB 00                    3166 	.db 0x00
-                           000169  3167 Fp3main$__str_15$0$0 == .
-      0011AC                       3168 ___str_15:
-      0011AC 25 30 35 75 20        3169 	.ascii "%05u "
-      0011B1 00                    3170 	.db 0x00
-                           00016F  3171 Fp3main$__str_16$0$0 == .
-      0011B2                       3172 ___str_16:
-      0011B2 45 72 72 6F 20 65 6E  3173 	.ascii "Erro end. %05u"
+      001857 0A                    3244 	.db 0x0a
+      001858 00                    3245 	.db 0x00
+                           000182  3246 Fp3main$__str_16$0$0 == .
+      001859                       3247 ___str_16:
+      001859 0A                    3248 	.db 0x0a
+      00185A 00                    3249 	.db 0x00
+                           000184  3250 Fp3main$__str_17$0$0 == .
+      00185B                       3251 ___str_17:
+      00185B 25 30 35 75 20        3252 	.ascii "%05u "
+      001860 00                    3253 	.db 0x00
+                           00018A  3254 Fp3main$__str_18$0$0 == .
+      001861                       3255 ___str_18:
+      001861 45 72 72 6F 20 65 6E  3256 	.ascii "Erro end. %05u"
              64 2E 20 25 30 35 75
-      0011C0 0A                    3174 	.db 0x0a
-      0011C1 00                    3175 	.db 0x00
-                           00017F  3176 Fp3main$__str_17$0$0 == .
-      0011C2                       3177 ___str_17:
-      0011C2 46 69 6D 20 64 6F 20  3178 	.ascii "Fim do teste. RAM SPI ok!"
+      00186F 0A                    3257 	.db 0x0a
+      001870 00                    3258 	.db 0x00
+                           00019A  3259 Fp3main$__str_19$0$0 == .
+      001871                       3260 ___str_19:
+      001871 46 69 6D 20 64 6F 20  3261 	.ascii "Fim do teste. RAM SPI ok!"
              74 65 73 74 65 2E 20
              52 41 4D 20 53 50 49
              20 6F 6B 21
-      0011DB 0A                    3179 	.db 0x0a
-      0011DC 00                    3180 	.db 0x00
-                           00019A  3181 Fp3main$__str_18$0$0 == .
-      0011DD                       3182 ___str_18:
-      0011DD 54 65 6D 70 65 72 61  3183 	.ascii "Temperatura da placa peltier: %2.1f C"
+      00188A 0A                    3262 	.db 0x0a
+      00188B 00                    3263 	.db 0x00
+                           0001B5  3264 Fp3main$__str_20$0$0 == .
+      00188C                       3265 ___str_20:
+      00188C 54 65 6D 70 65 72 61  3266 	.ascii "Temperatura da placa peltier: %2.1f C"
              74 75 72 61 20 64 61
              20 70 6C 61 63 61 20
              70 65 6C 74 69 65 72
              3A 20 25 32 2E 31 66
              20 43
-      001202 0A                    3184 	.db 0x0a
-      001203 00                    3185 	.db 0x00
-                                   3186 	.area XINIT   (CODE)
-                                   3187 	.area CABS    (ABS,CODE)
+      0018B1 0A                    3267 	.db 0x0a
+      0018B2 00                    3268 	.db 0x00
+                                   3269 	.area XINIT   (CODE)
+                                   3270 	.area CABS    (ABS,CODE)

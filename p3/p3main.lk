@@ -1,5 +1,5 @@
 -muwx
--i Z:\9semestre\micap\micap-master\p3\p3main.hex
+-i Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.hex
 -M
 -Y
 -y
@@ -14,6 +14,6 @@
 -l libint
 -l liblong
 -l libfloat
-Z:\9semestre\micap\micap-master\p3\p3main.rel
+Z:\9semestre\micap\micap-master-ultimo\micap-master\p3\p3main.rel
 
 -e
